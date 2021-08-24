@@ -1,0 +1,18 @@
+.meeting_content{
+    background-color: #E0E0D4;
+    border: solid;
+    height: 100vh;
+    background-size:cover;
+    border-top-left-radius: 8pt;
+    border-bottom-left-radius: 8pt;
+}
+.row{
+    margin-right: 0 !important;
+    margin-left: 0 !important;
+  }
+  @media  screen and (max-width: 575px){
+      .meeting_content{
+        border-top-left-radius: 0pt;
+        border-bottom-left-radius: 0pt;
+      }
+  }

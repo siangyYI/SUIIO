@@ -1,0 +1,66 @@
+.audit{
+    border-style: 5px solid;
+    color: rgb(255, 255, 255);
+    background-color:#294753;
+    border-radius :5px;
+}
+.Auditmeeting{ /*按鈕樣式*/
+    border: 0;
+    height: 28pt;
+    width: 30pt;
+    border-top-left-radius:10px;
+    border-bottom-left-radius :10px;
+    color: #949292;
+    background-color: #EBF0EE;  
+}
+.Auditmeeting2{/*按鈕樣式*/
+    border: 0;
+    height: 28pt;
+    width: 30pt;
+    border-top-right-radius:10px;
+    border-bottom-right-radius :10px;
+    color: #949292;
+    background-color: #EBF0EE;
+}
+.title{
+    color: rgb(212, 176, 121);
+    font-weight: bold;
+    font-size: 18pt;
+}
+.date{
+    color: cornflowerblue;
+    font-weight:bold;
+    font-size: 14pt;
+}
+.host{
+    color: cornflowerblue;
+    font-weight:bold;
+}
+@media  screen and (max-width: 575px){
+    .meeting>.title{
+        font-size: 20pt;
+        
+    }
+    .meeting>.date{
+        font-size: 14pt;
+    }
+    .meeting>.host{
+        font-size: 12pt;
+    }
+}
+@media  screen and (min-width: 575px){
+    .meeting>.title{
+        font-size: 18pt;
+    }
+    .meeting>.date,.meeting>.host{
+        font-size: 14pt;
+    }
+    .meeting.text{
+        font-size: 14pt;
+    }
+/* 
+    .meeting{
+        width: 440pt;
+        height: 45pt;
+    } */
+}

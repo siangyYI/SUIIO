@@ -1,0 +1,37 @@
+.auditcontent{
+    background-color:#294753;
+    border-radius:10px;
+}
+.recordcontent{
+    background-color: #E0E0D4;
+    border: solid;
+    height: 100vh;
+    border-top-left-radius: 8pt;
+    border-bottom-left-radius: 8pt;
+    
+}
+.text{
+    font-size: 20pt;
+}
+.contenttext{
+    font-size: 20pt;
+    color: white;
+}
+.row{
+    margin-right: 0 !important;
+    margin-left: 0 !important;
+  }
+  @media screen and(min-width: 575px){
+      .content>.text{
+          font-size: 30pt;
+      }
+      .content>.contenttext{
+        font-size: 30pt;
+      }
+}  
+@media  screen and (max-width: 575px){
+    .recordcontent{
+      border-top-left-radius: 0pt;
+      border-bottom-left-radius: 0pt;
+    }
+}

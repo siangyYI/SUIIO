@@ -1,0 +1,6 @@
+.navfont{
+    color: rgb(94, 94, 94) !important;
+}
+.navfont:active{
+    color: black !important;
+}
