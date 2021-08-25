@@ -1,7 +1,23 @@
-import { Card } from "react-bootstrap";
+import { useState } from "react";
+import { Collapse, Button, Card } from "react-bootstrap";
+import { CardBody } from 'reactstrap';
 const Report = () => {
+    const [isOpen, setIsOpen] = useState(false);
+
+    const toggle = () => setIsOpen(!isOpen);
     return (
         <>
+            <Button color="primary" onClick={toggle}>Toggle</Button>
+            <Collapse isOpen={isOpen}>
+                <Card>
+                    <CardBody>
+                        Anim pariatur cliche reprehenderit,
+                        enim eiusmod high life accusamus terry richardson ad squid. Nihil
+                        anim keffiyeh helvetica, craft beer labore wes anderson cred
+                        nesciunt sapiente ea proident.
+                    </CardBody>
+                </Card>
+            </Collapse>
             <Card style={{ width: '18rem' }} className="mx-auto mt-3">
                 <Card.Body className="meeting">
                     <Card.Title className="title">七月財報</Card.Title>
@@ -17,6 +33,7 @@ const Report = () => {
                     </Card.Text>
                 </Card.Body>
             </Card>
+            
         </>
     )
 };

@@ -1,9 +1,9 @@
 import "../css/Meeting.css";
-
 import { Card } from "react-bootstrap";
 const Meeting = () => {
     return (
         <>
+           <a href="#Index/reconder">
             <Card style={{ width: '18rem' }} className="mx-auto mt-3">
                 <Card.Body className="meeting">
                     <Card.Title className="title">大迎新會議</Card.Title>
@@ -13,7 +13,7 @@ const Meeting = () => {
                         </div>
                     </Card.Subtitle>
                     <Card.Text>
-                        
+
                         <div className="mr-md-3 mx-3 pt-2 pt-md-0 align-self-center host">
                             活動:大迎新
                         </div>
@@ -28,6 +28,7 @@ const Meeting = () => {
                     </div>
                 </Card.Body>
             </Card>
+            </a>
         </>
         // <div className="meeting ml-md-5 mt-3 d-md-flex justify-content-around" >
 

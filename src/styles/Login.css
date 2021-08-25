@@ -1,0 +1,31 @@
+.login{
+  background-color: white;
+  height: 80%;
+  /* padding: 15% 10% 20% 10%; */
+  margin:5% 5% 0% 5%;
+}
+.text{
+    text-align: center;
+
+}
+.btn{
+  width: 100%;
+  font-size: 1rem;
+  background-color: #1473E6;
+  color: white;
+  border: none;
+
+
+}
+.btn .a{
+    text-decoration: none;
+}
+input{
+    height: 1.2rem;
+    width: 100%;
+    font-size: 1rem;
+}
+p{
+  font-size:1.2rem;
+  margin-bottom: 0%;
+}
