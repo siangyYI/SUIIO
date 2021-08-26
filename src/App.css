@@ -25,3 +25,7 @@
     aside  a{
       color:white !important;
     }
+    .nav-fill .nav-item, .nav-fill>.nav-link {
+      flex: 1 1 auto;
+      text-align: center;
+  }

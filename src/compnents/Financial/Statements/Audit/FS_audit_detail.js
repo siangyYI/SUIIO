@@ -101,7 +101,7 @@ function FS_audit_detail() {
             <td></td>
           </tr>
         </table>
-        <table style={{background:"white"}}>
+        <table style={{ background: "white" }}>
           <tr>
             <td>本期淨利(損)</td>
             <td colSpan="2">(4,102)</td>

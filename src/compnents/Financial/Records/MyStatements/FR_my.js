@@ -21,7 +21,8 @@ export class FRmy extends Component{
           </div>
         </div>
         <div className="row mt-2">
-          <Card /> <Card />
+          <Card /> 
+          <Card />
           <Card />
           <Card />
         </div>

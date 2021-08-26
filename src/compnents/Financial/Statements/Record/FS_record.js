@@ -1,5 +1,4 @@
 import React from 'react'
-import { Container } from "react-bootstrap";
 import Card from "./FS_record_card";
 import { Component } from 'react';
 
@@ -11,7 +10,6 @@ export class FSrecord extends Component {
 render(){
     return (
         <div>
-          <Container>
             <div className="my-3 d-flex">
               <div style={{ fontSize: "20px" }} className="mr-3">
                 審核狀態
@@ -30,7 +28,6 @@ render(){
               <Card />
               <Card />
             </div>
-          </Container>
         </div>
     )
 }

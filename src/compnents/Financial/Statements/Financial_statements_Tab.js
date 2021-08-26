@@ -9,8 +9,7 @@ import NavBAR from '../Financial_nav'
 function Financial_statements() {
   return (
     <>
-      <div className=" p-1 mx-1 mt-2">
-        <div>
+ <div>
           <NavBAR />
         </div>
         <div>
@@ -18,10 +17,11 @@ function Financial_statements() {
             fill
             variant="pills"
             defaultActiveKey="record"
-            className="m-5 rounded menu bg-secondary"
+            className="rounded menu bg-secondary"
           >
             <Tab eventKey="my" title="我的財報" tabClassName="text-white">
               <FSmy />
+              
             </Tab>
             <Tab eventKey="record" title="財務報表" tabClassName="text-white">
               <FSrecord />
@@ -32,7 +32,7 @@ function Financial_statements() {
             <Tab eventKey="audit" title="審核財報" tabClassName="text-white">
               <FSaudit />
             </Tab>
-          </Tabs></div></div>
+          </Tabs></div>
     </>
   );
 }

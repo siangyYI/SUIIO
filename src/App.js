@@ -33,10 +33,9 @@ class App extends Component {
       <>
         <HashRouter>
           <Switch>
-            <div className="row overflow-auto">
+            <div className="row">
               <NavBar />
-
-              <div className="col recordcontent overflow-auto">
+              <div className="col recordcontent">
                 <Route exact={true} path="/" component={Index} />
                 <Route path="/reconder" component={reconder} />
                 <Route path="/Uploadmeet" component={Uploadmeet} />
@@ -45,23 +44,20 @@ class App extends Component {
                 <Route path="/MyList" component={MyList} />
                 <Route path="/Myreconder" component={Myreconder} />
                 <Route path="/ReportMessage" component={ReportMessage} />
-
                 <Route path="/Organization/event" component={Organization_event} />
                 <Route path="/Organization/cadre" component={Organization_cadre} />
                 <Route path="/Organization/member" component={Organization_member} />
                 <Route path="/Financial/statements" component={Financial_statements} />
                 <Route path="/Financial/records" component={Financial_records_Tab} />
                 <Route path="/Financial/management" component={Financial_manage_Tab} />
-
-                <Route path="/Financial/management/my/detail" component={FM_my_detail} />
+                <Route path="/Financial/management/my/detail" exact component={FM_my_detail} />
                 <Route path="/Financial/management/audit/detail" component={FM_audit_detail} />
-
                 <Route path="/Financial/records/audit/detail" component={FR_audit_detail} />
                 <Route path="/Financial/records/my/detail" component={FR_my_detail} />
-
                 <Route path="/Financial/statements/audit/detail" component={FS_audit_detail} />
                 <Route path="/Financial/statements/my/detail" component={FS_my_detail} />
-              </div></div>
+              </div>
+            </div>
           </Switch>
         </HashRouter>
       </>

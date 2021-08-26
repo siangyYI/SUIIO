@@ -1,9 +1,8 @@
-import React, { Component } from "react";
+import React from "react";
 import { Container, Button } from "react-bootstrap";
 
-function FS_my_detail() {
+const FS_my_detail=()=> {
   return (
-    <div>
       <Container>
         <div
           style={{
@@ -123,7 +122,6 @@ function FS_my_detail() {
           取消
         </Button>
       </Container>
-    </div>
   );
 }
 export default FS_my_detail;

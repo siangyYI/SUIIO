@@ -5,9 +5,9 @@ import Card from "./FS_my_card";
 export const FSmy = (props) => {
 
   return (
-    <div>
-      <Container>
-        <div className="my-3 d-flex">
+
+      <>
+        <div className="my-3 mx-5 d-flex">
           <div style={{ fontSize: "20px" }} className="mr-3">
             審核狀態
           </div>
@@ -28,14 +28,16 @@ export const FSmy = (props) => {
           </div>
         </div>
         <div className="row mt-2">
-        <Card   />
+
+          
+           <Card/>
           <Card />
           <Card />
           <Card />
 
         </div>
-      </Container>
-    </div>
+      </>
+
   );
 }
 

@@ -8,7 +8,6 @@ export class FMaudit extends Component {
   render() {
     return (
       <>
-
         <Container>
           <div className="my-3 d-flex">
             <div style={{ fontSize: "20px" }} className="mr-3">
@@ -23,7 +22,8 @@ export class FMaudit extends Component {
             </div>
           </div>
           <div className="row mt-2">
-            <Card /> <Card />
+            <Card /> 
+            <Card />
             <Card />
             <Card />
           </div>
