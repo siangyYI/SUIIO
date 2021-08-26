@@ -1,7 +1,5 @@
 import React ,{ Component } from "react";
 import Card from "./FM_my_card";
-import { Container } from "react-bootstrap";
-
 
 export class FMmy extends Component {
   render(){
