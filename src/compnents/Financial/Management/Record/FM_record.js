@@ -5,7 +5,7 @@ export class FMrecord extends Component {
   render() {
     return (
       <>
-          <div className="my-3 d-flex">
+          <div className="my-3 mx-5 d-flex">
             <div style={{ fontSize: "20px" }} className="mr-3">
               審核狀態
             </div>

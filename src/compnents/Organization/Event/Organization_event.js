@@ -2,8 +2,7 @@ import React from "react";
 import "../../../styles/Organization_event.css";
 import { Input } from "semantic-ui-react";
 import AddEvent from "./AddEvent";
-import NavigationBar from '../../Meeting/NavigationBar';
-import Sidebar from '../../Meeting/Sidebar';
+
 import Navtab from '../Organization_nav';
 
 function Organization_event(props) {

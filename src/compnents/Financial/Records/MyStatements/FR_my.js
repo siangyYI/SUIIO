@@ -1,13 +1,11 @@
 import React, { Component }  from "react";
 import Card from "./FR_my_card";
-import { Container } from "react-bootstrap";
 
 export class FRmy extends Component{
   render(){
   return (
     <div>
-      <Container>
-        <div className="my-3 d-flex">
+        <div className="my-3 mx-5 d-flex">
           <div style={{ fontSize: "20px" }} className="mr-3">
             審核狀態
           </div>
@@ -26,7 +24,6 @@ export class FRmy extends Component{
           <Card />
           <Card />
         </div>
-      </Container>
     </div>
   );
 }

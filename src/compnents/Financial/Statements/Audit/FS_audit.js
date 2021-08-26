@@ -1,14 +1,12 @@
 import React from "react";
 import { Component } from "react";
-import { Container } from "react-bootstrap";
 import Card from "./FS_audit_card";
 
 export class FSaudit extends Component {
   render() {
     return (
       <div>
-        <Container>
-          <div className="my-3 d-flex">
+          <div className="my-3 mx-5 d-flex">
             <div style={{ fontSize: "20px" }} className="mr-3">
               審核狀態
             </div>
@@ -33,7 +31,6 @@ export class FSaudit extends Component {
             <Card />
             <Card />
           </div>
-        </Container>
       </div>
     );
   }

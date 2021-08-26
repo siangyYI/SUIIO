@@ -7,8 +7,7 @@ export class FMmy extends Component {
   render(){
   return (
     <>
-      <Container>
-        <div className="my-3 d-flex">
+        <div className="my-3 mx-5 d-flex">
           <div style={{ fontSize: "20px" }} className="mr-3">
             審核狀態
           </div>
@@ -27,7 +26,7 @@ export class FMmy extends Component {
           <Card />
           <Card />
         </div>
-      </Container>
+
 </>
   );
 }
