@@ -8,12 +8,10 @@ const ReportMessage = () => {
         <>
             <MessageNavtab />
             <Reportfilter />{/*篩選器*/}
-            <div className="row">   {/*會議記錄*/}
-                <div className="col-sm-12 col-md-12 pb-2"><Report /></div>
-                <div className="col-sm-12 col-md-12 pb-2"><Report /></div>
-                <div className="col-sm-12 col-md-12 pb-2"><Report /></div>
-                <div className="col-sm-12 col-md-12 pb-2"><Report /></div>
+            <div className="row overflow-auto">   {/*會議記錄*/}
+                <Report />
             </div>
+            
         </>
     )
 }

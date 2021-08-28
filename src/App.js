@@ -12,7 +12,7 @@ import AuditList from './compnents/Meeting/Audit/js/auditlist';
 import MyList from './compnents/Meeting/MyMeeting/js/MylList';
 import auditReconder from "./compnents/Meeting/Audit/js/auditReconder";
 import Myreconder from './compnents/Meeting/MyMeeting/js/Myreconder';
-import ReportMessage from './compnents/message/Report/ReportMessage';
+import ReportMessage from './compnents/Message/Report/ReportMessage';
 import Organization_event from "./compnents/Organization/Event/Organization_event";
 import Organization_cadre from "./compnents/Organization/Cadre/Organization_cadre";
 import Organization_member from "./compnents/Organization/Member/Organization_member";
@@ -35,7 +35,7 @@ class App extends Component {
           <Switch>
             <div className="row">
               <NavBar />
-              <div className="col recordcontent">
+              <div className="col recordcontent overflow-auto">
                 <Route exact={true} path="/" component={Index} />
                 <Route path="/reconder" component={reconder} />
                 <Route path="/Uploadmeet" component={Uploadmeet} />
@@ -50,9 +50,13 @@ class App extends Component {
                 <Route path="/Financial/statements" component={Financial_statements} />
                 <Route path="/Financial/records" component={Financial_records_Tab} />
                 <Route path="/Financial/management" component={Financial_manage_Tab} />
+
+
                 <Route path="/Financial/management/my/detail" exact component={FM_my_detail} />
                 <Route path="/Financial/management/audit/detail" component={FM_audit_detail} />
+
                 <Route path="/Financial/records/audit/detail" component={FR_audit_detail} />
+
                 <Route path="/Financial/records/my/detail" component={FR_my_detail} />
                 <Route path="/Financial/statements/audit/detail" component={FS_audit_detail} />
                 <Route path="/Financial/statements/my/detail" component={FS_my_detail} />

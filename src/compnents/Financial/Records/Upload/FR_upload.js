@@ -6,7 +6,7 @@ export class FRupload extends Component {
     return (
       <div>
         <Container>
-          <div className="row">
+          <div className="row ">
             <div className="col mr-5">
               
               <div

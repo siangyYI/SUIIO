@@ -8,10 +8,15 @@ aside{
     border-radius:8px;
     text-align: center;
     width: 75pt;
-    height: 230pt;
     color: white;
     margin: 20px;
-    margin-top: 140%
+    margin-top:10%
+}
+.toolbutton{
+  width: 75pt;
+  margin-left: 20px;
+  border-radius:8px;
+  font-size: 14px;
 }
 .custom-switch{
   padding-left: 0 !important;
@@ -22,6 +27,9 @@ aside{
     aside{
         display: none;
     }
+    .toolbutton{
+      display: none;
+    }
 }
 
 @media (min-width: 599.99px) and (max-width: 767.98px) {
@@ -31,8 +39,6 @@ aside{
   aside{
     width:80px;
     margin-left: 10px;
-    
-
   }
 }
 
@@ -43,7 +49,6 @@ aside{
   aside{
     width:80px;
     margin-left: 10px;
-
   }
 }
 

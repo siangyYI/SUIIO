@@ -9,7 +9,6 @@ function FR_audit_detail() {
   const [Cancel, setCancel] = React.useState(false);
   return (
     <>
-
     <div className="m-5">
       <Container>
         <div className="row">

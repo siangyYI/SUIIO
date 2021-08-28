@@ -1,0 +1,13 @@
+.area{
+    background-color:#294753;
+    border-radius:10px;
+    height: 560px;
+    width: 800px;
+    color: rgb(212, 176, 121);
+}
+.fontarea{
+    background-color:white;
+    border-radius:10px;
+    font-size: 14px;
+    color: rgb(17, 17, 17);
+}
