@@ -1,37 +1,42 @@
-.phone{
-    height: auto;
+.phone {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 9999;
+  margin-left: 0;
 }
-aside{
-    padding: 10px 0 10px 0;
-    text-decoration: none;
-    background-color: black;
-    border-radius:8px;
-    text-align: center;
-    width: 75pt;
-    color: white;
-    margin: 20px;
-    margin-top:10%
+
+aside {
+  padding: 10px 0 10px 0;
+  text-decoration: none;
+  background-color: black;
+  border-radius: 8px;
+  text-align: center;
+  width: 75pt;
+  color: white;
+  margin: 20px;
+  margin-top: 10%;
 }
-.custom-switch{
+
+.custom-switch {
   padding-left: 0 !important;
 }
 
-
 @media (max-width: 599px) {
-    aside{
-        display: none;
-    }
-    .toolbutton{
-      display: none;
-    }
+  aside {
+    display: none;
+  }
+  .topbar {
+    display: none !important;
+  }
 }
 
 @media (min-width: 599.99px) and (max-width: 767.98px) {
   .phone {
     display: none;
   }
-  aside{
-    width:80px;
+  aside {
+    width: 80px;
     margin-left: 10px;
   }
 }
@@ -40,8 +45,8 @@ aside{
   .phone {
     display: none;
   }
-  aside{
-    width:80px;
+  aside {
+    width: 80px;
     margin-left: 10px;
   }
 }
@@ -50,10 +55,9 @@ aside{
   .phone {
     display: none;
   }
-  aside{
-    width:100px;
+  aside {
+    width: 100px;
     margin-left: 10px;
-
   }
 }
 
@@ -61,5 +65,4 @@ aside{
   .phone {
     display: none;
   }
-  
 }

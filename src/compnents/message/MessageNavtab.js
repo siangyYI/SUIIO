@@ -2,8 +2,7 @@ import { Link } from 'react-router-dom';
 import "../Meeting/Nav_tab.css"
 const MessageNavtab = () => {    /*電腦版導覽列 */
     return (
-            <div className="flex-md-column d-md-flex d-none">
-                <div className="d-flex d-sm-none  py-2 d-md-flex">
+                <div className="d-flex d-sm-none  pt-2 d-md-flex flex-md-column d-md-flex d-none">
                     <ul class="nav py-3 px-5 h4 " role="tablist">
                         <li class="nav-item">
                             <Link to="/ReportMessage" class="nav-link text-reset navfont" data-toggle="tab">
@@ -17,7 +16,6 @@ const MessageNavtab = () => {    /*電腦版導覽列 */
                         </li>
                     </ul>
                 </div>
-            </div>
     )
 };
 export default MessageNavtab;

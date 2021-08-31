@@ -4,7 +4,7 @@ const Uploadmeet = () => {
     return (
         <>
             <Navtab />
-            <div className="row">
+            <div className="row mt-md-0 mt-5">
                 {/*收起 */} <div className="col-md-4 mx-auto">
                     <div className="content mx-auto my-3 d-flex justify-content-center row">
                         <form class="d-flex align-items-center">

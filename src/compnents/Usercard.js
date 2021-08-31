@@ -4,14 +4,13 @@ class Usercard extends Component {
     render() {
         return (
             <>
-
-                <div className="ucard ">
-                    <div className="d-flex flex-row px-5 py-3">
+                <div className="ucard">
+                    <div className="d-flex flex-row px-5 py-4">
                         <img
                             src={require("../Image/1144760.png").default}
                             alt="cancel"
                             width="55px" height="55px"
-                            className="mr-5 ml-3"
+                            className="mx-4"
                             onClick={this.handClick}
                         />
                         <div className="d-flex flex-column">
@@ -19,9 +18,7 @@ class Usercard extends Component {
                             <div>暱稱：siangyi</div>
                             <div>性別：男</div>
                         </div>
-
                     </div>
-
                     <div className="ucardline mt-2">
                         <div className="d-flex my-3 d-flex justify-content-center">
                             <img
@@ -29,7 +26,7 @@ class Usercard extends Component {
                                 alt="cancel"
                                 width="25px" height="25px"
                                 className="mr-2"
-                                onClick={this.handClick}
+                            
                             />
                             <div>更改密碼</div>
 
@@ -41,7 +38,7 @@ class Usercard extends Component {
                                 alt="cancel"
                                 width="25px" height="25px"
                                 className="mr-2"
-                                onClick={this.handClick}
+                                
                             />
                             <div>更改個人資料</div>
 
@@ -67,8 +64,6 @@ class Usercard extends Component {
                         </div>
                     </div>
                 </div>
-
-
             </>
         );
     }

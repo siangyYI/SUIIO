@@ -10,6 +10,10 @@ const ReportMessage = () => {
             <Reportfilter />{/*篩選器*/}
             <div className="row overflow-auto">   {/*會議記錄*/}
                 <Report />
+                <Report />
+                <Report />
+                <Report />
+                <Report />
             </div>
             
         </>

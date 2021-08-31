@@ -1,8 +1,6 @@
 import React from "react";
 import { Input } from "semantic-ui-react";
 import Member from "./Member";
-import NavigationBar from '../../Meeting/NavigationBar';
-import Sidebar from '../../Meeting/Sidebar';
 import Navtab from '../Organization_nav';
 
 function Organization_member() {

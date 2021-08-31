@@ -1,0 +1,16 @@
+.ncard{
+    background-color: #2d2e30;
+    position: fixed;
+    z-index: 99999;
+    color: white;
+    border-radius: 8px;
+    text-align: center;
+}
+.ncardline{
+    border-bottom: 2px solid #5f6368;
+    width: 295px;
+    color: #e8eaed;
+}
+.nfont{
+    font-weight: bold;
+}

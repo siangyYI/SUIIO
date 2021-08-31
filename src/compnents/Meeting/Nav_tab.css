@@ -1,6 +1,13 @@
-.navfont{
+.navfont {
     color: rgb(94, 94, 94) !important;
 }
-.navfont:active{
+
+.navfont:active {
     color: black !important;
+}
+
+@media (max-width: 599px) {
+    .bar {
+        display: none!important;
+    }
 }

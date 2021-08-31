@@ -1,7 +1,6 @@
 .meetingcontent{
     background-color:#294753;
     border-radius:10px;
-    
 }
 .textcontent{
     background-color:#294753;
@@ -51,5 +50,8 @@
     .recordcontent{
       border-top-left-radius: 0pt;
       border-bottom-left-radius: 0pt;
+    }
+    .content>.text{
+        font-size: 12px;
     }
 }

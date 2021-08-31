@@ -3,6 +3,7 @@ import { HashRouter } from 'react-router-dom';
 import { Route } from 'react-router';
 import { Component } from 'react';
 import './App.css';
+import NavigationBar from './compnents/NavigationBar';
 import NavBar from './compnents/Navbar'
 import Switch from 'react-bootstrap/esm/Switch';
 import Index from "./compnents/Meeting/Management/js/Index";
@@ -33,9 +34,12 @@ class App extends Component {
       <>
         <HashRouter>
           <Switch>
+            
             <div className="row">
+              <NavigationBar />
               <NavBar />
               <div className="col recordcontent overflow-auto">
+
                 <Route exact={true} path="/" component={Index} />
                 <Route path="/reconder" component={reconder} />
                 <Route path="/Uploadmeet" component={Uploadmeet} />
