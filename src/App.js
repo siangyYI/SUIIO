@@ -14,6 +14,7 @@ import MyList from './compnents/Meeting/MyMeeting/js/MylList';
 import auditReconder from "./compnents/Meeting/Audit/js/auditReconder";
 import Myreconder from './compnents/Meeting/MyMeeting/js/Myreconder';
 import ReportMessage from './compnents/Message/Report/ReportMessage';
+import IncomeMessage from './compnents/Message/IncomeAndexpend/IncomeMessage';
 import Organization_event from "./compnents/Organization/Event/Organization_event";
 import Organization_cadre from "./compnents/Organization/Cadre/Organization_cadre";
 import Organization_member from "./compnents/Organization/Member/Organization_member";
@@ -48,6 +49,7 @@ class App extends Component {
                 <Route path="/MyList" component={MyList} />
                 <Route path="/Myreconder" component={Myreconder} />
                 <Route path="/ReportMessage" component={ReportMessage} />
+                <Route path="/IncomeMessage" component={IncomeMessage} />
                 <Route path="/Organization/event" component={Organization_event} />
                 <Route path="/Organization/cadre" component={Organization_cadre} />
                 <Route path="/Organization/member" component={Organization_member} />

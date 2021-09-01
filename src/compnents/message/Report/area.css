@@ -1,5 +1,5 @@
 .area{
-    background-color:#294753;
+    background-color:#222D43;
     border-radius:10px;
     height: 560px;
     width: 800px;
@@ -10,4 +10,8 @@
     border-radius:10px;
     font-size: 14px;
     color: rgb(17, 17, 17);
+}
+.username{
+    font-weight: bold;
+    color: #dcae1d;
 }

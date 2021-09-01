@@ -30,20 +30,21 @@ const auditReconder = () => {
                         <div className="my-2 date">2020/06/19</div>
                     </div>
                     <div className="row col-12 my-3 d-flex align-items-center">
-                        <div className="my-2 col-md-4 text">活動：<div>大迎新</div></div>
-                        <div className="my-2 col-md-4 text">出席者：<div>王曉明</div></div>
-                        <div className="my-2 col-md-4 text">缺席者：<div>王曉明</div></div>
+                        <div className="my-2 col-md-4 reconderdate">活動：<div>大迎新</div></div>
+                        <div className="my-2 col-md-4 reconderdate">出席者：<div>王曉明</div></div>
+                        <div className="my-2 col-md-4 reconderdate">缺席者：<div>王曉明</div></div>
                     </div>
                 </div>
             </div>                                               {/*會議內容*/}
             <div className="auditcontent my-3 mx-md-auto overflow-auto col-md-8">
-                <div class="overflow-auto py-3 col-8 contenttext" >Ambitioni dedisse scripsisse iudicaretur.
+                <div class="py-3 contenttext px-3" >Ambitioni dedisse scripsisse iudicaretur.
                     Cras mattis iudicium purus sit amet fermentum.
                     Donec sed odio operae, eu vulputate felis rhoncus.
                     Praeterea iter est quasdam res quas ex communi.
                     At nos hinc posthac, sitientis piros Afros.
                     Petierunt uti sibi concilium totius Galliae in diem certam indicere.
                     Cras mattis iudicium purus sit amet fermentum.
+                    
                 </div>
             </div>
             <ModalAdd show={AddShow} onHide={() => setAddShow(false)} />

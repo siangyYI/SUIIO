@@ -26,8 +26,8 @@ const Myreconder = () => {
                 </div>
 
             </div>                                               {/*會議內容*/}
-            <div className="textcontent my-3 mx-md-auto overflow-auto col-md-8">
-                <div class="overflow-auto py-3 col-8 text" >Ambitioni dedisse scripsisse iudicaretur.
+            <div className="textcontent my-3 mx-md-auto overflow-auto col-md-8 ">
+                <div class="py-3 px-3 text" >Ambitioni dedisse scripsisse iudicaretur.
                     Cras mattis iudicium purus sit amet fermentum.
                     Donec sed odio operae, eu vulputate felis rhoncus.
                     Praeterea iter est quasdam res quas ex communi.

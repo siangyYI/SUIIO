@@ -1,9 +1,9 @@
 .meetingcontent{
-    background-color:#294753;
+    background-color:#333A56;
     border-radius:10px;
 }
 .textcontent{
-    background-color:#294753;
+    background-color:#333A56;
     border-radius:10px;
     height: 46vh;
     color: aliceblue;
@@ -17,7 +17,7 @@
     border-bottom-left-radius: 8pt;
 }
 .text{
-    font-size: 20pt;
+    font-size: 18pt;
     color: aliceblue;
     font-weight: bold;
 }
@@ -25,14 +25,19 @@
     font-size: 20pt;
 }
 .recondertitle{
-    color: rgb(212, 176, 121);
+    color: #dcae1d;
     font-weight: bold;
     font-size: 24pt;
 }
 .reconderdate{
-    color: cornflowerblue;
+    color: #7a9d96;
     font-weight:bold;
-    font-size: 18pt;
+    font-size: 16pt;
+}
+.reconderhost{
+    color: #caE4DB;
+    font-weight:bold;
+    font-size: 16pt;
 }
 .row{
     margin-right: 0 !important;
