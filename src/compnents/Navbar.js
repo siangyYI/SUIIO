@@ -91,7 +91,7 @@ class NavBar extends Component {
               style={{ width: "30pt", height: "30pt" }}
             />
             <br />
-            <a href="#/Financial/statements">財務管理</a>
+            <a href="#/Financial/statements/my">財務管理</a>
           </div>
           <div className="my-4">
             <img

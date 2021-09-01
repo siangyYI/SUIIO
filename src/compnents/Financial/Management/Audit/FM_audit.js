@@ -3,8 +3,7 @@ import Card from "./FM_audit_card";
 import { Component } from "react";
 
 
-export class FMaudit extends Component {
-  render() {
+function FM_audit(){
     return (
       <>
           <div className="my-3 mx-5 d-flex">
@@ -29,4 +28,4 @@ export class FMaudit extends Component {
     );
   }
 
-}
+  export default FM_audit;

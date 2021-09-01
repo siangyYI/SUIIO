@@ -1,6 +1,7 @@
 import React from "react";
 import { Container } from "react-bootstrap";
 import { Button } from "react-bootstrap";
+
 function FM_my_detail() {
   return (
     <>
@@ -54,26 +55,35 @@ function FM_my_detail() {
               <td>支出</td>
             </tr>
             <tr>
-              <td>
-                <input type="text"></input>
-              </td>
-              <td>
-                <input type="text"></input>
-              </td>
-              <td>
-                <input type="text"></input>
-              </td>
+              <td><div
+                    contenteditable="true"
+                    style={{ outline: "none", textAlign: "right" }}
+                  ></div>              </td>
+              <td><div
+                    contenteditable="true"
+                    style={{ outline: "none", textAlign: "right" }}
+                  ></div>              </td>
+              <td><div
+                    contenteditable="true"
+                    style={{ outline: "none", textAlign: "right" }}
+                  ></div>              </td>
             </tr>
             <tr>
               <td>
-                <input type="text"></input>
-              </td>
+<div
+                    contenteditable="true"
+                    style={{ outline: "none", textAlign: "right" }}
+                  ></div>              </td>
               <td>
-                <input type="text"></input>
-              </td>
+<div
+                    contenteditable="true"
+                    style={{ outline: "none", textAlign: "right" }}
+                  ></div>              </td>
               <td>
-                <input type="text"></input>
-              </td>
+<div
+                    contenteditable="true"
+                    style={{ outline: "none", textAlign: "right" }}
+                  ></div>              </td>
             </tr>
           </table>
         </div>

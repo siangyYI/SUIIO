@@ -31,14 +31,32 @@ export class FM_Detail extends Component {
                       <td>支出</td>
                     </tr>
                     <tr>
-                      <td><input type="text"></input></td>
-                      <td><input type="text"></input></td>
-                      <td><input type="text"></input></td>
+                      <td><div
+                    contenteditable="true"
+                    style={{ outline: "none", textAlign: "right" }}
+                  ></div></td>
+                      <td><div
+                    contenteditable="true"
+                    style={{ outline: "none", textAlign: "right" }}
+                  ></div></td>
+                      <td><div
+                    contenteditable="true"
+                    style={{ outline: "none", textAlign: "right" }}
+                  ></div></td>
                     </tr>
                     <tr>
-                      <td><input type="text"></input></td>
-                      <td><input type="text"></input></td>
-                      <td><input type="text"></input></td>
+                      <td><div
+                    contenteditable="true"
+                    style={{ outline: "none", textAlign: "right" }}
+                  ></div></td>
+                      <td><div
+                    contenteditable="true"
+                    style={{ outline: "none", textAlign: "right" }}
+                  ></div></td>
+                      <td><div
+                    contenteditable="true"
+                    style={{ outline: "none", textAlign: "right" }}
+                  ></div></td>
                     </tr>
                   </table>
                 </div>

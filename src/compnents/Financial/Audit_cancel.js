@@ -24,7 +24,7 @@ export class AuditCancel extends Component {
             </Form.Group>
           </Modal.Body>
           <Modal.Footer>
-            <Button variant="dark" type="submit" href="/Financial/management" style={{color:"white"}}>
+            <Button variant="dark" type="submit" href="#/Financial/statements/my" style={{color:"white"}}>
               確定
             </Button>
             <Button variant="light" onClick={this.props.onHide}>

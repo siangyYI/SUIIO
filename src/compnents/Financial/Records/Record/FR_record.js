@@ -1,8 +1,7 @@
 import React,{ Component } from 'react'
 import Card from "./FR_record_card";
 
-export class FRrecord extends Component {
-  render(){
+function FR_record() {
     return (
         <div>
             <div className="my-3 mx-5 d-flex">
@@ -27,4 +26,4 @@ export class FRrecord extends Component {
       );
     }
 
-  }
+  export default FR_record;

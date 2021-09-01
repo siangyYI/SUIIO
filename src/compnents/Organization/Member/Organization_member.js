@@ -1,6 +1,8 @@
 import React from "react";
 import { Input } from "semantic-ui-react";
 import Member from "./Member";
+import NavigationBar from '../../NavigationBar';
+import Sidebar from '../../Navbar';
 import Navtab from '../Organization_nav';
 
 function Organization_member() {
@@ -16,7 +18,7 @@ function Organization_member() {
               <option value="mango">107</option>
             </select>
           </div>
-          <div className="col">
+          <div>
             <Input
               action={{ icon: "add" }}
               placeholder="輸入成員學號"

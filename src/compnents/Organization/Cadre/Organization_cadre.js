@@ -2,6 +2,8 @@ import React from "react";
 import { Button } from "react-bootstrap";
 import CadreCard from "./Cadre_Card";
 import { CadreAdd } from "./CadreAdd";
+import NavigationBar from '../../NavigationBar';
+import Sidebar from '../../Navbar';
 import Navtab from '../Organization_nav'
 
 function Organization_cadre() {

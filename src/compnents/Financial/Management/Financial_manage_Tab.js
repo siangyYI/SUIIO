@@ -1,36 +1,28 @@
 import React from "react";
-import { Tabs, Tab } from "react-bootstrap";
-import { FMmy } from "./MyManagement/FM_my";
-import { FMrecord } from "./Record/FM_record";
-import { FMupload } from "./Upload/FM_upload";
-import { FMaudit } from "./Audit/FM_audit";
-import NavBAR from '../Financial_nav'
+import NavBAR from "../Financial_nav";
 
 function Financial_manage() {
   return (
     <>
-      <div>
-        <NavBAR />
+      <div className="d-flex justify-content-between">
+        <div>
+          <NavBAR />
+        </div>
+        <div className="d-flex bd-highlight">
+          <div className="state_tag">
+            <a href="#/Financial/management/my">我的預算</a>
+          </div>
+          <div className="state_tag">
+            <a href="#/Financial/management/record">預算紀錄</a>
+          </div>
+          <div className="state_tag">
+            <a href="#/Financial/management/upload">上傳預算</a>
+          </div>
+          <div className="state_tag">
+            <a href="#/Financial/management/audit">審核預算</a>
+          </div>
+        </div>
       </div>
-      <Tabs
-        fill
-        variant="pills red "
-        defaultActiveKey="record"
-        className="bg-secondary"
-      >
-        <Tab ref="/" eventKey="my" title="我的預算" tabClassName="text-white">
-          <FMmy />
-        </Tab>
-        <Tab eventKey="record" title="預算紀錄" tabClassName="text-white">
-          <FMrecord />
-        </Tab>
-        <Tab eventKey="upload" title="上傳預算" tabClassName="text-white">
-          <FMupload />
-        </Tab>
-        <Tab eventKey="audit" title="審核預算" tabClassName="text-white">
-          <FMaudit />
-        </Tab>
-      </Tabs>
     </>
   );
 }

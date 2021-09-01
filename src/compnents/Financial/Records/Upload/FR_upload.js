@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 import { Container, Button } from "react-bootstrap";
 
-export class FRupload extends Component {
-  render() {
+function FR_upload()  {
     return (
       <div>
         <Container>
@@ -127,4 +126,4 @@ export class FRupload extends Component {
       </div>
     );
   }
-}
+  export default FR_upload;

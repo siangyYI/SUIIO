@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
 import Card from "./FM_record_card";
 
-export class FMrecord extends Component {
-  render() {
+function FM_record() {
     return (
       <>
           <div className="my-3 mx-5 d-flex">
@@ -27,4 +26,4 @@ export class FMrecord extends Component {
     );
   }
 
-}
+  export default FM_record;

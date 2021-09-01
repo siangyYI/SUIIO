@@ -10,37 +10,16 @@ function Organization_nav() {
                     <li class="nav-item">
                         <a href="#/Organization/event" class="nav-link text-reset navfont" data-toggle="tab">
                             活動
-                            <div className="d-flex justify-content-center">
-                            <img
-                                src={require("../../Image/remove.png").default}
-                                alt="cancel"
-                                style={{ width: "12pt", height: "15pt" }}
-                            />
-                        </div>
                         </a>
                     </li>
                     <li class="nav-item">
                         <a href="#/Organization/cadre" class="nav-link text-reset navfont" data-toggle="tab">
                             幹部
-                            <div className="d-flex justify-content-center">
-                            <img
-                                src={require("../../Image/remove.png").default}
-                                alt="cancel"
-                                style={{ width: "12pt", height: "15pt" }}
-                            />
-                        </div>
                         </a>
                     </li>
                     <li class="nav-item">
                         <a href="#/Organization/member" class="nav-link text-reset navfont" data-toggle="tab">
                             成員
-                            <div className="d-flex justify-content-center">
-                            <img
-                                src={require("../../Image/remove.png").default}
-                                alt="cancel"
-                                style={{ width: "12pt", height: "15pt" }}
-                            />
-                        </div>
                         </a>
                     </li>
 

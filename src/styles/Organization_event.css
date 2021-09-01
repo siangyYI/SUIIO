@@ -1,12 +1,7 @@
 .card-body {
   padding: 0px !important;
 }
-.input {
-  height: 32px !important;
 
-  /* border: 1px solid black; */
-  border-radius: 30px !important;
-}
 .web_input{
   width: auto;
 }

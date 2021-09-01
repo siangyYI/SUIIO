@@ -2,8 +2,7 @@ import React, { Component }from "react";
 import { Container ,Button } from "react-bootstrap";
 import "../../../../styles/FM_upload.css";
 
-export class FMupload extends Component {
-  render(){
+function FM_upload() {
   return (
 <><Container>
         <div className="row pt-4">
@@ -49,14 +48,32 @@ export class FMupload extends Component {
                       <td>支出</td>
                   </tr>
                   <tr>
-                    <td><input type="text"></input></td>
-                    <td><input type="text"></input></td>
-                    <td><input type="text"></input></td>
+                    <td><div
+                    contenteditable="true"
+                    style={{ outline: "none", textAlign: "right" }}
+                  ></div></td>
+                    <td><div
+                    contenteditable="true"
+                    style={{ outline: "none", textAlign: "right" }}
+                  ></div></td>
+                    <td><div
+                    contenteditable="true"
+                    style={{ outline: "none", textAlign: "right" }}
+                  ></div></td>
                   </tr>
                   <tr>
-                    <td><input type="text"></input></td>
-                    <td><input type="text"></input></td>
-                    <td><input type="text"></input></td>
+                    <td><div
+                    contenteditable="true"
+                    style={{ outline: "none", textAlign: "right" }}
+                  ></div></td>
+                    <td><div
+                    contenteditable="true"
+                    style={{ outline: "none", textAlign: "right" }}
+                  ></div></td>
+                    <td><div
+                    contenteditable="true"
+                    style={{ outline: "none", textAlign: "right" }}
+                  ></div></td>
                   </tr>
               </table>
           </div>
@@ -72,4 +89,4 @@ export class FMupload extends Component {
   );
 }
 
-}
+export default FM_upload;

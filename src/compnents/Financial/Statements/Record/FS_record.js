@@ -3,11 +3,11 @@ import Card from "./FS_record_card";
 import { Component } from 'react';
 
 
-export class FSrecord extends Component {
+
+function FS_record() {
 // function detail(){
 //   console.log("00");
 // }
-render(){
     return (
         <div>
             <div className="my-3 mx-5 d-flex">
@@ -32,4 +32,5 @@ render(){
     )
 }
 
-}
+
+export default FS_record;

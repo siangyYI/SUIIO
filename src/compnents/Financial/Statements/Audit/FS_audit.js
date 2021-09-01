@@ -2,8 +2,7 @@ import React from "react";
 import { Component } from "react";
 import Card from "./FS_audit_card";
 
-export class FSaudit extends Component {
-  render() {
+function Fs_audit() {
     return (
       <div>
           <div className="my-3 mx-5 d-flex">
@@ -34,4 +33,5 @@ export class FSaudit extends Component {
       </div>
     );
   }
-}
+
+export default Fs_audit;

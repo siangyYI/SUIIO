@@ -2,7 +2,7 @@ import React from "react";
 import { Container } from "react-bootstrap";
 import Card from "./FS_my_card";
 
-export const FSmy = (props) => {
+function Fs_my() {
 
   return (
 
@@ -41,3 +41,4 @@ export const FSmy = (props) => {
   );
 }
 
+export default Fs_my;

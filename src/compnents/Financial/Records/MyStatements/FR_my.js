@@ -1,8 +1,7 @@
 import React, { Component }  from "react";
 import Card from "./FR_my_card";
 
-export class FRmy extends Component{
-  render(){
+function FR_my() {
   return (
     <div>
         <div className="my-3 mx-5 d-flex">
@@ -27,4 +26,5 @@ export class FRmy extends Component{
     </div>
   );
 }
-}
+
+export default FR_my;

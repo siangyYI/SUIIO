@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 import Card from "./FR_audit_card";
 
-export class FRaudit extends Component {
-  render() {
+function FR_audit(){
     return (
       <>
           <div className="my-3 mx-5 d-flex">
@@ -26,4 +25,4 @@ export class FRaudit extends Component {
     );
   }
 
-}
+  export default FR_audit;

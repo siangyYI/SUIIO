@@ -1,38 +1,37 @@
 import React from "react";
-import { Tabs, Tab } from "react-bootstrap";
-import { FSmy } from "./MyStatements/FS_my";
-import { FSrecord } from "./Record/FS_record";
-import { FSupload } from "./Upload/FS_upload";
-import { FSaudit } from "./Audit/FS_audit";
 import NavBAR from '../Financial_nav'
+import '../../../styles/tag.css';
 
 function Financial_statements() {
   return (
     <>
- <div>
+      <div className="d-flex justify-content-between">
+        <div>
           <NavBAR />
         </div>
-        <div>
-          <Tabs
-            fill
-            variant="pills"
-            defaultActiveKey="record"
-            className="rounded menu bg-secondary"
-          >
-            <Tab eventKey="my" title="我的財報" tabClassName="text-white">
-              <FSmy />
-              
-            </Tab>
-            <Tab eventKey="record" title="財務報表" tabClassName="text-white">
-              <FSrecord />
-            </Tab>
-            <Tab eventKey="upload" title="製作財報" tabClassName="text-white">
-              <FSupload />
-            </Tab>
-            <Tab eventKey="audit" title="審核財報" tabClassName="text-white">
-              <FSaudit />
-            </Tab>
-          </Tabs></div>
+        <div className="d-flex bd-highlight">
+          <div className="state_tag">
+            <a href="#/Financial/statements/my">
+              我的財報
+            </a>
+          </div>
+          <div className="state_tag">
+            <a href="#/Financial/statements/record">
+              財務報表
+            </a>
+          </div>
+          <div className="state_tag">
+            <a href="#/Financial/statements/upload">
+              製作財報
+            </a>
+          </div>
+          <div className="state_tag">
+            <a href="#/Financial/statements/audit">
+              審核財報
+            </a>
+          </div>
+        </div>
+      </div>
     </>
   );
 }
