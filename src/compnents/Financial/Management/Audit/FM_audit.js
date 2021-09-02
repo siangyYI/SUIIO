@@ -18,7 +18,7 @@ function FM_audit(){
               </select>
             </div>
           </div>
-          <div className="row mt-2">
+          <div className="row mt-2 px-5">
             <Card /> 
             <Card />
             <Card />

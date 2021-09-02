@@ -14,6 +14,7 @@ const auditReconder = () => {
     const [DeleteShow, setDeleteShow] = useState(false);
     return (
         <>
+        
             <Navtab />
             <Link to="/AuditList">
                 <img src={arrow_icon} alt="arrow_icon" width="20pt" height="20pt" />

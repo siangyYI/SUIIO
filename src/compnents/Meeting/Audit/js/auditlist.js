@@ -7,11 +7,11 @@ const AuditList = () => {
         <>
             <Navtab />
             <Flter />{/*篩選器*/}
-            <div className="row">                      {/*審核會議 */}
-                <div className="col-sm-12 col-md-3 pb-2"><Link to="/Audit" style={{ textDecoration: 'none' }}><AuditMeeting /></Link></div>
-                <div className="col-sm-12 col-md-3 pb-2"><Link to="/Audit" style={{ textDecoration: 'none' }}><AuditMeeting /></Link></div>
-                <div className="col-sm-12 col-md-3 pb-2"><Link to="/Audit" style={{ textDecoration: 'none' }}><AuditMeeting /></Link></div>
-                <div className="col-sm-12 col-md-3 pb-2"><Link to="/Audit" style={{ textDecoration: 'none' }}><AuditMeeting /></Link></div>
+            <div className="row px-5">                      {/*審核會議 */}
+                <div className="col-sm-12 col-md-3 pb-4"><Link to="/Audit" style={{ textDecoration: 'none' }}><AuditMeeting /></Link></div>
+                <div className="col-sm-12 col-md-3 pb-4"><Link to="/Audit" style={{ textDecoration: 'none' }}><AuditMeeting /></Link></div>
+                <div className="col-sm-12 col-md-3 pb-4"><Link to="/Audit" style={{ textDecoration: 'none' }}><AuditMeeting /></Link></div>
+                <div className="col-sm-12 col-md-3 pb-4"><Link to="/Audit" style={{ textDecoration: 'none' }}><AuditMeeting /></Link></div>
             </div>
         </>
     )

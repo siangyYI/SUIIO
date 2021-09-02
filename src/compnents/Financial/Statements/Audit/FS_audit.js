@@ -25,8 +25,9 @@ function Fs_audit() {
               </select>
             </div>
           </div>
-          <div className="row mt-2">
-            <Card /> <Card />
+          <div className="row mt-2 px-5">
+            <Card /> 
+            <Card />
             <Card />
             <Card />
           </div>

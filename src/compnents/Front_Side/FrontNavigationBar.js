@@ -5,7 +5,6 @@ import { Button } from "react-bootstrap";
 import Nav from 'react-bootstrap/Nav';
 const aText = { textDecoration: "none", ":hover": { textDecoration: "none" } };
 const NavigationBar=()=> {
-  
     return (
       <Navbar
           collapseOnSelect
@@ -14,6 +13,7 @@ const NavigationBar=()=> {
           variant="dark"
           className="phone"
         >
+
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav" style={{ color: "white" }}>
             <Nav className="mr-auto" style={aText}>
@@ -57,6 +57,9 @@ const NavigationBar=()=> {
             </div>
           </Navbar.Collapse>
         </Navbar>
+
+
+      
     )
 };
 export default NavigationBar;

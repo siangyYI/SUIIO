@@ -17,7 +17,7 @@ function FM_record() {
               </select>
             </div>
           </div>
-          <div className="row mt-2">
+          <div className="row mt-2 px-5">
             <Card /> <Card />
             <Card />
             <Card />

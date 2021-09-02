@@ -6,12 +6,19 @@
     color: rgb(212, 176, 121);
 }
 .fontarea{
-    background-color:white;
-    border-radius:10px;
-    font-size: 14px;
+    background-color:rgb(228, 196, 127);
+    border-radius:8px;
+    font-size: 12px;
+    font-weight: bold;
+    
     color: rgb(17, 17, 17);
 }
 .username{
     font-weight: bold;
     color: #dcae1d;
+}
+.timefont{
+    color: rgb(172, 172, 172);
+    margin-left: 24%;
+    font-size: 12px;
 }

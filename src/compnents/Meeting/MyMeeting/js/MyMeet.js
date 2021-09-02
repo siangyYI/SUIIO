@@ -3,7 +3,7 @@ import { Card } from "react-bootstrap";
 const MyMeet = () => {
     return (
         <>
-            <Card style={{ width: '18rem' }} className="mx-auto mt-3">
+            <Card style={{ width: '19rem' }} className="mx-auto mt-3">
                 <Card.Body className="meeting">
                     <Card.Title className="title px-4 pt-4 pb-1">大迎新會議</Card.Title>
                     <Card.Subtitle className="mb-2 ">

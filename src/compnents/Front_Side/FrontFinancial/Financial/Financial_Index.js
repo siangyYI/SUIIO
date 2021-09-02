@@ -1,15 +1,14 @@
 import React from "react";
-import { Container } from "react-bootstrap";
-import Card from "./FS_my_card";
+import Card from "./Financial_Card";
 
-function Fs_my() {
+function Financial_Index() {
 
   return (
 
       <>
-        <div className="my-3 mx-5 d-flex">
+        <div className="my-3 mx-5 d-flex mt-5">
           <div style={{ fontSize: "20px" }} className="mr-3">
-            審核狀態
+            活動類別
           </div>
           <div>
             <select
@@ -20,10 +19,10 @@ function Fs_my() {
                 backgroundColor: "white",
               }}
             >
-              <option value="grapefruit">通過</option>
-              <option value="lime">未通過</option>
-              <option value="coconut">財務負責人已審核</option>
-              <option value="mango">組織負責人已審核</option>
+              <option value="grapefruit">大迎新</option>
+              <option value="lime">民歌</option>
+              <option value="coconut">送舊</option>
+              <option value="mango">資管周</option>
             </select>
           </div>
         </div>
@@ -37,4 +36,4 @@ function Fs_my() {
   );
 }
 
-export default Fs_my;
+export default Financial_Index;

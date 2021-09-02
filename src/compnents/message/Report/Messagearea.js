@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Messageitem } from './Messitem'
+import { Button, Modal, Form } from 'react-bootstrap'
 import user from '../../../Image/1144760.png'
 import "./area.css"
 // import { Button, Modal, Form } from 'react-bootstrap'
@@ -34,26 +35,35 @@ export class Messagearea extends Component {
 
     render() {
         return (
-            <div className="col-md-12 area">
-                <div className="px-3 py-3">
-                    <Messageitem />
-                    <Messageitem />
-                    <Messageitem />
-                    <Messageitem />
-                    <div className="d-flex flex-row py-2 mx-4">
-                        <div className="d-flex flex-column">
-                            <img src={user} alt="member" width="30pt" height="30pt" class="d-flex align-items-center"></img>
-                            <div className="username">幹部</div>
-                        </div>
-                        <div class="d-flex align-items-center">
-                            <input className="form-control mx-4 fontarea px-2 py-2  col-10" type="text" placeholder="按下Enter傳送...">
-                        </input>
-                        </div>
-                        
-                    </div>
-                </div>
+            <>
+                <Modal {...this.props} size="sm" centered>
+                    <div className="col-md-12 area">
+                        <div className="px-3 py-3">
+                            <Messageitem />
+                            <Messageitem />
+                            <Messageitem />
+                            <Messageitem />
+                            <Messageitem />
+                            <Messageitem />
+                            <Messageitem />
+                            <Messageitem />
+                            <div className="d-flex flex-row py-2 mx-4">
+                                <div className="d-flex flex-column">
+                                    <img src={user} alt="member" width="30pt" height="30pt" class="d-flex align-items-center"></img>
+                                    <div className="username">幹部</div>
+                                </div>
+                                <div class="d-flex align-items-center">
+                                    <input className="form-control mx-4 fontarea px-2 py-2  col-10" type="text" placeholder="按下Enter傳送...">
+                                    </input>
+                                </div>
 
-            </div>
+                            </div>
+                        </div>
+                    </div>
+                </Modal>
+
+            </>
+
         )
     }
 }
