@@ -26,7 +26,7 @@ class Usercard extends Component {
                                 alt="cancel"
                                 width="25px" height="25px"
                                 className="mr-2"
-                            
+
                             />
                             <div>更改密碼</div>
 
@@ -38,12 +38,13 @@ class Usercard extends Component {
                                 alt="cancel"
                                 width="25px" height="25px"
                                 className="mr-2"
-                                
+
                             />
                             <div>更改個人資料</div>
 
                         </div>
                         <div className="d-flex justify-content-center ucardline">
+                            
                             <button className="d-flex flex-row justify-content-center my-3 py-2 mx-3 ucardbutton">
                                 <img
                                     src={require("../Image/trun.png").default}
@@ -52,15 +53,17 @@ class Usercard extends Component {
                                 />
                                 <div className="d-flex align-items-center ml-1">成員頁面</div>
                             </button>
+                            <a  href="#/Login">
+                                <button className="d-flex flex-row justify-content-center my-3 py-2 mx-3 ucardbutton">
+                                    <img
+                                        src={require("../Image/logout.png").default}
+                                        alt="cancel"
+                                        width="25px" height="25px"
+                                    />
+                                    <div className="d-flex align-items-center ml-1">登出</div>
+                                </button>
+                            </a>
 
-                            <button className="d-flex flex-row justify-content-center my-3 py-2 mx-3 ucardbutton">
-                                <img
-                                    src={require("../Image/logout.png").default}
-                                    alt="cancel"
-                                    width="25px" height="25px"
-                                />
-                                <div className="d-flex align-items-center ml-1">登出</div>
-                            </button>
                         </div>
                     </div>
                 </div>

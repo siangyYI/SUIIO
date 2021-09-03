@@ -42,6 +42,9 @@ import FR_record from "./compnents/Financial/Records/Record/FR_record";
 import FR_upload from "./compnents/Financial/Records//Upload/FR_upload";
 import FR_audit from "./compnents/Financial/Records/Audit/FR_audit";
 
+import Login from './compnents/Login/Login';
+import PW_account from './compnents/Login/PW_account';
+import CheckPW from './compnents/Login/CheckPW'
 class App extends Component {
   render() {
     return (
@@ -89,6 +92,10 @@ class App extends Component {
                 <Route path="/Financial/management/audit" component={FM_audit} />
                 <Route path="/Financial/management/my_detail" exact component={FM_my_detail} />
                 <Route path="/Financial/management/audit_detail" component={FM_audit_detail} />
+
+                <Route path="/Login" component={Login} />
+                <Route path="/PW_account" component={PW_account} />
+                <Route path="/CheckPW" component={CheckPW} />
               </div>
             </div>
           </Switch>
