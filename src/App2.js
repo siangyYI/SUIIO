@@ -13,6 +13,7 @@ import Financial_Detail from './compnents/Front_Side/FrontFinancial/Financial/Fi
 import Financial_Index from './compnents/Front_Side/FrontFinancial/Financial/Financial_Index';
 import Income_Detail from './compnents/Front_Side/FrontFinancial/Income/Income_Detail';
 import Income_Index from './compnents/Front_Side/FrontFinancial/Income/Income_Index';
+import Chart_Index from './compnents/Front_Side/Frontchart/ChartIndex';
 class App2 extends Component {
   render() {
     return (
@@ -29,6 +30,8 @@ class App2 extends Component {
               <Route path="/Front/Financial/Index" component={Financial_Index} />
               <Route path="/Incomedetail" component={Income_Detail} />
               <Route path="/IncomeIndex" component={Income_Index} />
+
+              <Route path="/ChartIndex" component={Chart_Index} />
               </div>
             </div>
           </Switch>

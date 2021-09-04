@@ -5,7 +5,7 @@ function FM_my_card() {
     <>
       <div className="col-sm-12 col-md-3 pb-2">
         <a href="#/Financial/management/audit_detail">
-          <Card style={{ width: '18rem' }} className="mx-auto mt-3">
+          <Card style={{ width: '19rem' }} className="mx-auto mt-3">
             <Card.Body className="meeting">
               <Card.Title className="title px-4 pt-4">大迎新預算</Card.Title>
               <Card.Subtitle className="mb-2">

@@ -1,0 +1,13 @@
+.chartback{
+    background-color: white;
+    border-radius: 8px;
+}
+.charttitle{
+    font-weight: bold;
+    font-size: 16px;
+}
+.charttext{
+    font-weight: bold;
+    color: rgb(38, 202, 51);
+    font-size: 18px;
+}

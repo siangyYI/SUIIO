@@ -18,7 +18,7 @@ function Organization_event(props) {
             <Input
               action={{ icon: "add", }} 
               placeholder="輸入活動名稱"
-              className="web_input mt-4 mb-3 w-100"
+              className="web_input mt-4 mb-3 pr-5 w-100"
               id="addValue"
             />
           </div>
