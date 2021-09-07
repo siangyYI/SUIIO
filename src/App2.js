@@ -14,6 +14,7 @@ import Financial_Index from './compnents/Front_Side/FrontFinancial/Financial/Fin
 import Income_Detail from './compnents/Front_Side/FrontFinancial/Income/Income_Detail';
 import Income_Index from './compnents/Front_Side/FrontFinancial/Income/Income_Index';
 import Chart_Index from './compnents/Front_Side/Frontchart/ChartIndex';
+import CompareIndex from './compnents/Front_Side/FrontCompare/CompareIndex';
 class App2 extends Component {
   render() {
     return (
@@ -24,14 +25,16 @@ class App2 extends Component {
               <FrontNavigationBar />
               <FrontNavbar />
               <div className="col recordcontent overflow-auto">
-              <Route path="/Front/Index" component={Index} />
-              <Route path="/Meeting/reconder" component={reconder} />
-              <Route path="/detail" component={Financial_Detail} />
-              <Route path="/Front/Financial/Index" component={Financial_Index} />
-              <Route path="/Incomedetail" component={Income_Detail} />
-              <Route path="/IncomeIndex" component={Income_Index} />
+                <Route path="/Front/Index" component={Index} />
+                <Route path="/Meeting/reconder" component={reconder} />
+                <Route path="/detail" component={Financial_Detail} />
+                <Route path="/Front/Financial/Index" component={Financial_Index} />
+                <Route path="/Incomedetail" component={Income_Detail} />
+                <Route path="/IncomeIndex" component={Income_Index} />
 
-              <Route path="/ChartIndex" component={Chart_Index} />
+                <Route path="/ChartIndex" component={Chart_Index} />
+
+                <Route path="/CompareIndex" component={CompareIndex} ></Route>
               </div>
             </div>
           </Switch>

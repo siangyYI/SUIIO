@@ -10,7 +10,7 @@ const reconder = () => {
         <>
             <Navtab />
             <Link to="/">
-                <img src={arrow_icon} alt="arrow_icon" width="20pt" height="20pt" />
+                <img src={arrow_icon} alt="arrow_icon" width="30pt" height="30pt" className=" ml-4"/>
             </Link>                                            {/* Back Arrow*/}
 
             <div className="meetingcontent mt-3 mx-auto col-md-8">

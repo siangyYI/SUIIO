@@ -1,6 +1,6 @@
 import "../../Meeting/Management/css/reconder.css";
 import { Link } from "react-router-dom";
-import arrow_icon from "../../../Image/arrow.png";
+import arrow_icon from "../../../Image/arrow_icon.png";
 import React from 'react';
 
 
@@ -8,7 +8,7 @@ const reconder = () => {
     return (
         <>
             <Link to="/Front/Index">
-                <img src={arrow_icon} alt="arrow_icon" width="20pt" height="20pt" />
+                <img src={arrow_icon} alt="arrow_icon" width="30pt" height="30pt" className="mt-5 ml-4"/>
             </Link>                                            {/* Back Arrow*/}
 
             <div className="meetingcontent mt-3  mx-auto col-md-8">

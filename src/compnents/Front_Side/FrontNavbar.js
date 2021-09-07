@@ -13,7 +13,7 @@ class NavBar extends Component {
     };
 
     this.UserCardClick = this.UserCardClick.bind(this);
-    
+
   }
   UserCardClick() {
     this.setState(prevState => ({
@@ -76,7 +76,7 @@ class NavBar extends Component {
               style={{ width: "30pt", height: "30pt" }}
             />
             <br />
-            <a href="#/">歷年比較</a>
+            <a href="#/CompareIndex">歷年比較</a>
           </div>
           <div className="my-4">
             <img
