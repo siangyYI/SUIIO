@@ -16,7 +16,7 @@ function Greeting(props) {
 }
 
 ReactDOM.render(
-  <Greeting isLoggedIn={false} />,
+  <Greeting isLoggedIn={true} />,
   document.getElementById("root")
 );
 

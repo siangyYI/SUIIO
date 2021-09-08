@@ -10,7 +10,7 @@ const lineChartData = {
         lineTension: 0, // 曲線的彎度，設0 表示直線
         backgroundColor: "#6798E7",
         borderColor: "#6798E7",
-        borderWidth: 5,
+        borderWidth: 1,
         data: [1000, 1400], // 資料
         fill: false, // 是否填滿色彩
     }, {
@@ -19,7 +19,7 @@ const lineChartData = {
         fill: false,
         backgroundColor: "#3B86FF",
         borderColor: "#3B86FF",
-        borderWidth: 5,
+        borderWidth: 1,
         data: [800, 1000],
     },]
 };
@@ -50,7 +50,7 @@ const HorizontalData = {
         lineTension: 0, // 曲線的彎度，設0 表示直線
         backgroundColor: "#6798E7",
         borderColor: "#6798E7",
-        borderWidth: 5,
+        borderWidth: 1,
         data: [1000, 1400], // 資料
         fill: false, // 是否填滿色彩
     }, {
@@ -59,7 +59,7 @@ const HorizontalData = {
         fill: false,
         backgroundColor: "#3B86FF",
         borderColor: "#3B86FF",
-        borderWidth: 5,
+        borderWidth: 1,
         data: [800, 1000],
     },]
 };

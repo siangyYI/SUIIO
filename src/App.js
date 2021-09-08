@@ -45,6 +45,8 @@ import FR_audit from "./compnents/Financial/Records/Audit/FR_audit";
 import Login from './compnents/Login/Login';
 import PW_account from './compnents/Login/PW_account';
 import CheckPW from './compnents/Login/CheckPW'
+import Choose from './compnents/Login/Choose'
+import ChangePW from './compnents/Login/ChangePW'
 class App extends Component {
   render() {
     return (
@@ -96,6 +98,8 @@ class App extends Component {
                 <Route path="/Login" component={Login} />
                 <Route path="/PW_account" component={PW_account} />
                 <Route path="/CheckPW" component={CheckPW} />
+                <Route path="/Choose" component={Choose} />
+                <Route path="/ChangePW" component={ChangePW} />
               </div>
             </div>
           </Switch>

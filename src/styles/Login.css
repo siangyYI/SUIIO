@@ -1,8 +1,9 @@
 .login {
   background-color: white;
   height: 80%;
-  padding: 5% 0% 10% 0%;
-  margin: 10% 35% 25% 35%;
+  padding: 10% 5% 10% 5%;
+  margin: 5% 15% 0% 25%;
+  width: 50%;
 }
 .loginfont{
   font-weight: bold;
