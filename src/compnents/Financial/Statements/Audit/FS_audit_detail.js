@@ -1,7 +1,7 @@
 import React from "react";
 import { Container, Button } from "react-bootstrap";
-import { AuditPass } from "../../Audit_pass";
-import { AuditCancel } from "../../Audit_cancel";
+import { AuditPass } from "./Audit_pass";
+import { AuditCancel } from "./Audit_cancel";
 
 function FS_audit_detail() {
   const [Pass, setPass] = React.useState(false);
@@ -10,16 +10,11 @@ function FS_audit_detail() {
     <div>
       <Container>
         <p>109一月財報</p>
-        <div
-          style={{
-            background: "white",
-            border: "1px #6E8B5C solid",
-            color: "#6E8B5C",
-          }}
-        >
-          財務負責人已審核
-        </div>
-        <table style={{ background: "white" }}>
+        <div>
+        <table style={{ background: "white", textAlign: "center" }}>
+          <tr>
+            <td colSpan="8" style={{color:"#6E8B5C"}}>財務負責人已審核</td>
+          </tr>
           <tr>
             <td colSpan="2">109年</td>
             <td rowSpan="2" style={{ width: "50px" }}>
@@ -28,22 +23,12 @@ function FS_audit_detail() {
             <td rowSpan="2">收據編號</td>
             <td rowSpan="2">申請單位</td>
             <td rowSpan="2">收支項目</td>
-            <td colSpan="5">收入</td>
-            <td colSpan="5">支出</td>
+            <td rowSpan="2">收入</td>
+            <td rowSpan="2">支出</td>
           </tr>
           <tr>
             <td>月</td>
             <td>日</td>
-            <td>萬</td>
-            <td>仟</td>
-            <td>佰</td>
-            <td>拾</td>
-            <td>元</td>
-            <td>萬</td>
-            <td>仟</td>
-            <td>佰</td>
-            <td>拾</td>
-            <td>元</td>
           </tr>
           <tr>
             <td>1</td>
@@ -53,14 +38,6 @@ function FS_audit_detail() {
             <td>活動</td>
             <td>廠商贊助</td>
             <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td>1</td>
-            <td>0</td>
-            <td>0</td>
             <td>0</td>
           </tr>
           <tr>
@@ -71,15 +48,7 @@ function FS_audit_detail() {
             <td>活動</td>
             <td>文具用品</td>
             <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
             <td>4</td>
-            <td>1</td>
-            <td>0</td>
-            <td>0</td>
           </tr>
 
           <tr>
@@ -91,17 +60,9 @@ function FS_audit_detail() {
             <td></td>
             <td></td>
             <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
           </tr>
         </table>
-        <table style={{ background: "white" }}>
+        <table style={{ background: "white", textAlign: "center" }}>
           <tr>
             <td>本期淨利(損)</td>
             <td colSpan="2">(4,102)</td>
@@ -116,24 +77,14 @@ function FS_audit_detail() {
             <td>財務：XXX</td>
           </tr>
         </table>
-        <div>
-          <h5>109年1月1日製作</h5>
-          <Button
-            variant="dark m-2"
-            type="submit"
-            onClick={() => setPass(true)}
-          >
-            通過
-          </Button>
-          <Button
-            variant="light m-2"
-            type="submit"
-            onClick={() => setCancel(true)}
-          >
-            駁回{" "}
-          </Button>
-        </div>
-      </Container>
+        <Button variant="dark m-2" type="submit"
+          onClick={() => setPass(true)}>
+          通過
+        </Button>
+        <Button variant="m-2" type="submit" onClick={() => setCancel(true)}style={{ backgroundColor: "#6B7A8F", borderColor: "#6B7A8F",color:"white" }}>
+          駁回
+        </Button>
+      </div></Container>
       <AuditPass show={Pass} onHide={() => setPass(false)} />
       <AuditCancel show={Cancel} onHide={() => setCancel(false)} />
     </div>

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Button, Modal, Form } from "react-bootstrap";
+import { Modal, Form } from "react-bootstrap";
 
 export class FR_Detail extends Component {
   constructor(props) {
@@ -14,38 +14,31 @@ export class FR_Detail extends Component {
             <Modal.Title>收支紀錄</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-          <div
+            <div
+              style={{
+                background: "white",
+                borderRadius: "10px",
+                border: "2px solid gray",
+              }}
+            >
+              <div
                 style={{
-                  background: "white",
-                  borderRadius: "10px",
-                  border: "2px solid gray",
+                  width: "100%",
+                  height: "200px",
+                  background: "black",
+                  borderRadius: "10px 10px 0 0",
                 }}
-              >
-                <div
-                  style={{
-                    width: "100%",
-                    height: "200px",
-                    background: "black",
-                    borderRadius: "10px 10px 0 0",
-                  }}
-                ></div>
-                <div>
-                  <div>大迎新</div>
-                  <div>文具用品</div>
-                  <div>筆 彩色筆 紅包袋</div>
-                  <div>申請人：公關長</div>
-                  <div>支出 $260</div>
-                </div>
+              ></div>
+              <div>
+                <div>大迎新</div>
+                <div>文具用品</div>
+                <div>筆 彩色筆 紅包袋</div>
+                <div>申請人：公關長</div>
+                <div>支出 $260</div>
               </div>
-                  </Modal.Body>
-          <Modal.Footer>
-            <Button variant="dark" type="submit">
-              確定
-            </Button>
-            <Button variant="light" onClick={this.props.onHide}>
-              取消
-            </Button>
-          </Modal.Footer>
+            </div>
+          </Modal.Body>
+         
         </Form>
       </Modal>
     );

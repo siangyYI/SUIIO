@@ -1,8 +1,8 @@
 import React from "react";
 import { Container } from "react-bootstrap";
 import { Button } from "react-bootstrap";
-import {AuditPass} from "../../Audit_pass"
-import {AuditCancel} from "../../Audit_cancel"
+import {AuditPass} from "./Audit_pass"
+import {AuditCancel} from "./Audit_cancel"
 
 function FM_audit_detail() {
   const [Pass, setPass] = React.useState(false);
@@ -59,12 +59,16 @@ function FM_audit_detail() {
               </table>
           </div>
         </div>
-        <div className="row"> 
-        <Button variant="dark m-2" type="submit"
-          onClick={() => setPass(true)}>
+        <div className=""> 
+        <Button variant="dark m-2" type="submit" onClick={() => setPass(true)}>
           通過
         </Button>
-        <Button variant="light m-2" type="submit" onClick={() => setCancel(true)}>
+        <Button
+          variant=" m-2"
+          type="submit"
+          style={{ backgroundColor: "#6B7A8F", borderColor: "#6B7A8F",color:"white" }}
+          onClick={() => setCancel(true)}
+        >
           駁回
         </Button></div>
         <AuditPass show={Pass} onHide={() => setPass(false)} />

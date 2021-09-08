@@ -33,17 +33,17 @@ function Fs_upload() {
               <h4>年報</h4>
               <div className="d-flex">
                 <p>是否每年自動生成報表</p>
-                <input type="radio" name="year" value="yes" />
+                <input className="radio mx-3" type="radio" name="year" value="yes" />
                 <label>是</label>
-                <input type="radio" name="year" value="no" />
+                <input className="radio mx-3" type="radio" name="year" value="no" />
                 <label>否</label>
               </div>
               <h4>月報</h4>
               <div className="d-flex">
                 <p>是否每月自動生成報表</p>
-                <input type="radio" name="month" value="yes" />
+                <input className="radio mx-3" type="radio" name="month" value="yes" />
                 <label>是</label>
-                <input type="radio" name="month" value="no" />
+                <input className="radio mx-3" type="radio" name="month" value="no" />
                 <label>否</label>
               </div>
             </div>
@@ -120,7 +120,7 @@ function Fs_upload() {
               </div>
             </div>
           </div>
-          <Button className="m-2  float-right btn-light">儲存</Button>
+          <Button className="m-2  float-right" style={{ backgroundColor: "#6B7A8F", borderColor: "#6B7A8F" }}>儲存</Button>
 
         </Container>
       </div>

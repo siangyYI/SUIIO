@@ -52,10 +52,17 @@ export class Messagearea extends Component {
                                     <img src={user} alt="member" width="30pt" height="30pt" class="d-flex align-items-center"></img>
                                     <div className="username">幹部</div>
                                 </div>
+                                
                                 <div class="d-flex align-items-center">
                                     <input className="form-control mx-4 fontarea px-2 py-2  col-10" type="text" placeholder="按下Enter傳送...">
+                                    
                                     </input>
+                                    
                                 </div>
+                                <div class="ml-2 d-flex align-items-center">
+                                    <Button variant="light">Enter</Button>
+                                </div>
+
 
                             </div>
                         </div>

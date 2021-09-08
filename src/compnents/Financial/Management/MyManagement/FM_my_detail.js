@@ -5,9 +5,9 @@ import { Button } from "react-bootstrap";
 function FM_my_detail() {
   return (
     <>
-      <div className="row pt-4">
+      <div className="row pt-4 m-3">
         <div
-          className="col-sm-5 col-12 p-3"
+          className="col ml-4"
           style={{
             borderRadius: "10px",
             border: "1px solid black",
@@ -56,43 +56,43 @@ function FM_my_detail() {
             </tr>
             <tr>
               <td><div
-                    contenteditable="true"
-                    style={{ outline: "none", textAlign: "right" }}
-                  ></div>              </td>
+                contenteditable="true"
+                style={{ outline: "none", textAlign: "right" }}
+              ></div>              </td>
               <td><div
-                    contenteditable="true"
-                    style={{ outline: "none", textAlign: "right" }}
-                  ></div>              </td>
+                contenteditable="true"
+                style={{ outline: "none", textAlign: "right" }}
+              ></div>              </td>
               <td><div
-                    contenteditable="true"
-                    style={{ outline: "none", textAlign: "right" }}
-                  ></div>              </td>
+                contenteditable="true"
+                style={{ outline: "none", textAlign: "right" }}
+              ></div>              </td>
             </tr>
             <tr>
               <td>
-<div
-                    contenteditable="true"
-                    style={{ outline: "none", textAlign: "right" }}
-                  ></div>              </td>
+                <div
+                  contenteditable="true"
+                  style={{ outline: "none", textAlign: "right" }}
+                ></div>              </td>
               <td>
-<div
-                    contenteditable="true"
-                    style={{ outline: "none", textAlign: "right" }}
-                  ></div>              </td>
+                <div
+                  contenteditable="true"
+                  style={{ outline: "none", textAlign: "right" }}
+                ></div>              </td>
               <td>
-<div
-                    contenteditable="true"
-                    style={{ outline: "none", textAlign: "right" }}
-                  ></div>              </td>
+                <div
+                  contenteditable="true"
+                  style={{ outline: "none", textAlign: "right" }}
+                ></div>              </td>
             </tr>
           </table>
         </div>
       </div>
-      <div className="row">
-        <Button variant="dark m-2" type="submit" href="/Financial/management" style={{ color: "white" }}>
+      <div >
+        <Button className="btn-dark m-2" type="submit" href="#/Financial/management/my" style={{ color: "white" }}>
           重新上傳
         </Button>
-        <Button variant="light m-2" type="submit" href="/Financial/management">
+        <Button className="m-2" type="submit" href="#/Financial/management/my" style={{ backgroundColor: "#6B7A8F", borderColor: "#6B7A8F" }}>
           取消
         </Button>
       </div>

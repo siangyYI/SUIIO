@@ -2,11 +2,11 @@ import React from "react";
 import { FR_Detail } from "./FR_record_detail"
 import { Card } from "react-bootstrap";
 function FR_record_card() {
-  const [DetailShow, setFRDetail] = React.useState(false);
+  
 
   return (
     <div variant="primary"
-      onClick={() => setFRDetail(true)} className="col-sm-12 col-md-3 pb-2">
+       >
       <Card style={{ width: '19rem' }} className="mx-auto mt-3">
           <Card.Body className="meeting">
             <Card.Title className="title px-4 pt-4">大迎新收支</Card.Title>
@@ -30,7 +30,7 @@ function FR_record_card() {
             </div>
           </Card.Body>
         </Card>
-      <FR_Detail show={DetailShow} onHide={() => setFRDetail(false)} />
+      
 
     </div>
   );

@@ -17,11 +17,11 @@ function FR_my_detail() {
             >
               <div className="row">
                 <div className="col text-center">
-                  <input type="radio" name="year" value="" />
+                  <input className="radio mx-4" type="radio" name="year" value="" />
                   <label>收入</label>
                 </div>
                 <div className="col text-center">
-                  <input type="radio" name="year" value="" />
+                  <input className="radio mx-4" type="radio" name="year" value="" />
                   <label>支出</label>
                 </div>
               </div>
@@ -88,10 +88,10 @@ function FR_my_detail() {
               </div>
             </div>
             <div className="row">
-              <Button className="col m-2 btn-light" href="/Financial/records">
+              <Button className="col m-2 btn-dark" href="#/Financial/records/my">
                 上傳
               </Button>
-              <Button className="col m-2 btn-light" href="/Financial/records">
+              <Button className="col m-2" href="#/Financial/records/my" style={{ backgroundColor: "#6B7A8F", borderColor: "#6B7A8F" }}>
                 取消
               </Button>
             </div>

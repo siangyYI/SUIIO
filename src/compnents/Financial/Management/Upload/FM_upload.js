@@ -78,10 +78,10 @@ function FM_upload() {
               </table>
           </div>
         </div>
-        <Button variant="dark m-2" type="submit" href="/Financial/management" style={{color:"white"}}>
+        <Button variant="dark m-2" type="submit" href="#/Financial/management/record" style={{color:"white"}}>
           上傳
         </Button>
-        <Button variant="light m-2" type="submit" href="/Financial/management">
+        <Button variant="m-2" type="submit" href="#/Financial/management/record" style={{ backgroundColor: "#6B7A8F", borderColor: "#6B7A8F" }}>
           取消
         </Button>
       </Container>

@@ -4,23 +4,23 @@ import { Bar } from "react-chartjs-2";
 import CompareFilter from './CompareFilter'
 import CompareDetail from "./CompareDetail";
 const lineChartData = {
-    labels: ["廠商贊助", "文具用品"], //顯示區間名稱
+    labels: ["廠商贊助","廠商贊助"], //顯示區間名稱
     datasets: [{
         label: '109學年度', // tootip 出現的名稱
         lineTension: 0, // 曲線的彎度，設0 表示直線
-        backgroundColor: "#6798E7",
-        borderColor: "#6798E7",
+        backgroundColor: "#FFDA83",
+        borderColor: "#FFDA83",
         borderWidth: 1,
-        data: [1000, 1400], // 資料
+        data: [2400,1800], // 資料
         fill: false, // 是否填滿色彩
     }, {
         label: '108學年度',
         lineTension: 0,
         fill: false,
-        backgroundColor: "#3B86FF",
-        borderColor: "#3B86FF",
+        backgroundColor: "#FF8373",
+        borderColor: "#FF8373",
         borderWidth: 1,
-        data: [800, 1000],
+        data: [1800],
     },]
 };
 const lineChartoptions = {
@@ -94,14 +94,12 @@ const CompareIndex = () => {
             </div>
             <div className="row mt-4">
                 <div className="col-6">
-                    <Bar data={lineChartData} options={lineChartoptions} />
-                </div>
-                <div className="col-6">
                     <Bar data={HorizontalData} options={Horizontaloptions} />
                 </div>
-
+                <div className="col-6">
+                    <Bar data={lineChartData} options={lineChartoptions} />
+                </div>
             </div>
-
         </>
     );
 };

@@ -18,11 +18,11 @@ function FR_upload()  {
               >
                 <div className="row">
                   <div className="col text-center">
-                    <input type="radio" name="year" value="" />
+                    <input className="radio" type="radio" name="year" value="" />
                     <label>收入</label>
                   </div>
                   <div className="col text-center">
-                    <input type="radio" name="year" value="" />
+                    <input  className="radio" type="radio" name="year" value="" />
                     <label>支出</label>
                   </div>
                 </div>
@@ -87,10 +87,10 @@ function FR_upload()  {
                 </div>
               </div>
               <div className="row">
-                <Button className="col m-2 btn-light" href="/Financial/records">
+                <Button className="col m-2 btn-dark" href="#/Financial/records/record">
                   上傳
                 </Button>
-                <Button className="col m-2 btn-light" href="/Financial/records">
+                <Button className="col m-2" href="#/Financial/records/record"style={{ backgroundColor: "#6B7A8F", borderColor: "#6B7A8F" }}>
                   取消
                 </Button>
               </div>
@@ -112,7 +112,7 @@ function FR_upload()  {
                     borderRadius: "10px 10px 0 0",
                   }}
                 ></div>
-                <div>
+                <div style={{fontSize:"20px"}}>
                   <div>大迎新</div>
                   <div>文具用品</div>
                   <div>筆 彩色筆 紅包袋</div>

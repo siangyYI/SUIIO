@@ -1,14 +1,12 @@
 import React from "react";
-import { FM_Detail } from "./FM_record_detail"
+
 import { Card } from "react-bootstrap";
 function FM_record_card() {
-  const [DetailShow, setFMDetail] = React.useState(false);
+  
 
   return (
     <>
-      <div variant="primary"
-        onClick={() => setFMDetail(true)}
-        className="col-sm-12 col-md-3 pb-2">
+      
         <Card style={{ width: '19rem' }} className="mx-auto mt-3">
           <Card.Body className="meeting">
             <Card.Title className="title px-4 pt-4">大迎新預算</Card.Title>
@@ -32,9 +30,9 @@ function FM_record_card() {
             </div>
           </Card.Body>
         </Card>
-        <FM_Detail show={DetailShow} onHide={() => setFMDetail(false)} />
+        
 
-      </div>
+      
     </>
   );
 }

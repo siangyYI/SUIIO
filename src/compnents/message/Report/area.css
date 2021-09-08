@@ -1,6 +1,5 @@
 .area{
     background-color:#222D43;
-    border-radius:10px;
     height: 560px;
     width: 800px;
     color: rgb(212, 176, 121);
@@ -10,6 +9,7 @@
     border-radius:8px;
     font-size: 12px;
     font-weight: bold;
+    height: 35px;
     
     color: rgb(17, 17, 17);
 }
@@ -19,6 +19,5 @@
 }
 .timefont{
     color: rgb(172, 172, 172);
-    margin-left: 24%;
     font-size: 12px;
 }

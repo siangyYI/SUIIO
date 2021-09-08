@@ -62,14 +62,6 @@ export class FM_Detail extends Component {
                 </div>
               </div>
             </Modal.Body>
-            <Modal.Footer>
-              <Button variant="dark" type="submit">
-                確定
-              </Button>
-              <Button variant="light" onClick={this.props.onHide}>
-                取消
-              </Button>
-            </Modal.Footer>
           </Form>
         </Modal></>
     );

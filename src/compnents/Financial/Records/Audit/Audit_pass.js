@@ -24,7 +24,7 @@ export class AuditPass extends Component {
             </Form.Group>
           </Modal.Body>
           <Modal.Footer>
-            <Button variant="dark" type="submit" href="#/Financial/management/audit" style={{color:"white"}}>
+            <Button variant="dark" type="submit" href="#/Financial/records/audit" style={{color:"white"}}>
               確定
             </Button>
             <Button style={{ backgroundColor: "#6B7A8F", borderColor: "#6B7A8F" }} onClick={this.props.onHide}>

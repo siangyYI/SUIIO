@@ -1,7 +1,7 @@
 import React from "react";
 import "./Navbar.css";
-import Usercard from "./Usercard"
-import Notifycard from "./Notifycard"
+import User from "./user";
+import Bell from "./bell";
 
 import { Component } from "react";
 
@@ -10,14 +10,14 @@ import { Component } from "react";
 class NavBar extends Component {
   constructor(props) {
     super(props);
+
     this.state = {
       isUserCardOn: true,
-      isNotifyCardOn: false,
-      display: 'none'
+      isNotifyCardOn: true
     };
 
     this.UserCardClick = this.UserCardClick.bind(this);
-    this.NotifyCardClick = this.NotifyCardClick.bind(this);
+    // this.NotifyCardClick = this.NotifyCardClick.bind(this);
   }
   UserCardClick() {
     this.setState(prevState => ({
@@ -26,39 +26,15 @@ class NavBar extends Component {
     }));
 
   }
-  NotifyCardClick() {
-    this.setState(prevState1 => ({
-      isNotifyCardOn: !prevState1.isNotifyCardOn,
-      display: prevState1.isNotifyCardOn ? 'none' : 'block'
-    }));
-
-  }
+  
   render() {
     return (
       <div>
 
         <div className="d-flex justify-content-center mt-5 topbar">
-          <img
-            src={require("../Image/bell.png").default}
-            alt="bell"
-            width="25px" height="25px"
-            className="mt-2"
-            onClick={() => this.NotifyCardClick()}
-          />
-          <div style={{ display: this.state.display }}>
-            <Notifycard />
-          </div>
+          <Bell/>
           <div className="d-flex flex-column">
-            <img
-              src={require("../Image/user.png").default}
-              alt="user"
-              width="55px" height="55px"
-              className=" mt-4"
-              onClick={() => this.UserCardClick()}
-            />
-            <div style={{ display: this.state.display }}>
-              <Usercard />
-            </div>
+            <User/>
 
           </div>
 

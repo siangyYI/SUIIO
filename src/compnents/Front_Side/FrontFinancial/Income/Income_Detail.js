@@ -1,6 +1,7 @@
 import React from "react";
 import { Container } from "react-bootstrap";
 import '../Financial/Financial.css'
+import { Messageitem } from '../../../Message/Report/Messitem'
 const Financial_Detail = () => {
     return (
         <>
@@ -31,61 +32,28 @@ const Financial_Detail = () => {
                             </div>
                         </div>
                     </div>
-                    <div className="col">
-                        <div className="pt-4">
-                            <div>
-                                <table style={{ border: "1px solid black" }}>
-                                    <tr className="title">
-                                        <td colSpan="2">109大迎新 </td>
-                                        <td>
-                                            申請人：
-                                            <span>公關長</span>{" "}
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td className="green">收支項目 </td>
-                                        <td className="green">收入</td>
-                                        <td>支出</td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <input type="text"></input>
-                                        </td>
-                                        <td>
-                                            <input type="text"></input>
-                                        </td>
-                                        <td>
-                                            <input type="text"></input>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <input type="text"></input>
-                                        </td>
-                                        <td>
-                                            <input type="text"></input>
-                                        </td>
-                                        <td>
-                                            <input type="text"></input>
-                                        </td>
-                                    </tr>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </Container>
 
-            <div className="h1 ml-5">提問</div><hr className="line"></hr>
-            <form>
-                <div class="form-group">
-                    <div className="ml-5 mb-2">針對此財務報表進行提問</div>
-                    <textarea class="form-control fcontent" rows="15"></textarea>
                 </div>
-                <div className="mx-auto d-flex justify-content-center pb-2">
-                    <button type="button" class="py-2 px-3 fbutton mx-5">送出</button>
+            </Container><hr className="line"></hr>
+            <div className="row">
+
+                <div className="col-6">
+                    <Messageitem />
+                    <Messageitem />
+                    <Messageitem />
+                    <Messageitem />
                 </div>
-            </form>
+                <div className="col-6 ml-5">提問</div>
+                <form>
+                    <div class="form-group">
+                        <div className="ml-5 mb-2">針對此財務報表進行提問</div>
+                        <textarea class="form-control fcontent" rows="15"></textarea>
+                    </div>
+                    <div className="mx-auto d-flex justify-content-center pb-2">
+                        <button type="button" class="py-2 px-3 fbutton mx-5">送出</button>
+                    </div>
+                </form>
+            </div>
         </>
     );
 }

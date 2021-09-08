@@ -5,9 +5,9 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import App from "./App";
 import App2 from "./App2";
 function Greeting(props) {
-  const isLoggedIn = props.isLoggedIn;
-  <div>{props.children}</div>
-  if (isLoggedIn) {
+  
+  const isMember = props.isMember;
+  if (isMember) {
     return <App />;
   }else{
     return <App2 />
@@ -16,7 +16,7 @@ function Greeting(props) {
 }
 
 ReactDOM.render(
-  <Greeting isLoggedIn={true} />,
+  <Greeting isMember={false} />,
   document.getElementById("root")
 );
 

@@ -44,10 +44,10 @@ class Usercard extends Component {
                 height="25px"
                 className="mr-2"
               />
-              <div>更改個人資料</div>
+              <a href="#/EditFile">更改個人資料</a>
             </div>
             <div className="d-flex justify-content-center ucardline">
-              <button className="d-flex flex-row justify-content-center my-3 py-2 mx-3 ucardbutton">
+              <button className="d-flex flex-row justify-content-center my-3 py-2 mx-3 ucardbutton" >
                 <img
                   src={require("../Image/trun.png").default}
                   alt="cancel"
@@ -71,7 +71,7 @@ class Usercard extends Component {
           </div>
         </div>
 
-         </>
+      </>
     );
   }
 }

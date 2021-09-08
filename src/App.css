@@ -31,3 +31,10 @@ aside a {
   flex: 1 1 auto;
   text-align: center;
 }
+.radio{
+  width: 20px;
+  height: 20px;
+}
+.Col{
+  padding: 0 0 0 0 !important;
+}

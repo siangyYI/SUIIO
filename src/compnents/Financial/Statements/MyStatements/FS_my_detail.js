@@ -4,16 +4,11 @@ import { Container, Button } from "react-bootstrap";
 const FS_my_detail=()=> {
   return (
       <Container>
-        <div
-          style={{
-            background: "white",
-            border: "1px #6E8B5C solid",
-            color: "#6E8B5C",
-          }}
-        >
-          財務負責人已審核
-        </div>
-        <table style={{ background: "white" }}>
+        <div>
+        <table style={{ background: "white", textAlign: "center" }}>
+          <tr>
+            <td colSpan="8" style={{color:"#6E8B5C"}}>財務負責人已審核</td>
+          </tr>
           <tr>
             <td colSpan="2">109年</td>
             <td rowSpan="2" style={{ width: "50px" }}>
@@ -22,22 +17,12 @@ const FS_my_detail=()=> {
             <td rowSpan="2">收據編號</td>
             <td rowSpan="2">申請單位</td>
             <td rowSpan="2">收支項目</td>
-            <td colSpan="5">收入</td>
-            <td colSpan="5">支出</td>
+            <td rowSpan="2">收入</td>
+            <td rowSpan="2">支出</td>
           </tr>
           <tr>
             <td>月</td>
             <td>日</td>
-            <td>萬</td>
-            <td>仟</td>
-            <td>佰</td>
-            <td>拾</td>
-            <td>元</td>
-            <td>萬</td>
-            <td>仟</td>
-            <td>佰</td>
-            <td>拾</td>
-            <td>元</td>
           </tr>
           <tr>
             <td>1</td>
@@ -47,14 +32,6 @@ const FS_my_detail=()=> {
             <td>活動</td>
             <td>廠商贊助</td>
             <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td>1</td>
-            <td>0</td>
-            <td>0</td>
             <td>0</td>
           </tr>
           <tr>
@@ -65,15 +42,7 @@ const FS_my_detail=()=> {
             <td>活動</td>
             <td>文具用品</td>
             <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
             <td>4</td>
-            <td>1</td>
-            <td>0</td>
-            <td>0</td>
           </tr>
 
           <tr>
@@ -85,17 +54,9 @@ const FS_my_detail=()=> {
             <td></td>
             <td></td>
             <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
           </tr>
         </table>
-        <table style={{ background: "white" }}>
+        <table style={{ background: "white", textAlign: "center" }}>
           <tr>
             <td>本期淨利(損)</td>
             <td colSpan="2">(4,102)</td>
@@ -113,15 +74,21 @@ const FS_my_detail=()=> {
         <Button
           variant="dark m-2"
           type="submit"
-          href="/Financial/management"
+          href="#/Financial/Statements/my"
           style={{ color: "white" }}
         >
           重新上傳
         </Button>
-        <Button variant="light m-2" type="submit" href="/Financial/management">
+        <Button
+          variant="light m-2"
+          type="submit"
+          href="#/Financial/Statements/my"
+          style={{ backgroundColor: "#6B7A8F", borderColor: "#6B7A8F" }}
+        >
           取消
         </Button>
-      </Container>
+      </div>
+        </Container>
   );
 }
 export default FS_my_detail;
