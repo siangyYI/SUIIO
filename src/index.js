@@ -6,8 +6,8 @@ import App from "./App";
 import App2 from "./App2";
 function Greeting(props) {
   
-  const isMember = props.isMember;
-  if (isMember) {
+  // const Role="admin";
+  if (localStorage.getItem('stu')) {
     return <App />;
   }else{
     return <App2 />
@@ -16,7 +16,7 @@ function Greeting(props) {
 }
 
 ReactDOM.render(
-  <Greeting isMember={false} />,
+  <Greeting />,
   document.getElementById("root")
 );
 

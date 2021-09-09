@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import '../../compnents/Usercard.css'
-
+function setAdmin() {
+    localStorage.setItem("Role","Admin");
+  }
 class FrontUsercard extends Component {
     
     render() {
@@ -45,7 +47,10 @@ class FrontUsercard extends Component {
 
                         </div>
                         <div className="d-flex justify-content-center ucardline" >
-                            <button className="d-flex flex-row justify-content-center my-3 py-2 mx-3 ucardbutton" >
+                            <button className="d-flex flex-row justify-content-center my-3 py-2 mx-3 ucardbutton" 
+                            onClick={()=>setAdmin()}
+                            href="#/"
+                            >
                                 <img
                                     src={require("../../Image/trun.png").default}
                                     alt="cancel"

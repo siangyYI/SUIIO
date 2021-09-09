@@ -1,7 +1,7 @@
 const CompareDetail = () => {
     return (
         <>
-        <div className="mx-auto mt-5">
+        <div className="mx-auto mt-4">
              <table style={{ background: "white" ,textAlign:"center"}}>
                 <tr>
                     <td colSpan="2">109年</td>
@@ -14,29 +14,46 @@ const CompareDetail = () => {
                     <td>日</td>
                 </tr>
                 <tr>
-                    <td>1</td>
-                    <td>1</td>
-                    <td>廠商贊助</td>
+                    <td>10</td>
+                    <td>7</td>
+                    <td>水</td>
                     <td colSpan="3"></td>
-                    <td colSpan="3">1000</td>
+                    <td colSpan="3">3100</td>
                 </tr>
                 <tr>
-                    <td>1</td>
+                    <td>10</td>
+                    <td>9</td>
+                    <td>場勘入園費</td>
+                    <td colSpan="3"></td>
+                    <td colSpan="3">1300</td>
+                </tr>
+                <tr>
+                    <td>10</td>
+                    <td>14</td>
+                    <td>生活組用品和食材用品</td>
+                    <td colSpan="3"></td>
+                    <td colSpan="3">6138</td>
+                </tr>
+                <tr>
+                    <td>10</td>
+                    <td>14</td>
+                    <td>值星帶</td>
+                    <td colSpan="3"></td>
+                    <td colSpan="3">240</td>
+                </tr>
+                <tr>
+                    <td>10</td>
                     <td>16</td>
-                    <td>文具用品</td>
+                    <td>場地費尾款</td>
                     <td colSpan="3"></td>
-                    <td colSpan="3">4100</td>
+                    <td colSpan="3">54730</td>
                 </tr>
                 <tr>
+                    <td colSpan="2">合計</td>
+                    <td colSpan="3">65508</td>
                     <td></td>
                     <td></td>
-                    <td>合計</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    
                 </tr>
             </table>
         </div>

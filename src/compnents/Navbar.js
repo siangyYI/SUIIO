@@ -35,9 +35,7 @@ class NavBar extends Component {
           <Bell/>
           <div className="d-flex flex-column">
             <User/>
-
           </div>
-
         </div>
 
 
