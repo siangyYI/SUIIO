@@ -1,10 +1,11 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import '../../compnents/Usercard.css'
 function setAdmin() {
-    localStorage.setItem("Role","Admin");
-  }
+    localStorage.setItem("Role", "Admin");
+}
 class FrontUsercard extends Component {
-    
+
     render() {
         return (
             <>
@@ -30,7 +31,7 @@ class FrontUsercard extends Component {
                                 alt="cancel"
                                 width="25px" height="25px"
                                 className="mr-2"
-                            
+
                             />
                             <div>更改密碼</div>
                         </div>
@@ -41,23 +42,25 @@ class FrontUsercard extends Component {
                                 alt="cancel"
                                 width="25px" height="25px"
                                 className="mr-2"
-                                
+
                             />
                             <div>更改個人資料</div>
 
                         </div>
                         <div className="d-flex justify-content-center ucardline" >
-                            <button className="d-flex flex-row justify-content-center my-3 py-2 mx-3 ucardbutton" 
-                            onClick={()=>setAdmin()}
-                            href="#/"
-                            >
-                                <img
-                                    src={require("../../Image/trun.png").default}
-                                    alt="cancel"
-                                    width="25px" height="25px"
-                                />
-                                <div className="d-flex align-items-center ml-1">幹部頁面</div>
-                            </button>
+                            <Link to="/IncomeIndex">
+                                <button className="d-flex flex-row justify-content-center my-3 py-2 mx-3 ucardbutton"
+                                    onClick={() => setAdmin()}
+                                >
+                                    <img
+                                        src={require("../../Image/trun.png").default}
+                                        alt="cancel"
+                                        width="25px" height="25px"
+                                    />
+                                    <div className="d-flex align-items-center ml-1">幹部頁面</div>
+                                </button>
+                            </Link>
+
 
                             <button className="d-flex flex-row justify-content-center my-3 py-2 mx-3 ucardbutton">
                                 <img

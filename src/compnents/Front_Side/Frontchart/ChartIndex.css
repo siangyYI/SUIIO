@@ -1,13 +1,69 @@
-.chartback{
+.chartback {
     background-color: white;
     border-radius: 8px;
 }
-.charttitle{
+
+.charttitle {
     font-weight: bold;
     font-size: 16px;
 }
-.charttext{
+
+.charttext {
     font-weight: bold;
     color: rgb(38, 202, 51);
     font-size: 18px;
+}
+
+.charttext1 {
+    font-weight: bold;
+    color: #fd5757;
+    font-size: 18px;
+}
+
+.dtext {
+    display: block;
+    font-size: 68px;
+    line-height: 1;
+    font-weight: 600;
+    margin-bottom: 10%;
+}
+
+.size {
+    font-weight: 600;
+    font-size: 20px;
+    text-align: center;
+}
+
+.ititle {
+    font-size: 32px;
+    line-height: 1.25;
+    font-weight: 600;
+    letter-spacing: .004em;
+    margin-bottom: 48px;
+    padding-bottom: 22px;
+    border-bottom: 1px solid #a7a7a7;
+    color: #1d1d1f;
+}
+
+.ibtn {
+    background: #EB6200;
+    border: 1px solid transparent;
+    border-radius: 6px;
+    color: rgb(255, 255, 255);
+    font-weight: bold;
+    text-decoration: none!important;
+    width: 35%;
+    height: 30%;
+    font-size: 1.2rem;
+    padding: 8px 16px;
+    margin: 0 8px 8px 0;
+    cursor: pointer;
+    text-align: center;
+}
+.barstyle{
+    position: relative;
+    width: 85%;
+    height: 20%;
+    margin-bottom: 48px;
+    padding-bottom: 22px;
 }

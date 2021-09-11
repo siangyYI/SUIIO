@@ -1,8 +1,9 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import "./Usercard.css";
 
 function setStu() {
-  localStorage.setItem("Role","stu");
+  localStorage.setItem("Role", "Stu");
 }
 class Usercard extends Component {
   render() {
@@ -51,18 +52,20 @@ class Usercard extends Component {
               <a href="#/EditFile">更改個人資料</a>
             </div>
             <div className="d-flex justify-content-center ucardline">
-              <button className="d-flex flex-row justify-content-center my-3 py-2 mx-3 ucardbutton" 
-              onClick={()=>setStu()}
-              href="#/IncomeIndex"
-              >
-                <img
-                  src={require("../Image/trun.png").default}
-                  alt="cancel"
-                  width="25px"
-                  height="25px"
-                />
-                <div className="d-flex align-items-center ml-1">成員頁面</div>
-              </button>
+              <Link to="/IncomeIndex">
+                <button className="d-flex flex-row justify-content-center my-3 py-2 mx-3 ucardbutton"
+                  onClick={() => setStu()}
+                >
+                  <img
+                    src={require("../Image/trun.png").default}
+                    alt="cancel"
+                    width="25px"
+                    height="25px"
+                  />
+                  <div className="d-flex align-items-center ml-1">成員頁面</div>
+                </button>
+              </Link>
+
               <a href="#/Login">
                 <button className="d-flex flex-row justify-content-center my-3 py-2 mx-3 ucardbutton">
                   <img

@@ -1,6 +1,6 @@
 import React from "react";
-import { Bar } from 'react-chartjs-2';
-import { Doughnut } from 'react-chartjs-2';
+import { Bar, Line, Pie } from 'react-chartjs-2';
+import 'chart.piecelabel.js';
 import './ChartIndex.css'
 const Doughnutdata1 = {
   labels: ['資管週', '大迎新', '送舊', '聖誕晚會', '民歌'],
@@ -28,12 +28,26 @@ const Doughnutdata1 = {
   ],
 };
 const Doughnutoptions1 = {
-  plugins: {
-    legend: {
-      position: 'bottom',
-    },
+  type: 'pie',
 
+  options: {
+
+    responsive: true,
+    plugins: {
+      legend: {
+        display: true,
+         position: 'bottom',
+      },
+      title: {
+        display: true,
+        text: 'Chart.js Pie Chart'
+      }
+    },
+    pieceLabel: {
+      render: 'value'
+    }
   },
+
 }
 const Doughnutdata = {
   labels: ['資管週', '大迎新', '送舊', '聖誕晚會', '科費'],
@@ -61,144 +75,105 @@ const Doughnutdata = {
   ],
 };
 const Doughnutoptions = {
-  plugins: {
-    legend: {
-      position: 'bottom',
-    },
-
+  type: 'pie',
+  options: {
+    responsive: true,
+    plugins: {
+      legend: {
+        display: true,
+        position: 'bottom',
+      },
+      title: {
+        display: true,
+        text: 'Chart.js Pie Chart'
+      }
+    }
   },
 }
+const labels = ['二月', '三月', '四月', '五月'];
 const Horizontaldata = {
-  labels: ['上期餘額', '本期餘額', '本期淨利(損)'],
+  labels: labels,
   datasets: [
     {
-      data: [12, 19, 3],
-      backgroundColor: [
-        'rgba(255, 99, 132)',
-        'rgba(54, 162, 235)',
-        'rgba(255, 206, 86)',
-      ],
-      borderColor: [
-        'rgba(255, 99, 132, 1)',
-        'rgba(54, 162, 235, 1)',
-        'rgba(255, 206, 86, 1)',
-
-      ],
-      borderWidth: 1,
+      label: '收入',
+      data: [65, 59, 80, 11],
+      fill: true,
+      backgroundColor: 'rgb(75, 192, 192)',
+      borderColor: 'rgb(75, 192, 192)',
+      tension: 0.1
     },
-  ],
+    {
+      label: '支出',
+      data: [75, 49, 75, 15],
+      fill: true,
+      backgroundColor: '#FF6424',
+      borderColor: '#FF6424',
+      tension: 0.1
+    },]
 };
 
 const Horizontaloptions = {
-  indexAxis: 'y',
-  elements: {
-    bar: {
-      borderWidth: 2,
-    },
-  },
-  responsive: true,
-  plugins: {
-    legend: {
-    },
-    title: {
-      display: true,
-      text: 'Chart.js Bar Chart'
-    },
-
-  },
-};
-const LineData = () => ({
-  labels: ['大資盃報名費', '比賽住宿費', '材料費', '資管週收入', '退科費'],
-  datasets: [
-    {
-
-      data: [-30, -20, -10, 10, -50, -70],
-
-      backgroundColor: [
-        'rgba(255, 99, 132)',
-        'rgba(54, 162, 235)',
-        'rgba(255, 206, 86)',
-        'rgba(75, 192, 192)',
-        'rgba(153, 102, 255)',
-        'rgba(255, 159, 64)',
-      ],
-      borderColor: [
-        'rgba(255, 99, 132, 1)',
-        'rgba(54, 162, 235, 1)',
-        'rgba(255, 206, 86, 1)',
-        'rgba(75, 192, 192, 1)',
-        'rgba(153, 102, 255, 1)',
-        'rgba(255, 159, 64, 1)',
-      ],
-      borderWidth: 1,
-    },{
-
-      data: [-30, -20, -10, 10, -50, -70],
-
-      backgroundColor: [
-        'rgba(255, 99, 132)',
-        'rgba(54, 162, 235)',
-        'rgba(255, 206, 86)',
-        'rgba(75, 192, 192)',
-        'rgba(153, 102, 255)',
-        'rgba(255, 159, 64)',
-      ],
-      borderColor: [
-        'rgba(255, 99, 132, 1)',
-        'rgba(54, 162, 235, 1)',
-        'rgba(255, 206, 86, 1)',
-        'rgba(75, 192, 192, 1)',
-        'rgba(153, 102, 255, 1)',
-        'rgba(255, 159, 64, 1)',
-      ],
-      borderWidth: 1,
-    },
-  ],
-});
-
-const Lineoptions = {
   type: 'bar',
   data: 'data',
-  plugins: {
-    legend: {
-    },
-    title: {
-      display: true,
-      text: '2-4 月  收支報表',
-      font:{style:'bold'},
-    },
-
-  },
   options: {
     responsive: true,
-    scales: {
-      x: {
-        display: true,
-        title: {
-          display: true,
-          text: 'Month',
-          color: '#911',
-          font: {
-            size: 20,
-            weight: 'bold',
-            lineHeight: 1.2,
-          },
-          padding: { top: 20, left: 0, right: 0, bottom: 0 }
-        }
+    plugins: {
+      legend: {
+        position: 'top',
       },
-      y: {
+      title: {
         display: true,
-        title: {
-          display: true,
-          text: 'Value',
-          color: '#191',
-          font: {
-            size: 20,
-            style: 'normal',
-            lineHeight: 1.2
-          },
-          padding: { top: 30, left: 0, right: 0, bottom: 0 }
-        }
+        text: 'Chart.js Bar Chart'
+      }
+    }
+  },
+};
+
+const LineData = {
+  labels: labels,
+  datasets: [
+    {
+      label: '淨支出',
+      data: [65, 59, 80, 61],
+      fill: false,
+      borderColor: '#00BFA0',
+      tension: 0.1
+    },{
+      label: '淨收入',
+      data: [55, 49, 40, 41],
+      fill: false,
+      borderColor: '#6798E7',
+      tension: 0.1
+    },
+    {
+      label: '平均收入',
+      data: [75, 49, 70, 31],
+      fill: false,
+      borderColor: '#FF6424',
+      tension: 0.1
+    },
+    {
+      label: '平均支出',
+      data: [45, 49, 42, 38],
+      fill: false,
+      borderColor: '#5F2FF3',
+      tension: 0.1
+    },
+  ]
+
+};
+const Lineoptions = {
+  type: 'line',
+  data: 'data',
+  options: {
+    responsive: true,
+    plugins: {
+      legend: {
+        position: 'top',
+      },
+      title: {
+        display: true,
+        text: 'Chart.js Line Chart'
       }
     }
   },
@@ -210,31 +185,33 @@ const Chart_Index = () => {
       <div className="row mt-5">
         <div className="col-7 mx-auto chartback">
           <div className="my-3 d-flex justify-content-between">
-            <div className="ml-2 charttitle">
-            </div>
+            <div className="ml-2 charttitle">本月收支折線圖(單位:元)</div>
           </div>
-          <Bar data={LineData} options={Lineoptions} />
+          <Line data={LineData} options={Lineoptions} />
         </div>
         <div className="col-3  mx-auto chartback">
 
           <div className="my-3 d-flex justify-content-between">
-            <div className="ml-2 charttitle">收入總金額</div>
+            <div className="ml-2 charttitle">收入占比圓餅圖</div>
             <div className="charttext">$1300</div>
           </div>
 
-          <Doughnut data={Doughnutdata} options={Doughnutoptions} />
+          <Pie data={Doughnutdata} options={Doughnutoptions} />
         </div>
       </div>
       <div className="row my-5 ">
         <div className="col-7 mx-auto chartback">
+          <div className="my-3 d-flex justify-content-between">
+            <div className="ml-2 charttitle">本月收支直方圖(單位:元)</div>
+          </div>
           <Bar data={Horizontaldata} options={Horizontaloptions} />
         </div>
         <div className="col-3 mx-auto chartback">
           <div className="my-3 d-flex justify-content-between">
-            <div className="ml-2 charttitle">支出總金額</div>
-            <div className="charttext">$1300</div>
+            <div className="ml-2 charttitle">支出占比圓餅圖</div>
+            <div className="charttext1">$1300</div>
           </div>
-          <Doughnut data={Doughnutdata1} options={Doughnutoptions1} />
+          <Pie data={Doughnutdata1} options={Doughnutoptions1} />
         </div>
       </div>
     </>

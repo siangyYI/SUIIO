@@ -4,25 +4,11 @@ import React from 'react';
 const filter = () => {
     return (
         <>
-            <div className="row mt-4" >
-                <div className="align-self-center titlefliter py-2 ml-5">
-                    活動類別
-                </div>
-                <div className="px-2 align-self-center">
-                    <select className="Dropdown">
-                        <option>大迎新</option>
-                        <option>民歌</option>
-                        <option>送舊</option>
-                        <option>例行會議</option>
-                    </select>
-                </div>
-            </div>
-
             <div
-                className="ml-md-5 mt-3 d-flex justify-content-center justify-content-md-start px-md-5 filter"
+                className="ml-md-5 mt-5 d-flex justify-content-center justify-content-md-start px-md-5 filter"
                 style={{}}
             >
-                <div className="align-self-center" style={{ marginLeft: "12%" }}>
+                <div className="align-self-center" style={{ marginLeft: "10%" }}>
                     <img
                         src={require("../../../Image/one.png").default}
                         alt="cancel"
@@ -39,7 +25,7 @@ const filter = () => {
                         <option>106學年度</option>
                     </select>
                 </div>
-                <div className="align-self-center" style={{ marginLeft: "34%" }}>
+                <div className="align-self-center" style={{ marginLeft: '30%' }}>
                     <img
                         src={require("../../../Image/two.png").default}
                         alt="cancel"
