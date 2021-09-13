@@ -33,7 +33,7 @@ class FrontUsercard extends Component {
                                 className="mr-2"
 
                             />
-                            <div>更改密碼</div>
+                            <a href="#/Front/ChangePW">更改密碼</a>
                         </div>
                         <div className="ucardline my-2"></div>
                         <div className="d-flex my-3 d-flex justify-content-center">
@@ -44,7 +44,7 @@ class FrontUsercard extends Component {
                                 className="mr-2"
 
                             />
-                            <div>更改個人資料</div>
+                            <a href="#/Front/EditFile">更改個人資料</a>
 
                         </div>
                         <div className="d-flex justify-content-center ucardline" >
@@ -68,7 +68,7 @@ class FrontUsercard extends Component {
                                     alt="cancel"
                                     width="25px" height="25px"
                                 />
-                                <div className="d-flex align-items-center ml-1">登出</div>
+                                <a href="#/Front/Login" className="d-flex align-items-center ml-1">登出</a>
                             </button>
                         </div>
                     </div>

@@ -15,6 +15,14 @@ import Income_Detail from './compnents/Front_Side/FrontFinancial/Income/Income_D
 import Income_Index from './compnents/Front_Side/FrontFinancial/Income/Income_Index';
 import Chart_Index from './compnents/Front_Side/Frontchart/ChartIndex';
 import CompareIndex from './compnents/Front_Side/FrontCompare/CompareIndex';
+
+import Login from './compnents/Front_Side/Login/Login';
+import PW_account from './compnents/Front_Side/Login/PW_account';
+import CheckPW from './compnents/Front_Side/Login/CheckPW'
+import Choose from './compnents/Front_Side/Login/Choose'
+import ChangePW from './compnents/Front_Side/Login/ChangePW'
+import EditFile from './compnents/Front_Side/Login/EditFile'
+
 class App2 extends Component {
   render() {
     return (
@@ -24,7 +32,7 @@ class App2 extends Component {
             <div className="row">
               <FrontNavigationBar />
               <FrontNavbar />
-              <div className="col recordcontent overflow-auto">
+              <div className="col recordcontent overflow-auto Col">
                 <Route path="/Front/Index" component={Index} />
                 <Route path="/Meeting/reconder" component={reconder} />
                 <Route path="/detail" component={Financial_Detail} />
@@ -35,6 +43,14 @@ class App2 extends Component {
                 <Route path="/ChartIndex" component={Chart_Index} />
 
                 <Route path="/CompareIndex" component={CompareIndex} ></Route>
+              
+              
+                <Route path="/Front/Login" component={Login} />
+                <Route path="/Front/PW_account" component={PW_account} />
+                <Route path="/Front/CheckPW" component={CheckPW} />
+                <Route path="/Front/Choose" component={Choose} />
+                <Route path="/Front/ChangePW" component={ChangePW} />
+                <Route path="/Front/EditFile" component={EditFile} />
               </div>
             </div>
           </Switch>
