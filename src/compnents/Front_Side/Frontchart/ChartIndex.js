@@ -1,8 +1,9 @@
 import React from "react";
 import { Bar, Line, Pie } from 'react-chartjs-2';
-import 'chart.piecelabel.js';
+import "chartjs-plugin-datalabels";
 import './ChartIndex.css'
 const Doughnutdata1 = {
+  type: 'pie',
   labels: ['資管週', '大迎新', '送舊', '聖誕晚會', '民歌'],
   datasets: [
     {
@@ -27,29 +28,9 @@ const Doughnutdata1 = {
     },
   ],
 };
-const Doughnutoptions1 = {
-  type: 'pie',
 
-  options: {
-
-    responsive: true,
-    plugins: {
-      legend: {
-        display: true,
-         position: 'bottom',
-      },
-      title: {
-        display: true,
-        text: 'Chart.js Pie Chart'
-      }
-    },
-    pieceLabel: {
-      render: 'value'
-    }
-  },
-
-}
 const Doughnutdata = {
+  type: 'pie',
   labels: ['資管週', '大迎新', '送舊', '聖誕晚會', '科費'],
   datasets: [
     {
@@ -74,26 +55,11 @@ const Doughnutdata = {
     },
   ],
 };
-const Doughnutoptions = {
-  type: 'pie',
-  options: {
-    responsive: true,
-    plugins: {
-      legend: {
-        display: true,
-        position: 'bottom',
-      },
-      title: {
-        display: true,
-        text: 'Chart.js Pie Chart'
-      }
-    }
-  },
-}
-const labels = ['二月', '三月', '四月', '五月'];
 const Horizontaldata = {
-  labels: labels,
+  type: 'bar',
+  labels: ['二月', '三月', '四月', '五月'],
   datasets: [
+
     {
       label: '收入',
       data: [65, 59, 80, 11],
@@ -112,82 +78,66 @@ const Horizontaldata = {
     },]
 };
 
-const Horizontaloptions = {
-  type: 'bar',
-  data: 'data',
-  options: {
-    responsive: true,
-    plugins: {
-      legend: {
-        position: 'top',
-      },
-      title: {
-        display: true,
-        text: 'Chart.js Bar Chart'
-      }
-    }
-  },
-};
+
 
 const LineData = {
-  labels: labels,
+  type: 'line',
+  labels: ['二月', '三月', '四月', '五月'],
   datasets: [
     {
-      label: '淨支出',
+      label: '支出',
       data: [65, 59, 80, 61],
       fill: false,
       borderColor: '#00BFA0',
-      tension: 0.1
-    },{
-      label: '淨收入',
+      tension: 0.1,
+      pointStyle: 'circle',
+      pointRadius: 5,
+      pointBorderColor: '#00BFA0',
+      backgroundColor: '#00BFA0'
+    }, {
+      label: '收入',
       data: [55, 49, 40, 41],
       fill: false,
       borderColor: '#6798E7',
-      tension: 0.1
+      tension: 0.1,
+      pointStyle: 'circle',
+      pointRadius: 5,
+      pointBorderColor: '#6798E7',
+      backgroundColor: '#6798E7'
     },
     {
-      label: '平均收入',
-      data: [75, 49, 70, 31],
+      label: '平均淨利損',
+      data: [56, 57, 58, 59],
       fill: false,
       borderColor: '#FF6424',
-      tension: 0.1
+      tension: 0.1,
+      pointStyle: 'circle',
+      pointRadius: 5,
+      pointBorderColor: '#FF6424',
+      backgroundColor: '#FF6424'
     },
-    {
-      label: '平均支出',
-      data: [45, 49, 42, 38],
-      fill: false,
-      borderColor: '#5F2FF3',
-      tension: 0.1
-    },
-  ]
+  ],
+};
 
-};
-const Lineoptions = {
-  type: 'line',
-  data: 'data',
-  options: {
-    responsive: true,
-    plugins: {
-      legend: {
-        position: 'top',
-      },
-      title: {
-        display: true,
-        text: 'Chart.js Line Chart'
-      }
-    }
-  },
-};
 
 const Chart_Index = () => {
   return (
     <>
+
       <div className="row mt-5">
         <div className="col-7 mx-auto chartback">
           <div className="my-3 d-flex justify-content-between">
             <div className="ml-2 charttitle">本月收支折線圖(單位:元)</div>
           </div>
-          <Line data={LineData} options={Lineoptions} />
+          <Line data={LineData} options={{
+            plugins: {
+              legend: {
+                display: true,
+                position: 'bottom',
+
+              },
+            }
+          }} />
         </div>
         <div className="col-3  mx-auto chartback">
 
@@ -196,22 +146,52 @@ const Chart_Index = () => {
             <div className="charttext">$1300</div>
           </div>
 
-          <Pie data={Doughnutdata} options={Doughnutoptions} />
+          <Pie data={Doughnutdata}
+            options={{
+
+              responsive: true,
+              maintainAspectRatio: true,
+              plugins: {
+                labels: {
+                  render: 'percentage',
+                  fontColor: ['green', 'white', 'red'],
+                  precision: 2
+                },
+                legend: {
+                  display: true,
+                  position: 'bottom'
+                },
+              },
+            }} />
         </div>
       </div>
-      <div className="row my-5 ">
+      <div className="row my-5">
         <div className="col-7 mx-auto chartback">
           <div className="my-3 d-flex justify-content-between">
             <div className="ml-2 charttitle">本月收支直方圖(單位:元)</div>
           </div>
-          <Bar data={Horizontaldata} options={Horizontaloptions} />
+          <Bar data={Horizontaldata} options={{
+            plugins: {
+              legend: {
+                display: true,
+                position: 'bottom'
+              },
+            }
+          }} />
         </div>
         <div className="col-3 mx-auto chartback">
           <div className="my-3 d-flex justify-content-between">
             <div className="ml-2 charttitle">支出占比圓餅圖</div>
             <div className="charttext1">$1300</div>
           </div>
-          <Pie data={Doughnutdata1} options={Doughnutoptions1} />
+          <Pie data={Doughnutdata1} options={{
+            plugins: {
+              legend: {
+                display: true,
+                position: 'bottom',
+              },
+            }
+          }} />
         </div>
       </div>
     </>

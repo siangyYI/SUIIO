@@ -19,7 +19,7 @@ const PieData1 = {
             '#448599',
         ],
         borderWidth: 1,
-        data: [37000,20000], // 資料
+        data: [37000, 20000], // 資料
         fill: false, // 是否填滿色彩
     },]
 };
@@ -28,7 +28,7 @@ const Pieoptions1 = {
     options: {
         responsive: true,
         legend: { //是否要顯示圖示
-            position:'bottom',
+            position: 'bottom',
         },
         tooltips: { //是否要顯示 tooltip
             enabled: true
@@ -57,29 +57,25 @@ const PieData = {
             '#222D43',
         ],
         borderWidth: 1,
-        data: [20000,38000], // 資料
+        
+        data: [20000, 38000], // 資料
         fill: false, // 是否填滿色彩
     },]
 
 };
 const Pieoptions = {
-    type: 'line', // 型態
+    type: 'pie', // 型態
+    
     options: {
         responsive: true,
-        legend: { //是否要顯示圖示
-            position:'bottom',
-        },
-        tooltips: { //是否要顯示 tooltip
-            enabled: true
-        },
-        scales: {  //是否要顯示 x、y 軸
-            xAxes: [{
-                display: true
-            }],
-            yAxes: [{
-                display: true
-            }]
-        },
+        legend: {
+            position: 'bottom',
+            labels: {
+                fontSize: 12,
+                boxWidth: 12,
+                usePointStyle: true,
+            }
+        }
     }
 }
 const HorizontalData1 = {
