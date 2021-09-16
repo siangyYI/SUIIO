@@ -1,6 +1,5 @@
 import React from "react";
 import { Bar, Line, Pie } from 'react-chartjs-2';
-import "chartjs-plugin-datalabels";
 import './ChartIndex.css'
 const Doughnutdata1 = {
   type: 'pie',
@@ -28,7 +27,6 @@ const Doughnutdata1 = {
     },
   ],
 };
-
 const Doughnutdata = {
   type: 'pie',
   labels: ['資管週', '大迎新', '送舊', '聖誕晚會', '科費'],
@@ -77,9 +75,6 @@ const Horizontaldata = {
       tension: 0.1
     },]
 };
-
-
-
 const LineData = {
   type: 'line',
   labels: ['二月', '三月', '四月', '五月'],
@@ -129,15 +124,17 @@ const Chart_Index = () => {
           <div className="my-3 d-flex justify-content-between">
             <div className="ml-2 charttitle">本月收支折線圖(單位:元)</div>
           </div>
-          <Line data={LineData} options={{
-            plugins: {
-              legend: {
-                display: true,
-                position: 'bottom',
+          <Line data={LineData}
+            options={{
+              plugins: {
+                legend: {
+                  display: true,
+                  position: 'bottom',
 
-              },
-            }
-          }} />
+                },
+              }
+            }}
+          />
         </div>
         <div className="col-3  mx-auto chartback">
 
@@ -152,10 +149,20 @@ const Chart_Index = () => {
               responsive: true,
               maintainAspectRatio: true,
               plugins: {
-                labels: {
-                  render: 'percentage',
-                  fontColor: ['green', 'white', 'red'],
-                  precision: 2
+                tooltip: {
+                  enabled: true,
+                  callbacks: {
+                    footer: (ttItem) => {
+                      let sum = 0;
+                      let dataArr = ttItem[0].dataset.data;
+                      dataArr.map(data => {
+                        sum += Number(data);
+                      });
+
+                      let percentage = (ttItem[0].parsed * 100 / sum).toFixed(2) + '%';
+                      return `占比: ${percentage}`;
+                    }
+                  },
                 },
                 legend: {
                   display: true,
@@ -186,6 +193,21 @@ const Chart_Index = () => {
           </div>
           <Pie data={Doughnutdata1} options={{
             plugins: {
+              tooltip: {
+                enabled: true,
+                callbacks: {
+                  footer: (ttItem) => {
+                    let sum = 0;
+                    let dataArr = ttItem[0].dataset.data;
+                    dataArr.map(data => {
+                      sum += Number(data);
+                    });
+
+                    let percentage = (ttItem[0].parsed * 100 / sum).toFixed(2) + '%';
+                    return `占比: ${percentage}`;
+                  }
+                },
+              },
               legend: {
                 display: true,
                 position: 'bottom',

@@ -1,11 +1,11 @@
-import "../../Meeting/Management/css/flter.css";
+import "./CompareIndex.css";
 
 import React from 'react';
 const filter = () => {
     return (
         <>
             <div
-                className="ml-md-5 mt-5 d-flex justify-content-center justify-content-md-start px-md-5 filter"
+                className="ml-md-5 mt-5 d-flex justify-content-center justify-content-md-start px-md-5 cfilter"
                 style={{}}
             >
                 <div className="align-self-center" style={{ marginLeft: "10%" }}>
@@ -18,7 +18,7 @@ const filter = () => {
                 </div>
 
                 <div className="mr-5 align-self-center">
-                    <select className="Dropdown">
+                    <select className="cDropdown">
                         <option>109學年度</option>
                         <option>108學年度</option>
                         <option>107學年度</option>
@@ -35,7 +35,7 @@ const filter = () => {
                 </div>
 
                 <div className="px-2 align-self-center">
-                    <select className="Dropdown">
+                    <select className="cDropdown">
                         <option>109學年度</option>
                         <option>108學年度</option>
                         <option>107學年度</option>

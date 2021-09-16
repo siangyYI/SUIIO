@@ -47,6 +47,18 @@ class FrontUsercard extends Component {
                             <a href="#/Front/EditFile">更改個人資料</a>
 
                         </div>
+                        <div className="ucardline my-2"></div>
+                        <div className="d-flex my-3 d-flex justify-content-center">
+                            <img
+                                src={require("../../Image/pencil.png").default}
+                                alt="cancel"
+                                width="25px" height="25px"
+                                className="mr-2"
+
+                            />
+                            <a href="#/Front/EditFile">查看回覆留言</a>
+
+                        </div>
                         <div className="d-flex justify-content-center ucardline" >
                             <Link to="/IncomeIndex">
                                 <button className="d-flex flex-row justify-content-center my-3 py-2 mx-3 ucardbutton"

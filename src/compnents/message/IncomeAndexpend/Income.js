@@ -1,5 +1,5 @@
 import { Card } from "react-bootstrap";
-import { Messagearea } from "../Report/Messagearea";
+// import { Messagearea } from "../Report/Messagearea";
 import { UncontrolledCollapse } from 'reactstrap';
 const Income = () => {
 
@@ -25,7 +25,7 @@ const Income = () => {
 
             <div className="col-md-6 ">
                 <UncontrolledCollapse toggler="#toggler">
-                    <Messagearea />
+                    {/* <Messagearea /> */}
                 </UncontrolledCollapse>
             </div>
 

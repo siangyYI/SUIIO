@@ -7,7 +7,7 @@ import App2 from "./App2";
 function Greeting(props) {
   
   // const Role="admin";
-  if (localStorage.getItem('Role')==='stu') {
+  if (localStorage.getItem('Role')==='Stu') {
     return <App />;
   }
   else if (localStorage.getItem('Role')==='Admin'){

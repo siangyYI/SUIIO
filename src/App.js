@@ -61,7 +61,7 @@ class App extends Component {
               <NavBar />
               <div className="col recordcontent overflow-auto Col">
 
-                <Route exact={true} path="/" component={Index} />
+                <Route exact={true} path="/index" component={Index} />
                 <Route path="/reconder" component={reconder} />
                 <Route path="/Uploadmeet" component={Uploadmeet} />
                 <Route path="/AuditList" component={AuditList} />
