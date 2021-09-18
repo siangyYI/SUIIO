@@ -124,25 +124,18 @@ const CompareIndex = () => {
         <Container>
             <CompareFilter />
             <div className="ititle">
-                淨利/損
-            </div>
-            <div className="row">
-                <CompareDetail />
-                <CompareDetailTwo />
-            </div>
-            <div className="ititle">
                 比較圖表
-                <div className="size d-flex align-items-end">
-                    單位：元
-                </div>
             </div>
             <div className="d-flex justify-content-center">
-                <div className="ibtn ">
-                    9月圖表
-
+            <div className="mr-5 align-self-center">
+                    <select className="cDropdown">
+                        <option>九月</option>
+                        <option>九~十二月</option>
+                        <option>六個月</option>
+                        <option>一學期</option>
+                    </select>
                 </div>
             </div>
-
             <div className="row mt-4">
                 <div className="mx-auto barstyle chartback">
                     <div className="my-3 d-flex justify-content-between">
@@ -162,13 +155,18 @@ const CompareIndex = () => {
                 </div>
             </div>
             <div className="ititle">
-                淨利/損圓餅圖比較
+                淨利/損
+            </div>
+            <div className="row">
+
+                <CompareDetailTwo />
+                <CompareDetail />
+            </div>
+            <div className="ititle">
+                淨利/損圓餅圖
             </div>
             <div className="row my-5">
-                <div className="mx-auto" style={{ position: 'relative', width: '20%' }}>
-                    <div className="my-3 d-flex justify-content-between">
-                        <div className="ml-2 charttitle">108年度淨利/損圓餅圖</div>
-                    </div>
+                <div className="mx-auto" style={{ position: 'relative', width: '40%' }}>
                     <Pie data={PieData}
                         options={{
                             responsive: true,
@@ -181,7 +179,10 @@ const CompareIndex = () => {
                                 },
                                 tooltip: {
                                     enabled: true,
-                                    callbacks: {
+                                    callbacks:{
+                                        label: function (tooltipItem) {
+                                            return `${tooltipItem.dataset.data[1]} 元`;
+                                        },
                                         footer: (ttItem) => {
                                             let sum = 0;
                                             let dataArr = ttItem[0].dataset.data;
@@ -201,10 +202,7 @@ const CompareIndex = () => {
                             },
                         }} />
                 </div>
-                <div className="mx-auto" style={{ position: 'relative', width: '20%' }} >
-                    <div className="my-3 d-flex justify-content-between">
-                        <div className="ml-2 charttitle">109年度淨利/損圓餅圖</div>
-                    </div>
+                <div className="mx-auto" style={{ position: 'relative', width: '40%' }} >
                     <Pie data={PieData1}
                         options={{
                             responsive: true,
@@ -213,6 +211,9 @@ const CompareIndex = () => {
                                 tooltip: {
                                     enabled: true,
                                     callbacks: {
+                                        label: function (tooltipItem) {
+                                            return `${tooltipItem.dataset.data[1]} 元`;
+                                        },
                                         footer: (ttItem) => {
                                             let sum = 0;
                                             let dataArr = ttItem[0].dataset.data;
@@ -234,7 +235,7 @@ const CompareIndex = () => {
                 </div>
             </div>
             <div className="ititle">
-                活動圖表比較
+                活動圖表
             </div>
             <div className="row my-4">
                 <div className="mr-5 align-self-center">
@@ -256,7 +257,6 @@ const CompareIndex = () => {
 
                             },
                         }
-
                     }} />
                 </div>
                 <div className="mx-auto chartback" style={{ position: 'relative', width: '45%' }}>
@@ -272,8 +272,6 @@ const CompareIndex = () => {
                     }} />
                 </div>
             </div>
-
-
         </Container>
     );
 };

@@ -1,22 +1,30 @@
 .titlefliter {
     margin: "0";
     font-size: 14pt;
+    
 }
 
 .cDropdown {
     /*下拉式選單*/
     border-width: 2px;
-    color: #707070;
+    color: #ffffff;
+    text-align: center;
     border-radius: 7px;
-    border-color: black;
+    border-color: #EB6200;
+    background-color: #EB6200;
     border-width: 2px;
+    font-weight: bold;
     height: 25pt;
     width: 135pt;
     outline: none
 }
-
+.cfilter{
+    position:fixed;
+    z-index: 9999;
+}
 @media screen and (max-width: 575px) {
     .cfilter {
         margin-top: 20%;
+        
     }
 }

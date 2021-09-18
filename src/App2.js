@@ -22,6 +22,7 @@ import CheckPW from './compnents/Front_Side/Login/CheckPW'
 import Choose from './compnents/Front_Side/Login/Choose'
 import ChangePW from './compnents/Front_Side/Login/ChangePW'
 import EditFile from './compnents/Front_Side/Login/EditFile'
+import ReportMessage from './compnents/Front_Side/Login/ReportMessage'
 
 class App2 extends Component {
   render() {
@@ -51,6 +52,8 @@ class App2 extends Component {
                 <Route path="/Front/Choose" component={Choose} />
                 <Route path="/Front/ChangePW" component={ChangePW} />
                 <Route path="/Front/EditFile" component={EditFile} />
+                <Route path="/Front/ReportMessage" component={ReportMessage} />
+
               </div>
             </div>
           </Switch>

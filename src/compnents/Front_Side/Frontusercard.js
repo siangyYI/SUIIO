@@ -56,7 +56,7 @@ class FrontUsercard extends Component {
                                 className="mr-2"
 
                             />
-                            <a href="#/Front/EditFile">查看回覆留言</a>
+                            <a href="#/Front/ReportMessage">查看回覆留言</a>
 
                         </div>
                         <div className="d-flex justify-content-center ucardline" >

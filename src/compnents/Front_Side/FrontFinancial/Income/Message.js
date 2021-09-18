@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import PropTypes from "prop-types";
+import user from "../../../../Image/1144760.png";
+
+import { Input } from "reactstrap";
+import { Select } from "semantic-ui-react";
 
 // Comments API
 const API_ENDPOINT =
@@ -8,9 +12,9 @@ const API_ENDPOINT =
 
 const Page = styled.div`
   font-family: "monospace", "微軟正黑體";
-  border:1px solid black;
+  border: 1px solid black;
   border-radius: 8px;
-  padding: 12px 28px;
+  padding: 12px 28px 0 28px;
   background-color: beige;
   color: #6c6c6c;
   box-sizing: border-box;
@@ -21,7 +25,8 @@ const Title = styled.h1`
 `;
 
 const MessageForm = styled.form`
-  margin: 16px 0;
+  margin: 11px 0;
+
   font-size: 18px;
 `;
 const MessageLable = styled.div``;
@@ -44,6 +49,11 @@ const SubmitButton = styled.button`
 
 const MessageList = styled.div`
   margin-top: 16px;
+  border: 1px solid black;
+  padding: 10px;
+  height: 350px;
+  overflow: auto;
+  background-color: white;
 `;
 const MessageContainer = styled.div`
   border: 1px solid rgba(0, 0, 0, 0.125);
@@ -61,8 +71,8 @@ const MessageHead = styled.div`
 `;
 
 const MessageAuthor = styled.div`
-  margin-right: 12px;
-  color: #232323;
+  font-weight: bold;
+  color: #dcae1d;
 `;
 
 const MessageTime = styled.div`
@@ -107,13 +117,28 @@ const Loading = styled.div`
 
 function Message({ author, time, children, handleDeleteMessage, message }) {
   return (
-    <MessageContainer>
-      <MessageHead>
-        <MessageAuthor>{author}</MessageAuthor>
-        <MessageTime>{time}</MessageTime>
-      </MessageHead>
-      <MessageBody>{children}</MessageBody>
-    </MessageContainer>
+    <>
+      <MessageContainer>
+        {/* <MessageHead> */}
+        <div className="d-flex flex-row py-2">
+          <div className="d-flex flex-column mr-4">
+            <img
+              src={user}
+              alt="member"
+              width="30pt"
+              height="30pt"
+              class="d-flex align-items-center"
+            ></img>
+            <MessageAuthor>{author}</MessageAuthor>
+          </div>
+          <div className="d-flex flex-column">
+            <MessageTime>{time}</MessageTime>
+            {/* </MessageHead> */}
+            <MessageBody>{children}</MessageBody>
+          </div>
+        </div>
+      </MessageContainer>
+    </>
   );
 }
 
@@ -211,19 +236,9 @@ function MessageTable() {
 
   return (
     <Page>
-      {isLoadingPostMessage && <Loading>Loading...</Loading>}
-      <Title>針對此財務報表進行提問</Title>
-      <MessageForm onSubmit={handleFormSubmit}>
-        <MessageLable>留言內容</MessageLable>
-        <MessageTextArea
-          value={value}
-          onChange={handleTextareaChange}
-          onFocus={handleTextareaFocus}
-          rows={8}
-        />
-        <SubmitButton>送出</SubmitButton>
-        {postMessageError && <ErrorMessage>{postMessageError}</ErrorMessage>}
-      </MessageForm>
+      {/* {isLoadingPostMessage && <Loading>Loading...</Loading>} */}
+      <h5>針對此財務報表進行提問</h5>
+
       {messageApiError && (
         <ErrorMessage>
           {/* 直接 render object 會出錯，因此需轉成 string */}
@@ -247,6 +262,35 @@ function MessageTable() {
             </Message>
           ))}
       </MessageList>
+      <div onSubmit={handleFormSubmit}>
+        <div className="col" className="row">
+          <div className="d-flex flex-column mr-4">
+            <img
+              src={user}
+              alt="member"
+              width="30pt"
+              height="30pt"
+              class="d-flex align-items-center"
+            ></img>
+            <select style={{ height: "fit-content" }}>
+              <option>小周</option>
+              <option>周大大</option>
+            </select>{" "}
+          </div>
+
+          <Input
+            type="text"
+            className="col-10 mr-1"
+            value={value}
+            onChange={handleTextareaChange}
+            onFocus={handleTextareaFocus}
+            rows={8}
+          />
+          <SubmitButton className="col" style={{ height: "fit-content" }}>
+            送出
+          </SubmitButton>
+        </div>
+      </div>
     </Page>
   );
 }

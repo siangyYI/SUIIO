@@ -27,11 +27,24 @@
     font-weight: 600;
     margin-bottom: 10%;
 }
-
 .size {
     font-weight: 600;
     font-size: 20px;
     text-align: center;
+    
+}
+.size1 {
+    font-weight: 600;
+    font-size: 20px;
+    text-align: center;
+    color: rgb(196, 68, 68);
+    
+}
+.size2 {
+    font-weight: 600;
+    font-size: 20px;
+    text-align: center;
+    color: rgb(69, 185, 69);
 }
 
 .ititle {
