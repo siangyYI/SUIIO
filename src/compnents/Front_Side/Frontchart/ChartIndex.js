@@ -153,8 +153,8 @@ const Chart_Index = () => {
                   enabled: true,
                   callbacks: {
                     label: function (tooltipItem) {
-                      return `${tooltipItem.dataset.data[1]} 元`;
-                    },
+                      return tooltipItem.parsed + '元';
+                  },
                     footer: (ttItem) => {
                       let sum = 0;
                       let dataArr = ttItem[0].dataset.data;
@@ -202,8 +202,8 @@ const Chart_Index = () => {
                 enabled: true,
                 callbacks: {
                   label: function (tooltipItem) {
-                    return `${tooltipItem.dataset.data[1]} 元`;
-                  },
+                    return tooltipItem.parsed + '元';
+                },
                   footer: (ttItem) => {
                     let sum = 0;
                     let dataArr = ttItem[0].dataset.data;

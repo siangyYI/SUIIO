@@ -6,7 +6,10 @@ const CompareDetailTwo = () => {
                     <div className="size2 d-flex align-items-center mx-2">
                         淨利  
                     </div>
-                     17000
+                    <div style={{color:"rgb(69, 185, 69)"}}>
+                        17000
+                    </div>
+                     
                     <div className="size d-flex align-items-end mx-2">
                         元
                     </div>

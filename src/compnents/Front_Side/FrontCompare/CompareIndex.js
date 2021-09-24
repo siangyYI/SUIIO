@@ -117,17 +117,40 @@ const HorizontalData1 = {
         fill: false, // 是否填滿色彩
     },]
 };
-
+const name = document.getElementById('activity1');
+const scrollToAnchor = (name) => {
+    if (name) {
+        // 找到錨點
+        let anchorElement = document.getElementById(name);
+        // 如果對應id的錨點存在，就跳轉到錨點
+        if (anchorElement) { anchorElement.scrollIntoView({ block: 'start', behavior: 'smooth' }); }
+    }
+}
 
 const CompareIndex = () => {
     return (
+
         <Container>
+            <div className="d-flex justify-content-end">
+
+                <div className="d-flex flex-column  my-4" style={{ position: "fixed", zIndex: '9999', fontSize: '20px' }}>
+
+                    <a onClick={() => scrollToAnchor('activity1')}>比較圖表</a>
+                    <a onClick={() => scrollToAnchor('activity2')}>淨利/損</a>
+                    <a onClick={() => scrollToAnchor('activity3')}>淨利/損圓餅圖</a>
+                    {/* <a onClick={() => scrollToAnchor('activity4')}>活動圖表</a> */}
+                </div>
+            </div>
+
+
             <CompareFilter />
-            <div className="ititle">
+
+
+            <div id='activity1' className="ititle mt-4">
                 比較圖表
             </div>
             <div className="d-flex justify-content-center">
-            <div className="mr-5 align-self-center">
+                <div className="mr-5 align-self-center">
                     <select className="cDropdown">
                         <option>九月</option>
                         <option>九~十二月</option>
@@ -154,87 +177,95 @@ const CompareIndex = () => {
                     />
                 </div>
             </div>
-            <div className="ititle">
-                淨利/損
-            </div>
-            <div className="row">
 
-                <CompareDetailTwo />
-                <CompareDetail />
-            </div>
-            <div className="ititle">
-                淨利/損圓餅圖
-            </div>
-            <div className="row my-5">
-                <div className="mx-auto" style={{ position: 'relative', width: '40%' }}>
-                    <Pie data={PieData}
-                        options={{
-                            responsive: true,
-                            maintainAspectRatio: true,
-                            plugins: {
-                                labels: {
-                                    fontSize: 12,
-                                    boxWidth: 12,
-                                    usePointStyle: true,
-                                },
-                                tooltip: {
-                                    enabled: true,
-                                    callbacks:{
-                                        label: function (tooltipItem) {
-                                            return `${tooltipItem.dataset.data[1]} 元`;
-                                        },
-                                        footer: (ttItem) => {
-                                            let sum = 0;
-                                            let dataArr = ttItem[0].dataset.data;
-                                            dataArr.map(data => {
-                                                sum += Number(data);
-                                            });
-
-                                            let percentage = (ttItem[0].parsed * 100 / sum).toFixed(2) + '%';
-                                            return `占比: ${percentage}`;
-                                        }
-                                    },
-                                },
-                                legend: {
-                                    display: true,
-                                    position: 'bottom'
-                                },
-                            },
-                        }} />
+            <div id='activity2' className="my-5">
+                <div className="ititle" >
+                    淨利/損
                 </div>
-                <div className="mx-auto" style={{ position: 'relative', width: '40%' }} >
-                    <Pie data={PieData1}
-                        options={{
-                            responsive: true,
-                            maintainAspectRatio: true,
-                            plugins: {
-                                tooltip: {
-                                    enabled: true,
-                                    callbacks: {
-                                        label: function (tooltipItem) {
-                                            return `${tooltipItem.dataset.data[1]} 元`;
-                                        },
-                                        footer: (ttItem) => {
-                                            let sum = 0;
-                                            let dataArr = ttItem[0].dataset.data;
-                                            dataArr.map(data => {
-                                                sum += Number(data);
-                                            });
+                <div className="row">
 
-                                            let percentage = (ttItem[0].parsed * 100 / sum).toFixed(2) + '%';
-                                            return `占比: ${percentage}`;
-                                        }
-                                    },
-                                },
-                                legend: {
-                                    display: true,
-                                    position: 'bottom'
-                                },
-                            },
-                        }} />
+                    <CompareDetailTwo />
+                    <CompareDetail />
                 </div>
             </div>
-            <div className="ititle">
+
+
+            <div id='activity3'>
+                <div className="ititle mt-4">
+                    淨利/損圓餅圖
+                </div>
+                <div className="row my-5">
+                    <div className="mx-auto" style={{ position: 'relative', width: '40%' }}>
+                        <Pie data={PieData}
+                            options={{
+                                responsive: true,
+                                maintainAspectRatio: true,
+                                plugins: {
+                                    labels: {
+                                        fontSize: 12,
+                                        boxWidth: 12,
+                                        usePointStyle: true,
+                                    },
+                                    tooltip: {
+                                        enabled: true,
+                                        callbacks: {
+                                            label: function (tooltipItem) {
+                                                return tooltipItem.parsed + '元';
+                                            },
+                                            footer: (ttItem) => {
+                                                let sum = 0;
+                                                let dataArr = ttItem[0].dataset.data;
+                                                dataArr.map(data => {
+                                                    sum += Number(data);
+                                                });
+
+                                                let percentage = (ttItem[0].parsed * 100 / sum).toFixed(2) + '%';
+                                                return `占比: ${percentage}`;
+                                            }
+                                        },
+                                    },
+                                    legend: {
+                                        display: true,
+                                        position: 'bottom'
+                                    },
+                                },
+                            }} />
+                    </div>
+                    <div className="mx-auto" style={{ position: 'relative', width: '40%' }} >
+                        <Pie data={PieData1}
+                            options={{
+                                responsive: true,
+                                maintainAspectRatio: true,
+                                plugins: {
+                                    tooltip: {
+                                        enabled: true,
+                                        callbacks: {
+                                            label: function (tooltipItem) {
+                                                return tooltipItem.parsed + '元';
+                                            },
+                                            footer: (ttItem) => {
+                                                let sum = 0;
+                                                let dataArr = ttItem[0].dataset.data;
+                                                dataArr.map(data => {
+                                                    sum += Number(data);
+                                                });
+
+                                                let percentage = (ttItem[0].parsed * 100 / sum).toFixed(2) + '%';
+                                                return `占比: ${percentage}`;
+                                            }
+                                        },
+                                    },
+                                    legend: {
+                                        display: true,
+                                        position: 'bottom'
+                                    },
+                                },
+                            }} />
+                    </div>
+                </div>
+            </div>
+
+            <div className="ititle" id='activity4'>
                 活動圖表
             </div>
             <div className="row my-4">

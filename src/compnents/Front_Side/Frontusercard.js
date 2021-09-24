@@ -27,9 +27,9 @@ class FrontUsercard extends Component {
                     <div className="ucardline mt-2">
                         <div className="d-flex my-3 d-flex justify-content-center">
                             <img
-                                src={require("../../Image/pencil.png").default}
+                                src={require("../../Image/key.png").default}
                                 alt="cancel"
-                                width="25px" height="25px"
+                                width="20px" height="20px"
                                 className="mr-2"
 
                             />
@@ -40,7 +40,7 @@ class FrontUsercard extends Component {
                             <img
                                 src={require("../../Image/pencil.png").default}
                                 alt="cancel"
-                                width="25px" height="25px"
+                                width="20px" height="20px"
                                 className="mr-2"
 
                             />
@@ -50,13 +50,13 @@ class FrontUsercard extends Component {
                         <div className="ucardline my-2"></div>
                         <div className="d-flex my-3 d-flex justify-content-center">
                             <img
-                                src={require("../../Image/pencil.png").default}
+                                src={require("../../Image/messenger.png").default}
                                 alt="cancel"
-                                width="25px" height="25px"
+                                width="20px" height="20px"
                                 className="mr-2"
 
                             />
-                            <a href="#/Front/ReportMessage">查看回覆留言</a>
+                            <a href="#/Front/ReportMessage">留言紀錄</a>
 
                         </div>
                         <div className="d-flex justify-content-center ucardline" >
@@ -67,7 +67,7 @@ class FrontUsercard extends Component {
                                     <img
                                         src={require("../../Image/trun.png").default}
                                         alt="cancel"
-                                        width="25px" height="25px"
+                                        width="20px" height="20px"
                                     />
                                     <div className="d-flex align-items-center ml-1">幹部頁面</div>
                                 </button>
@@ -78,7 +78,7 @@ class FrontUsercard extends Component {
                                 <img
                                     src={require("../../Image/logout.png").default}
                                     alt="cancel"
-                                    width="25px" height="25px"
+                                    width="20px" height="20px"
                                 />
                                 <a href="#/Front/Login" className="d-flex align-items-center ml-1">登出</a>
                             </button>
