@@ -6,7 +6,6 @@ const filter = () => {
         <>
             <div
                 className="ml-md-5 mt-2 d-flex justify-content-center justify-content-md-start px-md-5 cfilter"
-                style={{}}
             >
                 <div className="align-self-center" style={{ marginLeft: "26%" }}>
                     

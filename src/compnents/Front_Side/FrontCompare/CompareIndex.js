@@ -129,181 +129,188 @@ const scrollToAnchor = (name) => {
 
 const CompareIndex = () => {
     return (
-
-        <Container>
+        <>
             <div className="d-flex justify-content-end">
+                <div className="d-flex flex-column  my-4 Comparenav">
+                    <div>
+                        <a onClick={() => scrollToAnchor('activity1')}>比較圖表</a>
+                    </div>
+                    <div>
+                        <a onClick={() => scrollToAnchor('activity2')}>淨利/損</a>
+                    </div>
+                    <div>
+                        <a onClick={() => scrollToAnchor('activity3')}>淨利/損圓餅圖</a>
+                    </div>
 
-                <div className="d-flex flex-column  my-4" style={{ position: "fixed", zIndex: '9999', fontSize: '20px' }}>
-
-                    <a onClick={() => scrollToAnchor('activity1')}>比較圖表</a>
-                    <a onClick={() => scrollToAnchor('activity2')}>淨利/損</a>
-                    <a onClick={() => scrollToAnchor('activity3')}>淨利/損圓餅圖</a>
                     {/* <a onClick={() => scrollToAnchor('activity4')}>活動圖表</a> */}
                 </div>
             </div>
 
+            <Container>
 
-            <CompareFilter />
+
+                <CompareFilter />
 
 
-            <div id='activity1' className="ititle mt-4">
-                比較圖表
-            </div>
-            <div className="d-flex justify-content-center">
-                <div className="mr-5 align-self-center">
-                    <select className="cDropdown">
-                        <option>九月</option>
-                        <option>九~十二月</option>
-                        <option>六個月</option>
-                        <option>一學期</option>
-                    </select>
+                <div id='activity1' className="ititle mt-4">
+                    比較圖表
                 </div>
-            </div>
-            <div className="row mt-4">
-                <div className="mx-auto barstyle chartback">
-                    <div className="my-3 d-flex justify-content-between">
-                        <div className="ml-2 charttitle">九月比較長條圖(單位:元)</div>
+                <div className="d-flex justify-content-center">
+                    <div className="mr-5 align-self-center">
+                        <select className="cDropdown">
+                            <option>九月</option>
+                            <option>九~十二月</option>
+                            <option>六個月</option>
+                            <option>一學期</option>
+                        </select>
                     </div>
-                    <Bar data={HorizontalData1} options={{
-                        plugins: {
-                            legend: {
-                                display: true,
-                                position: 'bottom',
-                            },
-
-                        }
-                    }}
-                        style={{ position: 'relative', width: '50%', height: '50%' }}
-                    />
                 </div>
-            </div>
+                <div className="row mt-4">
+                    <div className="mx-auto barstyle chartback">
+                        <div className="my-3 d-flex justify-content-between">
+                            <div className="ml-2 charttitle">九月比較長條圖(單位:元)</div>
+                        </div>
+                        <Bar data={HorizontalData1} options={{
+                            plugins: {
+                                legend: {
+                                    display: true,
+                                    position: 'bottom',
+                                },
 
-            <div id='activity2' className="my-5">
-                <div className="ititle" >
-                    淨利/損
+                            }
+                        }}
+                            style={{ position: 'relative', width: '50%', height: '50%' }}
+                        />
+                    </div>
                 </div>
-                <div className="row">
 
-                    <CompareDetailTwo />
-                    <CompareDetail />
+                <div id='activity2' className="my-5">
+                    <div className="ititle" >
+                        淨利/損
+                    </div>
+                    <div className="row">
+
+                        <CompareDetailTwo />
+                        <CompareDetail />
+                    </div>
                 </div>
-            </div>
 
 
-            <div id='activity3'>
-                <div className="ititle mt-4">
-                    淨利/損圓餅圖
-                </div>
-                <div className="row my-5">
-                    <div className="mx-auto" style={{ position: 'relative', width: '40%' }}>
-                        <Pie data={PieData}
-                            options={{
-                                responsive: true,
-                                maintainAspectRatio: true,
-                                plugins: {
-                                    labels: {
-                                        fontSize: 12,
-                                        boxWidth: 12,
-                                        usePointStyle: true,
-                                    },
-                                    tooltip: {
-                                        enabled: true,
-                                        callbacks: {
-                                            label: function (tooltipItem) {
-                                                return tooltipItem.parsed + '元';
+                <div id='activity3'>
+                    <div className="ititle mt-4">
+                        淨利/損圓餅圖
+                    </div>
+                    <div className="row my-5">
+                        <div className="mx-auto" style={{ position: 'relative', width: '40%' }}>
+                            <Pie data={PieData}
+                                options={{
+                                    responsive: true,
+                                    maintainAspectRatio: true,
+                                    plugins: {
+                                        labels: {
+                                            fontSize: 12,
+                                            boxWidth: 12,
+                                            usePointStyle: true,
+                                        },
+                                        tooltip: {
+                                            enabled: true,
+                                            callbacks: {
+                                                label: function (tooltipItem) {
+                                                    return tooltipItem.parsed + '元';
+                                                },
+                                                footer: (ttItem) => {
+                                                    let sum = 0;
+                                                    let dataArr = ttItem[0].dataset.data;
+                                                    dataArr.map(data => {
+                                                        sum += Number(data);
+                                                    });
+
+                                                    let percentage = (ttItem[0].parsed * 100 / sum).toFixed(2) + '%';
+                                                    return `占比: ${percentage}`;
+                                                }
                                             },
-                                            footer: (ttItem) => {
-                                                let sum = 0;
-                                                let dataArr = ttItem[0].dataset.data;
-                                                dataArr.map(data => {
-                                                    sum += Number(data);
-                                                });
-
-                                                let percentage = (ttItem[0].parsed * 100 / sum).toFixed(2) + '%';
-                                                return `占比: ${percentage}`;
-                                            }
+                                        },
+                                        legend: {
+                                            display: true,
+                                            position: 'bottom'
                                         },
                                     },
-                                    legend: {
-                                        display: true,
-                                        position: 'bottom'
-                                    },
-                                },
-                            }} />
-                    </div>
-                    <div className="mx-auto" style={{ position: 'relative', width: '40%' }} >
-                        <Pie data={PieData1}
-                            options={{
-                                responsive: true,
-                                maintainAspectRatio: true,
-                                plugins: {
-                                    tooltip: {
-                                        enabled: true,
-                                        callbacks: {
-                                            label: function (tooltipItem) {
-                                                return tooltipItem.parsed + '元';
-                                            },
-                                            footer: (ttItem) => {
-                                                let sum = 0;
-                                                let dataArr = ttItem[0].dataset.data;
-                                                dataArr.map(data => {
-                                                    sum += Number(data);
-                                                });
+                                }} />
+                        </div>
+                        <div className="mx-auto" style={{ position: 'relative', width: '40%' }} >
+                            <Pie data={PieData1}
+                                options={{
+                                    responsive: true,
+                                    maintainAspectRatio: true,
+                                    plugins: {
+                                        tooltip: {
+                                            enabled: true,
+                                            callbacks: {
+                                                label: function (tooltipItem) {
+                                                    return tooltipItem.parsed + '元';
+                                                },
+                                                footer: (ttItem) => {
+                                                    let sum = 0;
+                                                    let dataArr = ttItem[0].dataset.data;
+                                                    dataArr.map(data => {
+                                                        sum += Number(data);
+                                                    });
 
-                                                let percentage = (ttItem[0].parsed * 100 / sum).toFixed(2) + '%';
-                                                return `占比: ${percentage}`;
-                                            }
+                                                    let percentage = (ttItem[0].parsed * 100 / sum).toFixed(2) + '%';
+                                                    return `占比: ${percentage}`;
+                                                }
+                                            },
+                                        },
+                                        legend: {
+                                            display: true,
+                                            position: 'bottom'
                                         },
                                     },
-                                    legend: {
-                                        display: true,
-                                        position: 'bottom'
-                                    },
-                                },
-                            }} />
+                                }} />
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <div className="ititle" id='activity4'>
-                活動圖表
-            </div>
-            <div className="row my-4">
-                <div className="mr-5 align-self-center">
-                    <select className="cDropdown">
-                        <option>大迎新</option>
-                        <option>送舊</option>
-                        <option>民歌</option>
-                        <option>資管周</option>
-                    </select>
+                <div className="ititle" id='activity4'>
+                    活動圖表
                 </div>
-            </div>
-            <div className="row mx-auto my-5">
-                <div className="mx-auto chartback" style={{ position: 'relative', width: '45%' }}>
-                    <Line data={incomeData} options={{
-                        plugins: {
-                            legend: {
-                                display: true,
-                                position: 'bottom',
-
-                            },
-                        }
-                    }} />
+                <div className="row my-4 mx-auto">
+                    <div className=" align-self-center">
+                        <select className="cDropdown">
+                            <option>大迎新</option>
+                            <option>送舊</option>
+                            <option>民歌</option>
+                            <option>資管周</option>
+                        </select>
+                    </div>
                 </div>
-                <div className="mx-auto chartback" style={{ position: 'relative', width: '45%' }}>
-                    <Line data={expendData} options={{
-                        plugins: {
-                            legend: {
-                                display: true,
-                                position: 'bottom',
+                <div className="row mx-auto my-5">
+                    <div className="mx-auto chartback" style={{ position: 'relative', width: '45%' }}>
+                        <Line data={incomeData} options={{
+                            plugins: {
+                                legend: {
+                                    display: true,
+                                    position: 'bottom',
 
-                            },
-                        }
+                                },
+                            }
+                        }} />
+                    </div>
+                    <div className="mx-auto chartback" style={{ position: 'relative', width: '45%' }}>
+                        <Line data={expendData} options={{
+                            plugins: {
+                                legend: {
+                                    display: true,
+                                    position: 'bottom',
 
-                    }} />
+                                },
+                            }
+
+                        }} />
+                    </div>
                 </div>
-            </div>
-        </Container>
+            </Container>
+        </>
     );
 };
 export default CompareIndex;

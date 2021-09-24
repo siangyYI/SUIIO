@@ -35,6 +35,13 @@
     width: 135pt;
     outline: none
 }
+
+.Comparenav{
+    position: fixed; 
+    z-index:9999; 
+    font-size: 20px;
+    text-align: right;
+}
 @media screen and (max-width: 575px) {
     .cfilter {
         margin-top: 20%;
