@@ -1,11 +1,4 @@
-.line{
-    border:solid;
-}
-.fcontent{
-    border-style: 5px solid;
-    border-radius :5px;
-}
-.fbutton{
-    background-color: azure;
-    border-radius :15px;
+
+td,th{
+    font-size: 16px !important;
 }

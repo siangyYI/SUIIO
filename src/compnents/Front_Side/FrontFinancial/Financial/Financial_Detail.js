@@ -1,14 +1,24 @@
 import React from "react";
-import { Button, Container } from "react-bootstrap";
-// import "./Financial.css";
+import {Container } from "react-bootstrap";
 import MessageTable from "../Income/Message"
 import FinancialTable from "./Financial_Table";
+import { Link } from "react-router-dom";
+import arrow_icon from "../../../../Image/arrow_icon.png";
 
 const Financial_Detail = () => {
   return (
     <>
+          <Link to="/Front/Financial/Index">
+        <img
+          src={arrow_icon}
+          alt="arrow_icon"
+          width="30pt"
+          height="30pt"
+          className="mt-5 ml-4"
+        />
+      </Link>
     <Container>
-      <div className="my-5">
+      <div>
       <FinancialTable/></div>
       <div className="my-2">
          <MessageTable/>

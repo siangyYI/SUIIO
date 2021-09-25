@@ -132,27 +132,21 @@ const CompareIndex = () => {
         <>
             <div className="d-flex justify-content-end">
                 <div className="d-flex flex-column  my-4 Comparenav">
-                    <div>
+                    <div className="Comparecon my-2 px-2">
                         <a onClick={() => scrollToAnchor('activity1')}>比較圖表</a>
-                    </div>
-                    <div>
+                    </div >
+                    <div className="Comparecon my-2 px-2">
                         <a onClick={() => scrollToAnchor('activity2')}>淨利/損</a>
                     </div>
-                    <div>
+                    <div className="Comparecon my-2 px-2">
                         <a onClick={() => scrollToAnchor('activity3')}>淨利/損圓餅圖</a>
                     </div>
-
-                    {/* <a onClick={() => scrollToAnchor('activity4')}>活動圖表</a> */}
                 </div>
             </div>
 
             <Container>
-
-
                 <CompareFilter />
-
-
-                <div id='activity1' className="ititle mt-4">
+                <div id='activity1' className="ititle">
                     比較圖表
                 </div>
                 <div className="d-flex justify-content-center">
@@ -196,8 +190,8 @@ const CompareIndex = () => {
                 </div>
 
 
-                <div id='activity3'>
-                    <div className="ititle mt-4">
+                <div id='activity3' style={{paddingtop: "0.25%"}}>
+                    <div className="ititle mt-4 ">
                         淨利/損圓餅圖
                     </div>
                     <div className="row my-5">

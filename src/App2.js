@@ -6,8 +6,8 @@ import './App.css';
 import FrontNavigationBar from './compnents/Front_Side/FrontNavigationBar';
 import FrontNavbar from './compnents/Front_Side/FrontNavbar'
 import Switch from 'react-bootstrap/esm/Switch';
-import Index from './compnents/Front_Side/FrontMeeting/Index';
-import reconder from './compnents/Front_Side/FrontMeeting/Reconder';
+import { Index } from './compnents/Front_Side/FrontMeeting/Index';
+import {reconder} from './compnents/Front_Side/FrontMeeting/Reconder';
 
 import Financial_Detail from './compnents/Front_Side/FrontFinancial/Financial/Financial_Detail';
 import Financial_Index from './compnents/Front_Side/FrontFinancial/Financial/Financial_Index';
@@ -44,8 +44,8 @@ class App2 extends Component {
                 <Route path="/ChartIndex" component={Chart_Index} />
 
                 <Route path="/CompareIndex" component={CompareIndex} ></Route>
-              
-              
+
+
                 <Route path="/Front/Login" component={Login} />
                 <Route path="/Front/PW_account" component={PW_account} />
                 <Route path="/Front/CheckPW" component={CheckPW} />

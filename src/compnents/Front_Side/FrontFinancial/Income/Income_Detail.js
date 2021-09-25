@@ -1,44 +1,60 @@
 import React from "react";
-import user from "../../../../Image/1144760.png";
-import { Button, Container } from "react-bootstrap";
-import "../Financial/Financial.css";
-import { Messageitem } from "../../../Message/Report/Messitem";
-import {IncomeModel} from "./Income_Model"
-import MessageTable  from "./Message";
-
+import Card from "@material-ui/core/Card";
+import Box from "@material-ui/core/Box";
+import MessageTable from "./Message";
+import { Container } from "react-bootstrap";
+import { Link } from "react-router-dom";
+import arrow_icon from "../../../../Image/arrow_icon.png";
 const Financial_Detail = () => {
-  const [Model, setModel] = React.useState(false);
-
   return (
     <>
+      <Link to="/IncomeIndex">
+        <img
+          src={arrow_icon}
+          alt="arrow_icon"
+          width="30pt"
+          height="30pt"
+          className="mt-5 ml-4"
+        />
+      </Link>{" "}
       <Container>
-        <div className="">
-          <div className="my-3">
-            <div
-              className="h-100 p-3"
-              style={{
-                background: "white",
-                borderRadius: "10px",
-                border: "2px solid gray",
-              }}
-            >
-              <div>
+        <Card className="row p-5">
+          <img
+            src={require("../../../../Image/711.png").default}
+            alt="cancel"
+            className="mr-3 col-3"
+          />
+
+          <Box className="col">
+            <div className="row d-flex bd-highlight">
+              <div className="col">
+                <p>活動類別</p>
                 <h2>大迎新</h2>
-                <h5>文具用品</h5>
-                <p>筆 彩色筆 紅包袋</p>
-                <p>申請人：公關長</p>
-                <p>支出 $260</p>
-                <div className="d-flex justify-content-end">
-                <Button   onClick={() => setModel(true)}>收據</Button>
-                </div>
+              </div>
+              <div className="col text-right pt-2">
+                <p>收支名稱</p>
+                <h4>文具用品</h4>
               </div>
             </div>
-          </div>
-          </div>
-          <div className="my-2">
-        <MessageTable/></div>
+            <hr />
+
+            <div style={{ height: "80%" }}>
+              <p>收支項目</p>
+              <li>筆</li>
+              <li>彩色筆</li>
+              <li>紅包袋</li>
+
+            </div>
+            <div className="row sticky-bottom" >
+              <div className="col">支出 $260</div>
+              <div className="col text-right">申請人：公關長</div>
+            </div>
+          </Box>
+        </Card>
+        <div className="mt-4">
+          <MessageTable />
+        </div>
       </Container>
-      <IncomeModel show={Model} onHide={() => setModel(false)} />
     </>
   );
 };

@@ -5,7 +5,7 @@ const filter = () => {
     return (
         <>
             <div
-                className="ml-md-5 mt-2 d-flex justify-content-center justify-content-md-start px-md-5 cfilter"
+                className="ml-md-5  d-flex justify-content-center justify-content-md-start px-md-5 cfilter"
             >
                 <div className="align-self-center" style={{ marginLeft: "26%" }}>
                     
