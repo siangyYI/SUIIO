@@ -3,6 +3,8 @@ import Flter from "./Filter";
 import "../../Meeting/Management/css/Index.css";
 import { Card } from "react-bootstrap";
 import { Link } from 'react-router-dom';
+import { Search } from 'semantic-ui-react';
+
 export class Index extends Component {
     constructor(props) {
         super(props)
@@ -10,7 +12,7 @@ export class Index extends Component {
             conferences: [],
             selected: {},
             content: {},
-
+            ContentShow: false,
             AddShow: false,
             review: false,
         }
@@ -30,12 +32,21 @@ export class Index extends Component {
     render() {
         return (
             <>
+
                 <Flter />{/*篩選器*/}
                 <div className="row mt-2 px-5">
-                    <div className="col-sm-12 col-md-3 pb-2">
 
-                        {this.state.conferences.map((x) => (
-                            <Link to="/Meeting/reconder" conference={this.state.selected} content={this.state.content}>
+                    {this.state.conferences.map((x) => (
+
+                        <div className="col-sm-12 col-md-3 pb-2">
+                            <Link to={`/Meeting/reconder?id=${x.ID}&name=${x.name}`}
+                                onClick={async () => {
+                                    await this.fetchContent(x.ID)
+                                    this.setState({
+                                        selected: x,
+                                    })
+                                }}>
+
                                 <Card style={{ width: '18rem' }} className="mx-auto mt-3">
                                     <Card.Body className="meeting">
                                         <Card.Title className="title px-4 pt-4">{x.name}</Card.Title>
@@ -53,9 +64,12 @@ export class Index extends Component {
                                     </Card.Body>
                                 </Card>
                             </Link>
-                        ))}
+                            {console.log(this.state.content)}
+                        </div>
 
-                    </div>
+                    ))}
+
+
                 </div>
             </>
         )

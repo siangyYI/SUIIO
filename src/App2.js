@@ -36,15 +36,14 @@ class App2 extends Component {
               <div className="col recordcontent overflow-auto Col">
                 <Route path="/Front/Index" component={Index} />
                 <Route path="/Meeting/reconder" component={reconder} />
+                
                 <Route path="/detail" component={Financial_Detail} />
                 <Route path="/Front/Financial/Index" component={Financial_Index} />
                 <Route path="/Incomedetail" component={Income_Detail} />
                 <Route path="/IncomeIndex" component={Income_Index} />
 
                 <Route path="/ChartIndex" component={Chart_Index} />
-
                 <Route path="/CompareIndex" component={CompareIndex} ></Route>
-
 
                 <Route path="/Front/Login" component={Login} />
                 <Route path="/Front/PW_account" component={PW_account} />
@@ -53,7 +52,6 @@ class App2 extends Component {
                 <Route path="/Front/ChangePW" component={ChangePW} />
                 <Route path="/Front/EditFile" component={EditFile} />
                 <Route path="/Front/ReportMessage" component={ReportMessage} />
-
               </div>
             </div>
           </Switch>
