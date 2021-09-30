@@ -14,7 +14,7 @@ const Financial_Detail = () => {
           alt="arrow_icon"
           width="30pt"
           height="30pt"
-          className="mt-5 ml-4"
+          className="mt-3 ml-4"
         />
       </Link>
     <Container>

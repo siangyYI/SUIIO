@@ -4,10 +4,10 @@ function Financial_Card() {
     return (
         <div className="col-sm-12 col-md-3 pb-2">
             <a href="#/detail">
-                <Card style={{ width: '18rem' }} className="mx-auto mt-3">
+                <Card style={{ width: '19rem' }} className="mx-auto mt-3">
                     <Card.Body className="meeting">
                         <Card.Title className="title px-4 pt-4">大迎新財報</Card.Title>
-                        <Card.Subtitle className="mb-2">
+                        <Card.Subtitle className="mb-2 d">
                             <div className="mr-md-3 mx-4 pt-2 pt-md-0 align-self-center date">
                                 2021-06-21
                             </div>

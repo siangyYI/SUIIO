@@ -1,7 +1,5 @@
 .meeting{
-    border-style: 5px solid;
-    color: rgb(228, 213, 213);
-    background-color:#222D43;
+    background-color:#d8936c;
     border-radius :5px;
 }
 .Audit{ /*按鈕樣式*/
@@ -25,18 +23,22 @@
     background-color: #c0865f;
 }
 .title{
-    color: #dcae1d;
+    color: #01597f;
     font-weight: bold;
     font-size: 18pt;
     margin-bottom: 0;
+    
 }
 .date{
-    color: #7a9d96;
+    color: #757575;
     font-weight:bold;
     font-size: 12pt;
 }
+.d{
+    margin-top: 1%;
+}
 .host{
-    color: #caE4DB;
+    color: #ffffff;
     font-weight:bold;
     font-size: 14pt;
 }

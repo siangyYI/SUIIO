@@ -1,9 +1,9 @@
 .meetingcontent{
-    background-color:#333A56;
+    background-color:#d8936c;
     border-radius:10px;
 }
 .textcontent{
-    background-color:#333A56;
+    background-color:#d8936c;
     border-radius:10px;
     height: 46vh;
     color: aliceblue;
@@ -25,17 +25,17 @@
     font-size: 20pt;
 }
 .recondertitle{
-    color: #dcae1d;
+    color: #01597f;
     font-weight: bold;
-    font-size: 24pt;
+    font-size: 22pt;
 }
-.reconderdate{
-    color: #7a9d96;
+.attend{
+    color: #01597f;
     font-weight:bold;
     font-size: 16pt;
 }
-.reconderhost{
-    color: #caE4DB;
+.absentt{
+    color: #e9e9e9;
     font-weight:bold;
     font-size: 16pt;
 }

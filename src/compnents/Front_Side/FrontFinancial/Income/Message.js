@@ -4,6 +4,8 @@ import PropTypes from "prop-types";
 import user from "../../../../Image/1144760.png";
 import Paper from "@material-ui/core/Paper";
 import TableContainer from "@material-ui/core/TableContainer";
+import Box from "@material-ui/core/Box";
+import NativeSelect from "@material-ui/core/NativeSelect";
 import { Input } from "reactstrap";
 
 // Comments API
@@ -45,16 +47,19 @@ const MessageBorder = styled.div`
 const MessageAuthor = styled.div`
   font-weight: bold;
   color: #dcae1d;
+  font-size: 16px;
 `;
 
 const MessageTime = styled.div`
   margin-right: 12px;
+  font-size: 16px;
 `;
 
 const MessageBody = styled.div`
-  margin-top: 8px;
+  margin-top: 5px;
   word-break: break-all;
   white-space: pre-line;
+  font-size: 18px;
 `;
 
 const ErrorMessage = styled.div`
@@ -62,7 +67,7 @@ const ErrorMessage = styled.div`
   color: #db4c3f;
 `;
 
-function Message({ author, time, children}) {
+function Message({ author, time, children }) {
   return (
     <>
       <MessageContainer>
@@ -73,17 +78,18 @@ function Message({ author, time, children}) {
               alt="member"
               width="30pt"
               height="30pt"
-              class="d-flex align-items-center"
+              class="d-flex align-items-center mx-auto"
+              
             ></img>
             <MessageAuthor>{author}</MessageAuthor>
           </div>
-            <div className="col-8">
-              <MessageBody>{children}</MessageBody>
-            </div>
-            <div className="col-3" align="right">
-              <MessageTime>{time}</MessageTime>
-            </div>
+          <div className="col-8">
+            <MessageBody>{children}</MessageBody>
           </div>
+          <div className="col-3" align="right">
+            <MessageTime>{time}</MessageTime>
+          </div>
+        </div>
       </MessageContainer>
     </>
   );
@@ -94,7 +100,6 @@ Message.propTypes = {
   time: PropTypes.string,
   // 可 render 的參數型別是 node
   children: PropTypes.node,
- 
 };
 
 function MessageTable() {
@@ -138,7 +143,7 @@ function MessageTable() {
         "content-type": "application/json",
       },
       body: JSON.stringify({
-        nickname: "Heidi",
+        nickname: "33",
         body: value,
       }),
     })
@@ -208,23 +213,32 @@ function MessageTable() {
           <div
             className="col row pt-2"
             style={{
-              borderTop: "1px solid black",
               borderRadius: "0 0 5px 5px",
               backgroundColor: "lightgray",
             }}
           >
-            <div className="d-flex flex-column mr-4">
+            <div className="d-flex flex-column mr-4 ">
               <img
                 src={user}
                 alt="member"
                 width="30pt"
                 height="30pt"
-                class="d-flex align-items-center"
+                class="ml-3"
               ></img>
-              <select style={{ height: "fit-content" }}>
-                <option>小周</option>
-                <option>周大大</option>
-              </select>{" "}
+              <Box sx={{ minWidth: 20 }}>
+                <NativeSelect
+                  defaultValue={30}
+                  inputProps={{
+                    name: "name",
+                    id: "uncontrolled-native",
+                  }}
+                  className="my-2"
+                  style={{color:"#dcae1d",fontWeight:"bold"}}
+                >
+                  <option value={10}>小周</option>
+                  <option value={20}>周大大</option>
+                </NativeSelect>
+              </Box>
             </div>
 
             <Input
