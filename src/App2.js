@@ -7,12 +7,12 @@ import FrontNavigationBar from './compnents/Front_Side/FrontNavigationBar';
 import FrontNavbar from './compnents/Front_Side/FrontNavbar'
 import Switch from 'react-bootstrap/esm/Switch';
 import { Index } from './compnents/Front_Side/FrontMeeting/Index';
-import {reconder} from './compnents/Front_Side/FrontMeeting/Reconder';
+import { reconder } from './compnents/Front_Side/FrontMeeting/Reconder';
 
 import Financial_Detail from './compnents/Front_Side/FrontFinancial/Financial/Financial_Detail';
 import Financial_Index from './compnents/Front_Side/FrontFinancial/Financial/Financial_Index';
-import {Income_Detail} from './compnents/Front_Side/FrontFinancial/Income/Income_Detail';
-import {Income_Index} from './compnents/Front_Side/FrontFinancial/Income/Income_Index';
+import { Income_Detail } from './compnents/Front_Side/FrontFinancial/Income/Income_Detail';
+import { Income_Index } from './compnents/Front_Side/FrontFinancial/Income/Income_Index';
 import Chart_Index from './compnents/Front_Side/Frontchart/ChartIndex';
 import CompareIndex from './compnents/Front_Side/FrontCompare/CompareIndex';
 
@@ -30,13 +30,16 @@ class App2 extends Component {
       <>
         <HashRouter>
           <Switch>
-            <div className="row">
-              <FrontNavigationBar />
-              <FrontNavbar />
+            <div className="row" >
+              <div style={{ zIndex: "9999", boxShadow: "2px 2px 10px black", borderTopRightRadius: "8px", borderBottomRightRadius: "8px" }}>
+                <FrontNavigationBar />
+                <FrontNavbar />
+              </div>
+
               <div className="col recordcontent overflow-auto Col">
                 <Route path="/Front/Index" component={Index} />
                 <Route path="/Meeting/reconder" component={reconder} />
-                
+
                 <Route path="/detail" component={Financial_Detail} />
                 <Route path="/Front/Financial/Index" component={Financial_Index} />
                 <Route path="/Incomedetail" component={Income_Detail} />

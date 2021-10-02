@@ -6,10 +6,7 @@
 
 .recordcontent {
     background-color: #F7F7EB;
-    border: solid;
     height: 100vh;
-    border-top-left-radius: 8pt;
-    border-bottom-left-radius: 8pt;
 }
 
 .contenttext {

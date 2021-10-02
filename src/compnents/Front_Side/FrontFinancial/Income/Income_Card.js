@@ -8,7 +8,7 @@ export class Income_Card extends Component {
     return (
       <div className="col-sm-12 col-md-3 pb-2">
         <a href={ `#/Incomedetail?ID=${account.ID}`}>
-          <Card style={{ width: "19rem" }} className="mx-auto mt-3">
+          <Card  className="my-4">
             <Card.Body className="meeting">
               <Card.Title className="title px-4 pt-4">
                 {account.name}

@@ -15,10 +15,12 @@ const filter = () => {
                     backgroundColor: "white",
                 }}
             >
-                <option value="grapefruit">大迎新</option>
-                <option value="lime">民歌</option>
-                <option value="coconut">送舊</option>
-                <option value="mango">資管周</option>
+                <option value=""></option>
+                <option value="ALL">ALL</option>
+                <option value="大迎新">大迎新</option>
+                <option value="民歌">民歌</option>
+                <option value="送舊">送舊</option>
+                <option value="資管周">資管周</option>
             </select>
         </div>
     </div>

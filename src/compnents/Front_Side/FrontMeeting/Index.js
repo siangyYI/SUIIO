@@ -39,15 +39,14 @@ export class Index extends Component {
                     {this.state.conferences.map((x) => (
 
                         <div className="col-sm-12 col-md-3 pb-2">
-                            <Link to={`/Meeting/reconder?id=${x.ID}&name=${x.name}`}
+                            <Link to={`/Meeting/reconder?id=${x.ID}&name=${x.name}&date=${x.date}`}
                                 onClick={async () => {
                                     await this.fetchContent(x.ID)
                                     this.setState({
                                         selected: x,
                                     })
                                 }}>
-
-                                <Card style={{ width: '19rem' }} className="mx-auto mt-3">
+                                <Card  className="my-4">
                                     <Card.Body className="meeting">
                                         <Card.Title className="title px-4 pt-4">{x.name}</Card.Title>
                                         <Card.Subtitle className="mb-2 d">
@@ -56,15 +55,15 @@ export class Index extends Component {
                                             </div>
                                         </Card.Subtitle>
                                         <Card.Text>
-
                                             <div className="mr-md-3 mx-4 pb-4 pt-2 pt-md-0 align-self-center host">
-                                                活動:{x.category}
+                                                <div className="badge badge-secondary p-2">
+                                                    {x.category}
+                                                </div>
                                             </div>
                                         </Card.Text>
                                     </Card.Body>
                                 </Card>
                             </Link>
-                            {console.log(this.state.content)}
                         </div>
 
                     ))}

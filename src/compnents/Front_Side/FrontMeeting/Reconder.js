@@ -12,6 +12,7 @@ export class reconder extends Component {
     this.state = {
       name: {},
       id: {},
+      date: {},
       content: [],
       absentees: [],
       attendees: [],
@@ -73,15 +74,21 @@ export class reconder extends Component {
           <div className="meetingcontent mt-3">
             <div className="row">
               <div className="row col-12 my-3 d-flex align-items-center">
-                <h2 className="my-2 col-md-4" style={{color: "#01597f",fontWeight:"bold",marginTop:"-10%!important"}}>
-                  <div>{decodeURI(this.state.name)}</div>
+                <h2 className="my-2 col-md-4" style={{ color: "#01597f", fontWeight: "bold", marginTop: "-10%!important" }}>
+                  <div>{decodeURI(this.state.name)}
+                  {alert(this.state.date)}
+                  </div>
                 </h2>
                 <div className="my-2 col-md-4 absentt">
-                  出席者：<div className="attend"> {attend}</div>
+                  主席：<div className="attend">會長</div>
                   <div></div>
                 </div>
                 <div className="my-2 col-md-4 absentt">
-                  缺席者：<div className="attend">{absent}</div>
+                  出席者：<div className="attend">{attend}</div>
+                  <div></div>
+                </div>
+                <div className="my-2 col-md-4 absentt">
+                  缺席者：<div className="attend_2">{absent}</div>
                 </div>
               </div>
             </div>

@@ -9,8 +9,9 @@
 aside {
   padding: 10px 0 10px 0;
   text-decoration: none;
-  background-color: black;
+  background-color: #4a2d39;
   border-radius: 8px;
+  font-weight: bold;
   text-align: center;
   width: 75pt;
   color: white;
