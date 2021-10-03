@@ -1,9 +1,9 @@
 .meetingcontent{
-    background-color:#d8936c;
+    background-color:#f6d96d;
     border-radius:10px;
 }
 .textcontent{
-    background-color:#d8936c;
+    background-color:#e49262;
     border-radius:10px;
     height: 46vh;
     color: aliceblue;
@@ -13,7 +13,7 @@
 .text{
     font-size: 18pt;
     color: aliceblue;
-    font-weight: bold;
+    /* font-weight: bold; */
 }
 .contenttext{
     font-size: 20pt;

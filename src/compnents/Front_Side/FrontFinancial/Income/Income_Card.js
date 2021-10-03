@@ -1,34 +1,89 @@
 import React, { Component } from "react";
 import { Card } from "react-bootstrap";
+import "./Income.css"
 
 export class Income_Card extends Component {
   render() {
     let { account } = this.props;
     let amount;
     if (account.amount < 0) {
-      amount = <h1 style={{ color: "#cf2626", fontSize: '18px', marginTop: '36%', marginLeft: '20%', fontWeight: 'bold' }}>${account.amount}元</h1>;
+      amount = (
+        <h1
+          style={{
+            color: "#cf2626",
+            fontSize: "25px",
+            textAlign: "right",
+            marginRight: "10px",
+            fontWeight: "bold",
+          }}
+        >
+          $
+          {Number(parseFloat(account.amount).toFixed(3)).toLocaleString("en", {
+            minimumFractionDigits: 0,
+          })}
+          元
+        </h1>
+      );
     } else if (account.amount > 0) {
-      amount = <h1 style={{ color: "#2f553f", fontSize: '18px', marginTop: '36%', marginLeft: '20%', fontWeight: 'bold' }}>${account.amount}元</h1>;
+      amount = (
+        <h1
+          style={{
+            color: "#2f553f",
+            fontSize: "25px",
+            textAlign: "right",
+            marginRight: "10px",
+            fontWeight: "bold",
+          }}
+        >
+          $
+          {Number(parseFloat(account.amount).toFixed(3)).toLocaleString("en", {
+            minimumFractionDigits: 0,
+          })}
+          元
+        </h1>
+      );
     }
-
+    let category;
+    if (account.category == "其他項目") {
+      account.category = "一般項目";
+      category = (
+        <div
+          className="host badge badge-secondary"
+          style={{ backgroundColor: "#b6b6b6",color:"white" }}
+        >
+          {account.category}
+        </div>
+      );
+    }
+    else  {
+      category = (
+        <div
+          className="host badge badge-secondary"
+          style={{ backgroundColor: "#f6f6d2" }}
+        >
+          {account.category}
+        </div>
+      );
+    }
     return (
-      <div className="col-sm-12 col-md-3 pb-2">
+      <div className="col-sm-12 col-md-3  IncomeCard" >
         <a href={`#/Incomedetail?ID=${account.ID}`}>
-          <Card style={{ border: "2px solid black", backgroundColor: "#d8936c" }} className="my-4">
+          <Card
+            style={{ border: "2px solid #9e9e9e", backgroundColor: "#d8936c" }}
+            className="mt-5"
+          >
+            <div className="row">
+            <div className="col text-left date py-3">
+            {category}</div>
+            <div className="text-right mx-3 date py-3">{account.date}</div>
+            </div>
             <Card.Body className="meeting col">
-              <Card.Title className="title px-4 pt-4">
+              <Card.Title className="title px-4 pb-2">
                 {account.name}
               </Card.Title>
-              <Card.Subtitle className="mb-2 d row">
-                <div className="col">
-                  <div className="my-2 ml-2 align-self-center date ">
-                    {account.date}
-                  </div>
-                  <div className="ml-2 host badge badge-secondary" style={{backgroundColor:"#135990"}}>
-                    {account.category}
-                  </div>
-                </div>
-                <div className="col">{amount}</div>
+              <Card.Subtitle className="mb-2  ">
+                
+                <h3>{amount}</h3>
               </Card.Subtitle>
             </Card.Body>
           </Card>

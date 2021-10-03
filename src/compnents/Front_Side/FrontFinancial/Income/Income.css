@@ -1,0 +1,9 @@
+.Income img {
+  max-width: 500px;
+
+}
+.IncomeCard{
+  padding-left: 5px !important;
+  padding-right: 5px !important;
+  padding-bottom: -20px !important;
+}

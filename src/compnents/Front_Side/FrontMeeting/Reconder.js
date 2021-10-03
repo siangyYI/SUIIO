@@ -14,6 +14,7 @@ export class reconder extends Component {
       id: {},
       host: {},
       date: {},
+      // category: {},
       content: [],
       absentees: [],
       attendees: [],
@@ -32,23 +33,22 @@ export class reconder extends Component {
     let ary4 = [];
     let host = [];
     let date = [];
+    let category = [];
     let url = window.location.href;
     if (url.indexOf("?") !== -1) {
       ary1 = url.split("?");
       ary2 = ary1[1].split("&");
-      console.log(ary2)
       ary3 = ary2[0].split("=");
-      console.log(ary3)
       ary4 = ary2[1].split("=");
-      console.log(ary4)
       host = ary2[2].split("=");
-      console.log(host)
       date = ary2[3].split("=");
+      category = ary2[4].split("=");
 
       this.setState({ id: ary3[1] });
       this.setState({ name: ary4[1] });
       this.setState({ host: host[1] });
       this.setState({ date: date[1] });
+      this.setState({ category: category[1] });
     }
     await this.fetchContent(ary3[1]);
     this.setState({ absentees: this.state.content.absentees });
@@ -70,6 +70,28 @@ export class reconder extends Component {
         absent.push(<br />);
       }
     });
+    let URIcategory = decodeURI(this.state.category);
+    let category;
+    if (URIcategory == "籃球比賽") {
+      URIcategory = "一般項目";
+      category = (
+        <div
+          className="host badge badge-secondary"
+          style={{ backgroundColor: "#b6b6b6", color: "white" }}
+        >
+          {URIcategory}{" "}
+        </div>
+      );
+    } else {
+      category = (
+        <div
+          className="host badge badge-secondary"
+          style={{ backgroundColor: "#f6f6d2" }}
+        >
+          {URIcategory}{" "}
+        </div>
+      );
+    }
     return (
       <>
         <Link to="/Front/Index">
@@ -86,20 +108,37 @@ export class reconder extends Component {
           <div className="meetingcontent mt-3">
             <div className="row">
               <div className="row col-12 my-3 d-flex align-items-center">
-                <h2 className="my-2 col-md-4" style={{ color: "#01597f", fontWeight: "bold", marginTop: "-10%!important" }}>
-                  <div>{decodeURI(this.state.name)}
-                  </div>
-                  <div style={{fontSize:'18px', fontWeight: "bold",color:'#5c5c5c',marginLeft:'1%'}}>
+                <div className="my-2 col-md-4">
+                  <h2
+                    className="my-3"
+                    style={{
+                      color: "#583f00",
+                      fontWeight: "bold",
+                      marginTop: "-10%!important",
+                    }}
+                  >
+                    <div>{decodeURI(this.state.name)}</div>{" "}
+                  </h2>
+                  <div
+                    style={{
+                      fontSize: "18px",
+                      fontWeight: "bold",
+                      color: "#5c5c5c",
+                    }}
+                  >
                     {decodeURI(this.state.date)}
                   </div>
-                </h2>
-                <div className="my-2 col-md-4 absentt">
-                  主席：<div className="attend">{decodeURI(this.state.host)}</div>
-                  
+
+                  <div className="mb-2 absentt">
+                    <div className="mr-2" style={{display:"inline-block"}}>{category}</div>
+                      主席：
+                      <span className="attend">
+                        {decodeURI(this.state.host)}
+                      </span>
+                  </div>
                 </div>
                 <div className="my-2 col-md-4 absentt">
                   出席者：<div className="attend">{attend}</div>
-
                 </div>
                 <div className="my-2 col-md-4 absentt">
                   缺席者：<div className="attend_2">{absent}</div>

@@ -6,7 +6,7 @@ import { Container } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import arrow_icon from "../../../../Image/arrow_icon.png";
 import { IncomeImg } from "./Income_Img";
-import { Button } from "reactstrap";
+import  "./Income.css"
 
 export class Income_Detail extends Component {
   constructor(props) {
@@ -34,11 +34,52 @@ export class Income_Detail extends Component {
   render() {
     let amount;
     if (this.state.content.amount < 0) {
-      amount = <h1 style={{ color: "red" }}>${this.state.content.amount}元</h1>;
+      amount = (
+        <h1 style={{ color: "red" }}>
+          $
+          {Number(
+            parseFloat(this.state.content.amount).toFixed(3)
+          ).toLocaleString("en", {
+            minimumFractionDigits: 0,
+          })}
+          元
+        </h1>
+      );
     } else if (this.state.content.amount > 0) {
-      amount = <h1 style={{ color: "green" }}>${this.state.content.amount}元</h1>;
+      amount = (
+        <h1 style={{ color: "green" }}>
+          $
+          {Number(
+            parseFloat(this.state.content.amount).toFixed(3)
+          ).toLocaleString("en", {
+            minimumFractionDigits: 0,
+          })}
+          元
+        </h1>
+      );
     }
-
+    let category;
+    if (this.state.content.category == "其他項目") {
+      this.state.content.category = "一般項目";
+      category = (
+        <div
+          className="host badge badge-secondary"
+          style={{ backgroundColor: "#b6b6b6",color:"white" }}
+        >
+          {this.state.content.category}
+        </div>
+      );
+    }
+    else  {
+      category = (
+        <div
+          className="host badge badge-secondary"
+          style={{ backgroundColor: "#f6f6d2" }}
+        >
+          {this.state.content.category}
+        </div>
+      );
+    }
     return (
       <>
         <Link to="/IncomeIndex">
@@ -51,47 +92,58 @@ export class Income_Detail extends Component {
           />
         </Link>{" "}
         <Container>
-          <Card className="row p-5" style={{backgroundColor:"#cbd9da"}}>
-            <img
-              src={require("../../../../Image/711.png").default}
-              // src={this.state.content.receipt}
-              alt="cancel"
-              className="mr-3 col-3"
-              style={{ border: "3px solid black", borderRadius: "5px" ,backgroundColor:"white"}}
-              onClick={() => this.setState({ AddImg: true })}
-            />
-
+          <Card className="row p-5" style={{ backgroundColor: "#f0db8e" }}>
+            <div className="col-5" className="Income">
+              <img
+                src={require("../../../../Image/c.jpg").default}
+                // src={this.state.content.receipt}
+                alt="cancel"
+                className=""
+                style={{
+                  border: "3px solid black",
+                  borderRadius: "5px",
+                  backgroundColor: "white",
+                }}
+                onClick={() => this.setState({ AddImg: true })}
+              />
+            </div>
             <Box className="col">
               <div
                 className="row d-flex bd-highlight"
-                style={{ height: "35%" }}
+                style={{ height: "28%" }}
               >
                 <div className="col">
-                  <h4 style={{color:"#3b4f78"}}>收支名稱</h4>
-                  <h1 className="font-weight-bold">{this.state.content.name}</h1>
-                </div>
-                <div className="col text-left pt-2" >
-                  <h4 style={{color:"#3b4f78"}}>活動類別</h4>
-                  <h3 className="font-weight-bold">{this.state.content.category}</h3>
-                </div>
-                <div className="col text-left pt-2">
-                <h3 className="text-right">{amount}</h3>
-
+                  <h1 className="font-weight-bold" style={{color:"#583f00"}}>
+                    {this.state.content.name}
+                  </h1>
+                  <div className="row">
+                      {category}
+                    <h4 className="col font-weight-bold text-right" style={{color:"#757575"}}>
+                      {this.state.content.date}
+                    </h4>
+                  </div>
                 </div>
               </div>
               <hr />
 
-              <div className="row">
-                <div className="col">
-                  <p className="font-weight-bold">備註</p>
-                  <h5>{this.state.content.content}</h5>
+              <div className="">
+                <div className="">
+                  <h4 className="font-weight-bold">備註</h4>
+                  <div
+                    className="p-3 mt-2"
+                    style={{ backgroundColor: "white", height: "10rem",borderRadius:"5px" }}
+                  >
+                    <h5>{this.state.content.content}</h5>
+                  </div>
                 </div>
-                <div className="col sticky-bottom">
-                  <h4 className="font-weight-bold">{this.state.content.date}</h4>
-
-                  <h5 className=" text-right font-weight-bold">
+                <div className="row">
+                  <h4 className="col text-left font-weight-bold pt-4">
                     申請人：{this.state.content.uploadBy}
-                  </h5>
+                  </h4>
+
+                  <div className="col pt-2">
+                    <h3 className="text-right">{amount}</h3>
+                  </div>
                 </div>
               </div>
             </Box>
