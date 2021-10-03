@@ -34,9 +34,9 @@ export class Income_Detail extends Component {
   render() {
     let amount;
     if (this.state.content.amount < 0) {
-      amount = <h5 style={{ color: "red" }}>${this.state.content.amount}元</h5>;
+      amount = <h1 style={{ color: "red" }}>${this.state.content.amount}元</h1>;
     } else if (this.state.content.amount > 0) {
-      amount = <h style={{ color: "green" }}>${this.state.content.amount}元</h>;
+      amount = <h1 style={{ color: "green" }}>${this.state.content.amount}元</h1>;
     }
 
     return (
@@ -51,13 +51,13 @@ export class Income_Detail extends Component {
           />
         </Link>{" "}
         <Container>
-          <Card className="row p-5">
+          <Card className="row p-5" style={{backgroundColor:"#cbd9da"}}>
             <img
               src={require("../../../../Image/711.png").default}
               // src={this.state.content.receipt}
               alt="cancel"
               className="mr-3 col-3"
-              style={{ border: "3px solid black", borderRadius: "5px" }}
+              style={{ border: "3px solid black", borderRadius: "5px" ,backgroundColor:"white"}}
               onClick={() => this.setState({ AddImg: true })}
             />
 
@@ -67,16 +67,16 @@ export class Income_Detail extends Component {
                 style={{ height: "35%" }}
               >
                 <div className="col">
-                  <p className="font-weight-bold">收支名稱</p>
-                  <h2>{this.state.content.name}</h2>
+                  <h4 style={{color:"#3b4f78"}}>收支名稱</h4>
+                  <h1 className="font-weight-bold">{this.state.content.name}</h1>
+                </div>
+                <div className="col text-left pt-2" >
+                  <h4 style={{color:"#3b4f78"}}>活動類別</h4>
+                  <h3 className="font-weight-bold">{this.state.content.category}</h3>
                 </div>
                 <div className="col text-left pt-2">
-                  <p className="font-weight-bold">活動類別</p>
-                  <h4>{this.state.content.category}</h4>
-                </div>
-                <div className="col text-left pt-2">
-                  <p className="font-weight-bold">活動日期</p>
-                  <h4>{this.state.content.date}</h4>
+                <h3 className="text-right">{amount}</h3>
+
                 </div>
               </div>
               <hr />
@@ -87,7 +87,7 @@ export class Income_Detail extends Component {
                   <h5>{this.state.content.content}</h5>
                 </div>
                 <div className="col sticky-bottom">
-                  <h5 className="text-right">{amount}</h5>
+                  <h4 className="font-weight-bold">{this.state.content.date}</h4>
 
                   <h5 className=" text-right font-weight-bold">
                     申請人：{this.state.content.uploadBy}

@@ -12,6 +12,7 @@ export class reconder extends Component {
     this.state = {
       name: {},
       id: {},
+      host: {},
       date: {},
       content: [],
       absentees: [],
@@ -29,14 +30,25 @@ export class reconder extends Component {
     let ary2 = [];
     let ary3 = [];
     let ary4 = [];
+    let host = [];
+    let date = [];
     let url = window.location.href;
     if (url.indexOf("?") !== -1) {
       ary1 = url.split("?");
       ary2 = ary1[1].split("&");
+      console.log(ary2)
       ary3 = ary2[0].split("=");
+      console.log(ary3)
       ary4 = ary2[1].split("=");
+      console.log(ary4)
+      host = ary2[2].split("=");
+      console.log(host)
+      date = ary2[3].split("=");
+
       this.setState({ id: ary3[1] });
       this.setState({ name: ary4[1] });
+      this.setState({ host: host[1] });
+      this.setState({ date: date[1] });
     }
     await this.fetchContent(ary3[1]);
     this.setState({ absentees: this.state.content.absentees });
@@ -76,16 +88,18 @@ export class reconder extends Component {
               <div className="row col-12 my-3 d-flex align-items-center">
                 <h2 className="my-2 col-md-4" style={{ color: "#01597f", fontWeight: "bold", marginTop: "-10%!important" }}>
                   <div>{decodeURI(this.state.name)}
-                  {alert(this.state.date)}
+                  </div>
+                  <div style={{fontSize:'18px', fontWeight: "bold",color:'#5c5c5c',marginLeft:'1%'}}>
+                    {decodeURI(this.state.date)}
                   </div>
                 </h2>
                 <div className="my-2 col-md-4 absentt">
-                  主席：<div className="attend">會長</div>
-                  <div></div>
+                  主席：<div className="attend">{decodeURI(this.state.host)}</div>
+                  
                 </div>
                 <div className="my-2 col-md-4 absentt">
                   出席者：<div className="attend">{attend}</div>
-                  <div></div>
+
                 </div>
                 <div className="my-2 col-md-4 absentt">
                   缺席者：<div className="attend_2">{absent}</div>

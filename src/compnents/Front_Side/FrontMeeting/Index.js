@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import Flter from "./Filter";
 import "../../Meeting/Management/css/Index.css";
 import { Card } from "react-bootstrap";
 import { Link } from 'react-router-dom';
@@ -33,30 +32,47 @@ export class Index extends Component {
         return (
             <>
 
-                <Flter />{/*篩選器*/}
+                <div className="my-3 mx-5 d-flex mt-5">
+                    <div>
+                        <select
+                            className="Dropdown ml-3 px-2"
+                            style={{
+                                borderRadius: "10px",
+                                height: "2em",
+                                backgroundColor: "white",
+                            }}
+                        >
+                            <option value="none">--請選擇活動類別--</option>
+                            <option value="grapefruit">大迎新</option>
+                            <option value="lime">民歌</option>
+                            <option value="coconut">送舊</option>
+                            <option value="mango">資管周</option>
+                        </select>
+                    </div>
+                </div>
                 <div className="row mt-2 px-5">
 
                     {this.state.conferences.map((x) => (
 
                         <div className="col-sm-12 col-md-3 pb-2">
-                            <Link to={`/Meeting/reconder?id=${x.ID}&name=${x.name}&date=${x.date}`}
+                            <Link to={`/Meeting/reconder?id=${x.ID}&name=${x.name}&host=${x.host}&date=${x.date}`}
                                 onClick={async () => {
                                     await this.fetchContent(x.ID)
                                     this.setState({
                                         selected: x,
                                     })
                                 }}>
-                                <Card  className="my-4">
+                                <Card style={{ border: "2px solid black", backgroundColor: "#d8936c" }} className="my-4">
                                     <Card.Body className="meeting">
                                         <Card.Title className="title px-4 pt-4">{x.name}</Card.Title>
                                         <Card.Subtitle className="mb-2 d">
-                                            <div className="mr-md-3 mx-4 pt-2 pt-md-0 align-self-center date">
+                                            <div className="my-2 mr-md-3 mx-4 pt-2 pt-md-0 align-self-center date">
                                                 {x.date}
                                             </div>
                                         </Card.Subtitle>
                                         <Card.Text>
                                             <div className="mr-md-3 mx-4 pb-4 pt-2 pt-md-0 align-self-center host">
-                                                <div className="badge badge-secondary p-2">
+                                                <div className="host badge badge-secondary" style={{ backgroundColor: "#135990" }}>
                                                     {x.category}
                                                 </div>
                                             </div>
