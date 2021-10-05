@@ -37,11 +37,11 @@ class App2 extends Component {
               </div>
 
               <div className="col recordcontent overflow-auto Col">
-                <Route path="/Front/Index" component={Index} />
+                <Route path="/MeetIndex" component={Index} />
                 <Route path="/Meeting/reconder" component={reconder} />
 
                 <Route path="/detail" component={Financial_Detail} />
-                <Route path="/Front/Financial/Index" component={Financial_Index} />
+                <Route path="/FinancialIndex" component={Financial_Index} />
                 <Route path="/Incomedetail" component={Income_Detail} />
                 <Route path="/IncomeIndex" component={Income_Index} />
 

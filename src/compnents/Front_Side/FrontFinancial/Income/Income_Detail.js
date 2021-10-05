@@ -95,7 +95,7 @@ export class Income_Detail extends Component {
           <Card className="row p-5" style={{ backgroundColor: "#f0db8e" }}>
             <div className="col-5" className="Income">
               <img
-                src={require("../../../../Image/c.jpg").default}
+                src={require("../../../../Image/711.png").default}
                 // src={this.state.content.receipt}
                 alt="cancel"
                 className=""
