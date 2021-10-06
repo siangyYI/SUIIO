@@ -6,7 +6,7 @@ import { Container } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import arrow_icon from "../../../../Image/arrow_icon.png";
 import { IncomeImg } from "./Income_Img";
-import  "./Income.css"
+import "./Income.css"
 
 export class Income_Detail extends Component {
   constructor(props) {
@@ -64,13 +64,13 @@ export class Income_Detail extends Component {
       category = (
         <div
           className="host badge badge-secondary"
-          style={{ backgroundColor: "#b6b6b6",color:"white" }}
+          style={{ backgroundColor: "#b6b6b6", color: "white" }}
         >
           {this.state.content.category}
         </div>
       );
     }
-    else  {
+    else {
       category = (
         <div
           className="host badge badge-secondary"
@@ -113,15 +113,15 @@ export class Income_Detail extends Component {
                 style={{ height: "28%" }}
               >
                 <div className="col">
-                  <h1 className="font-weight-bold" style={{color:"#583f00"}}>
-                    {this.state.content.name}
-                  </h1>
                   <div className="row">
-                      {category}
-                    <h4 className="col font-weight-bold text-right" style={{color:"#757575"}}>
+                    {category}
+                    <h4 className="col font-weight-bold text-right" style={{ color: "#757575" }}>
                       {this.state.content.date}
                     </h4>
                   </div>
+                  <h1 className="font-weight-bold" style={{ color: "#583f00" }}>
+                    {this.state.content.name}
+                  </h1>
                 </div>
               </div>
               <hr />
@@ -131,7 +131,7 @@ export class Income_Detail extends Component {
                   <h4 className="font-weight-bold">備註</h4>
                   <div
                     className="p-3 mt-2"
-                    style={{ backgroundColor: "white", height: "10rem",borderRadius:"5px" }}
+                    style={{ backgroundColor: "white", height: "10rem", borderRadius: "5px" }}
                   >
                     <h5>{this.state.content.content}</h5>
                   </div>

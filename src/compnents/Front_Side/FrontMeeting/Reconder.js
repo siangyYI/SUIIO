@@ -14,7 +14,7 @@ export class reconder extends Component {
       id: {},
       host: {},
       date: {},
-      // category: {},
+      category: {},
       content: [],
       absentees: [],
       attendees: [],
@@ -86,7 +86,7 @@ export class reconder extends Component {
       category = (
         <div
           className="host badge badge-secondary"
-          style={{ backgroundColor: "#f6f6d2" }}
+          style={{ backgroundColor: "#59420a", color: '#ffd679' }}
         >
           {URIcategory}{" "}
         </div>
@@ -94,7 +94,7 @@ export class reconder extends Component {
     }
     return (
       <>
-        <Link to="/Front/Index">
+        <Link to="/MeetIndex">
           <img
             src={arrow_icon}
             alt="arrow_icon"
@@ -109,32 +109,44 @@ export class reconder extends Component {
             <div className="row">
               <div className="row col-12 my-3 d-flex align-items-center">
                 <div className="my-2 col-md-4">
+                  <div className="row">
+                    <div className="text-right" style={{ display: "inline-block" }}>
+                      {category}
+                    </div>
+                    <div
+                      className="text-left mx-3"
+                      style={{
+                        fontSize: "18px",
+                        fontWeight: "bold",
+                        color: "#5c5c5c",
+                      }}
+                    >
+                      {decodeURI(this.state.date)}
+                    </div>
+                  </div>
                   <h2
                     className="my-3"
                     style={{
                       color: "#583f00",
-                      fontWeight: "bold",
+                      fontWeight: "600",
                       marginTop: "-10%!important",
                     }}
                   >
                     <div>{decodeURI(this.state.name)}</div>{" "}
+
                   </h2>
-                  <div
-                    style={{
-                      fontSize: "18px",
-                      fontWeight: "bold",
-                      color: "#5c5c5c",
-                    }}
-                  >
-                    {decodeURI(this.state.date)}
-                  </div>
+
+
+
+
 
                   <div className="mb-2 absentt">
-                    <div className="mr-2" style={{display:"inline-block"}}>{category}</div>
-                      主席：
-                      <span className="attend">
-                        {decodeURI(this.state.host)}
-                      </span>
+
+                    主席：
+                    <span className="attend">
+                      {decodeURI(this.state.host)}
+                    </span>
+
                   </div>
                 </div>
                 <div className="my-2 col-md-4 absentt">

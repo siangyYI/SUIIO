@@ -22,7 +22,7 @@ export class Meeting_Card extends Component {
       category = (
         <div
           className="host badge badge-secondary"
-          style={{ backgroundColor: "#f6f6d2" }}
+          style={{ backgroundColor: "#59420a", color: '#ffd679' }}
         >
           {conferences.category}
         </div>
@@ -31,12 +31,12 @@ export class Meeting_Card extends Component {
     return (
       <div className="col-sm-12 col-md-3 IncomeCard">
         <Link
-          to={`/Meeting/reconder?id=${conferences.ID}&name=${conferences.name}&host=${conferences.host}&date=${conferences.date}&category=${conferences.category}`}
+          to={`/reconder?id=${conferences.ID}&name=${conferences.name}&host=${conferences.host}&date=${conferences.date}&category=${conferences.category}`}
         >
           <Card
             style={{
               border: "2px solid #9e9e9e",
-              backgroundColor: "#d8936c",
+              backgroundColor: "#ffd679",
             }}
             className="mt-5"
           >

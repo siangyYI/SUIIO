@@ -59,7 +59,7 @@ export class Income_Card extends Component {
       category = (
         <div
           className="host badge badge-secondary"
-          style={{ backgroundColor: "#f6f6d2" }}
+          style={{ backgroundColor: "#59420a", color: '#ffd679'  }}
         >
           {account.category}
         </div>
@@ -69,7 +69,7 @@ export class Income_Card extends Component {
       <div className="col-sm-12 col-md-3  IncomeCard" >
         <a href={`#/Incomedetail?ID=${account.ID}`}>
           <Card
-            style={{ border: "2px solid #9e9e9e", backgroundColor: "#d8936c" }}
+            style={{ border: "2px solid #9e9e9e", backgroundColor: "#ffd679" }}
             className="mt-5"
           >
             <div className="row">
@@ -83,7 +83,7 @@ export class Income_Card extends Component {
               </Card.Title>
               <Card.Subtitle className="mb-2  ">
                 
-                <h3>{amount}</h3>
+                <h3 >{amount}</h3>
               </Card.Subtitle>
             </Card.Body>
           </Card>

@@ -34,7 +34,6 @@ function expendtotal(items) {
 }
 
 const rows = [
-  
   createRow("01", "07", "109大迎新", "活動", "廠商贊助", 98, 0),
   createRow("01", "09", "109大迎新", "活動", "文具用品", 0, 4200),
   createRow("01", "10", "109大迎新", "活動", "廠商贊助", 2333, 0),
@@ -49,13 +48,14 @@ const expendTotal = expendtotal(rows);
 const AllTotal = inocmeTotal - expendTotal;
 const All = AllTotal + LastTotal;
 
-export default function FinancialTable() {
+export const FinancialTable = (props) => {
   const classes = useStyles();
 
   return (
     <>
       {" "}
       <h4>109 一月財報</h4>
+
       <TableContainer component={Paper}>
         <Table className={classes.table} aria-label="spanning table">
           <TableHead style={{ backgroundColor: "#ffe69b" }}>
@@ -96,19 +96,36 @@ export default function FinancialTable() {
             </TableRow>
           </TableHead>
           <TableBody>
-            {rows.map((row) => (
-              <TableRow key={row.month}>
-                <TableCell align="center">{row.month}</TableCell>
-                <TableCell align="center">{row.date}</TableCell>
-                <TableCell align="left">{row.name}</TableCell>
-                <TableCell align="left">{row.unit}</TableCell>
-                <TableCell align="left" style={{ fontWeight: "bold" }}>
-                  {row.item}
+            {props.accounts.map(x => {
+
+              { const date = new Date(x.date) }
+              { const year = this.date.getFullYear() }
+              { const month = this.getMonth() + 1 }
+              { const day = this.getDate() }
+              <TableRow key={x.month}>
+                <TableCell align="center">
+                  {x.month}
                 </TableCell>
-                <TableCell align="right">{row.income}</TableCell>
-                <TableCell align="right">{row.expend}</TableCell>
+                <TableCell align="center">
+                  {x.date}
+                </TableCell>
+                <TableCell align="left">
+                  {x.name}
+                </TableCell>
+                <TableCell align="left">
+                  {x.unit}
+                </TableCell>
+                <TableCell align="left" style={{ fontWeight: "bold" }}>
+                  {x.item}
+                </TableCell>
+                <TableCell align="right">
+                  {x.income}
+                </TableCell>
+                <TableCell align="right">
+                  {x.expend}
+                </TableCell>
               </TableRow>
-            ))}
+            })}
 
             <TableRow>
               <TableCell />
@@ -126,7 +143,7 @@ export default function FinancialTable() {
         </Table>
       </TableContainer>
       <TableContainer component={Paper} className="mt-4">
-        <Table style={{ backgroundColor: "burlywood" ,color:"white"}}>
+        <Table style={{ backgroundColor: "burlywood", color: "white" }}>
           <TableRow>
             <TableCell colSpan={5} align="center">
               本期淨利(損)

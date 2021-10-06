@@ -20,9 +20,9 @@ export class Index extends Component {
       .then((res) => res.json())
       .then((data) => this.setState({ conferences: data }));
   };
-  
+
   render() {
-      
+
     return (
       <>
         <div className="my-3 mx-5 d-flex mt-5">
@@ -42,6 +42,9 @@ export class Index extends Component {
               <option value="mango">資管周</option>
             </select>
           </div>
+
+          <input id="date" type="date" className="Dropdown ml-3 px-2" style={{margin:'0'}}></input>
+
         </div>
         <div className="row mt-2 px-5">
           {this.state.conferences.map((x) => (

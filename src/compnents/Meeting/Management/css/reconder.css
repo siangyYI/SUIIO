@@ -1,18 +1,16 @@
 .meetingcontent{
-    background-color:#f6d96d;
+    background-color:#ffd679;
     border-radius:10px;
 }
 .textcontent{
-    background-color:#e49262;
+    background-color:#ffc43e;
     border-radius:10px;
     height: 46vh;
-    color: aliceblue;
-    
 }
 
 .text{
     font-size: 18pt;
-    color: aliceblue;
+    color: #8f4f4f;
     /* font-weight: bold; */
 }
 .contenttext{
@@ -25,12 +23,12 @@
 }
 .attend{
     color: #01597f;
-    font-weight:bold;
+    font-weight:lighter;
     font-size: 16pt;
 }
 .attend_2{
     color: #871b24;
-    font-weight:bold;
+    font-weight:lighter;
     font-size: 16pt;
 }
 .absentt{

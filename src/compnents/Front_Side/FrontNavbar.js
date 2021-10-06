@@ -2,6 +2,8 @@ import React from "react";
 import "../Navbar.css";
 import FrontUsercard from "./Frontusercard";
 import { Component, useEffect } from "react";
+import Bell from "../bell";
+import User from "../user";
 
 class NavBar extends Component {
   constructor(props) {
@@ -14,11 +16,11 @@ class NavBar extends Component {
 
     this.UserCardClick = this.UserCardClick.bind(this);
   }
-  relo=()=>{
-    
+  relo = () => {
+
     // window.setTimeout(function(){ document.location.reload(true); }, 5000);
   }
- 
+
   UserCardClick() {
     this.setState((prevState) => ({
       isUserCardOn: !prevState.isUserCardOn,
@@ -30,11 +32,14 @@ class NavBar extends Component {
     let url = window.location.href;
     let ary1 = [];
     let aryf = [];
+    let reary = [];
     ary1 = url.split("/");
     aryf = ary1[4];
-    console.log(aryf)
+    reary = aryf.split("?");
+    console.log(aryf);
+    console.log(reary);
     let nav;
-    if (aryf == "IncomeIndex") {
+    if (aryf == "IncomeIndex" || reary[0] == "Incomedetail") {
       this.relo()
       nav = (
         <aside>
@@ -96,7 +101,7 @@ class NavBar extends Component {
         </aside>
 
       );
-    } if (aryf == "FinancialIndex") {
+    } if (aryf == "FinancialIndex" || reary[0] == "detail") {
       nav = (
         <aside>
           <div className="my-4" style={{ filter: 'contrast(0.5)' }} onClick={this.relo()}>
@@ -205,7 +210,7 @@ class NavBar extends Component {
             </a>
           </div>
           <div className="my-4" style={{ filter: 'contrast(0.5)' }} onClick={this.relo()}>
-            <a href="#/MeetIndex " > 
+            <a href="#/MeetIndex " >
               <img
                 src={require("../../Image/meeting.png").default}
                 alt="cancel"
@@ -221,7 +226,7 @@ class NavBar extends Component {
     } if (aryf == "CompareIndex") {
       this.relo();
       nav = (
-        
+
         <aside>
           <div className="my-4" style={{ filter: 'contrast(0.5)' }} onClick={this.relo()}>
             <a href="#/IncomeIndex" >
@@ -281,7 +286,7 @@ class NavBar extends Component {
         </aside>
 
       );
-    } if (aryf == "MeetIndex") {
+    } if (aryf == "MeetIndex" || reary[0] == "reconder") {
       nav = (
         <aside>
           <div className="my-4" style={{ filter: 'contrast(0.5)' }} onClick={this.relo()}>
@@ -347,21 +352,13 @@ class NavBar extends Component {
     return (
       <div>
         <div className="d-flex justify-content-center mt-5 topbar">
+          <Bell />
           <div className="d-flex flex-column">
-            <img
-              src={require("../../Image/user.png").default}
-              alt="user"
-              width="55px"
-              height="55px"
-              className=" mt-4"
-              onClick={() => this.UserCardClick()}
-            />
-            <div style={{ display: this.state.display }}>
-              <FrontUsercard />
-            </div>
+            <User />
           </div>
         </div>
-        {nav }
+
+        {nav}
 
       </div>
     );
