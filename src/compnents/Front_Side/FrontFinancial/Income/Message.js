@@ -7,6 +7,7 @@ import TableContainer from "@material-ui/core/TableContainer";
 import Box from "@material-ui/core/Box";
 import NativeSelect from "@material-ui/core/NativeSelect";
 import { Input } from "reactstrap";
+import message from "../../../../TestData/db.json";
 
 // Comments API
 const API_ENDPOINT =
@@ -79,7 +80,6 @@ function Message({ author, time, children }) {
               width="30pt"
               height="30pt"
               class="d-flex align-items-center mx-auto"
-              
             ></img>
             <MessageAuthor>{author}</MessageAuthor>
           </div>
@@ -110,15 +110,29 @@ function MessageTable() {
   const [isLoadingPostMessage, setIsLoadingPostMessage] = useState(false);
 
   const fetchMessages = () => {
+    // Test Version
     return fetch(API_ENDPOINT)
       .then((res) => res.json())
       .then((data) => {
-        setMessages(data);
+        
+        console.log(`msg: ${JSON.stringify( message)}`)
+        console.log(`data: ${JSON.stringify(data)}`)
+        setMessages(message);
       })
       .catch((err) => {
         setMessageApiError(err.message);
       });
-  };
+       // return fetch(API_ENDPOINT)
+    //   .then((res) => res.json())
+    //   .then((data) => {
+    //     setMessages(data);
+    //   })
+    //   .catch((err) => {
+    //     setMessageApiError(err.message);
+    //   });
+    }
+
+   
 
   const handleTextareaChange = (e) => {
     setValue(e.target.value);
@@ -143,7 +157,7 @@ function MessageTable() {
         "content-type": "application/json",
       },
       body: JSON.stringify({
-        nickname: "33",
+        name: "003001",
         body: value,
       }),
     })
@@ -162,19 +176,6 @@ function MessageTable() {
       .catch((err) => {
         setIsLoadingPostMessage(false);
         setPostMessageError(err.message);
-      });
-  };
-
-  const handleDeleteMessage = (id) => {
-    fetch("https://student-json-api.lidemy.me/comments/" + id, {
-      method: "DELETE",
-    })
-      .then((res) => res.json())
-      .then(() => {
-        setMessages(messages.filter((message) => message.id !== id));
-      })
-      .catch((err) => {
-        console.log(err);
       });
   };
 
@@ -200,16 +201,15 @@ function MessageTable() {
             messages.map((message) => (
               <Message
                 key={message.id}
-                author={message.nickname}
+                author={message.name}
                 time={new Date(message.createdAt).toLocaleString()}
-                handleDeleteMessage={handleDeleteMessage}
                 message={message}
               >
                 {message.body}
               </Message>
             ))}
         </MessageList>
-        <div onSubmit={handleFormSubmit}>
+        <form onSubmit={handleFormSubmit}>
           <div
             className="col row pt-2"
             style={{
@@ -233,7 +233,7 @@ function MessageTable() {
                     id: "uncontrolled-native",
                   }}
                   className="my-2"
-                  style={{color:"#dcae1d",fontWeight:"bold"}}
+                  style={{ color: "#dcae1d", fontWeight: "bold" }}
                 >
                   <option value={10}>小周</option>
                   <option value={20}>周大大</option>
@@ -252,8 +252,9 @@ function MessageTable() {
             <SubmitButton className="col" style={{ height: "fit-content" }}>
               送出
             </SubmitButton>
+            {/* {postMessageError && <ErrorMessage>{postMessageError}</ErrorMessage>} */}
           </div>
-        </div>
+        </form>{" "}
       </MessageBorder>
     </TableContainer>
   );

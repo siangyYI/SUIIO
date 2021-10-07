@@ -35,16 +35,17 @@ class NavBar extends Component {
     let reary = [];
     ary1 = url.split("/");
     aryf = ary1[4];
-    reary = aryf.split("?");
-    console.log(aryf);
-    console.log(reary);
+
+    reary = ary1[3].split("?");
+    console.log(ary1);
+    
     let nav;
-    if (aryf == "IncomeIndex" || reary[0] == "Incomedetail") {
+    if (ary1[3] == "IncomeIndex" || reary[0] == "Incomedetail") {
       this.relo()
       nav = (
         <aside>
           <div className="my-4" onClick={this.relo()}>
-            <a href="#/IncomeIndex" >
+            <a href="/IncomeIndex" >
               <img
                 src={require("../../Image/income.png").default}
                 alt="cancel"
@@ -55,7 +56,7 @@ class NavBar extends Component {
             </a>
           </div>
           <div className="my-4" style={{ filter: 'contrast(0.5)' }} onClick={this.relo()}>
-            <a href="#/FinancialIndex" >
+            <a href="/FinancialIndex" >
               <img
                 src={require("../../Image/graph.png").default}
                 alt="cancel"
@@ -66,7 +67,7 @@ class NavBar extends Component {
             </a>
           </div>
           <div className="my-4" style={{ filter: 'contrast(0.5)' }} onClick={this.relo()}>
-            <a href="#/ChartIndex" >
+            <a href="/ChartIndex" >
               <img
                 src={require("../../Image/analytics.png").default}
                 alt="cancel"
@@ -77,7 +78,7 @@ class NavBar extends Component {
             </a>
           </div>
           <div className="my-4" style={{ filter: 'contrast(0.5)' }} onClick={this.relo()}>
-            <a href="#/CompareIndex" >
+            <a href="/CompareIndex" >
               <img
                 src={require("../../Image/compare.png").default}
                 alt="cancel"
@@ -88,7 +89,7 @@ class NavBar extends Component {
             </a>
           </div>
           <div className="my-4" style={{ filter: 'contrast(0.5)' }} onClick={this.relo()}>
-            <a href="#/MeetIndex" >
+            <a href="/MeetIndex" >
               <img
                 src={require("../../Image/meeting.png").default}
                 alt="cancel"
@@ -101,11 +102,11 @@ class NavBar extends Component {
         </aside>
 
       );
-    } if (aryf == "FinancialIndex" || reary[0] == "detail") {
+    } if (ary1[3] == "FinancialIndex" || reary[0] == "detail") {
       nav = (
         <aside>
           <div className="my-4" style={{ filter: 'contrast(0.5)' }} onClick={this.relo()}>
-            <a href="#/IncomeIndex">
+            <a href="/IncomeIndex">
               <img
                 src={require("../../Image/income.png").default}
                 alt="cancel"
@@ -116,7 +117,7 @@ class NavBar extends Component {
             </a>
           </div>
           <div className="my-4" onClick={this.relo()}>
-            <a href="#/FinancialIndex" >
+            <a href="/FinancialIndex" >
               <img
                 src={require("../../Image/graph.png").default}
                 alt="cancel"
@@ -127,7 +128,7 @@ class NavBar extends Component {
             </a>
           </div>
           <div className="my-4" style={{ filter: 'contrast(0.5)' }} onClick={this.relo()}>
-            <a href="#/ChartIndex">
+            <a href="/ChartIndex">
               <img
                 src={require("../../Image/analytics.png").default}
                 alt="cancel"
@@ -138,7 +139,7 @@ class NavBar extends Component {
             </a>
           </div>
           <div className="my-4" style={{ filter: 'contrast(0.5)' }} onClick={this.relo()}>
-            <a href="#/CompareIndex">
+            <a href="/CompareIndex">
               <img
                 src={require("../../Image/compare.png").default}
                 alt="cancel"
@@ -149,7 +150,7 @@ class NavBar extends Component {
             </a>
           </div>
           <div className="my-4" style={{ filter: 'contrast(0.5)' }} onClick={this.relo()} >
-            <a href="#/MeetIndex">
+            <a href="/MeetIndex">
               <img
                 src={require("../../Image/meeting.png").default}
                 alt="cancel"
@@ -162,11 +163,11 @@ class NavBar extends Component {
         </aside>
 
       );
-    } if (aryf == "ChartIndex") {
+    } if (ary1[3] == "ChartIndex") {
       nav = (
         <aside>
           <div className="my-4" style={{ filter: 'contrast(0.5)' }} onClick={this.relo()}>
-            <a href="#/IncomeIndex" >
+            <a href="/IncomeIndex" >
               <img
                 src={require("../../Image/income.png").default}
                 alt="cancel"
@@ -177,7 +178,7 @@ class NavBar extends Component {
             </a>
           </div>
           <div className="my-4" style={{ filter: 'contrast(0.5)' }} onClick={this.relo()}>
-            <a href="#/FinancialIndex" >
+            <a href="/FinancialIndex" >
               <img
                 src={require("../../Image/graph.png").default}
                 alt="cancel"
@@ -188,7 +189,7 @@ class NavBar extends Component {
             </a>
           </div>
           <div className="my-4" onClick={this.relo()}>
-            <a href="#/ChartIndex" >
+            <a href="/ChartIndex" >
               <img
                 src={require("../../Image/analytics.png").default}
                 alt="cancel"
@@ -199,7 +200,7 @@ class NavBar extends Component {
             </a>
           </div>
           <div className="my-4" style={{ filter: 'contrast(0.5)' }} onClick={this.relo()}>
-            <a href="#/CompareIndex" >
+            <a href="/CompareIndex" >
               <img
                 src={require("../../Image/compare.png").default}
                 alt="cancel"
@@ -210,7 +211,7 @@ class NavBar extends Component {
             </a>
           </div>
           <div className="my-4" style={{ filter: 'contrast(0.5)' }} onClick={this.relo()}>
-            <a href="#/MeetIndex " >
+            <a href="/MeetIndex " >
               <img
                 src={require("../../Image/meeting.png").default}
                 alt="cancel"
@@ -223,13 +224,13 @@ class NavBar extends Component {
         </aside>
 
       );
-    } if (aryf == "CompareIndex") {
+    } if (ary1[3] == "CompareIndex") {
       this.relo();
       nav = (
 
         <aside>
           <div className="my-4" style={{ filter: 'contrast(0.5)' }} onClick={this.relo()}>
-            <a href="#/IncomeIndex" >
+            <a href="/IncomeIndex" >
               <img
                 src={require("../../Image/income.png").default}
                 alt="cancel"
@@ -240,7 +241,7 @@ class NavBar extends Component {
             </a>
           </div>
           <div className="my-4" style={{ filter: 'contrast(0.5)' }} onClick={this.relo()}>
-            <a href="#/FinancialIndex">
+            <a href="/FinancialIndex">
               <img
                 src={require("../../Image/graph.png").default}
                 alt="cancel"
@@ -251,7 +252,7 @@ class NavBar extends Component {
             </a>
           </div>
           <div className="my-4" style={{ filter: 'contrast(0.5)' }} onClick={this.relo()}>
-            <a href="#/ChartIndex" >
+            <a href="/ChartIndex" >
               <img
                 src={require("../../Image/analytics.png").default}
                 alt="cancel"
@@ -262,7 +263,7 @@ class NavBar extends Component {
             </a>
           </div>
           <div className="my-4" onClick={this.relo()}>
-            <a href="#/CompareIndex" >
+            <a href="/CompareIndex" >
               <img
                 src={require("../../Image/compare.png").default}
                 alt="cancel"
@@ -273,7 +274,7 @@ class NavBar extends Component {
             </a>
           </div>
           <div className="my-4" style={{ filter: 'contrast(0.5)' }} onClick={this.relo()}>
-            <a href="#/MeetIndex">
+            <a href="/MeetIndex">
               <img
                 src={require("../../Image/meeting.png").default}
                 alt="cancel"
@@ -286,11 +287,11 @@ class NavBar extends Component {
         </aside>
 
       );
-    } if (aryf == "MeetIndex" || reary[0] == "reconder") {
+    } if (ary1[3] == "MeetIndex" || reary[0] == "reconder") {
       nav = (
         <aside>
           <div className="my-4" style={{ filter: 'contrast(0.5)' }} onClick={this.relo()}>
-            <a href="#/IncomeIndex">
+            <a href="/IncomeIndex">
               <img
                 src={require("../../Image/income.png").default}
                 alt="cancel"
@@ -301,7 +302,7 @@ class NavBar extends Component {
             </a>
           </div>
           <div className="my-4" style={{ filter: 'contrast(0.5)' }} onClick={this.relo()}>
-            <a href="#/FinancialIndex" >
+            <a href="/FinancialIndex" >
               <img
                 src={require("../../Image/graph.png").default}
                 alt="cancel"
@@ -312,7 +313,7 @@ class NavBar extends Component {
             </a>
           </div>
           <div className="my-4" style={{ filter: 'contrast(0.5)' }} onClick={this.relo()}>
-            <a href="#/ChartIndex" >
+            <a href="/ChartIndex" >
               <img
                 src={require("../../Image/analytics.png").default}
                 alt="cancel"
@@ -323,7 +324,7 @@ class NavBar extends Component {
             </a>
           </div>
           <div className="my-4" style={{ filter: 'contrast(0.5)' }} onClick={this.relo()}>
-            <a href="#/CompareIndex" >
+            <a href="/CompareIndex" >
               <img
                 src={require("../../Image/compare.png").default}
                 alt="cancel"
@@ -334,7 +335,7 @@ class NavBar extends Component {
             </a>
           </div>
           <div className="my-4" >
-            <a href="#/MeetIndex" >
+            <a href="/MeetIndex" >
               <img
                 src={require("../../Image/meeting.png").default}
                 alt="cancel"

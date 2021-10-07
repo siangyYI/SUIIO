@@ -77,7 +77,7 @@ export class reconder extends Component {
       category = (
         <div
           className="host badge badge-secondary"
-          style={{ backgroundColor: "#b6b6b6", color: "white" }}
+          style={{ backgroundColor: "#ae714f", color: "#e6ddd8" }}
         >
           {URIcategory}{" "}
         </div>
@@ -86,7 +86,7 @@ export class reconder extends Component {
       category = (
         <div
           className="host badge badge-secondary"
-          style={{ backgroundColor: "#59420a", color: '#ffd679' }}
+          style={{ backgroundColor: "#59420a", color: "white" }}
         >
           {URIcategory}{" "}
         </div>
@@ -107,23 +107,23 @@ export class reconder extends Component {
         <Container>
           <div className="meetingcontent mt-3">
             <div className="row">
+              <div className="text-right" style={{ display: "inline-block" }}>
+                {category}
+              </div>
+              <div
+                className="text-left mx-3"
+                style={{
+                  fontSize: "18px",
+                  fontWeight: "bold",
+                  color: "#5c5c5c",
+                }}
+              >
+                {decodeURI(this.state.date)}
+              </div>
+            </div>
+            <div className="row">
               <div className="row col-12 my-3 d-flex align-items-center">
                 <div className="my-2 col-md-4">
-                  <div className="row">
-                    <div className="text-right" style={{ display: "inline-block" }}>
-                      {category}
-                    </div>
-                    <div
-                      className="text-left mx-3"
-                      style={{
-                        fontSize: "18px",
-                        fontWeight: "bold",
-                        color: "#5c5c5c",
-                      }}
-                    >
-                      {decodeURI(this.state.date)}
-                    </div>
-                  </div>
                   <h2
                     className="my-3"
                     style={{
@@ -133,20 +133,11 @@ export class reconder extends Component {
                     }}
                   >
                     <div>{decodeURI(this.state.name)}</div>{" "}
-
                   </h2>
 
-
-
-
-
                   <div className="mb-2 absentt">
-
                     主席：
-                    <span className="attend">
-                      {decodeURI(this.state.host)}
-                    </span>
-
+                    <span className="attend">{decodeURI(this.state.host)}</span>
                   </div>
                 </div>
                 <div className="my-2 col-md-4 absentt">
@@ -161,7 +152,7 @@ export class reconder extends Component {
 
           {/*會議內容*/}
           <div className="textcontent my-3 overflow-auto">
-            <div class="overflow-auto py-4 text px-4">
+            <div class="overflow-auto py-4 textmeeting px-4">
               {this.state.content.content}
             </div>
           </div>

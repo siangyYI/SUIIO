@@ -96,33 +96,28 @@ export const FinancialTable = (props) => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {props.accounts.map(x => {
-
-              { const date = new Date(x.date) }
-              { const year = this.date.getFullYear() }
-              { const month = this.getMonth() + 1 }
-              { const day = this.getDate() }
+            {this.state.rows.map((x) => {
               <TableRow key={x.month}>
                 <TableCell align="center">
-                  {x.month}
+                  {rows.month}
                 </TableCell>
                 <TableCell align="center">
-                  {x.date}
+                  {rows.date}
                 </TableCell>
                 <TableCell align="left">
-                  {x.name}
+                  {rows.name}
                 </TableCell>
                 <TableCell align="left">
-                  {x.unit}
+                  {rows.unit}
                 </TableCell>
                 <TableCell align="left" style={{ fontWeight: "bold" }}>
-                  {x.item}
+                  {rows.item}
                 </TableCell>
                 <TableCell align="right">
-                  {x.income}
+                  {rows.income}
                 </TableCell>
                 <TableCell align="right">
-                  {x.expend}
+                  {rows.expend}
                 </TableCell>
               </TableRow>
             })}

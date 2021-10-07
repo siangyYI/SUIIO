@@ -74,7 +74,7 @@ export class Income_Detail extends Component {
       category = (
         <div
           className="host badge badge-secondary"
-          style={{ backgroundColor: "#f6f6d2" }}
+          style={{ backgroundColor: "#59420a",color:"white" }}
         >
           {this.state.content.category}
         </div>
@@ -103,6 +103,7 @@ export class Income_Detail extends Component {
                   border: "3px solid black",
                   borderRadius: "5px",
                   backgroundColor: "white",
+                  minWidth: "250px"
                 }}
                 onClick={() => this.setState({ AddImg: true })}
               />
@@ -113,7 +114,7 @@ export class Income_Detail extends Component {
                 style={{ height: "28%" }}
               >
                 <div className="col">
-                  <div className="row">
+                  <div className="row my-2">
                     {category}
                     <h4 className="col font-weight-bold text-right" style={{ color: "#757575" }}>
                       {this.state.content.date}

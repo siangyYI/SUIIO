@@ -13,7 +13,7 @@ export class Meeting_Card extends Component {
       category = (
         <div
           className="host badge badge-secondary"
-          style={{ backgroundColor: "#b6b6b6", color: "white" }}
+          style={{ backgroundColor: "#ae714f", color: "#e6ddd8" }}
         >
           {conferences.category}
         </div>
@@ -22,7 +22,7 @@ export class Meeting_Card extends Component {
       category = (
         <div
           className="host badge badge-secondary"
-          style={{ backgroundColor: "#59420a", color: '#ffd679' }}
+          style={{ backgroundColor: "#59420a", color: 'white' }}
         >
           {conferences.category}
         </div>
@@ -56,7 +56,6 @@ export class Meeting_Card extends Component {
                     color: "#2f553f",
                     textAlign: "right",
                     marginRight: "10px",
-                    fontWeight: "bold",
                   }}
                 >
                   主席：{conferences.host}

@@ -1,5 +1,5 @@
 import React from 'react';
-import { HashRouter } from 'react-router-dom';
+import { BrowserRouter  } from 'react-router-dom';
 import { Route } from 'react-router';
 import { Component } from 'react';
 import './App.css';
@@ -28,7 +28,7 @@ class App2 extends Component {
   render() {
     return (
       <>
-        <HashRouter>
+        <BrowserRouter >
           <Switch>
             <div className="row" >
               <div style={{ zIndex: "9999", boxShadow: "2px 2px 10px black", borderTopRightRadius: "8px", borderBottomRightRadius: "8px" }}>
@@ -58,7 +58,7 @@ class App2 extends Component {
               </div>
             </div>
           </Switch>
-        </HashRouter>
+        </BrowserRouter >
       </>
     )
   }

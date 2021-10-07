@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Card } from "react-bootstrap";
-import "./Income.css"
+import "./Income.css";
 
 export class Income_Card extends Component {
   render() {
@@ -17,7 +17,7 @@ export class Income_Card extends Component {
             fontWeight: "bold",
           }}
         >
-          $
+          NT$ &nbsp;
           {Number(parseFloat(account.amount).toFixed(3)).toLocaleString("en", {
             minimumFractionDigits: 0,
           })}
@@ -35,7 +35,7 @@ export class Income_Card extends Component {
             fontWeight: "bold",
           }}
         >
-          $
+          NT$ &nbsp;
           {Number(parseFloat(account.amount).toFixed(3)).toLocaleString("en", {
             minimumFractionDigits: 0,
           })}
@@ -49,41 +49,38 @@ export class Income_Card extends Component {
       category = (
         <div
           className="host badge badge-secondary"
-          style={{ backgroundColor: "#b6b6b6",color:"white" }}
+          style={{ backgroundColor: "#b6b6b6", color: "white" }}
         >
           {account.category}
         </div>
       );
-    }
-    else  {
+    } else {
       category = (
         <div
           className="host badge badge-secondary"
-          style={{ backgroundColor: "#59420a", color: '#ffd679'  }}
+          style={{ backgroundColor: "#59420a", color: "#ffd679" }}
         >
           {account.category}
         </div>
       );
     }
     return (
-      <div className="col-sm-12 col-md-3  IncomeCard" >
-        <a href={`#/Incomedetail?ID=${account.ID}`}>
+      <div className="col-sm-12 col-md-3  IncomeCard">
+        <a href={`/Incomedetail?ID=${account.ID}`}>
           <Card
             style={{ border: "2px solid #9e9e9e", backgroundColor: "#ffd679" }}
             className="mt-5"
           >
             <div className="row">
-            <div className="col text-left date py-3">
-            {category}</div>
-            <div className="text-right mx-3 date py-3">{account.date}</div>
+              <div className="col text-left date py-3">{category}</div>
+              <div className="text-right mx-3 date py-3">{account.date}</div>
             </div>
             <Card.Body className="meeting col">
               <Card.Title className="title px-4 pb-2">
                 {account.name}
               </Card.Title>
               <Card.Subtitle className="mb-2  ">
-                
-                <h3 >{amount}</h3>
+                <h3>{amount}</h3>
               </Card.Subtitle>
             </Card.Body>
           </Card>

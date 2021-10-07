@@ -1,13 +1,17 @@
 .meetingcontent{
-    background-color:#ffd679;
+    background-color:#ffc43e;
     border-radius:10px;
 }
 .textcontent{
-    background-color:#ffc43e;
+    background-color:#ffd679;
     border-radius:10px;
     height: 46vh;
 }
-
+.textmeeting{
+    font-size: 18pt;
+    color: #494444;
+    /* font-weight: bold; */
+}
 .text{
     font-size: 18pt;
     color: #8f4f4f;
