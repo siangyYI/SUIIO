@@ -115,8 +115,8 @@ function MessageTable() {
       .then((res) => res.json())
       .then((data) => {
         
-        console.log(`msg: ${JSON.stringify( message)}`)
-        console.log(`data: ${JSON.stringify(data)}`)
+        // console.log(`msg: ${JSON.stringify( message)}`)
+        // console.log(`data: ${JSON.stringify(data)}`)
         setMessages(message);
       })
       .catch((err) => {

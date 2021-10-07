@@ -24,9 +24,12 @@ export class Financial_Index extends Component {
   }
   
   fetchContent = async (id) => {
-    await fetch(`http://localhost:4000/api/statement/fetch/content/${id}`)
+    await fetch(`http://localhost:4000/api/statement/fetch/id/${id}`)
       .then((res) => res.json())
       .then((data) => this.setState({ accounts: data }))
+  }
+  async componentDidMount() {
+    await this.fetchContent(4);
   }
   render() {
     return (
@@ -55,6 +58,7 @@ export class Financial_Index extends Component {
           {this.state.statements.map((x) => (
             <Financial_Card statements={x} />
           ))}
+          {console.log(this.state.accounts)}
         </div>
       </>
     )

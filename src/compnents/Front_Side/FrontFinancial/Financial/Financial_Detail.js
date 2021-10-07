@@ -1,30 +1,53 @@
-import React from "react";
+import React, { Component } from "react";
 import { Container } from "react-bootstrap";
 import MessageTable from "../Income/Message"
 import { FinancialTable } from "./Financial_Table";
 import { Link } from "react-router-dom";
 import arrow_icon from "../../../../Image/arrow_icon.png";
 
-const Financial_Detail = () => {
-  return (
-    <>
-      <Link to="/Front/Financial/Index">
-        <img
-          src={arrow_icon}
-          alt="arrow_icon"
-          width="30pt"
-          height="30pt"
-          className="mt-3 ml-4"
-        />
-      </Link>
-      <Container>
-        <div>
-          <FinancialTable /></div>
-        <div className="my-2">
-          <MessageTable />
-        </div>
-      </Container>
-    </>
-  );
+export class Financial_Detail extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      id: {},
+    };
+  }
+  componentDidMount() {
+    let ary1 = [];
+    let ary2 = [];
+    let ary3 = [];
+    let url = window.location.href;
+    if (url.indexOf("?") !== -1) {
+      ary1 = url.split("?");
+      ary2 = ary1[1].split("&");
+      ary3 = ary2[0].split("=");
+
+      this.setState({ id: ary3[1] });
+      console.log(ary3)
+    }
+  }
+  render() {
+    return (
+      <>
+        <Link to="/Front/Financial/Index">
+          <img
+            src={arrow_icon}
+            alt="arrow_icon"
+            width="30pt"
+            height="30pt"
+            className="mt-3 ml-4"
+          />
+        </Link>
+        <Container>
+          <div>
+            {console.log(this.state.id)}
+            <FinancialTable data={this.state.id} />
+          </div>
+          <div className="my-2">
+            <MessageTable />
+          </div>
+        </Container>
+      </>
+    );
+  }
 };
-export default Financial_Detail;

@@ -9,7 +9,7 @@ import Switch from 'react-bootstrap/esm/Switch';
 import { Index } from './compnents/Front_Side/FrontMeeting/Index';
 import { reconder } from './compnents/Front_Side/FrontMeeting/Reconder';
 
-import Financial_Detail from './compnents/Front_Side/FrontFinancial/Financial/Financial_Detail';
+import {Financial_Detail} from './compnents/Front_Side/FrontFinancial/Financial/Financial_Detail';
 import {Financial_Index} from './compnents/Front_Side/FrontFinancial/Financial/Financial_Index';
 import { Income_Detail } from './compnents/Front_Side/FrontFinancial/Income/Income_Detail';
 import { Income_Index } from './compnents/Front_Side/FrontFinancial/Income/Income_Index';
