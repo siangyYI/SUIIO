@@ -59,16 +59,16 @@ export class reconder extends Component {
     let attend = [];
     this.state.attendees.forEach((element, index) => {
       attend.push(element + " ");
-      if ((index + 1) % 4 == 0 && index != 0) {
-        attend.push(<br />);
-      }
+      // if ((index + 1) % 4 == 0 && index != 0) {
+      //   attend.push(<br />);
+      // }
     });
     let absent = [];
     this.state.absentees.forEach((element, index) => {
       absent.push(element + " ");
-      if ((index + 1) % 4 == 0 && index != 0) {
-        absent.push(<br />);
-      }
+      // if ((index + 1) % 4 == 0 && index != 0) {
+      //   absent.push(<br />);
+      // }
     });
     let URIcategory = decodeURI(this.state.category);
     let category;
@@ -106,7 +106,7 @@ export class reconder extends Component {
         {/* Back Arrow*/}
         <Container>
           <div className="meetingcontent mt-3">
-            <div className="row">
+            <div className="pt-4 mx-4 d-flex justify-content-between">
               <div className="text-right" style={{ display: "inline-block" }}>
                 {category}
               </div>
@@ -122,32 +122,35 @@ export class reconder extends Component {
               </div>
             </div>
             <div className="row">
-              <div className="row col-12 my-3 d-flex align-items-center">
-                <div className="my-2 col-md-4">
-                  <h2
-                    className="my-3"
-                    style={{
-                      color: "#583f00",
-                      fontWeight: "600",
-                      marginTop: "-10%!important",
-                    }}
-                  >
-                    <div>{decodeURI(this.state.name)}</div>{" "}
-                  </h2>
-
-                  <div className="mb-2 absentt">
-                    主席：
-                    <span className="attend">{decodeURI(this.state.host)}</span>
-                  </div>
+              {/* <div className="row col-12 mb-3 d-flex align-items-center"> */}
+              <div className="my-2 col-md-4 ReconderTitle">
+                <h1
+                  className="my-3"
+                  style={{
+                    color: "#583f00",
+                    fontWeight: "600",
+                    marginTop: "-10%!important",
+                    fontSize:"40px"
+                  }}
+                >
+                  <div>{decodeURI(this.state.name)}</div>
+                </h1>
+                <div className="mb-2 absentt">
+                  主席：
+                  <span className="attend">{decodeURI(this.state.host)}</span>
                 </div>
-                <div className="my-2 col-md-4 absentt">
-                  出席者：<div className="attend">{attend}</div>
+              </div>
+              <div className="d-flex flex-column bd-highlight mb-3 mt-4">
+               
+                <div className="mb-2  absentt">
+                  出席者：<span className="attend">{attend}</span>
                 </div>
-                <div className="my-2 col-md-4 absentt">
-                  缺席者：<div className="attend_2">{absent}</div>
+                <div className=" mb-2  absentt">
+                  缺席者：<span className="attend_2">{absent}</span>
                 </div>
               </div>
             </div>
+            {/* </div> */}
           </div>
 
           {/*會議內容*/}

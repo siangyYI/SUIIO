@@ -34,11 +34,12 @@ const MessageContainer = styled.div`
   border: 1px solid rgba(0, 0, 0, 0.125);
   padding: 16px;
   border-radius: 4px;
-  background-color: #4c5865;
+  background-color: #927e51;
   color: white;
   & + & {
     margin-top: 8px;
   }
+  padding-left:35px
 `;
 
 const MessageBorder = styled.div`
@@ -47,7 +48,7 @@ const MessageBorder = styled.div`
 `;
 const MessageAuthor = styled.div`
   font-weight: bold;
-  color: #dcae1d;
+  color: #000000;
   font-size: 16px;
 `;
 
@@ -72,21 +73,20 @@ function Message({ author, time, children }) {
   return (
     <>
       <MessageContainer>
-        <div className="d-flex flex-row py-2">
-          <div className="d-flex flex-column mr-4">
-            <img
-              src={user}
-              alt="member"
-              width="30pt"
-              height="30pt"
-              class="d-flex align-items-center mx-auto"
-            ></img>
-            <MessageAuthor>{author}</MessageAuthor>
+        <div className="row ml-2">
+          <img
+            src={user}
+            alt="member"
+            width="40px"
+            height="40px"
+            className="mt-2 mr-3"
+          ></img>
+          <div className="d-flex flex-column bd-highlight">
+            <MessageAuthor className="bd-highlight">{author}</MessageAuthor>
+
+            <MessageBody className=" bd-highlight">{children}</MessageBody>
           </div>
-          <div className="col-8">
-            <MessageBody>{children}</MessageBody>
-          </div>
-          <div className="col-3" align="right">
+          <div className="col" align="right">
             <MessageTime>{time}</MessageTime>
           </div>
         </div>
@@ -114,7 +114,6 @@ function MessageTable() {
     return fetch(API_ENDPOINT)
       .then((res) => res.json())
       .then((data) => {
-        
         // console.log(`msg: ${JSON.stringify( message)}`)
         // console.log(`data: ${JSON.stringify(data)}`)
         setMessages(message);
@@ -122,7 +121,7 @@ function MessageTable() {
       .catch((err) => {
         setMessageApiError(err.message);
       });
-       // return fetch(API_ENDPOINT)
+    // return fetch(API_ENDPOINT)
     //   .then((res) => res.json())
     //   .then((data) => {
     //     setMessages(data);
@@ -130,9 +129,7 @@ function MessageTable() {
     //   .catch((err) => {
     //     setMessageApiError(err.message);
     //   });
-    }
-
-   
+  };
 
   const handleTextareaChange = (e) => {
     setValue(e.target.value);
@@ -157,7 +154,7 @@ function MessageTable() {
         "content-type": "application/json",
       },
       body: JSON.stringify({
-        name: "003001",
+        name: "xul4u0",
         body: value,
       }),
     })

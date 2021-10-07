@@ -23,22 +23,22 @@
 .recondertitle{
     color: #01597f;
     font-weight: bold;
-    font-size: 22pt;
+    font-size: 30pt;
 }
 .attend{
     color: #01597f;
     font-weight:lighter;
-    font-size: 16pt;
+    font-size: 18pt;
 }
 .attend_2{
     color: #871b24;
     font-weight:lighter;
-    font-size: 16pt;
+    font-size: 18pt;
 }
 .absentt{
     color: #000a30;
     font-weight:bold;
-    font-size: 16pt;
+    font-size: 18pt;
 }
 .row{
     margin-right: 0 !important;

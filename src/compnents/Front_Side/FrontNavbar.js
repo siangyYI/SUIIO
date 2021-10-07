@@ -38,9 +38,9 @@ class NavBar extends Component {
 
     reary = ary1[3].split("?");
     console.log(ary1);
-    
+
     let nav;
-    if (ary1[3] == "IncomeIndex" || reary[0] == "Incomedetail") {
+    if (ary1[3] == "IncomeIndex" || reary[0] == "Incomedetail" || ary1[3] == "") {
       this.relo()
       nav = (
         <aside>

@@ -34,7 +34,6 @@ function expendtotal(items) {
 }
 
 const rows = [
-
   createRow("01", "07", "109大迎新", "活動", "廠商贊助", 98, 0),
   createRow("01", "09", "109大迎新", "活動", "文具用品", 0, 4200),
   createRow("01", "10", "109大迎新", "活動", "廠商贊助", 2333, 0),
@@ -48,10 +47,10 @@ const expendTotal = expendtotal(rows);
 
 const AllTotal = inocmeTotal - expendTotal;
 const All = AllTotal + LastTotal;
-console.log(rows)
+console.log(rows);
 export class FinancialTable extends Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       statements: [],
       selected: {},
@@ -61,22 +60,21 @@ export class FinancialTable extends Component {
       AddShow: false,
       review: false,
       id: "",
-      acc: []
-    }
-
+      acc: [],
+    };
   }
 
   update = () => {
-    fetch('http://localhost:4000/api/statement/fetch/all')
+    fetch("http://localhost:4000/api/statement/fetch/all")
       .then((res) => res.json())
-      .then((data) => this.setState({ statements: data }))
-  }
+      .then((data) => this.setState({ statements: data }));
+  };
   fetchContent = async (id) => {
     await fetch(`http://localhost:4000/api/statement/fetch/id/${id}`)
       .then((res) => res.json())
-      .then((data) => this.setState({ accounts: data }))
-  }
-  
+      .then((data) => this.setState({ accounts: data }));
+  };
+
   async componentDidMount() {
     let ary1 = [];
     let ary2 = [];
@@ -88,20 +86,21 @@ export class FinancialTable extends Component {
       ary3 = ary2[0].split("=");
 
       await this.setState({ id: ary3[1] });
-      console.log(ary3)
+      console.log(ary3);
     }
-    await this.fetchContent(this.state.id)
+    await this.fetchContent(this.state.id);
     await this.setState({ acc: this.state.accounts.accounts });
   }
 
   render() {
-    let lastYear = "", income = 0, cost = 0
-    console.log(this.state.acc)
+    let lastYear = "",
+      income = 0,
+      cost = 0;
+    console.log(this.state.acc);
     return (
       <>
         {" "}
         <h4>109 一月財報</h4>
-
         <TableContainer component={Paper}>
           <Table className={{ minWidth: 700 }} aria-label="spanning table">
             <TableHead style={{ backgroundColor: "#ffe69b" }}>
@@ -146,46 +145,35 @@ export class FinancialTable extends Component {
             </TableHead>
             <TableBody>
               {this.state.acc.map((x) => {
-                const date = new Date(x.date)
-                const year = date.getFullYear()
-                const month = date.getMonth() + 1
-                const day = date.getDate()
-                let newYear = false
+                const date = new Date(x.date);
+                const year = date.getFullYear();
+                const month = date.getMonth() + 1;
+                const day = date.getDate();
+
+                let newYear = false;
                 if (year !== lastYear) {
-                  newYear = true
-                  lastYear = year
-              }
-              (x.amount > 0) ? (income += x.amount) : (cost += x.amount * -1)
-              return (
-                <TableRow key={month}>
-                  <TableCell align="center">
-                    {month}
-                  </TableCell>
-                  <TableCell align="center">
-                    {day}
-                  </TableCell>
-                  <TableCell align="left">
-                    {x.name}
-                  </TableCell>
-                  <TableCell align="left">
-                    {x.category}
-                  </TableCell>
-                  <TableCell align="left">
-                    {x.uploadBy}
-                  </TableCell>
-                  <TableCell align="left" style={{ fontWeight: "bold" }}>
-                    {x.content}
-                  </TableCell>
-                  <TableCell align="center">
-                    {x.amount}
-                  </TableCell>
-                  <TableCell align="center">
-                    {x.amount}
-                  </TableCell>
-                </TableRow>
-              )
-                
-                
+                  newYear = true;
+                  lastYear = year;
+                }
+                x.amount > 0 ? (income += x.amount) : (cost += x.amount * -1);
+                let amountincome;
+                let amountcost;
+                x.amount > 0 ? (amountincome = x.amount) : (amountincome = "-");
+                x.amount > 0 ? (amountcost = "-") : (amountcost = x.amount);
+                return (
+                  <TableRow key={month}>
+                    <TableCell align="center">{month}</TableCell>
+                    <TableCell align="center">{day}</TableCell>
+                    <TableCell align="left">{x.name}</TableCell>
+                    <TableCell align="left">{x.category}</TableCell>
+                    <TableCell align="left">{x.uploadBy}</TableCell>
+                    <TableCell align="left" style={{ fontWeight: "bold" }}>
+                      {x.content}
+                    </TableCell>
+                    <TableCell align="center">{amountincome}</TableCell>
+                    <TableCell align="center">{amountcost}</TableCell>
+                  </TableRow>
+                );
               })}
 
               <TableRow>
@@ -234,5 +222,4 @@ export class FinancialTable extends Component {
       </>
     );
   }
-
 }

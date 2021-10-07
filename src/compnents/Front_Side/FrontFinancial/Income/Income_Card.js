@@ -49,7 +49,7 @@ export class Income_Card extends Component {
       category = (
         <div
           className="host badge badge-secondary"
-          style={{ backgroundColor: "#b6b6b6", color: "white" }}
+          style={{ backgroundColor: "#ae714f", color: "#e6ddd8" }}
         >
           {account.category}
         </div>
@@ -58,7 +58,7 @@ export class Income_Card extends Component {
       category = (
         <div
           className="host badge badge-secondary"
-          style={{ backgroundColor: "#59420a", color: "#ffd679" }}
+          style={{ backgroundColor: "#59420a", color: "white" }}
         >
           {account.category}
         </div>
