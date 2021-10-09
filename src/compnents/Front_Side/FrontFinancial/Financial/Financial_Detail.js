@@ -29,7 +29,7 @@ export class Financial_Detail extends Component {
   render() {
     return (
       <>
-        <Link to="/Front/Financial/Index">
+        <Link to="/FinancialIndex">
           <img
             src={arrow_icon}
             alt="arrow_icon"

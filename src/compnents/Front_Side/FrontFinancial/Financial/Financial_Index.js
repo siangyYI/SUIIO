@@ -53,12 +53,21 @@ export class Financial_Index extends Component {
               <option value="mango">資管周</option>
             </select>
           </div>
+          <h4 style={{ marginTop: '8px', fontSize: '18px', marginLeft: '2%' }}>
+            請選擇日期區間
+          </h4>
+
+          <input id="date" type="date" className="Dropdown ml-3 px-2" style={{ margin: '0' }}></input>
+          <h3 style={{ marginLeft: '1%' }}>
+            -
+          </h3>
+
+          <input id="date" type="date" className="Dropdown ml-3 px-2" style={{ margin: '0' }}></input>
         </div>
         <div className="row mt-2 px-5">
           {this.state.statements.map((x) => (
             <Financial_Card statements={x} />
           ))}
-          {console.log(this.state.accounts)}
         </div>
       </>
     )

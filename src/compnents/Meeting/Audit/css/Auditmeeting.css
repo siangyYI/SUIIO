@@ -39,7 +39,7 @@
 }
 @media  screen and (min-width: 575px){
     .meeting>.title{
-        font-size: 18pt;
+        font-size: 16pt;
     }
     .meeting>.date,.meeting>.host{
         font-size: 14pt;

@@ -33,21 +33,21 @@ function expendtotal(items) {
   return items.map(({ expend }) => expend).reduce((sum, i) => sum + i, 0);
 }
 
-const rows = [
-  createRow("01", "07", "109大迎新", "活動", "廠商贊助", 98, 0),
-  createRow("01", "09", "109大迎新", "活動", "文具用品", 0, 4200),
-  createRow("01", "10", "109大迎新", "活動", "廠商贊助", 2333, 0),
-  createRow("01", "17", "109大迎新", "活動", "文具用品", 0, 100),
-  createRow("01", "20", "109大迎新", "活動", "廠商贊助", 4343, 0),
-  createRow("01", "27", "109大迎新", "活動", "文具用品", 0, 200),
-];
+// const rows = [
+//   createRow("01", "07", "109大迎新", "活動", "廠商贊助", 98, 0),
+//   createRow("01", "09", "109大迎新", "活動", "文具用品", 0, 4200),
+//   createRow("01", "10", "109大迎新", "活動", "廠商贊助", 2333, 0),
+//   createRow("01", "17", "109大迎新", "活動", "文具用品", 0, 100),
+//   createRow("01", "20", "109大迎新", "活動", "廠商贊助", 4343, 0),
+//   createRow("01", "27", "109大迎新", "活動", "文具用品", 0, 200),
+// ];
 
-const inocmeTotal = inocmetotal(rows);
-const expendTotal = expendtotal(rows);
+// const inocmeTotal = inocmetotal(rows);
+// const expendTotal = expendtotal(rows);
 
-const AllTotal = inocmeTotal - expendTotal;
-const All = AllTotal + LastTotal;
-console.log(rows);
+// const AllTotal = inocmeTotal - expendTotal;
+// const All = AllTotal + LastTotal;
+// console.log(rows);
 export class FinancialTable extends Component {
   constructor(props) {
     super(props);
@@ -60,6 +60,8 @@ export class FinancialTable extends Component {
       AddShow: false,
       review: false,
       id: "",
+      name: "",
+      date: "",
       acc: [],
     };
   }
@@ -79,14 +81,20 @@ export class FinancialTable extends Component {
     let ary1 = [];
     let ary2 = [];
     let ary3 = [];
+    let name = [];
+    let date = [];
     let url = window.location.href;
     if (url.indexOf("?") !== -1) {
       ary1 = url.split("?");
       ary2 = ary1[1].split("&");
       ary3 = ary2[0].split("=");
-
+      name = ary2[1].split("=");
+      date = ary2[2].split("=")
+      console.log(name)
       await this.setState({ id: ary3[1] });
-      console.log(ary3);
+      await this.setState({ name: name[1] });
+      await this.setState({ date: date[1] });
+      console.log(date);
     }
     await this.fetchContent(this.state.id);
     await this.setState({ acc: this.state.accounts.accounts });
@@ -96,11 +104,11 @@ export class FinancialTable extends Component {
     let lastYear = "",
       income = 0,
       cost = 0;
-    console.log(this.state.acc);
+    console.log(this.state.acc.reverse());
     return (
       <>
         {" "}
-        <h4>109 一月財報</h4>
+        <h4 style={{ fontWeight: 'bold' }}>{decodeURI(this.state.name)}</h4>
         <TableContainer component={Paper}>
           <Table className={{ minWidth: 700 }} aria-label="spanning table">
             <TableHead style={{ backgroundColor: "#ffe69b" }}>
@@ -111,18 +119,18 @@ export class FinancialTable extends Component {
                 <TableCell align="center" style={{ width: "20px" }}>
                   日
                 </TableCell>
-                <TableCell align="left" style={{ width: "150px" }}>
+                <TableCell align="center" style={{ width: "165px" }}>
                   收支名稱
                 </TableCell>
-                <TableCell align="left" style={{ width: "150px" }}>
+                <TableCell align="center" style={{ width: "150px" }}>
                   活動類別
                 </TableCell>
-                <TableCell align="left" style={{ width: "100px" }}>
+                <TableCell align="center" style={{ width: "100px" }}>
                   申請人
                 </TableCell>
                 <TableCell
-                  align="left"
-                  style={{ width: "250px", fontWeight: "bold" }}
+                  align="center"
+                  style={{ width: "250px" }}
                 >
                   摘要
                 </TableCell>
@@ -139,7 +147,7 @@ export class FinancialTable extends Component {
                     textAlign: "center",
                   }}
                 >
-                  2019年
+                  {this.state.date}
                 </th>
               </TableRow>
             </TableHead>
@@ -149,7 +157,29 @@ export class FinancialTable extends Component {
                 const year = date.getFullYear();
                 const month = date.getMonth() + 1;
                 const day = date.getDate();
-
+                let { statements } = this.props;
+                let category;
+                if (x.category == "其他項目") {
+                  x.category = "一般報表";
+                  console.log(x.category)
+                  category = (
+                    <div
+                      className="host badge badge-secondary"
+                      style={{ backgroundColor: "#ae714f", color: "#e6ddd8" }}
+                    >
+                      {x.category}
+                    </div>
+                  );
+                } else {
+                  category = (
+                    <div
+                      className="host badge badge-secondary"
+                      style={{ backgroundColor: "#59420a", color: "white" }}
+                    >
+                      {x.category}
+                    </div>
+                  );
+                }
                 let newYear = false;
                 if (year !== lastYear) {
                   newYear = true;
@@ -161,15 +191,28 @@ export class FinancialTable extends Component {
                 x.amount > 0 ? (amountincome = x.amount) : (amountincome = "-");
                 x.amount > 0 ? (amountcost = "-") : (amountcost = x.amount);
                 return (
+
                   <TableRow key={month}>
-                    <TableCell align="center">{month}</TableCell>
-                    <TableCell align="center">{day}</TableCell>
-                    <TableCell align="left">{x.name}</TableCell>
-                    <TableCell align="left">{x.category}</TableCell>
-                    <TableCell align="left">{x.uploadBy}</TableCell>
-                    <TableCell align="left" style={{ fontWeight: "bold" }}>
-                      {x.content}
+                    <TableCell align="center" >
+                      <div className="host badge badge-secondary" style={{ backgroundColor: "#ffe69b", color: "black", fontSize: '16px' }}>
+                        {month}
+                      </div>
+
                     </TableCell>
+                    <TableCell align="center" >
+                      <div className="host badge badge-secondary" style={{ backgroundColor: "#ffe69b", color: "black", fontSize: '16px' }}>
+                        {day}
+                      </div>
+
+                    </TableCell>
+                    <TableCell align="center">{x.name}</TableCell>
+                    <TableCell align="center" >
+                      <div>
+                        {category}
+                      </div>
+                    </TableCell>
+                    <TableCell align="center">{x.uploadBy}</TableCell>
+                    <TableCell align="center">{x.content}</TableCell>
                     <TableCell align="center">{amountincome}</TableCell>
                     <TableCell align="center">{amountcost}</TableCell>
                   </TableRow>
@@ -178,7 +221,7 @@ export class FinancialTable extends Component {
 
               <TableRow>
                 <TableCell />
-                <TableCell colSpan={5} align="right">
+                <TableCell colSpan={5} align="center">
                   合計
                 </TableCell>
                 <TableCell align="center" style={{ color: "green" }}>
@@ -198,7 +241,7 @@ export class FinancialTable extends Component {
                 本期淨利(損)
               </TableCell>
               <TableCell colSpan={2} align="center">
-                {AllTotal}
+                {/* {AllTotal} */}
               </TableCell>
             </TableRow>
             <TableRow>
@@ -214,7 +257,7 @@ export class FinancialTable extends Component {
                 總資產
               </TableCell>
               <TableCell colSpan={2} align="center">
-                {All}
+                {/* {All} */}
               </TableCell>
             </TableRow>
           </Table>

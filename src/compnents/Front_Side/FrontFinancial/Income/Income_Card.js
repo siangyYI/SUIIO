@@ -72,7 +72,9 @@ export class Income_Card extends Component {
             className="mt-5"
           >
             <div className="row">
-              <div className="col text-left date py-3">{category}</div>
+              <div className="col text-left date py-3">
+                {category}
+              </div>
               <div className="text-right mx-3 date py-3">{account.date}</div>
             </div>
             <Card.Body className="meeting col">

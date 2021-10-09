@@ -58,14 +58,14 @@ export class reconder extends Component {
   render() {
     let attend = [];
     this.state.attendees.forEach((element, index) => {
-      attend.push(element + " ");
+      attend.push(element + ",");
       // if ((index + 1) % 4 == 0 && index != 0) {
       //   attend.push(<br />);
       // }
     });
     let absent = [];
     this.state.absentees.forEach((element, index) => {
-      absent.push(element + " ");
+      absent.push(element + ",");
       // if ((index + 1) % 4 == 0 && index != 0) {
       //   absent.push(<br />);
       // }
@@ -107,9 +107,22 @@ export class reconder extends Component {
         <Container>
           <div className="meetingcontent mt-3">
             <div className="pt-4 mx-4 d-flex justify-content-between">
-              <div className="text-right" style={{ display: "inline-block" }}>
-                {category}
+              <div className="d-flex">
+                <div className="text-right" style={{ display: "inline-block" }}>
+                  {category}
+                </div>
+                <h1
+                  className="mx-3 font-weight-bold"
+                  style={{
+                    color: "#583f00",
+                    fontWeight: "600",
+                    marginTop: "-10%!important",
+                  }}
+                >
+                  {decodeURI(this.state.name)}
+                </h1>
               </div>
+
               <div
                 className="text-left mx-3"
                 style={{
@@ -121,36 +134,21 @@ export class reconder extends Component {
                 {decodeURI(this.state.date)}
               </div>
             </div>
+
             <div className="row">
-              {/* <div className="row col-12 mb-3 d-flex align-items-center"> */}
-              <div className="my-2 col-md-4 ReconderTitle">
-                <h1
-                  className="my-3"
-                  style={{
-                    color: "#583f00",
-                    fontWeight: "600",
-                    marginTop: "-10%!important",
-                    fontSize:"40px"
-                  }}
-                >
-                  <div>{decodeURI(this.state.name)}</div>
-                </h1>
-                <div className="mb-2 absentt">
+              <div className="d-flex flex-row bd-highlight mb-3 mt-4" >
+                <div className="mb-2 absentt ml-4">
                   主席：
                   <span className="attend">{decodeURI(this.state.host)}</span>
                 </div>
-              </div>
-              <div className="d-flex flex-column bd-highlight mb-3 mt-4">
-               
-                <div className="mb-2  absentt">
+                <div className="mb-2  absentt ml-5">
                   出席者：<span className="attend">{attend}</span>
                 </div>
-                <div className=" mb-2  absentt">
+                <div className=" mb-2  absentt_2 ml-5">
                   缺席者：<span className="attend_2">{absent}</span>
                 </div>
               </div>
             </div>
-            {/* </div> */}
           </div>
 
           {/*會議內容*/}
