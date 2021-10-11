@@ -55,10 +55,6 @@ export class FinancialTable extends Component {
       statements: [],
       selected: {},
       accounts: [],
-      ContentShow: false,
-      class: "",
-      AddShow: false,
-      review: false,
       id: "",
       name: "",
       date: "",
@@ -94,17 +90,20 @@ export class FinancialTable extends Component {
       await this.setState({ id: ary3[1] });
       await this.setState({ name: name[1] });
       await this.setState({ date: date[1] });
-      console.log(date);
+
     }
     await this.fetchContent(this.state.id);
     await this.setState({ acc: this.state.accounts.accounts });
+    await this.setState({ accounts: this.state.accounts });
+    console.log(this.state.accounts);
   }
 
   render() {
     let lastYear = "",
       income = 0,
-      cost = 0;
-    console.log(this.state.acc.reverse());
+      cost = 0,
+      clear = 0,
+      oldbalance = 0
     return (
       <>
         {" "}
@@ -157,7 +156,7 @@ export class FinancialTable extends Component {
                 const year = date.getFullYear();
                 const month = date.getMonth() + 1;
                 const day = date.getDate();
-                let { statements } = this.props;
+
                 let category;
                 if (x.category == "其他項目") {
                   x.category = "一般報表";
@@ -180,6 +179,7 @@ export class FinancialTable extends Component {
                     </div>
                   );
                 }
+
                 let newYear = false;
                 if (year !== lastYear) {
                   newYear = true;
@@ -189,7 +189,9 @@ export class FinancialTable extends Component {
                 let amountincome;
                 let amountcost;
                 x.amount > 0 ? (amountincome = x.amount) : (amountincome = "-");
-                x.amount > 0 ? (amountcost = "-") : (amountcost = x.amount);
+                x.amount > 0 ? (amountcost = "-") : (amountcost = Math.abs(x.amount));
+                clear = income - cost;
+                oldbalance = this.state.accounts.balance - income + cost
                 return (
 
                   <TableRow key={month}>
@@ -241,7 +243,7 @@ export class FinancialTable extends Component {
                 本期淨利(損)
               </TableCell>
               <TableCell colSpan={2} align="center">
-                {/* {AllTotal} */}
+                {clear}
               </TableCell>
             </TableRow>
             <TableRow>
@@ -249,7 +251,7 @@ export class FinancialTable extends Component {
                 上期餘額
               </TableCell>
               <TableCell colSpan={2} align="center">
-                {LastTotal}
+                {oldbalance}
               </TableCell>
             </TableRow>
             <TableRow>
@@ -257,7 +259,7 @@ export class FinancialTable extends Component {
                 總資產
               </TableCell>
               <TableCell colSpan={2} align="center">
-                {/* {All} */}
+                {this.state.accounts.balance}
               </TableCell>
             </TableRow>
           </Table>
