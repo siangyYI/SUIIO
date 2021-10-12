@@ -8,7 +8,7 @@ import Box from "@material-ui/core/Box";
 import NativeSelect from "@material-ui/core/NativeSelect";
 import { Input } from "reactstrap";
 import message from "../../../../TestData/db.json";
-
+import "./Income.css"
 // Comments API
 const API_ENDPOINT =
   "https://student-json-api.lidemy.me/comments?_sort=createdAt&_order=desc";
@@ -250,7 +250,7 @@ function MessageTable() {
                   className="my-2"
                   style={{ backgroundColor: "#866f39", fontWeight: "bold", color: '#eff349' }}
                 >
-                  <option value={10}>小周</option>
+                  <option value={10} >小周</option>
                   <option value={20}>周大大</option>
                 </NativeSelect>
               </Box>

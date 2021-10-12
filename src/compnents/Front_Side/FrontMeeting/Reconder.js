@@ -38,7 +38,7 @@ export class reconder extends Component {
       ary1 = url.split("?");
       ary2 = ary1[1].split("&");
       ary3 = ary2[0].split("=");
-    
+
       this.setState({ id: ary3[1] });
       this.setState({ category: category[1] });
     }
@@ -54,17 +54,17 @@ export class reconder extends Component {
   render() {
     let attend = [];
     this.state.attendees.forEach((element, index) => {
-      attend.push(element + ",");
-      // if ((index + 1) % 4 == 0 && index != 0) {
-      //   attend.push(<br />);
-      // }
+      attend.push(element + (this.state.attendees.length - 1 === index ? "" : ","));
+      if ((index + 1) % 5 == 0 && index != 0) {
+        attend.push(<br />);
+      }
     });
     let absent = [];
     this.state.absentees.forEach((element, index) => {
-      absent.push(element + ",");
-      // if ((index + 1) % 4 == 0 && index != 0) {
-      //   absent.push(<br />);
-      // }
+      absent.push(element + (this.state.absentees.length - 1 === index ? "" : ","));
+      if ((index + 1) % 5 == 0 && index != 0) {
+        absent.push(<br />);
+      }
     });
     let URIcategory = this.state.category;
     let category;
@@ -102,13 +102,13 @@ export class reconder extends Component {
         {/* Back Arrow*/}
         <Container>
           <div className="meetingcontent mt-3">
-            <div className="pt-4 mx-4 d-flex justify-content-between">
-              <div className="d-flex">
-                <div className="text-right" style={{ display: "inline-block" }}>
+            <div className="pt-4 mx-4 ">
+              <div className="row my-2">
+                <div className=" col-md-1" style={{ display: "inline-block" }}>
                   {category}
                 </div>
                 <h1
-                  className="mx-3 font-weight-bold"
+                  className="col-md-8 font-weight-bold"
                   style={{
                     color: "#583f00",
                     fontWeight: "600",
@@ -117,35 +117,35 @@ export class reconder extends Component {
                 >
                   {this.state.name}
                 </h1>
-              </div>
-
-              <div
-                className="text-left mx-3"
-                style={{
-                  fontSize: "18px",
-                  fontWeight: "bold",
-                  color: "#5c5c5c",
-                }}
-              >
-                {this.state.date}
+                <div
+                  className=" col-md-2"
+                  style={{
+                    fontSize: "18px",
+                    fontWeight: "bold",
+                    color: "#5c5c5c",
+                    marginLeft:'8%'
+                  }}
+                >
+                  {this.state.date}
+                </div>
               </div>
             </div>
-
-            <div className="row">
-              <div className="d-flex flex-row bd-highlight mb-3 mt-4" >
-                <div className="mb-2 absentt ml-4">
+            <div className="mx-4">
+              <div className="row">
+                <div className="col-md-2 mb-2 absentt">
                   主席：
-                  <span className="attend">{this.state.host}</span>
+                  <span className=" attend">{this.state.host}</span>
                 </div>
-                <div className="mb-2  absentt ml-5">
+                <div className="col-md-5 mb-2  absentt ">
                   出席者：<span className="attend">{attend}</span>
                 </div>
-                <div className=" mb-2  absentt_2 ml-5">
-                  缺席者：<span className="attend_2">{absent}</span>
+                <div className="col-md-5 mb-2  absentt_2 ">
+                  缺席者：<span className=" attend_2">{absent}</span>
                 </div>
               </div>
             </div>
           </div>
+
 
           {/*會議內容*/}
           <div className="textcontent my-3 overflow-auto">

@@ -42,7 +42,7 @@ class App2 extends Component {
 
                 <Route exact path="/financial/detail" component={Financial_Detail} />
                 <Route exact path="/financial" component={Financial_Index} />
-                <Route exact path="/detail" component={Income_Detail} />
+                <Route exact path="/income/detail" component={Income_Detail} />
                 <Route exact path="/income" component={Income_Index} />
 
                 <Route exact path="/chart" component={Chart_Index} />
