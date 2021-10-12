@@ -31,7 +31,7 @@ export class Meeting_Card extends Component {
     return (
       <div className="col-sm-12 col-md-3 IncomeCard">
         <Link
-          to={`/reconder?id=${conferences.ID}&name=${conferences.name}&host=${conferences.host}&date=${conferences.date}&category=${conferences.category}`}
+          to={`/meet/reconder?id=${conferences.ID}`}
         >
           <Card
             style={{

@@ -13,7 +13,7 @@ export class Index extends Component {
       AddShow: false,
       review: false,
     };
-    this.update();
+   this.update();
   }
   update = () => {
     fetch("http://localhost:4000/api/conference/fetch/all")

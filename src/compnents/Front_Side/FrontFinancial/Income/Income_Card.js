@@ -17,11 +17,10 @@ export class Income_Card extends Component {
             fontWeight: "bold",
           }}
         >
-          NT$ &nbsp;
-          {Number(parseFloat(account.amount).toFixed(3)).toLocaleString("en", {
+          -NT$ &nbsp;
+          {Number(parseFloat(Math.abs(account.amount)).toFixed(3)).toLocaleString("en", {
             minimumFractionDigits: 0,
           })}
-          元
         </h1>
       );
     } else if (account.amount > 0) {
@@ -39,7 +38,6 @@ export class Income_Card extends Component {
           {Number(parseFloat(account.amount).toFixed(3)).toLocaleString("en", {
             minimumFractionDigits: 0,
           })}
-          元
         </h1>
       );
     }
@@ -66,15 +64,13 @@ export class Income_Card extends Component {
     }
     return (
       <div className="col-sm-12 col-md-3  IncomeCard">
-        <a href={`/Incomedetail?ID=${account.ID}`}>
+        <a href={`/income/detail?ID=${account.ID}`}>
           <Card
             style={{ border: "2px solid #9e9e9e", backgroundColor: "#ffd679" }}
             className="mt-5"
           >
             <div className="row">
-              <div className="col text-left date py-3">
-                {category}
-              </div>
+              <div className="col text-left date py-3">{category}</div>
               <div className="text-right mx-3 date py-3">{account.date}</div>
             </div>
             <Card.Body className="meeting col">

@@ -15,8 +15,7 @@ const API_ENDPOINT =
 
 const SubmitButton = styled.button`
   margin-top: 8px;
-  color: #ddd;
-  background-color: #343a40;
+
   border-radius: 4px;
   font-size: 16px;
   padding: 6px 12px;
@@ -39,7 +38,7 @@ const MessageContainer = styled.div`
   & + & {
     margin-top: 8px;
   }
-  padding-left:35px
+  padding-left: 35px;
 `;
 
 const MessageBorder = styled.div`
@@ -48,7 +47,7 @@ const MessageBorder = styled.div`
 `;
 const MessageAuthor = styled.div`
   font-weight: bold;
-  color: #000000;
+  color: #fffa49;
   font-size: 16px;
 `;
 
@@ -77,9 +76,9 @@ function Message({ author, time, children }) {
           <img
             src={user}
             alt="member"
-            width="40px"
-            height="40px"
-            className="mt-2 mr-3"
+            width="50px"
+            height="50px"
+            className="mt-1 mr-3"
           ></img>
           <div className="d-flex flex-column bd-highlight">
             <MessageAuthor className="bd-highlight">{author}</MessageAuthor>
@@ -206,23 +205,42 @@ function MessageTable() {
               </Message>
             ))}
         </MessageList>
+        {/* <div className="row ml-2">
+          <img
+            src={user}
+            alt="member"
+            width="50px"
+            height="50px"
+            className="mt-1 mr-3"
+          ></img>
+          <div className="d-flex flex-column bd-highlight">
+            <MessageAuthor className="bd-highlight">{author}</MessageAuthor>
+
+            <MessageBody className=" bd-highlight">{children}</MessageBody>
+          </div>
+          <div className="col" align="right">
+            <MessageTime>{time}</MessageTime>
+          </div>
+        </div> */}
         <form onSubmit={handleFormSubmit}>
           <div
-            className="col row pt-2"
+            className="row p-2 pl-4"
             style={{
               borderRadius: "0 0 5px 5px",
-              backgroundColor: "lightgray",
+              backgroundColor: "#866f39",
             }}
           >
-            <div className="d-flex flex-column mr-4 ">
+            <div className="">
               <img
                 src={user}
                 alt="member"
-                width="30pt"
-                height="30pt"
-                class="ml-3"
+                width="50px"
+                height="50px"
+                className="mt-3 mr-3"
               ></img>
-              <Box sx={{ minWidth: 20 }}>
+            </div>
+            <div className="d-flex flex-column col">
+              <Box sx={{ minWidth: 20 }} className="bd-highlight">
                 <NativeSelect
                   defaultValue={30}
                   inputProps={{
@@ -230,25 +248,27 @@ function MessageTable() {
                     id: "uncontrolled-native",
                   }}
                   className="my-2"
-                  style={{ color: "#dcae1d", fontWeight: "bold" }}
+                  style={{ backgroundColor: "#866f39", fontWeight: "bold", color: '#eff349' }}
                 >
                   <option value={10}>小周</option>
                   <option value={20}>周大大</option>
                 </NativeSelect>
               </Box>
+              <div className=" bd-highlight d-flex">
+                <Input
+                  type="text"
+                  value={value}
+                  onChange={handleTextareaChange}
+                  onFocus={handleTextareaFocus}
+                  rows={8}
+                  style={{ marginRight: "5px", width: "93%" }}
+                />
+                <SubmitButton className="btn-warning" style={{ height: "36px", paddingTop: "4px" }}>
+                  送出
+                </SubmitButton>
+              </div>
             </div>
 
-            <Input
-              type="text"
-              className="col-10 mr-1"
-              value={value}
-              onChange={handleTextareaChange}
-              onFocus={handleTextareaFocus}
-              rows={8}
-            />
-            <SubmitButton className="col" style={{ height: "fit-content" }}>
-              送出
-            </SubmitButton>
             {/* {postMessageError && <ErrorMessage>{postMessageError}</ErrorMessage>} */}
           </div>
         </form>{" "}

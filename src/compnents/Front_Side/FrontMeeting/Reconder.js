@@ -10,11 +10,11 @@ export class reconder extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: {},
+      name: "",
       id: {},
-      host: {},
-      date: {},
-      category: {},
+      host: "",
+      date: "",
+      category: "",
       content: [],
       absentees: [],
       attendees: [],
@@ -30,27 +30,23 @@ export class reconder extends Component {
     let ary1 = [];
     let ary2 = [];
     let ary3 = [];
-    let ary4 = [];
-    let host = [];
-    let date = [];
+
+
     let category = [];
     let url = window.location.href;
     if (url.indexOf("?") !== -1) {
       ary1 = url.split("?");
       ary2 = ary1[1].split("&");
       ary3 = ary2[0].split("=");
-      ary4 = ary2[1].split("=");
-      host = ary2[2].split("=");
-      date = ary2[3].split("=");
-      category = ary2[4].split("=");
-
+    
       this.setState({ id: ary3[1] });
-      this.setState({ name: ary4[1] });
-      this.setState({ host: host[1] });
-      this.setState({ date: date[1] });
       this.setState({ category: category[1] });
     }
     await this.fetchContent(ary3[1]);
+    this.setState({ date: this.state.content.date });
+    this.setState({ host: this.state.content.host });
+    this.setState({ name: this.state.content.name });
+    this.setState({ category: this.state.content.category });
     this.setState({ absentees: this.state.content.absentees });
     this.setState({ attendees: this.state.content.attendees });
   }
@@ -70,7 +66,7 @@ export class reconder extends Component {
       //   absent.push(<br />);
       // }
     });
-    let URIcategory = decodeURI(this.state.category);
+    let URIcategory = this.state.category;
     let category;
     if (URIcategory == "籃球比賽") {
       URIcategory = "一般項目";
@@ -119,7 +115,7 @@ export class reconder extends Component {
                     marginTop: "-10%!important",
                   }}
                 >
-                  {decodeURI(this.state.name)}
+                  {this.state.name}
                 </h1>
               </div>
 
@@ -131,7 +127,7 @@ export class reconder extends Component {
                   color: "#5c5c5c",
                 }}
               >
-                {decodeURI(this.state.date)}
+                {this.state.date}
               </div>
             </div>
 
@@ -139,7 +135,7 @@ export class reconder extends Component {
               <div className="d-flex flex-row bd-highlight mb-3 mt-4" >
                 <div className="mb-2 absentt ml-4">
                   主席：
-                  <span className="attend">{decodeURI(this.state.host)}</span>
+                  <span className="attend">{this.state.host}</span>
                 </div>
                 <div className="mb-2  absentt ml-5">
                   出席者：<span className="attend">{attend}</span>

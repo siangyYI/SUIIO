@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter  } from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom';
 import { Route } from 'react-router';
 import { Component } from 'react';
 import './App.css';
@@ -9,11 +9,11 @@ import Switch from 'react-bootstrap/esm/Switch';
 import { Index } from './compnents/Front_Side/FrontMeeting/Index';
 import { reconder } from './compnents/Front_Side/FrontMeeting/Reconder';
 
-import {Financial_Detail} from './compnents/Front_Side/FrontFinancial/Financial/Financial_Detail';
-import {Financial_Index} from './compnents/Front_Side/FrontFinancial/Financial/Financial_Index';
+import { Financial_Detail } from './compnents/Front_Side/FrontFinancial/Financial/Financial_Detail';
+import { Financial_Index } from './compnents/Front_Side/FrontFinancial/Financial/Financial_Index';
 import { Income_Detail } from './compnents/Front_Side/FrontFinancial/Income/Income_Detail';
 import { Income_Index } from './compnents/Front_Side/FrontFinancial/Income/Income_Index';
-import Chart_Index from './compnents/Front_Side/Frontchart/ChartIndex';
+import { Chart_Index } from './compnents/Front_Side/Frontchart/ChartIndex';
 import CompareIndex from './compnents/Front_Side/FrontCompare/CompareIndex';
 
 import Login from './compnents/Front_Side/Login/Login';
@@ -37,16 +37,16 @@ class App2 extends Component {
               </div>
 
               <div className="col recordcontent overflow-auto Col">
-                <Route path="/MeetIndex" component={Index} />
-                <Route path="/reconder" component={reconder} />
+                <Route exact path="/meet" component={Index} />
+                <Route exact path="/meet/reconder" component={reconder} />
 
-                <Route path="/detail" component={Financial_Detail} />
-                <Route path="/FinancialIndex" component={Financial_Index} />
-                <Route path="/Incomedetail" component={Income_Detail} />
-                <Route path="/IncomeIndex" component={Income_Index} />
+                <Route exact path="/financial/detail" component={Financial_Detail} />
+                <Route exact path="/financial" component={Financial_Index} />
+                <Route exact path="/detail" component={Income_Detail} />
+                <Route exact path="/income" component={Income_Index} />
 
-                <Route path="/ChartIndex" component={Chart_Index} />
-                <Route path="/CompareIndex" component={CompareIndex} ></Route>
+                <Route exact path="/chart" component={Chart_Index} />
+                <Route exact path="/compare" component={CompareIndex} ></Route>
 
                 <Route path="/Front/Login" component={Login} />
                 <Route path="/Front/PW_account" component={PW_account} />

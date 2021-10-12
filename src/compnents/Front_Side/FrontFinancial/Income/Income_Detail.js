@@ -6,7 +6,7 @@ import { Container } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import arrow_icon from "../../../../Image/arrow_icon.png";
 import { IncomeImg } from "./Income_Img";
-import "./Income.css"
+import "./Income.css";
 
 export class Income_Detail extends Component {
   constructor(props) {
@@ -36,25 +36,23 @@ export class Income_Detail extends Component {
     if (this.state.content.amount < 0) {
       amount = (
         <h1 style={{ color: "red" }}>
-          $
+          -NT$ &nbsp;
           {Number(
-            parseFloat(this.state.content.amount).toFixed(3)
+            parseFloat(Math.abs(this.state.content.amount)).toFixed(3)
           ).toLocaleString("en", {
             minimumFractionDigits: 0,
           })}
-          元
         </h1>
       );
     } else if (this.state.content.amount > 0) {
       amount = (
         <h1 style={{ color: "green" }}>
-          $
+          NT$ &nbsp;
           {Number(
             parseFloat(this.state.content.amount).toFixed(3)
           ).toLocaleString("en", {
             minimumFractionDigits: 0,
           })}
-          元
         </h1>
       );
     }
@@ -69,12 +67,11 @@ export class Income_Detail extends Component {
           {this.state.content.category}
         </div>
       );
-    }
-    else {
+    } else {
       category = (
         <div
           className="host badge badge-secondary"
-          style={{ backgroundColor: "#59420a",color:"white" }}
+          style={{ backgroundColor: "#59420a", color: "white" }}
         >
           {this.state.content.category}
         </div>
@@ -103,7 +100,7 @@ export class Income_Detail extends Component {
                   border: "3px solid black",
                   borderRadius: "5px",
                   backgroundColor: "white",
-                  minWidth: "250px"
+                  minWidth: "250px",
                 }}
                 onClick={() => this.setState({ AddImg: true })}
               />
@@ -116,7 +113,10 @@ export class Income_Detail extends Component {
                 <div className="col">
                   <div className="row my-2">
                     {category}
-                    <h4 className="col font-weight-bold text-right" style={{ color: "#757575" }}>
+                    <h4
+                      className="col font-weight-bold text-right"
+                      style={{ color: "#757575" }}
+                    >
                       {this.state.content.date}
                     </h4>
                   </div>
@@ -132,7 +132,11 @@ export class Income_Detail extends Component {
                   <h4 className="font-weight-bold">備註</h4>
                   <div
                     className="p-3 mt-2"
-                    style={{ backgroundColor: "white", height: "10rem", borderRadius: "5px" }}
+                    style={{
+                      backgroundColor: "white",
+                      height: "10rem",
+                      borderRadius: "5px",
+                    }}
                   >
                     <h5>{this.state.content.content}</h5>
                   </div>

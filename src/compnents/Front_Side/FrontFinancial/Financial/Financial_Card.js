@@ -30,7 +30,7 @@ export class Financial_Card extends Component {
         }
         return (
             <div className="col-sm-12 col-md-3  IncomeCard">
-                <a href={`/detail?id=${statements.ID}&name=${statements.name}&date=${statements.date}`}>
+                <a href={`/financial/detail?id=${statements.ID}`}>
                     <Card
                         style={{ border: "2px solid #9e9e9e", backgroundColor: "#ffd679" }}
                         className="mt-5"
