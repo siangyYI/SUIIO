@@ -20,6 +20,8 @@ export class FinancialTable extends Component {
       name: "",
       date: "",
       acc: [],
+      oldyear: "",
+      reverseacc: [],
     };
   }
   fetchContent = async (id) => {
@@ -58,7 +60,14 @@ export class FinancialTable extends Component {
     return (
       <>
         {" "}
-        <h4 style={{ fontWeight: "bold" }}>{this.state.name}</h4>
+        <div className="row">
+          <h4 className="col" style={{ fontWeight: "bold" }}>
+            {this.state.name}
+          </h4>
+          <h4 className="col text-right" style={{ fontWeight: "bold" }}>
+            {this.state.date}
+          </h4>
+        </div>
         <TableContainer component={Paper}>
           <Table
             className="FTable"
@@ -99,7 +108,7 @@ export class FinancialTable extends Component {
                     textAlign: "center",
                   }}
                 >
-                  {this.state.date.slice(0, 4)}
+                  {this.oldyear}
                 </th>
               </TableRow>
             </TableHead>
@@ -109,7 +118,7 @@ export class FinancialTable extends Component {
                 const year = date.getFullYear();
                 const month = date.getMonth() + 1;
                 const day = date.getDate();
-                
+                this.oldyear = year;
                 let category;
                 if (x.category == "一般項目") {
                   x.category = "一般報表";
@@ -149,9 +158,7 @@ export class FinancialTable extends Component {
                   : (amountcost = Math.abs(x.amount));
                 clear = income - cost;
                 oldbalance = this.state.accounts.balance - income + cost;
-                console.log(clear);
                 clear > 0 ? (clearfont = "本期淨利") : (clearfont = "本期淨損");
-                console.log(clearfont);
                 return (
                   <Link
                     to={`/income/detail?ID=${x.ID}`}
@@ -168,17 +175,14 @@ export class FinancialTable extends Component {
                       <TableCell align="center">
                         <div>{category}</div>
                       </TableCell>
-                      <TableCell align="center">
-                        {x.name}
-                        
-                      </TableCell>
+                      <TableCell align="center">{x.name}</TableCell>
                       <TableCell align="right">{amountincome}</TableCell>
                       <TableCell align="right">{amountcost}</TableCell>
                     </TableRow>
                   </Link>
                 );
               })}
-              <TableRow>
+              <TableRow style={{ backgroundColor: "#ffe69b" }}>
                 <TableCell />
                 <TableCell colSpan={4} align="center">
                   合計
@@ -196,14 +200,14 @@ export class FinancialTable extends Component {
         <TableContainer
           component={Paper}
           className="mt-4"
-          style={{ width: "700px", marginLeft: '21.5%' }}
+          style={{ width: "700px", marginLeft: "21.5%" }}
         >
           <Table style={{ backgroundColor: "#ae714f", color: "white" }}>
             <TableRow>
               <TableCell colSpan={3} align="center">
                 {clearfont}
               </TableCell>
-              <TableCell align="center">NT${clear}</TableCell>
+              <TableCell align="center">NT${Math.abs(clear)}</TableCell>
             </TableRow>
             <TableRow>
               <TableCell colSpan={3} align="center">

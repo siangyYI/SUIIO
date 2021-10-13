@@ -81,27 +81,38 @@ export class Chart_Index extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      statements: [],
-      category: {},
-      selected: {},
+      diagrams: {},
+      year: 2019,
+      month: 12,
       accounts: [],
-      mon: [],
+      mon: "12",
       review: false
     }
-    this.update()
-  }
-  update = () => {
-    fetch('http://localhost:4000/api/statement/fetch/all')
-      .then((res) => res.json())
-      .then((data) => this.setState({ statements: data }))
+
   }
 
-  
+  diagram = (year, month) => {
+    fetch(`http://localhost:4000/api/account/fetch/diagram/${year}/${month}`)
+      .then((res) => res.json())
+      .then((data) => this.setState({ diagrams: data }))
+  }
+  componentDidMount() {
+
+    console.log('Component WILL MOUNT!')
+    this.diagram(this.state.year, this.state.month);
+    console.log(this.state.diagrams[this.state.mon]);
+    console.log(this.state.diagrams)
+
+  }
+
   render() {
-    let b = 0,
-      bal = []
     return (
       <>
+        {
+          // this.state.diagrams["12"].map((x) => {
+          //   <div>{x.amount}</div>
+          // })
+        }
 
         <div className="row mt-5">
           <div className="col-7 mx-auto chartback">
@@ -121,26 +132,15 @@ export class Chart_Index extends Component {
                 <option value="mango">四月</option>
               </select>
             </div>
-            {this.state.statements.map((x) => {
 
-              if (x.category === "其他項目") {
-                console.log(x.ID)
-                bal.push(x.balance)
-                b = bal.reduce(function (total, e) {
-                  return total + e;
-                });
-                console.log(b / bal.length)
-              }
 
-            })}
 
-            { }
             <Line data={{
               labels: ['二月', '三月', '四月', '五月'],
               datasets: [
                 {
                   label: '支出',
-                  data: bal,
+
                   fill: false,
                   borderColor: '#00BFA0',
                   tension: 0.1,
