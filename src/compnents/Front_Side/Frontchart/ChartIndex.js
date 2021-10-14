@@ -91,8 +91,8 @@ export class Chart_Index extends Component {
 
   }
 
-  diagram = (year, month) => {
-    fetch(`http://localhost:4000/api/account/fetch/diagram/${year}/${month}`)
+  diagram = async (year, month) => {
+    await fetch(`http://localhost:4000/api/account/fetch/diagram/${year}/${month}`)
       .then((res) => res.json())
       .then((data) => this.setState({ diagrams: data }))
   }
@@ -100,18 +100,42 @@ export class Chart_Index extends Component {
 
     console.log('Component WILL MOUNT!')
     this.diagram(this.state.year, this.state.month);
+
     console.log(this.state.diagrams[this.state.mon]);
     console.log(this.state.diagrams)
 
   }
 
   render() {
+
+    let months = [],
+      b = {},
+      tota = [],
+      inc = [],
+      cos=[]
     return (
       <>
         {
-          // this.state.diagrams["12"].map((x) => {
-          //   <div>{x.amount}</div>
-          // })
+          months = Object.keys(this.state.diagrams),
+          console.log(months),
+          months.map((month) => {
+            const total = { "cost": 0, "income": 0 };
+            this.state.diagrams[month].map((detail) => {
+              const amount = detail.amount;
+              amount > 0 ? (total.income += amount) : (total.cost += amount * -1);
+              console.log(total.cost)
+              console.log(total.income)
+              b[month] = total
+            })
+          }),
+          Object.keys(b).map((key) => {
+            tota = b[key]
+            
+            inc.push(tota.income)
+            cos.push(tota.cost)
+          }),
+          console.log(cos),
+          console.log(inc)
         }
 
         <div className="row mt-5">
@@ -133,14 +157,12 @@ export class Chart_Index extends Component {
               </select>
             </div>
 
-
-
             <Line data={{
-              labels: ['二月', '三月', '四月', '五月'],
+              label: months,
               datasets: [
                 {
                   label: '支出',
-
+                  data: cos,
                   fill: false,
                   borderColor: '#00BFA0',
                   tension: 0.1,
@@ -150,7 +172,7 @@ export class Chart_Index extends Component {
                   backgroundColor: '#00BFA0'
                 }, {
                   label: '收入',
-                  data: [10, 20, 30, 40],
+                  // data: cos,
                   fill: false,
                   borderColor: '#6798E7',
                   tension: 0.1,
@@ -161,7 +183,7 @@ export class Chart_Index extends Component {
                 },
                 {
                   label: '平均淨利損',
-                  data: [10, 20, 30, 40],
+                  // data: [10, 20, 30, 40],
                   fill: false,
                   borderColor: '#FF6424',
                   tension: 0.1,
@@ -178,7 +200,6 @@ export class Chart_Index extends Component {
                   legend: {
                     display: true,
                     position: 'bottom',
-
                   },
                 }
               }}
