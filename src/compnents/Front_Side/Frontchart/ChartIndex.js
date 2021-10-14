@@ -53,28 +53,7 @@ const Doughnutdata = {
     },
   ],
 };
-const Horizontaldata = {
-  type: 'bar',
-  labels: ['二月', '三月', '四月', '五月'],
-  datasets: [
 
-    {
-      label: '收入',
-      data: [65, 59, 80, 11],
-      fill: true,
-      backgroundColor: 'rgb(75, 192, 192)',
-      borderColor: 'rgb(75, 192, 192)',
-      tension: 0.1
-    },
-    {
-      label: '支出',
-      data: [75, 49, 75, 15],
-      fill: true,
-      backgroundColor: '#FF6424',
-      borderColor: '#FF6424',
-      tension: 0.1
-    },]
-};
 
 export class Chart_Index extends Component {
 
@@ -85,33 +64,33 @@ export class Chart_Index extends Component {
       year: 2019,
       month: 12,
       accounts: [],
-      mon: "12",
-      review: false
+      review: false,
+      income: [],
+      cost: []
     }
 
   }
 
   diagram = async (year, month) => {
+    console.log(year, month)
     await fetch(`http://localhost:4000/api/account/fetch/diagram/${year}/${month}`)
       .then((res) => res.json())
-      .then((data) => this.setState({ diagrams: data }))
+      .then((data) => {
+        console.log(data)
+        this.setState({ diagrams: data });
+      })
   }
-  componentDidMount() {
+  async componentWillMount() {
 
     console.log('Component WILL MOUNT!')
-    this.diagram(this.state.year, this.state.month);
-    
-
-    console.log(this.state.diagrams[this.state.mon]);
-    console.log(this.state.diagrams)
-
+    await this.diagram(this.state.year, this.state.month);
     let months = [],
-    result = {},
-    total = [],
-    inc = [],
-    cos=[]
+      result = {},
+      total = [],
+      inc = [],
+      cos = []
     months = Object.keys(this.state.diagrams);
-
+    console.log(months)
     months.map((month) => {
       const total = { "cost": 0, "income": 0 };
       this.state.diagrams[month].map((detail) => {
@@ -123,22 +102,21 @@ export class Chart_Index extends Component {
 
     Object.values(result).map((value) => {
       total = value
-      
+      console.log(total, result)
       inc.push(total.income)
       cos.push(total.cost)
     });
 
     this.setState({
-      income:inc,
-      cost:cos
+      income: inc,
+      cost: cos
     })
+    console.log(this.state.diagrams[this.state.mon]);
+    console.log(this.state.diagrams)
   }
-
   render() {
-
-   
     return (
-      <>      
+      <>
         <div className="row mt-5">
           <div className="col-7 mx-auto chartback">
             <div className="my-3 d-flex justify-content-between">
@@ -157,42 +135,43 @@ export class Chart_Index extends Component {
                 <option value="mango">四月</option>
               </select>
             </div>
-
+            {console.log("000", this.state.cost)}
             <Line data={{
               label: Object.keys(this.state.diagrams),
               datasets: [
                 {
                   label: '支出',
-                  data: this.state.cos,
-                  fill: false,
+
+                  data: this.state.cost,
+                  fill: true,
                   borderColor: '#00BFA0',
-                  tension: 0.1,
+                  tension: 1,
                   pointStyle: 'circle',
                   pointRadius: 5,
                   pointBorderColor: '#00BFA0',
                   backgroundColor: '#00BFA0'
                 }, {
                   label: '收入',
-                  data: this.state.cos,
-                  fill: false,
+                  data: this.state.income,
+                  fill: true,
                   borderColor: '#6798E7',
-                  tension: 0.1,
+                  tension: 1,
                   pointStyle: 'circle',
                   pointRadius: 5,
                   pointBorderColor: '#6798E7',
                   backgroundColor: '#6798E7'
                 },
-                {
-                  label: '平均淨利損',
-                  data: [10, 20, 30, 40],
-                  fill: false,
-                  borderColor: '#FF6424',
-                  tension: 0.1,
-                  pointStyle: 'circle',
-                  pointRadius: 5,
-                  pointBorderColor: '#FF6424',
-                  backgroundColor: '#FF6424'
-                },
+                // {
+                //   label: '平均淨利損',
+                //   data: [10, 20, 30, 40],
+                //   fill: false,
+                //   borderColor: '#FF6424',
+                //   tension: 0.1,
+                //   pointStyle: 'circle',
+                //   pointRadius: 5,
+                //   pointBorderColor: '#FF6424',
+                //   backgroundColor: '#FF6424'
+                // },
               ],
 
             }}
@@ -251,14 +230,36 @@ export class Chart_Index extends Component {
             <div className="my-3 d-flex justify-content-between">
               <div className="ml-2 charttitle">本月收支直方圖(單位:元)</div>
             </div>
-            <Bar data={Horizontaldata} options={{
-              plugins: {
-                legend: {
-                  display: true,
-                  position: 'bottom'
+            <Bar data={{
+              type: 'bar',
+              labels: Object.keys(this.state.diagrams).reverse(),
+              datasets: [
+
+                {
+                  label: '收入',
+                  data: this.state.income.reverse(),
+                  fill: true,
+                  backgroundColor: 'rgb(75, 192, 192)',
+                  borderColor: 'rgb(75, 192, 192)',
+                  tension: 0.1
                 },
-              }
-            }} />
+                {
+                  label: '支出',
+                  data: this.state.cost.reverse(),
+                  fill: true,
+                  backgroundColor: '#FF6424',
+                  borderColor: '#FF6424',
+                  tension: 0.1
+                },]
+            }}
+              options={{
+                plugins: {
+                  legend: {
+                    display: true,
+                    position: 'bottom'
+                  },
+                }
+              }} />
           </div>
           <div className="col-3 mx-auto chartback">
             <div className="my-3 d-flex justify-content-between">
