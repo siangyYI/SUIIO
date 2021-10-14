@@ -158,11 +158,12 @@ export class Chart_Index extends Component {
             </div>
 
             <Line data={{
-              label: months,
+              type: 'line',
+              labels: ['七月', '八月', '九月', '十月'],
               datasets: [
                 {
                   label: '支出',
-                  data: cos,
+                  data: [65, 59, 80, 61],
                   fill: false,
                   borderColor: '#00BFA0',
                   tension: 0.1,
@@ -172,7 +173,7 @@ export class Chart_Index extends Component {
                   backgroundColor: '#00BFA0'
                 }, {
                   label: '收入',
-                  // data: cos,
+                  data: [10,20],
                   fill: false,
                   borderColor: '#6798E7',
                   tension: 0.1,
@@ -183,7 +184,7 @@ export class Chart_Index extends Component {
                 },
                 {
                   label: '平均淨利損',
-                  // data: [10, 20, 30, 40],
+                  data: [10, 20, 30, 40],
                   fill: false,
                   borderColor: '#FF6424',
                   tension: 0.1,
