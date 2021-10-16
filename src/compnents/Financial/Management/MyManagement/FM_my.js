@@ -1,4 +1,4 @@
-import React ,{ Component } from "react";
+import React from "react";
 import Card from "./FM_my_card";
 
 function FM_my(){

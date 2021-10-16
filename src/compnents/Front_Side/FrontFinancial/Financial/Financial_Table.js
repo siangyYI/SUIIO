@@ -59,7 +59,6 @@ export class FinancialTable extends Component {
       clearfont = "";
     let categoryF;
     if (this.state.accounts.category == "其他項目") {
-      // eslint-disable-next-line react/no-direct-mutation-state
       this.state.accounts.category = "一般報表";
       categoryF = (
         <div
@@ -176,22 +175,53 @@ export class FinancialTable extends Component {
                 let amountcost;
 
                 x.amount > 0
-                  ? (amountincome = Number(
+                  ? (amountincome = <div style={{color: "#2bb966"}}>{Number(
                     parseFloat(x.amount).toFixed(3)
                   ).toLocaleString("en", {
                     minimumFractionDigits: 0,
-                  }))
+                  })}</div>)
                   : (amountincome = "-");
                 x.amount > 0
                   ? (amountcost = "-")
-                  : (amountcost = Number(
+                  : (amountcost = <div style={{color: "#cf2626"}}>{Number(
                     parseFloat(Math.abs(x.amount)).toFixed(3)
                   ).toLocaleString("en", {
                     minimumFractionDigits: 0,
-                  }));
+                  })}</div>);
                 clear = income - cost;
                 oldbalance = this.state.accounts.balance - income + cost;
                 clear > 0 ? (clearfont = "本期淨利") : (clearfont = "本期淨損");
+                // let amount
+                // if (x.amount < 0) {
+                //   amount = (
+                //     <h1
+                //       style={{
+                //         color: "#cf2626",
+                //         fontSize: "25px",
+                //         textAlign: "right",
+                //         marginRight: "10px",
+                //         fontWeight: "bold", }}>{Number(parseFloat(Math.abs(x.amount)).toFixed(3)).toLocaleString("en", {minimumFractionDigits: 0,})}
+                //         </h1>
+    
+                //   );
+                // } else if (x.amount > 0) {
+                //   amount = (
+                //     <h1
+                //       style={{
+                //         color: "#2f553f",
+                //         fontSize: "25px",
+                //         textAlign: "right",
+                //         marginRight: "10px",
+                //         fontWeight: "bold",
+                //       }}
+                //     >
+                //       NT$ &nbsp;
+                //       {Number(parseFloat(x.amount).toFixed(3)).toLocaleString("en", {
+                //         minimumFractionDigits: 0,
+                //       })}
+                //     </h1>
+                //   );
+                // }
                 return (
                   <Link
                     to={`/income/detail?ID=${x.ID}`}

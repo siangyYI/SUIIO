@@ -1,6 +1,5 @@
 import React from "react";
 import Card from "./FM_audit_card";
-import { Component } from "react";
 
 
 function FM_audit(){

@@ -241,18 +241,19 @@ function MessageTable() {
             </div>
             <div className="d-flex flex-column col">
               <Box sx={{ minWidth: 20 }} className="bd-highlight">
-                <NativeSelect
+                <select
                   defaultValue={30}
                   inputProps={{
                     name: "name",
                     id: "uncontrolled-native",
                   }}
-                  className="my-2"
-                  style={{ backgroundColor: "#866f39", fontWeight: "bold", color: '#eff349' }}
+                  className="DropdownMess"
+                  style={{ backgroundColor: "#483939", fontWeight: "bold", color: '#eff349', }}
                 >
+                  
                   <option value={10} >小周</option>
                   <option value={20}>周大大</option>
-                </NativeSelect>
+                </select>
               </Box>
               <div className=" bd-highlight d-flex">
                 <Input

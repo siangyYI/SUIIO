@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import "../../Meeting/Management/css/reconder.css";
+import "../../../styles/reconder.css";
 import arrow_icon from "../../../Image/arrow_icon.png";
 import MessageTable from "../FrontFinancial/Income/Message";
 import { thisExpression } from "@babel/types";

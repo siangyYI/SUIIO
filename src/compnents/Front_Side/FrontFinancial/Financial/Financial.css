@@ -1,6 +1,14 @@
 .FTable tr:hover{
-background-color: #ffe69b !important;
+background-color: #fff3d1 !important;
 }
 td,th{
     font-size: 16px !important;
+}
+.total{
+    font-size: 18px !important;
+    font-weight: bold !important;
+}
+.AllTotal{
+    font-weight: bold !important;
+padding: 16px 8px 16px 8px !important;
 }

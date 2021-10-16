@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "../../Meeting/Management/css/Index.css";
+import "../../../styles/Index.css";
 
 import { Meeting_Card } from "./Meeting_Card";
 export class Index extends Component {

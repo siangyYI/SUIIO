@@ -16,13 +16,12 @@ export class Financial_Index extends Component {
     }
     this.update()
   }
-
   update = () => {
     fetch('http://localhost:4000/api/statement/fetch/all')
       .then((res) => res.json())
       .then((data) => this.setState({ statements: data }))
   }
-  
+
   fetchContent = async (id) => {
     await fetch(`http://localhost:4000/api/statement/fetch/id/${id}`)
       .then((res) => res.json())

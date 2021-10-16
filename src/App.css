@@ -41,3 +41,36 @@ aside a {
 li{
   font-size: 20px;
 }
+.recordcontent {
+  background-color: #F7F7EB;
+  height: 100vh;
+}
+.meeting>.title {
+  font-size: 16pt;
+}
+.title {
+  color: #583f00;
+  font-weight: bold;
+  font-size: 18pt;
+  margin-bottom: 0;
+}
+.date {
+  color: #757575;
+  font-weight: bold;
+  font-size: 12pt;
+}
+.meeting {
+  border-radius: 5px;
+}
+.Dropdown {
+  /*下拉式選單*/
+  border-width: 2px;
+  border: 2px solid #000000;
+  color: #000000;
+  border-radius: 9px;
+  height: 32px;
+  width: 135pt;
+  outline: none;
+  font-size: 16px;
+  text-align: center;
+}

@@ -1,0 +1,78 @@
+.meetingcontent {
+    background-color: #ffc43e;
+    border-radius: 10px;
+}
+
+.textcontent {
+    background-color: #ffd679;
+    border-radius: 10px;
+    height: 46vh;
+}
+
+.textmeeting {
+    font-size: 18pt;
+    color: #494444;
+    /* font-weight: bold; */
+}
+
+.text {
+    font-size: 18pt;
+    color: #8f4f4f;
+    /* font-weight: bold; */
+}
+
+.contenttext {
+    font-size: 20pt;
+}
+
+.recondertitle {
+    color: #01597f;
+    font-weight: bold;
+    font-size: 30pt;
+}
+
+.attend {
+    font-weight: bold;
+    color: #432a65;
+    font-size: 14pt;
+}
+
+.attend_2 {
+    font-weight: bold;
+    color: #a9184b;
+    font-size: 14pt;
+}
+
+.absentt {
+    color: #432a65;
+    font-size: 14pt;
+}
+
+.absentt_2 {
+    color: #a9184b;
+    font-size: 14pt;
+}
+
+.row {
+    margin-right: 0 !important;
+    margin-left: 0 !important;
+}
+
+@media screen and(min-width: 575px) {
+    .content>.text {
+        font-size: 30pt;
+    }
+    .content>.contenttext {
+        font-size: 30pt;
+    }
+}
+
+@media screen and (max-width: 575px) {
+    .recordcontent {
+        border-top-left-radius: 0pt;
+        border-bottom-left-radius: 0pt;
+    }
+    .content>.text {
+        font-size: 12px;
+    }
+}
