@@ -1,58 +1,6 @@
 import React, { Component } from "react";
 import { Bar, Line, Pie } from "react-chartjs-2";
 import "./ChartIndex.css";
-const Doughnutdata1 = {
-  //支出圓餅圖
-  type: "pie",
-  labels: ["資管週", "大迎新", "送舊", "聖誕晚會", "民歌"],
-  datasets: [
-    {
-      label: "# of Votes",
-      data: [15, 50, 20, 10, 30],
-      backgroundColor: [
-        "rgba(255, 99, 132)",
-        "rgba(54, 162, 235)",
-        "rgba(255, 206, 86)",
-        "rgba(75, 192, 192)",
-        "rgba(75, 192, 30)",
-      ],
-      borderColor: [
-        "rgba(255, 99, 132, 1)",
-        "rgba(54, 162, 235, 1)",
-        "rgba(255, 206, 86, 1)",
-        "rgba(75, 192, 192, 1)",
-        "rgba(75, 192, 30, 1)",
-      ],
-      borderWidth: 1,
-    },
-  ],
-};
-const Doughnutdata = {
-  //收入圓餅圖
-  type: "pie",
-  labels: ["資管週", "大迎新", "送舊", "聖誕晚會", "科費"],
-  datasets: [
-    {
-      label: "# of Votes",
-      data: [12, 19, 3, 5, 50],
-      backgroundColor: [
-        "rgba(255, 99, 132)",
-        "rgba(54, 162, 235)",
-        "rgba(255, 206, 86)",
-        "rgba(75, 192, 192)",
-        "rgba(75, 192, 12)",
-      ],
-      borderColor: [
-        "rgba(255, 99, 132, 1)",
-        "rgba(54, 162, 235, 1)",
-        "rgba(255, 206, 86, 1)",
-        "rgba(75, 192, 192, 1)",
-        "rgba(75, 192, 12, 1)",
-      ],
-      borderWidth: 1,
-    },
-  ],
-};
 
 export class Chart_Index extends Component {
   constructor(props) {
@@ -65,6 +13,12 @@ export class Chart_Index extends Component {
       review: false,
       income: [],
       cost: [],
+      cost_kind: [],
+      cost_amount: [],
+      income_kind: [],
+      income_amount: [],
+      costAll: 0,
+      incomeAll: 0,
     };
   }
   update = () => {
@@ -110,6 +64,49 @@ export class Chart_Index extends Component {
       }
     });
     
+
+    let Costcategory = [];
+    let Incomecategory = [];
+    this.state.diagrams[12].map((x) => {
+      if (x.amount > 0) {
+        Incomecategory[x.category] = Incomecategory[x.category] || [];
+        Incomecategory[x.category].push(x);
+      } else {
+        Costcategory[x.category] = Costcategory[x.category] || [];
+        Costcategory[x.category].push(x);
+      }
+    });
+
+    let Incomeamount = Object.keys(Incomecategory);
+    let Costamount = Object.keys(Costcategory);
+
+    Incomeamount.forEach((element) => {
+      let Incomecount = 0;
+      Incomecategory[element].forEach((item) => {
+        Incomecount += item.amount;
+      });
+      this.state.income_kind.push(element);
+      this.state.income_amount.push(Incomecount);
+    });
+    Costamount.forEach((element) => {
+      let Costcount = 0;
+      Costcategory[element].forEach((item) => {
+        Costcount += item.amount;
+      });
+      this.state.cost_kind.push(element);
+      this.state.cost_amount.push(Costcount);
+    });
+    this.state.cost_amount.forEach((x) => {
+      this.state.costAll += x;
+    });
+    console.log(this.state.costAll);
+
+    this.state.income_amount.forEach((x) => {
+      this.state.incomeAll += x;
+    });
+    console.log(this.state.incomeAll);
+
+
     Object.values(result).map((value) => {
       total = value;
       inc.push(total.income);
@@ -212,17 +209,17 @@ export class Chart_Index extends Component {
           <div className="col-3  mx-auto chartback">
             <div className="my-3 d-flex justify-content-between">
               <div className="ml-2 charttitle">收入占比圓餅圖</div>
-              <div className="charttext">$1300</div>
+              <div className="charttext">NT$&nbsp;{this.state.incomeAll}</div>
             </div>
-
             <Pie
               data={{
+                //支出圓餅圖
                 type: "pie",
-                labels: ["資管週", "大迎新", "送舊", "聖誕晚會", "民歌"],
+                labels: this.state.income_kind,
                 datasets: [
                   {
                     label: "# of Votes",
-                    data: [15, 50, 20, 10, 30],
+                    data: this.state.income_amount,
                     backgroundColor: [
                       "rgba(255, 99, 132)",
                       "rgba(54, 162, 235)",
@@ -314,15 +311,40 @@ export class Chart_Index extends Component {
           <div className="col-3 mx-auto chartback">
             <div className="my-3 d-flex justify-content-between">
               <div className="ml-2 charttitle">支出占比圓餅圖</div>
-              <div className="charttext1">$1300</div>
+              <div className="charttext1">NT$&nbsp;{Math.abs(this.state.costAll)}</div>
             </div>
             <Pie
-              data={Doughnutdata1}
+              data={{
+                //支出圓餅圖
+                type: "pie",
+                labels: this.state.cost_kind,
+                datasets: [
+                  {
+                    label: "# of Votes",
+                    data: this.state.cost_amount,
+                    backgroundColor: [
+                      "rgba(255, 99, 132)",
+                      "rgba(54, 162, 235)",
+                      "rgba(255, 206, 86)",
+                      "rgba(75, 192, 192)",
+                      "rgba(75, 192, 30)",
+                    ],
+                    borderColor: [
+                      "rgba(255, 99, 132, 1)",
+                      "rgba(54, 162, 235, 1)",
+                      "rgba(255, 206, 86, 1)",
+                      "rgba(75, 192, 192, 1)",
+                      "rgba(75, 192, 30, 1)",
+                    ],
+                    borderWidth: 1,
+                  },
+                ],
+              }}
               options={{
+                responsive: true,
+                maintainAspectRatio: true,
                 plugins: {
                   tooltip: {
-                    titleFontSize: 12,
-                    bodyFontSize: 12,
                     enabled: true,
                     callbacks: {
                       label: function (tooltipItem) {

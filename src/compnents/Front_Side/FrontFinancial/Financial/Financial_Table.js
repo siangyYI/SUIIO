@@ -42,12 +42,12 @@ export class FinancialTable extends Component {
       await this.setState({ id: ary3[1] });
     }
     await this.fetchContent(this.state.id);
-    await this.setState({ acc: this.state.accounts.accounts.reverse() });
+    await this.setState({ acc: this.state.accounts.accounts });
     await this.setState({ name: this.state.accounts.name });
     await this.setState({ category: this.state.accounts.category });
     await this.setState({ date: this.state.accounts.date });
     await this.setState({ accounts: this.state.accounts });
-    console.log(this.state.acc);
+    console.log(this.state.category);
   }
 
   render() {
@@ -140,8 +140,6 @@ export class FinancialTable extends Component {
                 const year = date.getFullYear();
                 const month = date.getMonth() + 1;
                 const day = date.getDate();
-                
-
                 this.oldyear = year;
                 let category;
                 if (x.category == "其他項目") {
@@ -177,19 +175,19 @@ export class FinancialTable extends Component {
                 let amountcost;
 
                 x.amount > 0
-                  ? (amountincome = <div style={{color: "#2bb966"}}>{Number(
-                    parseFloat(x.amount).toFixed(3)
-                  ).toLocaleString("en", {
-                    minimumFractionDigits: 0,
-                  })}</div>)
-                  : (amountincome = "--");
+                  ? (amountincome = Number(
+                      parseFloat(x.amount).toFixed(3)
+                    ).toLocaleString("en", {
+                      minimumFractionDigits: 0,
+                    }))
+                  : (amountincome = "-");
                 x.amount > 0
-                  ? (amountcost = "--")
-                  : (amountcost = <div style={{color: "#cf2626"}}>{Number(
-                    parseFloat(Math.abs(x.amount)).toFixed(3)
-                  ).toLocaleString("en", {
-                    minimumFractionDigits: 0,
-                  })}</div>);
+                  ? (amountcost = "-")
+                  : (amountcost = Number(
+                      parseFloat(Math.abs(x.amount)).toFixed(3)
+                    ).toLocaleString("en", {
+                      minimumFractionDigits: 0,
+                    }));
                 clear = income - cost;
                 oldbalance = this.state.accounts.balance - income + cost;
                 clear > 0 ? (clearfont = "本期淨利") : (clearfont = "本期淨損");
@@ -253,7 +251,7 @@ export class FinancialTable extends Component {
         <TableContainer
           component={Paper}
           className="mt-4"
-          style={{ width: "40%", margin: "0 auto" }}
+          style={{ width: "40%", margin:"0 auto"}}
         >
           <Table style={{ backgroundColor: "#ae714f", color: "white" }}>
             <TableRow>
@@ -284,7 +282,7 @@ export class FinancialTable extends Component {
               </TableCell>
             </TableRow>
             <TableRow>
-              <TableCell className="AllTotal" align="center">
+              <TableCell className="AllTotal"  align="center">
                 本期餘額
               </TableCell>
               <TableCell className="AllTotal" align="center">
