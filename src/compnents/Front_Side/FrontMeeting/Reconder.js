@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import "../../../styles/reconder.css";
 import arrow_icon from "../../../Image/arrow_icon.png";
 import MessageTable from "../FrontFinancial/Income/Message";
-import { thisExpression } from "@babel/types";
 import { Container } from "reactstrap";
 
 export class reconder extends Component {

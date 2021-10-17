@@ -106,24 +106,16 @@ export class Chart_Index extends Component {
           }
           amount > 0 ? (total.income += amount) : (total.cost += amount * -1);
           result[month] = total;
-
         });
       }
     });
-    // console.log(result)
+    
     Object.values(result).map((value) => {
       total = value;
       inc.push(total.income);
       cos.push(total.cost);
     });
-    // if (this.total.income === [] || this.total.cost === []) {
-    //   this.setState({
-    //     income: 0,
-    //     cost: 0
-    //   })
-    // } else {
-
-    // }
+    console.log(result[12].income)
     this.setState({
       income: inc,
       cost: cos,
@@ -224,7 +216,31 @@ export class Chart_Index extends Component {
             </div>
 
             <Pie
-              data={Doughnutdata}
+              data={{
+                type: "pie",
+                labels: ["資管週", "大迎新", "送舊", "聖誕晚會", "民歌"],
+                datasets: [
+                  {
+                    label: "# of Votes",
+                    data: [15, 50, 20, 10, 30],
+                    backgroundColor: [
+                      "rgba(255, 99, 132)",
+                      "rgba(54, 162, 235)",
+                      "rgba(255, 206, 86)",
+                      "rgba(75, 192, 192)",
+                      "rgba(75, 192, 30)",
+                    ],
+                    borderColor: [
+                      "rgba(255, 99, 132, 1)",
+                      "rgba(54, 162, 235, 1)",
+                      "rgba(255, 206, 86, 1)",
+                      "rgba(75, 192, 192, 1)",
+                      "rgba(75, 192, 30, 1)",
+                    ],
+                    borderWidth: 1,
+                  },
+                ],
+              }}
               options={{
                 responsive: true,
                 maintainAspectRatio: true,
