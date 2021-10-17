@@ -57,12 +57,13 @@ export class Income_Detail extends Component {
       );
     }
     let category;
-    if (this.state.content.category == "其他項目") {
+    if (this.state.content.category === "其他項目") {
+      // eslint-disable-next-line react/no-direct-mutation-state
       this.state.content.category = "一般項目";
       category = (
         <div
           className="host badge badge-secondary"
-          style={{ backgroundColor: "#b6b6b6", color: "white" }}
+          style={{ backgroundColor: "#ae714f", color: "white" }}
         >
           {this.state.content.category}
         </div>
@@ -90,6 +91,7 @@ export class Income_Detail extends Component {
         </Link>{" "}
         <Container>
           <Card className="row p-5" style={{ backgroundColor: "#f0db8e" }}>
+            {/* eslint-disable-next-line react/jsx-no-duplicate-props*/}
             <div className="col-5" className="Income">
               <img
                 src={require("../../../../Image/711.png").default}

@@ -62,6 +62,7 @@ export class Income_Index extends Component {
         </div>
         <div className="row mt-2 px-5">
           {this.state.account.map((x) => (
+            // eslint-disable-next-line react/jsx-pascal-case
             <Income_Card account={x} />
           ))}
         </div>

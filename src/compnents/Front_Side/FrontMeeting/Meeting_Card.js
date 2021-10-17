@@ -1,14 +1,13 @@
 import React, { Component } from "react";
 import { Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import { Search } from "semantic-ui-react";
 import "../FrontFinancial/Income/Income.css"
 
 export class Meeting_Card extends Component {
   render() {
     let { conferences } = this.props;
     let category;
-    if (conferences.category == "籃球比賽") {
+    if (conferences.category === "籃球比賽") {
       conferences.category = "一般項目";
       category = (
         <div

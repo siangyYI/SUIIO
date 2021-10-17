@@ -58,12 +58,13 @@ export class FinancialTable extends Component {
       oldbalance = 0,
       clearfont = "";
     let categoryF;
-    if (this.state.accounts.category == "其他項目") {
+    if (this.state.accounts.category === "其他項目") {
+      // eslint-disable-next-line react/no-direct-mutation-state
       this.state.accounts.category = "一般報表";
       categoryF = (
         <div
           className="host badge badge-secondary"
-          style={{ backgroundColor: "#ae714f", color: "#e6ddd8" }}
+          style={{ backgroundColor: "#4f5784", color: "#e6ddd8" }}
         >
           {this.state.accounts.category}
         </div>
@@ -72,7 +73,7 @@ export class FinancialTable extends Component {
       categoryF = (
         <div
           className="host badge badge-secondary"
-          style={{ backgroundColor: "#59420a", color: "white" }}
+          style={{ backgroundColor: "#009688", color: "white" }}
         >
           {this.state.accounts.category}
         </div>
@@ -95,28 +96,25 @@ export class FinancialTable extends Component {
           <Table style={{ minWidth: "700" }} aria-label="spanning table">
             <TableHead style={{ backgroundColor: "#ffe69b" }}>
               <TableRow>
-                <TableCell align="center" style={{ width: "2%" }}>
+                <TableCell align="center" style={{ width: "2%" , fontWeight: "bold" }}>
                   月
                 </TableCell>
-                <TableCell align="center" style={{ width: "2%" }}>
+                <TableCell align="center" style={{ width: "2%", fontWeight: "bold"  }}>
                   日
                 </TableCell>
-                <TableCell align="center" style={{ width: "100px" }}>
+                <TableCell align="center" style={{ width: "100px" , fontWeight: "bold" }}>
                   申請人
                 </TableCell>
-                <TableCell align="center" style={{ width: "100px" }}>
+                <TableCell align="center" style={{ width: "100px" , fontWeight: "bold" }}>
                   活動類別
                 </TableCell>
-                <TableCell
-                  align="center"
-                  style={{ width: "200px", fontWeight: "bold" }}
-                >
+                <TableCell  style={{ width: "200px", fontWeight: "bold" }}  >
                   收支名稱
                 </TableCell>
-                <TableCell align="center" style={{ width: "100px" }}>
+                <TableCell align="center" style={{ width: "100px", fontWeight: "bold"  }}>
                   收入
                 </TableCell>
-                <TableCell align="center" style={{ width: "100px" }}>
+                <TableCell align="center" style={{ width: "100px", fontWeight: "bold"  }}>
                   支出
                 </TableCell>
               </TableRow>
@@ -126,7 +124,7 @@ export class FinancialTable extends Component {
                   style={{
                     backgroundColor: "#5c84ad",
                     color: "white",
-                    height: "20px",
+                    height: "33px",
                     textAlign: "center",
                   }}
                 >
@@ -142,13 +140,13 @@ export class FinancialTable extends Component {
                 const day = date.getDate();
                 this.oldyear = year;
                 let category;
-                if (x.category == "其他項目") {
+                if (x.category === "其他項目") {
                   category = "一般項目";
                   // console.log(x.category);
                   category = (
                     <div
                       className="host badge badge-secondary"
-                      style={{ backgroundColor: "#b6b6b6", color: "white" }}
+                      style={{ backgroundColor: "#ae714f", color: "white" }}
                     >
                       {category}
                     </div>
@@ -157,17 +155,15 @@ export class FinancialTable extends Component {
                   category = (
                     <div
                       className="host badge badge-secondary"
-                      style={{ backgroundColor: "#c79500", color: "white" }}
+                      style={{ backgroundColor: "#59420a", color: "white" }}
                     >
                       {x.category}
                     </div>
                   );
                 }
 
-                let newYear = false;
-
                 if (year !== lastYear) {
-                  newYear = true;
+                  
                   lastYear = year;
                 }
                 x.amount > 0 ? (income += x.amount) : (cost += x.amount * -1);
@@ -180,9 +176,9 @@ export class FinancialTable extends Component {
                     ).toLocaleString("en", {
                       minimumFractionDigits: 0,
                     }))
-                  : (amountincome = "-");
+                  : (amountincome = "--");
                 x.amount > 0
-                  ? (amountcost = "-")
+                  ? (amountcost = "--")
                   : (amountcost = Number(
                       parseFloat(Math.abs(x.amount)).toFixed(3)
                     ).toLocaleString("en", {
@@ -208,11 +204,11 @@ export class FinancialTable extends Component {
                       <TableCell align="center">
                         <div>{category}</div>
                       </TableCell>
-                      <TableCell align="center" style={{ fontWeight: "bold" }}>
+                      <TableCell style={{ fontWeight: "bold" }}>
                         {x.name}
                       </TableCell>
-                      <TableCell align="right">{amountincome}</TableCell>
-                      <TableCell align="right">{amountcost}</TableCell>
+                      <TableCell align="right" style={{color:"green"}} className="fontSize">{amountincome}</TableCell>
+                      <TableCell align="right"style={{color:"red"}} className="fontSize">{amountcost}</TableCell>
                     </TableRow>
                   </Link>
                 );

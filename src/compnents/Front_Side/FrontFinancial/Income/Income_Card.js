@@ -42,7 +42,7 @@ export class Income_Card extends Component {
       );
     }
     let category;
-    if (account.category == "其他項目") {
+    if (account.category === "其他項目") {
       account.category = "一般項目";
       category = (
         <div

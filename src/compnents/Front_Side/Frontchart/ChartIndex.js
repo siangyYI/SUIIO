@@ -6,10 +6,18 @@ export class Chart_Index extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      id: 6,
+      accounts: [],
+      acc: [],
+      upload: [],
+      result_cadre: {},
+      income_kind_cadre: [],
+      income_amount_cadre: [],
+      cost_kind_cadre: [],
+      cost_amount_cadre: [],
       diagrams: {},
       year: 2019,
       month: 12,
-      accounts: [],
       review: false,
       income: [],
       cost: [],
@@ -21,13 +29,13 @@ export class Chart_Index extends Component {
       incomeAll: 0,
     };
   }
-  update = () => {
-    fetch('http://localhost:4000/api/account/fetch/all')
+  fetchContent = async (id) => {
+    await fetch(`http://localhost:4000/api/statement/fetch/id/${id}`)
       .then((res) => res.json())
-      .then((data) => this.setState({ account: data }))
-  }
+      .then((data) => this.setState({ accounts: data }));
+  };
   diagram = async (year, month) => {
-    console.log(year, month);
+    // console.log(year, month);
     await fetch(
       `http://localhost:4000/api/account/fetch/diagram/${year}/${month}`
     )
@@ -38,6 +46,69 @@ export class Chart_Index extends Component {
       });
   };
   async componentWillMount() {
+    await this.fetchContent(this.state.id);
+    this.setState({ acc: this.state.accounts.accounts });
+    this.setState({ accounts: this.state.accounts });
+
+    // eslint-disable-next-line array-callback-return
+    this.state.acc.map((x) => {
+      this.state.upload.push(x.uploadBy);
+    })
+    const upload = this.state.upload.map(x => x);
+    // eslint-disable-next-line array-callback-return
+    upload.map((item) => {
+      console.log(this.state.id);
+      console.log(this.state.result_cadre)
+      this.state.result_cadre[item] = this.state.result_cadre[item] ? this.state.result_cadre[item] + 1 : 1;
+      console.log(Object.keys(this.state.result_cadre));
+    });
+
+
+    let Costcadre = [];
+    let Incomecadre = [];
+    // eslint-disable-next-line array-callback-return
+    this.state.acc.map((x) => {
+
+      if (x.amount > 0) {
+        Incomecadre[x.uploadBy] = Incomecadre[x.uploadBy] || [];
+        Incomecadre[x.uploadBy].push(x);
+      } else {
+        Costcadre[x.uploadBy] = Costcadre[x.uploadBy] || [];
+        Costcadre[x.uploadBy].push(x);
+      }
+    });
+    
+    console.log(Costcadre);
+    let Incomeamount_cadre = Object.keys(Incomecadre);
+    let Costamount_cadre = Object.keys(Costcadre);
+    Incomeamount_cadre.forEach((element) => {
+
+      // eslint-disable-next-line no-unused-vars
+      let Incomecount_cadre = 0;
+      Incomecadre[element].forEach((item) => {
+        Incomecount_cadre += item.amount;
+
+      });
+      this.state.income_kind.push(element);
+      this.state.income_amount.push(this.state.income_kind);
+    });
+
+
+    Costamount_cadre.forEach((element) => {
+      let Costcount_cadre = 0;
+      Costcadre[element].forEach((item) => {
+        Costcount_cadre += item.amount;
+        console.log(Costcount_cadre)
+      });
+      this.state.cost_kind_cadre.push(element);
+      this.state.cost_amount_cadre.push(Costcount_cadre);
+    });
+
+
+
+
+
+
     await this.diagram(this.state.year, this.state.month);
     let months = [],
       result = {},
@@ -45,12 +116,14 @@ export class Chart_Index extends Component {
       inc = [],
       cos = [];
     months = Object.keys(this.state.diagrams);
+    // eslint-disable-next-line array-callback-return
     months.map((month) => {
       // console.log(this.state.diagrams[month]);
       const total = { cost: 0, income: 0 };
       if (!this.state.diagrams[month].length) {
         result[month] = total
       } else {
+        // eslint-disable-next-line array-callback-return
         this.state.diagrams[month].map((detail) => {
           // console.log(detail);
           const amount = detail.amount;
@@ -63,11 +136,12 @@ export class Chart_Index extends Component {
         });
       }
     });
-    
 
     let Costcategory = [];
     let Incomecategory = [];
+    // eslint-disable-next-line array-callback-return
     this.state.diagrams[12].map((x) => {
+
       if (x.amount > 0) {
         Incomecategory[x.category] = Incomecategory[x.category] || [];
         Incomecategory[x.category].push(x);
@@ -78,50 +152,53 @@ export class Chart_Index extends Component {
     });
 
     let Incomeamount = Object.keys(Incomecategory);
-    let Costamount = Object.keys(Costcategory);
 
+    let Costamount = Object.keys(Costcategory);
+    // console.log(Costamount)
     Incomeamount.forEach((element) => {
+
       let Incomecount = 0;
       Incomecategory[element].forEach((item) => {
         Incomecount += item.amount;
+
       });
       this.state.income_kind.push(element);
       this.state.income_amount.push(Incomecount);
     });
+
+
     Costamount.forEach((element) => {
       let Costcount = 0;
       Costcategory[element].forEach((item) => {
         Costcount += item.amount;
+        // console.log(Costcount)
       });
       this.state.cost_kind.push(element);
       this.state.cost_amount.push(Costcount);
     });
+    // console.log(this.state.cost_kind);
     this.state.cost_amount.forEach((x) => {
       this.state.costAll += x;
     });
-    console.log(this.state.costAll);
+    // console.log(this.state.costAll);
 
     this.state.income_amount.forEach((x) => {
       this.state.incomeAll += x;
     });
-    console.log(this.state.incomeAll);
+    // console.log(this.state.incomeAll);
 
 
+    // eslint-disable-next-line array-callback-return
     Object.values(result).map((value) => {
       total = value;
       inc.push(total.income);
       cos.push(total.cost);
     });
-    console.log(result[12].income)
+    // console.log(result[12].income)
     this.setState({
       income: inc,
       cost: cos,
     });
-    let sum = 0;
-    inc.forEach(function (element) {
-      sum += element;
-    });
-    // console.log(sum);
   }
 
   render() {
@@ -251,6 +328,7 @@ export class Chart_Index extends Component {
                       footer: (ttItem) => {
                         let sum = 0;
                         let dataArr = ttItem[0].dataset.data;
+                        // eslint-disable-next-line array-callback-return
                         dataArr.map((data) => {
                           sum += Number(data);
                         });
@@ -273,16 +351,16 @@ export class Chart_Index extends Component {
         <div className="row my-5">
           <div className="col-7 mx-auto chartback">
             <div className="my-3 d-flex justify-content-between">
-              <div className="ml-2 charttitle">本月收支直方圖(單位:元)</div>
+              <div className="ml-2 charttitle">各幹部收支直方圖(單位:元)</div>
             </div>
             <Bar
               data={{
                 type: "bar",
-                labels: Object.keys(this.state.diagrams),
+                labels: Object.keys(this.state.result_cadre),
                 datasets: [
                   {
                     label: "收入",
-                    data: this.state.income.reverse(),
+                    data: this.state.income_amount,
                     fill: true,
                     backgroundColor: "rgb(75, 192, 192)",
                     borderColor: "rgb(75, 192, 192)",
@@ -290,7 +368,7 @@ export class Chart_Index extends Component {
                   },
                   {
                     label: "支出",
-                    data: this.state.cost.reverse(),
+                    data: this.state.cost_amount,
                     fill: true,
                     backgroundColor: "#FF6424",
                     borderColor: "#FF6424",
@@ -353,6 +431,7 @@ export class Chart_Index extends Component {
                       footer: (ttItem) => {
                         let sum = 0;
                         let dataArr = ttItem[0].dataset.data;
+                        // eslint-disable-next-line array-callback-return
                         dataArr.map((data) => {
                           sum += Number(data);
                         });

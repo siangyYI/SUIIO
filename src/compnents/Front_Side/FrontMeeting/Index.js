@@ -55,6 +55,7 @@ export class Index extends Component {
         </div>
         <div className="row mt-2 px-5">
           {this.state.conferences.map((x) => (
+            // eslint-disable-next-line react/jsx-pascal-case
             <Meeting_Card conferences={x} />
           ))}
         </div>

@@ -1,7 +1,6 @@
 import React from "react";
 import "../Navbar.css";
-import FrontUsercard from "./Frontusercard";
-import { Component, useEffect } from "react";
+import { Component } from "react";
 import Bell from "../bell";
 import User from "../user";
 
@@ -31,16 +30,14 @@ class NavBar extends Component {
 
     let url = window.location.href;
     let ary1 = [];
-    let aryf = [];
     let reary = [];
     ary1 = url.split("/");
-    aryf = ary1[4];
 
     reary = ary1[3].split("?");
     console.log(ary1);
 
     let nav;
-    if (ary1[3] == "income" || reary[0] == "income/detail" || ary1[3] == "") {
+    if (ary1[3] === "income" || reary[0] === "income/detail" || ary1[3] === "") {
       this.relo()
       nav = (
         <aside>
@@ -102,7 +99,7 @@ class NavBar extends Component {
         </aside>
 
       );
-    } if (ary1[3] == "financial" || reary[0] == "financial/detail") {
+    } if (ary1[3] === "financial" || reary[0] === "financial/detail") {
       nav = (
         <aside>
           <div className="my-4" style={{ filter: 'contrast(0.5)' }}>
@@ -163,7 +160,7 @@ class NavBar extends Component {
         </aside>
 
       );
-    } if (ary1[3] == "chart") {
+    } if (ary1[3] === "chart") {
       nav = (
         <aside>
           <div className="my-4" style={{ filter: 'contrast(0.5)' }}>
@@ -223,7 +220,7 @@ class NavBar extends Component {
           </div>
         </aside>
       );
-    } if (ary1[3] == "compare") {
+    } if (ary1[3] === "compare") {
       nav = (
         <aside>
           <div className="my-4" style={{ filter: 'contrast(0.5)' }}>
@@ -284,7 +281,7 @@ class NavBar extends Component {
         </aside>
 
       );
-    } if (ary1[3] == "meet" || reary[0] == "meet/reconder") {
+    } if (ary1[3] === "meet" || reary[0] === "meet/reconder") {
       nav = (
         <aside>
           <div className="my-4" style={{ filter: 'contrast(0.5)' }}>

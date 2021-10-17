@@ -12,3 +12,6 @@ td,th{
     font-weight: bold !important;
 padding: 16px 8px 16px 8px !important;
 }
+.fontSize{
+    font-size: 17px!important;
+}

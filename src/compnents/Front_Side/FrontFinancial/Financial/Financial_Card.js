@@ -7,13 +7,13 @@ export class Financial_Card extends Component {
         let { statements } = this.props;
         let category;
         console.log(statements.category)
-        if (statements.category == "其他項目") {
+        if (statements.category === "其他項目") {
             statements.category = "一般報表";
             console.log(statements.category)
             category = (
                 <div
                     className="host badge badge-secondary"
-                    style={{ backgroundColor: "#ae714f", color: "white" }}
+                    style={{ backgroundColor: "#4f5784", color: "white" }}
                 >
                     {statements.category}
                 </div>
@@ -22,7 +22,7 @@ export class Financial_Card extends Component {
             category = (
                 <div
                     className="host badge badge-secondary"
-                    style={{ backgroundColor: "#59420a", color: "white" }}
+                    style={{ backgroundColor: "#009688", color: "white" }}
                 >
                     {statements.category}
                 </div>

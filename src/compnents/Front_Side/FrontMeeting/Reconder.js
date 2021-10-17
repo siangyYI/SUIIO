@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import "../../../styles/reconder.css";
 import arrow_icon from "../../../Image/arrow_icon.png";
 import MessageTable from "../FrontFinancial/Income/Message";
-import { thisExpression } from "@babel/types";
 import { Container } from "reactstrap";
 
 export class reconder extends Component {
@@ -55,20 +54,20 @@ export class reconder extends Component {
     let attend = [];
     this.state.attendees.forEach((element, index) => {
       attend.push(element + (this.state.attendees.length - 1 === index ? "" : ","));
-      if ((index + 1) % 5 == 0 && index != 0) {
+      if ((index + 1) % 5 === 0 && index !== 0) {
         attend.push(<br />);
       }
     });
     let absent = [];
     this.state.absentees.forEach((element, index) => {
       absent.push(element + (this.state.absentees.length - 1 === index ? "" : ","));
-      if ((index + 1) % 5 == 0 && index != 0) {
+      if ((index + 1) % 5 === 0 && index !== 0) {
         absent.push(<br />);
       }
     });
     let URIcategory = this.state.category;
     let category;
-    if (URIcategory == "籃球比賽") {
+    if (URIcategory === "籃球比賽") {
       URIcategory = "一般項目";
       category = (
         <div
@@ -90,7 +89,7 @@ export class reconder extends Component {
     }
     return (
       <>
-        <Link to="/MeetIndex">
+        <Link to="/meet">
           <img
             src={arrow_icon}
             alt="arrow_icon"
@@ -104,11 +103,11 @@ export class reconder extends Component {
           <div className="meetingcontent mt-3">
             <div className="pt-4 mx-4 ">
               <div className="row my-2">
-                <div className=" col-md-1" style={{ display: "inline-block" }}>
+                <div className="" style={{ display: "inline-block" }}>
                   {category}
                 </div>
                 <h1
-                  className="col-md-8 font-weight-bold"
+                  className="col  font-weight-bold"
                   style={{
                     color: "#583f00",
                     fontWeight: "600",
