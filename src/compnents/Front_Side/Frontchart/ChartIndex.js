@@ -49,7 +49,6 @@ export class Chart_Index extends Component {
     await this.fetchContent(this.state.id);
     this.setState({ acc: this.state.accounts.accounts });
     this.setState({ accounts: this.state.accounts });
-
     // eslint-disable-next-line array-callback-return
     this.state.acc.map((x) => {
       this.state.upload.push(x.uploadBy);
@@ -57,58 +56,27 @@ export class Chart_Index extends Component {
     const upload = this.state.upload.map(x => x);
     // eslint-disable-next-line array-callback-return
     upload.map((item) => {
-      console.log(this.state.id);
-      console.log(this.state.result_cadre)
       this.state.result_cadre[item] = this.state.result_cadre[item] ? this.state.result_cadre[item] + 1 : 1;
-      console.log(Object.keys(this.state.result_cadre));
     });
+    let cadre = [];
 
-
-    let Costcadre = [];
-    let Incomecadre = [];
     // eslint-disable-next-line array-callback-return
     this.state.acc.map((x) => {
-
-      if (x.amount > 0) {
-        Incomecadre[x.uploadBy] = Incomecadre[x.uploadBy] || [];
-        Incomecadre[x.uploadBy].push(x);
-      } else {
-        Costcadre[x.uploadBy] = Costcadre[x.uploadBy] || [];
-        Costcadre[x.uploadBy].push(x);
-      }
-    });
-    
-    console.log(Costcadre);
-    let Incomeamount_cadre = Object.keys(Incomecadre);
-    let Costamount_cadre = Object.keys(Costcadre);
-    Incomeamount_cadre.forEach((element) => {
-
-      // eslint-disable-next-line no-unused-vars
-      let Incomecount_cadre = 0;
-      Incomecadre[element].forEach((item) => {
-        Incomecount_cadre += item.amount;
-
-      });
-      this.state.income_kind.push(element);
-      this.state.income_amount.push(this.state.income_kind);
+      cadre[x.uploadBy] = cadre[x.uploadBy] || [];
+      cadre[x.uploadBy].push(x);
     });
 
-
+    let Costamount_cadre = Object.keys(cadre);
     Costamount_cadre.forEach((element) => {
       let Costcount_cadre = 0;
-      Costcadre[element].forEach((item) => {
+      cadre[element].forEach((item) => {
         Costcount_cadre += item.amount;
-        console.log(Costcount_cadre)
+
       });
       this.state.cost_kind_cadre.push(element);
       this.state.cost_amount_cadre.push(Costcount_cadre);
     });
-
-
-
-
-
-
+    console.log(this.state.cost_amount_cadre)
     await this.diagram(this.state.year, this.state.month);
     let months = [],
       result = {},
@@ -238,26 +206,26 @@ export class Chart_Index extends Component {
                   {
                     label: "支出",
 
-                    data: this.state.cost.reverse(),
+                    data: this.state.cost,
                     fill: false,
-                    borderColor: "#00BFA0",
+                    borderColor: "#b21b45",
                     tension: 0.1,
                     pointStyle: "circle",
                     pointRadius: 5,
-                    pointBorderColor: "#00BFA0",
-                    backgroundColor: "#00BFA0",
+                    pointBorderColor: "#b21b45",
+                    backgroundColor: "#b21b45",
                   },
                   {
                     label: "收入",
 
-                    data: this.state.income.reverse(),
+                    data: this.state.income,
                     fill: false,
-                    borderColor: "#6798E7",
+                    borderColor: "#2fc3a3",
                     tension: 0.1,
                     pointStyle: "circle",
                     pointRadius: 5,
-                    pointBorderColor: "#6798E7",
-                    backgroundColor: "#6798E7",
+                    pointBorderColor: "#2fc3a3",
+                    backgroundColor: "#2fc3a3",
                   },
 
                   // {
@@ -359,19 +327,11 @@ export class Chart_Index extends Component {
                 labels: Object.keys(this.state.result_cadre),
                 datasets: [
                   {
-                    label: "收入",
-                    data: this.state.income_amount,
+                    label: "淨收支",
+                    data: this.state.cost_amount_cadre,
                     fill: true,
-                    backgroundColor: "rgb(75, 192, 192)",
-                    borderColor: "rgb(75, 192, 192)",
-                    tension: 0.1,
-                  },
-                  {
-                    label: "支出",
-                    data: this.state.cost_amount,
-                    fill: true,
-                    backgroundColor: "#FF6424",
-                    borderColor: "#FF6424",
+                    backgroundColor: "#0a5d8a",
+                    borderColor: "#0a5d8a",
                     tension: 0.1,
                   },
                 ],

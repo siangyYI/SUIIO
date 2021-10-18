@@ -80,7 +80,7 @@ export class Income_Detail extends Component {
     }
     return (
       <>
-        <Link to="/IncomeIndex">
+        <Link to="/income">
           <img
             src={arrow_icon}
             alt="arrow_icon"
