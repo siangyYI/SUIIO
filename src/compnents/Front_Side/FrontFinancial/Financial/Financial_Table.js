@@ -42,7 +42,7 @@ export class FinancialTable extends Component {
       await this.setState({ id: ary3[1] });
     }
     await this.fetchContent(this.state.id);
-    await this.setState({ acc: this.state.accounts.accounts });
+    await this.setState({ acc: this.state.accounts.accounts.reverse() });
     await this.setState({ name: this.state.accounts.name });
     await this.setState({ category: this.state.accounts.category });
     await this.setState({ date: this.state.accounts.date });
@@ -124,7 +124,7 @@ export class FinancialTable extends Component {
                   style={{
                     backgroundColor: "#5c84ad",
                     color: "white",
-                    height: "33px",
+                    height: "37px",
                     textAlign: "center",
                   }}
                 >
@@ -187,6 +187,7 @@ export class FinancialTable extends Component {
                 clear = income - cost;
                 oldbalance = this.state.accounts.balance - income + cost;
                 clear > 0 ? (clearfont = "本期淨利") : (clearfont = "本期淨損");
+                
                 return (
                   <Link
                     to={`/income/detail?ID=${x.ID}`}
@@ -254,7 +255,7 @@ export class FinancialTable extends Component {
               <TableCell className="AllTotal" align="center">
                 {clearfont}
               </TableCell>
-              <TableCell className="AllTotal" align="center">
+              <TableCell className="AllTotal" align="left">
                 NT$ &nbsp;
                 {Number(parseFloat(Math.abs(clear)).toFixed(3)).toLocaleString(
                   "en",
@@ -268,7 +269,7 @@ export class FinancialTable extends Component {
               <TableCell className="AllTotal" align="center">
                 上期餘額
               </TableCell>
-              <TableCell className="AllTotal" align="center">
+              <TableCell className="AllTotal" align="left">
                 NT$ &nbsp;
                 {Number(
                   parseFloat(Math.abs(oldbalance)).toFixed(3)
@@ -281,7 +282,7 @@ export class FinancialTable extends Component {
               <TableCell className="AllTotal"  align="center">
                 本期餘額
               </TableCell>
-              <TableCell className="AllTotal" align="center">
+              <TableCell className="AllTotal" align="left">
                 NT$ &nbsp;
                 {Number(
                   parseFloat(this.state.accounts.balance).toFixed(3)
