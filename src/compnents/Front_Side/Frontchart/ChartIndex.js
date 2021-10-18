@@ -30,7 +30,6 @@ export class Chart_Index extends Component {
     };
   }
   fetchContent = async (id) => {
-    //hello
     await fetch(`http://localhost:4000/api/statement/fetch/id/${id}`)
       .then((res) => res.json())
       .then((data) => this.setState({ accounts: data }));
