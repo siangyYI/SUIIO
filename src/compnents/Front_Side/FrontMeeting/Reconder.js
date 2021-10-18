@@ -4,6 +4,7 @@ import "../../../styles/reconder.css";
 import arrow_icon from "../../../Image/arrow_icon.png";
 import MessageTable from "../FrontFinancial/Income/Message";
 import { Container } from "reactstrap";
+import { textAlign } from "@mui/system";
 
 export class reconder extends Component {
   constructor(props) {
@@ -72,7 +73,7 @@ export class reconder extends Component {
       category = (
         <div
           className="host badge badge-secondary"
-          style={{ backgroundColor: "#ae714f", color: "#e6ddd8" }}
+          style={{ backgroundColor: "#ae714f", color: "white" }}
         >
           {URIcategory}{" "}
         </div>
@@ -122,7 +123,8 @@ export class reconder extends Component {
                     fontSize: "18px",
                     fontWeight: "bold",
                     color: "#5c5c5c",
-                    marginLeft:'8%'
+                    marginLeft:'8%',
+                    textAlign:"right"
                   }}
                 >
                   {this.state.date}

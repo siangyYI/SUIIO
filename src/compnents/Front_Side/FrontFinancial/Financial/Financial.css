@@ -15,3 +15,9 @@ padding: 16px 8px 16px 8px !important;
 .fontSize{
     font-size: 17px!important;
 }
+.MuiTableCell-root{
+    padding-top: 14px !important;
+    padding-right: 14px !important;
+    padding-bottom: 14px !important;
+    padding-left: 14px !important;
+}

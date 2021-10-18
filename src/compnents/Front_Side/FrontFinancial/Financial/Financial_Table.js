@@ -64,7 +64,7 @@ export class FinancialTable extends Component {
       categoryF = (
         <div
           className="host badge badge-secondary"
-          style={{ backgroundColor: "#4f5784", color: "#e6ddd8" }}
+          style={{ backgroundColor: "#ae714f", color: "#e6ddd8" }}
         >
           {this.state.accounts.category}
         </div>
@@ -73,7 +73,7 @@ export class FinancialTable extends Component {
       categoryF = (
         <div
           className="host badge badge-secondary"
-          style={{ backgroundColor: "#009688", color: "white" }}
+          style={{ backgroundColor: "#59420a", color: "white" }}
         >
           {this.state.accounts.category}
         </div>
@@ -145,8 +145,8 @@ export class FinancialTable extends Component {
                   // console.log(x.category);
                   category = (
                     <div
-                      className="host badge badge-secondary"
-                      style={{ backgroundColor: "#ae714f", color: "white" }}
+                      className="badge badge-secondary"
+                      style={{ backgroundColor: "#009688", color: "white",fontSize: "16px" }}
                     >
                       {category}
                     </div>
@@ -155,7 +155,7 @@ export class FinancialTable extends Component {
                   category = (
                     <div
                       className="host badge badge-secondary"
-                      style={{ backgroundColor: "#59420a", color: "white" }}
+                      style={{ backgroundColor: "#4f5784", color: "white",fontSize: "16px" }}
                     >
                       {x.category}
                     </div>
