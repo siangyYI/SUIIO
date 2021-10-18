@@ -13,7 +13,7 @@ export class Financial_Card extends Component {
             category = (
                 <div
                     className="host badge badge-secondary"
-                    style={{ backgroundColor: "#4f5784", color: "white" }}
+                    style={{ backgroundColor: "#ae714f", color: "white" }}
                 >
                     {statements.category}
                 </div>
@@ -22,7 +22,7 @@ export class Financial_Card extends Component {
             category = (
                 <div
                     className="host badge badge-secondary"
-                    style={{ backgroundColor: "#009688", color: "white" }}
+                    style={{ backgroundColor: "#59420a", color: "white" }}
                 >
                     {statements.category}
                 </div>
