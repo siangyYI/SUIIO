@@ -42,7 +42,7 @@ export class FinancialTable extends Component {
       await this.setState({ id: ary3[1] });
     }
     await this.fetchContent(this.state.id);
-    await this.setState({ acc: this.state.accounts.accounts });
+    await this.setState({ acc: this.state.accounts.accounts.reverse() });
     await this.setState({ name: this.state.accounts.name });
     await this.setState({ category: this.state.accounts.category });
     await this.setState({ date: this.state.accounts.date });
@@ -65,7 +65,9 @@ export class FinancialTable extends Component {
       categoryF = (
         <div
           className="host badge badge-secondary"
+
           style={{ backgroundColor: "#59420a", color: "#e6ddd8" }}
+
         >
           {this.state.accounts.category}
         </div>
@@ -74,6 +76,7 @@ export class FinancialTable extends Component {
       categoryF = (
         <div
           className="host badge badge-secondary"
+
           style={{ backgroundColor: "#ae714f", color: "white" }}
         >
           {this.state.accounts.category}
@@ -125,7 +128,7 @@ export class FinancialTable extends Component {
                   style={{
                     backgroundColor: "#5c84ad",
                     color: "white",
-                    height: "33px",
+                    height: "37px",
                     textAlign: "center",
                   }}
                 >
@@ -147,7 +150,9 @@ export class FinancialTable extends Component {
                   category = (
                     <div
                       className="badge badge-secondary"
+
                       style={{ backgroundColor: "#4f5784", color: "white", fontSize: '16px' }}
+
                     >
                       {category}
                     </div>
@@ -155,8 +160,10 @@ export class FinancialTable extends Component {
                 } else {
                   category = (
                     <div
+
                       className="badge badge-secondary"
                       style={{ backgroundColor: "#009688", color: "white", fontSize: '16px' }}
+
                     >
                       {x.category}
                     </div>
@@ -271,7 +278,7 @@ export class FinancialTable extends Component {
               <TableCell className="AllTotal" align="center">
                 上期餘額
               </TableCell>
-              <TableCell className="AllTotal" align="center">
+              <TableCell className="AllTotal" align="left">
                 NT$ &nbsp;
                 {Number(
                   parseFloat(Math.abs(oldbalance)).toFixed(3)
@@ -284,7 +291,7 @@ export class FinancialTable extends Component {
               <TableCell className="AllTotal" align="center">
                 {clearfont}
               </TableCell>
-              <TableCell className="AllTotal" align="center">
+              <TableCell className="AllTotal" align="left">
                 NT$ &nbsp;
                 {clearnumber}
               </TableCell>
@@ -293,7 +300,7 @@ export class FinancialTable extends Component {
               <TableCell className="AllTotal" align="center">
                 本期餘額
               </TableCell>
-              <TableCell className="AllTotal" align="center">
+              <TableCell className="AllTotal" align="left">
                 NT$ &nbsp;
                 {Number(
                   parseFloat(this.state.accounts.balance).toFixed(3)

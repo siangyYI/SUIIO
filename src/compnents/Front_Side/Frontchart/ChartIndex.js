@@ -59,14 +59,17 @@ export class Chart_Index extends Component {
       this.state.result_cadre[item] = this.state.result_cadre[item] ? this.state.result_cadre[item] + 1 : 1;
     });
     let cadre = [];
-
     // eslint-disable-next-line array-callback-return
     this.state.acc.map((x) => {
-      cadre[x.uploadBy] = cadre[x.uploadBy] || [];
-      cadre[x.uploadBy].push(x);
+      if (x.amount < 0) {
+        cadre[x.uploadBy] = cadre[x.uploadBy] || [];
+        cadre[x.uploadBy].push(x);
+      }
+
     });
 
     let Costamount_cadre = Object.keys(cadre);
+
     Costamount_cadre.forEach((element) => {
       let Costcount_cadre = 0;
       cadre[element].forEach((item) => {
@@ -76,7 +79,8 @@ export class Chart_Index extends Component {
       this.state.cost_kind_cadre.push(element);
       this.state.cost_amount_cadre.push(Costcount_cadre);
     });
-    console.log(this.state.cost_amount_cadre)
+    console.log(this.state.cost_kind_cadre)
+
     await this.diagram(this.state.year, this.state.month);
     let months = [],
       result = {},
@@ -93,7 +97,7 @@ export class Chart_Index extends Component {
       } else {
         // eslint-disable-next-line array-callback-return
         this.state.diagrams[month].map((detail) => {
-          // console.log(detail);
+
           const amount = detail.amount;
           if (detail == null) {
             total.income = 0;
@@ -319,12 +323,12 @@ export class Chart_Index extends Component {
         <div className="row my-5">
           <div className="col-7 mx-auto chartback">
             <div className="my-3 d-flex justify-content-between">
-              <div className="ml-2 charttitle">各幹部收支直方圖(單位:元)</div>
+              <div className="ml-2 charttitle">各幹部支出直方圖(單位:元)</div>
             </div>
             <Bar
               data={{
                 type: "bar",
-                labels: Object.keys(this.state.result_cadre),
+                labels: this.state.cost_kind_cadre,
                 datasets: [
                   {
                     label: "淨收支",
