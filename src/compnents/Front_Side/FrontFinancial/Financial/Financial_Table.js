@@ -187,7 +187,7 @@ export class FinancialTable extends Component {
                 clear = income - cost;
                 oldbalance = this.state.accounts.balance - income + cost;
                 clear > 0 
-                ? (clearfont = <div className="host badge badge-secondary" style={{backgroundColor: "white",color:"#7cff00"}}>本期淨利</div>) 
+                ? (clearfont = <div className="host badge badge-secondary" style={{backgroundColor: "white",color:"#0a8000"}}>本期淨利</div>) 
                 : (clearfont = <div className="host badge badge-secondary" style={{backgroundColor: "white",color:"red"}}>本期淨損</div>);
                 return (
                   <Link
