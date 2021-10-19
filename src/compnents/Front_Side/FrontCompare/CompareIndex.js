@@ -140,15 +140,30 @@ const CompareIndex = () => {
           className="d-flex flex-column  Comparenav"
           style={{ marginTop: "50px" }}
         >
-          <div className="Comparecon my-2 px-2">
-            <a onClick={() => scrollToAnchor("activity1")}>比較圖表</a>
-          </div>
-          <div className="Comparecon my-2 px-2">
-            <a onClick={() => scrollToAnchor("activity2")}>淨利/損</a>
-          </div>
-          <div className="Comparecon my-2 px-2">
-            <a onClick={() => scrollToAnchor("activity3")}>淨利/損圓餅圖</a>
-          </div>
+          <a
+            onClick={() => scrollToAnchor("activity1")}
+            className="Comparecon my-2 px-2"
+          >
+            比較圖表
+          </a>
+          <a
+            onClick={() => scrollToAnchor("activity2")}
+            className="Comparecon my-2 px-2"
+          >
+            淨利/損
+          </a>
+          <a
+            onClick={() => scrollToAnchor("activity3")}
+            className="Comparecon my-2 px-2"
+          >
+            淨利/損圓餅圖
+          </a>
+          <a
+            onClick={() => scrollToAnchor("activity4")}
+            className="Comparecon my-2 px-2"
+          >
+            活動圖表
+          </a>
         </div>
       </div>
 
