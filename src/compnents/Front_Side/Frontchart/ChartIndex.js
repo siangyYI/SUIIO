@@ -176,8 +176,9 @@ export class Chart_Index extends Component {
   render() {
     return (
       <>
-        <div className="row mt-5">
-          <div className="col-7 mx-auto chartback">
+      
+        <div className="row mt-4 d-flex justify-content-center">
+          <div className="col-5 ml-4 chartback">
             <div className="my-3 d-flex justify-content-between">
               <div className="ml-2 charttitle">本月收支折線圖(單位:元)</div>
               {/* <select
@@ -231,18 +232,6 @@ export class Chart_Index extends Component {
                     pointBorderColor: "#2fc3a3",
                     backgroundColor: "#2fc3a3",
                   },
-
-                  // {
-                  //   label: '平均淨利損',
-                  //   data: [10, 20, 30, 40],
-                  //   fill: false,
-                  //   borderColor: '#FF6424',
-                  //   tension: 0.1,
-                  //   pointStyle: 'circle',
-                  //   pointRadius: 5,
-                  //   pointBorderColor: '#FF6424',
-                  //   backgroundColor: '#FF6424'
-                  // },
                 ],
               }}
               options={{
@@ -255,73 +244,49 @@ export class Chart_Index extends Component {
               }}
             />
           </div>
-          <div className="col-3  mx-auto chartback">
+          <div className="col-5 ml-4 chartback">
             <div className="my-3 d-flex justify-content-between">
-              <div className="ml-2 charttitle">收入占比圓餅圖</div>
-              <div className="charttext">NT$&nbsp;{this.state.incomeAll}</div>
+              <div className="ml-2 charttitle">各幹部支出直方圖(單位:元)</div>
             </div>
-            <Pie
+            <Bar
               data={{
-                //支出圓餅圖
-                type: "pie",
-                labels: this.state.income_kind,
+                type: "bar",
+                labels: this.state.cost_kind_cadre,
                 datasets: [
                   {
-                    label: "# of Votes",
-                    data: this.state.income_amount,
-                    backgroundColor: [
-                      "rgba(255, 99, 132)",
-                      "rgba(54, 162, 235)",
-                      "rgba(255, 206, 86)",
-                      "rgba(75, 192, 192)",
-                      "rgba(75, 192, 30)",
-                    ],
-                    borderColor: [
-                      "rgba(255, 99, 132, 1)",
-                      "rgba(54, 162, 235, 1)",
-                      "rgba(255, 206, 86, 1)",
-                      "rgba(75, 192, 192, 1)",
-                      "rgba(75, 192, 30, 1)",
-                    ],
-                    borderWidth: 1,
+                    label: "淨收支",
+                    data: this.state.cost_amount_cadre,
+                    backgroundColor: "#0a5d8a",
+                    borderColor: "#0a5d8a",
+                    tension: 0.1,
                   },
                 ],
               }}
               options={{
-                responsive: true,
-                maintainAspectRatio: true,
-                plugins: {
-                  tooltip: {
-                    enabled: true,
-                    callbacks: {
-                      label: function (tooltipItem) {
-                        return tooltipItem.parsed + "元";
-                      },
-                      footer: (ttItem) => {
-                        let sum = 0;
-                        let dataArr = ttItem[0].dataset.data;
-                        // eslint-disable-next-line array-callback-return
-                        dataArr.map((data) => {
-                          sum += Number(data);
-                        });
-
-                        let percentage =
-                          ((ttItem[0].parsed * 100) / sum).toFixed(2) + "%";
-                        return `占比: ${percentage}`;
-                      },
-                    },
-                  },
-                  legend: {
-                    display: true,
-                    position: "bottom",
-                  },
+                title: {
+                  display: false
                 },
+                legend: {
+                  display: false
+                },
+                scales: {
+                  xAxes: [{
+                    ticks: {
+                      beginAtZero: true
+                    }
+                  }],
+                  yAxes: [{
+                    ticks: {
+                      mirror: true // 只需将 mirror 设为 true 即可达到想要的效果
+                    }
+                  }]
+                }
               }}
             />
           </div>
         </div>
-        <div className="row my-5">
-          <div className="col-7 mx-auto chartback">
+        <div className="row my-4 d-flex justify-content-center">
+          <div className="col-5 ml-4 chartback">
             <div className="my-3 d-flex justify-content-between">
               <div className="ml-2 charttitle">各幹部支出直方圖(單位:元)</div>
             </div>
@@ -350,8 +315,8 @@ export class Chart_Index extends Component {
               }}
             />
           </div>
-          <div className="col-3 mx-auto chartback">
-            <div className="my-3 d-flex justify-content-between">
+          <div className="col-5 ml-4 chartback">
+            <div className=" d-flex justify-content-between">
               <div className="ml-2 charttitle">支出占比圓餅圖</div>
               <div className="charttext1">NT$&nbsp;{Math.abs(this.state.costAll)}</div>
             </div>
@@ -369,14 +334,14 @@ export class Chart_Index extends Component {
                       "rgba(54, 162, 235)",
                       "rgba(255, 206, 86)",
                       "rgba(75, 192, 192)",
-                      "rgba(75, 192, 30)",
+                      "rgba(75, 192, 30)"
                     ],
                     borderColor: [
                       "rgba(255, 99, 132, 1)",
                       "rgba(54, 162, 235, 1)",
                       "rgba(255, 206, 86, 1)",
                       "rgba(75, 192, 192, 1)",
-                      "rgba(75, 192, 30, 1)",
+                      "rgba(75, 192, 30, 1)"
                     ],
                     borderWidth: 1,
                   },
