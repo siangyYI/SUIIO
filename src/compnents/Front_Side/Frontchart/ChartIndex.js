@@ -53,13 +53,11 @@ export class Chart_Index extends Component {
     // eslint-disable-next-line array-callback-return
     this.state.acc.map((x) => {
       this.state.upload.push(x.uploadBy);
-    });
-    const upload = this.state.upload.map((x) => x);
+    })
+    const upload = this.state.upload.map(x => x);
     // eslint-disable-next-line array-callback-return
     upload.map((item) => {
-      this.state.result_cadre[item] = this.state.result_cadre[item]
-        ? this.state.result_cadre[item] + 1
-        : 1;
+      this.state.result_cadre[item] = this.state.result_cadre[item] ? this.state.result_cadre[item] + 1 : 1;
     });
     let cadre = [];
     // eslint-disable-next-line array-callback-return
@@ -68,6 +66,7 @@ export class Chart_Index extends Component {
         cadre[x.uploadBy] = cadre[x.uploadBy] || [];
         cadre[x.uploadBy].push(x);
       }
+
     });
 
     let Costamount_cadre = Object.keys(cadre);
@@ -76,6 +75,7 @@ export class Chart_Index extends Component {
       let Costcount_cadre = 0;
       cadre[element].forEach((item) => {
         Costcount_cadre += item.amount;
+
       });
       this.state.cost_kind_cadre.push(element);
       this.state.cost_amount_cadre.push(Costcount_cadre);
@@ -93,11 +93,12 @@ export class Chart_Index extends Component {
     months.map((month) => {
       const total = { cost: 0, income: 0 };
       if (!this.state.diagrams[month].length) {
-        result[month] = total;
-        this.state.count_diagrams.push(0);
+        result[month] = total
+        this.state.count_diagrams.push(0)
       } else {
         // eslint-disable-next-line array-callback-return
         this.state.diagrams[month].map((detail) => {
+
           const amount = detail.amount;
 
           if (detail == null) {
@@ -106,18 +107,18 @@ export class Chart_Index extends Component {
           }
           amount > 0 ? (total.income += amount) : (total.cost += amount * -1);
           result[month] = total;
+
         });
         // console.log(Object.keys(this.state.diagrams[month]).length)
-        this.state.count_diagrams.push(
-          Object.keys(this.state.diagrams[month]).length
-        );
+        this.state.count_diagrams.push(Object.keys(this.state.diagrams[month]).length)
       }
     });
-    console.log(this.state.count_diagrams);
+    console.log(this.state.count_diagrams)
     let Costcategory = [];
     let Incomecategory = [];
     // eslint-disable-next-line array-callback-return
     this.state.diagrams[12].map((x) => {
+
       if (x.amount > 0) {
         Incomecategory[x.category] = Incomecategory[x.category] || [];
         Incomecategory[x.category].push(x);
@@ -132,6 +133,7 @@ export class Chart_Index extends Component {
       let Incomecount = 0;
       Incomecategory[element].forEach((item) => {
         Incomecount += item.amount;
+
       });
       this.state.income_kind.push(element);
       this.state.income_amount.push(Incomecount);
@@ -147,6 +149,7 @@ export class Chart_Index extends Component {
     this.state.cost_amount.forEach((x) => {
       this.state.costAll += x;
     });
+
 
     this.state.income_amount.forEach((x) => {
       this.state.incomeAll += x;
@@ -167,57 +170,78 @@ export class Chart_Index extends Component {
   render() {
     return (
       <>
-        <div>
-          <div className="row">
-            <div className="col my-5 mx-3  chartback">
-              <div className="p-3">
-                <div className="m-2  charttitle">本月收支折線圖(單位:元)</div>
-
-                <Line
-                  data={{
-                    labels: Object.keys(this.state.diagrams),
-                    datasets: [
-                      {
-                        label: "支出",
-
-                        data: this.state.cost,
-                        fill: false,
-                        borderColor: "#b21b45",
-                        tension: 0.1,
-                        pointStyle: "circle",
-                        pointRadius: 5,
-                        pointBorderColor: "#b21b45",
-                        backgroundColor: "#b21b45",
-                      },
-                      {
-                        label: "收入",
-
-                        data: this.state.income,
-                        fill: false,
-                        borderColor: "#2fc3a3",
-                        tension: 0.1,
-                        pointStyle: "circle",
-                        pointRadius: 5,
-                        pointBorderColor: "#2fc3a3",
-                        backgroundColor: "#2fc3a3",
-                      },
-                    ],
-                  }}
-                  options={{
-                    plugins: {
-                      legend: {
-                        display: true,
-                        position: "bottom",
-                      },
-                    },
-                  }}
-                />
+        <div style={{ marginLeft: '10%' }}>
+          <div className="row mt-4 d-flex justify-content-start">
+            <div className="col-5 ml-4 chartback" >
+              <div className="my-3 d-flex justify-content-between">
+                <div className="ml-2 charttitle">本月收支折線圖(單位:元)</div>
+                {/* <select
+                className="mt-1 ml-3 px-2"
+                style={{
+                  borderRadius: "10px",
+                  backgroundColor: "white",
+                }}
+              >
+                <option value="none">--請選擇月分--</option>
+                <option value="Jan">一月</option>
+                <option value="Feb">二月</option>
+                <option value="Mar">三月</option>
+                <option value="Apr">四月</option>
+                <option value="May">五月</option>
+                <option value="Jun">六月</option>
+                <option value="Jul">七月</option>
+                <option value="Aug">八月</option>
+                <option value="Sep">九月</option>
+                <option value="Oct">十月</option>
+                <option value="Nov">十一月</option>
+                <option value="Dec">十二月</option>
+              </select> */}
               </div>
+
+              <Line
+                data={{
+                  labels: Object.keys(this.state.diagrams),
+                  datasets: [
+                    {
+                      label: "支出",
+
+                      data: this.state.cost,
+                      fill: false,
+                      borderColor: "#b21b45",
+                      tension: 0.1,
+                      pointStyle: "circle",
+                      pointRadius: 5,
+                      pointBorderColor: "#b21b45",
+                      backgroundColor: "#b21b45",
+                    },
+                    {
+                      label: "收入",
+
+                      data: this.state.income,
+                      fill: false,
+                      borderColor: "#2fc3a3",
+                      tension: 0.1,
+                      pointStyle: "circle",
+                      pointRadius: 5,
+                      pointBorderColor: "#2fc3a3",
+                      backgroundColor: "#2fc3a3",
+                    },
+                  ],
+                }}
+                options={{
+                  plugins: {
+                    legend: {
+                      display: true,
+                      position: "bottom",
+                    },
+                  },
+                }}
+              />
             </div>
-            <div className="col my-5 mx-3 chartback">
-              <div className="p-3">
-                <div className="m-2 charttitle">每月收支數量</div>
-              
+            <div className="col-5 ml-4 chartback">
+              <div className="my-3 d-flex justify-content-between">
+                <div className="ml-2 charttitle">每月收支數量</div>
+              </div>
               <Bar
                 data={{
                   type: "bar",
@@ -234,35 +258,31 @@ export class Chart_Index extends Component {
                 }}
                 options={{
                   title: {
-                    display: false,
+                    display: false
                   },
                   legend: {
-                    display: false,
+                    display: false
                   },
                   scales: {
-                    xAxes: [
-                      {
-                        ticks: {
-                          beginAtZero: true,
-                        },
-                      },
-                    ],
-                    yAxes: [
-                      {
-                        ticks: {
-                          mirror: true, // 只需将 mirror 设为 true 即可达到想要的效果
-                        },
-                      },
-                    ],
-                  },
+                    xAxes: [{
+                      ticks: {
+                        beginAtZero: true
+                      }
+                    }],
+                    yAxes: [{
+                      ticks: {
+                        mirror: true // 只需将 mirror 设为 true 即可达到想要的效果
+                      }
+                    }]
+                  }
                 }}
-              /></div>
+              />
             </div>
           </div>
-          <div className="row mb-5">
-            <div className="col-8 mx-3 chartback">
-              <div className="p-3">
-                <div className="m-2 charttitle">各幹部支出直方圖(單位:元)</div>
+          <div className="row my-4 d-flex justify-content-start" >
+            <div className="col-5 ml-4 chartback">
+              <div className="my-3 d-flex justify-content-between">
+                <div className="ml-2 charttitle">各幹部支出直方圖(單位:元)</div>
               </div>
               <Bar
                 data={{
@@ -289,16 +309,14 @@ export class Chart_Index extends Component {
                 }}
               />
             </div>
-            <div className="col mx-3 chartback ">
-              <div className="p-3">
-              <div className="row">
-                <div className=" col m-2  charttitle">支出占比圓餅圖</div>
-                <div className="charttext1 text-right">
-                  NT$&nbsp;{Math.abs(this.state.costAll)}
-                </div>
+            <div className="p-3 ml-4 chartback " >
+              <div className="d-flex justify-content-between">
+                <div className="ml-2 charttitle">支出占比圓餅圖</div>
+                <div className="charttext1">NT$&nbsp;{Math.abs(this.state.costAll)}</div>
               </div>
 
-              <div className="mt-5" style={{ height: "255px" }}>
+
+              <div style={{ height: '255px', width: '255px' }}>
                 <Pie
                   data={{
                     //支出圓餅圖
@@ -313,14 +331,14 @@ export class Chart_Index extends Component {
                           "rgba(54, 162, 235)",
                           "rgba(255, 206, 86)",
                           "rgba(75, 192, 192)",
-                          "rgba(75, 192, 30)",
+                          "rgba(75, 192, 30)"
                         ],
                         borderColor: [
                           "rgba(255, 99, 132, 1)",
                           "rgba(54, 162, 235, 1)",
                           "rgba(255, 206, 86, 1)",
                           "rgba(75, 192, 192, 1)",
-                          "rgba(75, 192, 30, 1)",
+                          "rgba(75, 192, 30, 1)"
                         ],
                         borderWidth: 1,
                       },
@@ -334,7 +352,7 @@ export class Chart_Index extends Component {
                         enabled: true,
                         callbacks: {
                           label: function (tooltipItem) {
-                            return Math.abs(tooltipItem.parsed) + "元";
+                            return tooltipItem.parsed + "元";
                           },
                           footer: (ttItem) => {
                             let sum = 0;
@@ -356,11 +374,14 @@ export class Chart_Index extends Component {
                       },
                     },
                   }}
-                /></div>
+                />
               </div>
+
             </div>
           </div>
+
         </div>
+
       </>
     );
   }
