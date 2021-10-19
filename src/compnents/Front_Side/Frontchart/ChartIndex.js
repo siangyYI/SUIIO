@@ -334,7 +334,7 @@ export class Chart_Index extends Component {
                         enabled: true,
                         callbacks: {
                           label: function (tooltipItem) {
-                            return tooltipItem.parsed + "元";
+                            return Math.abs(tooltipItem.parsed) + "元";
                           },
                           footer: (ttItem) => {
                             let sum = 0;
