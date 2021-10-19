@@ -15,6 +15,7 @@ export class Chart_Index extends Component {
       income_amount_cadre: [],
       cost_kind_cadre: [],
       cost_amount_cadre: [],
+      count_diagrams: [],
       diagrams: {},
       year: 2019,
       month: 12,
@@ -79,9 +80,9 @@ export class Chart_Index extends Component {
       this.state.cost_kind_cadre.push(element);
       this.state.cost_amount_cadre.push(Costcount_cadre);
     });
-    console.log(this.state.cost_kind_cadre)
 
     await this.diagram(this.state.year, this.state.month);
+
     let months = [],
       result = {},
       total = [],
@@ -90,25 +91,29 @@ export class Chart_Index extends Component {
     months = Object.keys(this.state.diagrams);
     // eslint-disable-next-line array-callback-return
     months.map((month) => {
-      // console.log(this.state.diagrams[month]);
       const total = { cost: 0, income: 0 };
       if (!this.state.diagrams[month].length) {
         result[month] = total
+        this.state.count_diagrams.push(0)
       } else {
         // eslint-disable-next-line array-callback-return
         this.state.diagrams[month].map((detail) => {
 
           const amount = detail.amount;
+
           if (detail == null) {
             total.income = 0;
             total.cost = 0;
           }
           amount > 0 ? (total.income += amount) : (total.cost += amount * -1);
           result[month] = total;
+
         });
+        // console.log(Object.keys(this.state.diagrams[month]).length)
+        this.state.count_diagrams.push(Object.keys(this.state.diagrams[month]).length)
       }
     });
-
+    console.log(this.state.count_diagrams)
     let Costcategory = [];
     let Incomecategory = [];
     // eslint-disable-next-line array-callback-return
@@ -122,13 +127,9 @@ export class Chart_Index extends Component {
         Costcategory[x.category].push(x);
       }
     });
-
     let Incomeamount = Object.keys(Incomecategory);
-
     let Costamount = Object.keys(Costcategory);
-    // console.log(Costamount)
     Incomeamount.forEach((element) => {
-
       let Incomecount = 0;
       Incomecategory[element].forEach((item) => {
         Incomecount += item.amount;
@@ -137,29 +138,22 @@ export class Chart_Index extends Component {
       this.state.income_kind.push(element);
       this.state.income_amount.push(Incomecount);
     });
-
-
     Costamount.forEach((element) => {
       let Costcount = 0;
       Costcategory[element].forEach((item) => {
         Costcount += item.amount;
-        // console.log(Costcount)
       });
       this.state.cost_kind.push(element);
       this.state.cost_amount.push(Costcount);
     });
-    // console.log(this.state.cost_kind);
     this.state.cost_amount.forEach((x) => {
       this.state.costAll += x;
     });
-    // console.log(this.state.costAll);
+
 
     this.state.income_amount.forEach((x) => {
       this.state.incomeAll += x;
     });
-    // console.log(this.state.incomeAll);
-
-
     // eslint-disable-next-line array-callback-return
     Object.values(result).map((value) => {
       total = value;
@@ -176,12 +170,12 @@ export class Chart_Index extends Component {
   render() {
     return (
       <>
-      
-        <div className="row mt-4 d-flex justify-content-center">
-          <div className="col-5 ml-4 chartback">
-            <div className="my-3 d-flex justify-content-between">
-              <div className="ml-2 charttitle">本月收支折線圖(單位:元)</div>
-              {/* <select
+        <div style={{ marginLeft: '10%' }}>
+          <div className="row mt-4 d-flex justify-content-start">
+            <div className="col-5 ml-4 chartback" >
+              <div className="my-3 d-flex justify-content-between">
+                <div className="ml-2 charttitle">本月收支折線圖(單位:元)</div>
+                {/* <select
                 className="mt-1 ml-3 px-2"
                 style={{
                   borderRadius: "10px",
@@ -202,184 +196,192 @@ export class Chart_Index extends Component {
                 <option value="Nov">十一月</option>
                 <option value="Dec">十二月</option>
               </select> */}
-            </div>
+              </div>
 
-            <Line
-              data={{
-                labels: Object.keys(this.state.diagrams),
-                datasets: [
-                  {
-                    label: "支出",
+              <Line
+                data={{
+                  labels: Object.keys(this.state.diagrams),
+                  datasets: [
+                    {
+                      label: "支出",
 
-                    data: this.state.cost,
-                    fill: false,
-                    borderColor: "#b21b45",
-                    tension: 0.1,
-                    pointStyle: "circle",
-                    pointRadius: 5,
-                    pointBorderColor: "#b21b45",
-                    backgroundColor: "#b21b45",
-                  },
-                  {
-                    label: "收入",
+                      data: this.state.cost,
+                      fill: false,
+                      borderColor: "#b21b45",
+                      tension: 0.1,
+                      pointStyle: "circle",
+                      pointRadius: 5,
+                      pointBorderColor: "#b21b45",
+                      backgroundColor: "#b21b45",
+                    },
+                    {
+                      label: "收入",
 
-                    data: this.state.income,
-                    fill: false,
-                    borderColor: "#2fc3a3",
-                    tension: 0.1,
-                    pointStyle: "circle",
-                    pointRadius: 5,
-                    pointBorderColor: "#2fc3a3",
-                    backgroundColor: "#2fc3a3",
-                  },
-                ],
-              }}
-              options={{
-                plugins: {
-                  legend: {
-                    display: true,
-                    position: "bottom",
-                  },
-                },
-              }}
-            />
-          </div>
-          <div className="col-5 ml-4 chartback">
-            <div className="my-3 d-flex justify-content-between">
-              <div className="ml-2 charttitle">各幹部支出直方圖(單位:元)</div>
-            </div>
-            <Bar
-              data={{
-                type: "bar",
-                labels: this.state.cost_kind_cadre,
-                datasets: [
-                  {
-                    label: "淨收支",
-                    data: this.state.cost_amount_cadre,
-                    backgroundColor: "#0a5d8a",
-                    borderColor: "#0a5d8a",
-                    tension: 0.1,
-                  },
-                ],
-              }}
-              options={{
-                title: {
-                  display: false
-                },
-                legend: {
-                  display: false
-                },
-                scales: {
-                  xAxes: [{
-                    ticks: {
-                      beginAtZero: true
-                    }
-                  }],
-                  yAxes: [{
-                    ticks: {
-                      mirror: true // 只需将 mirror 设为 true 即可达到想要的效果
-                    }
-                  }]
-                }
-              }}
-            />
-          </div>
-        </div>
-        <div className="row my-4 d-flex justify-content-center">
-          <div className="col-5 ml-4 chartback">
-            <div className="my-3 d-flex justify-content-between">
-              <div className="ml-2 charttitle">各幹部支出直方圖(單位:元)</div>
-            </div>
-            <Bar
-              data={{
-                type: "bar",
-                labels: this.state.cost_kind_cadre,
-                datasets: [
-                  {
-                    label: "淨收支",
-                    data: this.state.cost_amount_cadre,
-                    fill: true,
-                    backgroundColor: "#0a5d8a",
-                    borderColor: "#0a5d8a",
-                    tension: 0.1,
-                  },
-                ],
-              }}
-              options={{
-                plugins: {
-                  legend: {
-                    display: true,
-                    position: "bottom",
-                  },
-                },
-              }}
-            />
-          </div>
-          <div className="col-5 ml-4 chartback">
-            <div className=" d-flex justify-content-between">
-              <div className="ml-2 charttitle">支出占比圓餅圖</div>
-              <div className="charttext1">NT$&nbsp;{Math.abs(this.state.costAll)}</div>
-            </div>
-            <Pie
-              data={{
-                //支出圓餅圖
-                type: "pie",
-                labels: this.state.cost_kind,
-                datasets: [
-                  {
-                    label: "# of Votes",
-                    data: this.state.cost_amount,
-                    backgroundColor: [
-                      "rgba(255, 99, 132)",
-                      "rgba(54, 162, 235)",
-                      "rgba(255, 206, 86)",
-                      "rgba(75, 192, 192)",
-                      "rgba(75, 192, 30)"
-                    ],
-                    borderColor: [
-                      "rgba(255, 99, 132, 1)",
-                      "rgba(54, 162, 235, 1)",
-                      "rgba(255, 206, 86, 1)",
-                      "rgba(75, 192, 192, 1)",
-                      "rgba(75, 192, 30, 1)"
-                    ],
-                    borderWidth: 1,
-                  },
-                ],
-              }}
-              options={{
-                responsive: true,
-                maintainAspectRatio: true,
-                plugins: {
-                  tooltip: {
-                    enabled: true,
-                    callbacks: {
-                      label: function (tooltipItem) {
-                        return tooltipItem.parsed + "元";
-                      },
-                      footer: (ttItem) => {
-                        let sum = 0;
-                        let dataArr = ttItem[0].dataset.data;
-                        // eslint-disable-next-line array-callback-return
-                        dataArr.map((data) => {
-                          sum += Number(data);
-                        });
-
-                        let percentage =
-                          ((ttItem[0].parsed * 100) / sum).toFixed(2) + "%";
-                        return `占比: ${percentage}`;
-                      },
+                      data: this.state.income,
+                      fill: false,
+                      borderColor: "#2fc3a3",
+                      tension: 0.1,
+                      pointStyle: "circle",
+                      pointRadius: 5,
+                      pointBorderColor: "#2fc3a3",
+                      backgroundColor: "#2fc3a3",
+                    },
+                  ],
+                }}
+                options={{
+                  plugins: {
+                    legend: {
+                      display: true,
+                      position: "bottom",
                     },
                   },
-                  legend: {
-                    display: true,
-                    position: "bottom",
+                }}
+              />
+            </div>
+            <div className="col-5 ml-4 chartback">
+              <div className="my-3 d-flex justify-content-between">
+                <div className="ml-2 charttitle">每月收支數量</div>
+              </div>
+              <Bar
+                data={{
+                  type: "bar",
+                  labels: Object.keys(this.state.diagrams),
+                  datasets: [
+                    {
+                      label: "淨收支",
+                      data: this.state.count_diagrams,
+                      backgroundColor: "#bae26f",
+                      borderColor: "#bae26f",
+                      tension: 0.1,
+                    },
+                  ],
+                }}
+                options={{
+                  title: {
+                    display: false
                   },
-                },
-              }}
-            />
+                  legend: {
+                    display: false
+                  },
+                  scales: {
+                    xAxes: [{
+                      ticks: {
+                        beginAtZero: true
+                      }
+                    }],
+                    yAxes: [{
+                      ticks: {
+                        mirror: true // 只需将 mirror 设为 true 即可达到想要的效果
+                      }
+                    }]
+                  }
+                }}
+              />
+            </div>
           </div>
+          <div className="row my-4 d-flex justify-content-start" >
+            <div className="col-5 ml-4 chartback">
+              <div className="my-3 d-flex justify-content-between">
+                <div className="ml-2 charttitle">各幹部支出直方圖(單位:元)</div>
+              </div>
+              <Bar
+                data={{
+                  type: "bar",
+                  labels: this.state.cost_kind_cadre,
+                  datasets: [
+                    {
+                      label: "淨收支",
+                      data: this.state.cost_amount_cadre,
+                      fill: true,
+                      backgroundColor: "#0a5d8a",
+                      borderColor: "#0a5d8a",
+                      tension: 0.1,
+                    },
+                  ],
+                }}
+                options={{
+                  plugins: {
+                    legend: {
+                      display: true,
+                      position: "bottom",
+                    },
+                  },
+                }}
+              />
+            </div>
+            <div className="p-3 ml-4 chartback " >
+              <div className="d-flex justify-content-between">
+                <div className="ml-2 charttitle">支出占比圓餅圖</div>
+                <div className="charttext1">NT$&nbsp;{Math.abs(this.state.costAll)}</div>
+              </div>
+
+
+              <div style={{ height: '255px', width: '255px' }}>
+                <Pie
+                  data={{
+                    //支出圓餅圖
+                    type: "pie",
+                    labels: this.state.cost_kind,
+                    datasets: [
+                      {
+                        label: "# of Votes",
+                        data: this.state.cost_amount,
+                        backgroundColor: [
+                          "rgba(255, 99, 132)",
+                          "rgba(54, 162, 235)",
+                          "rgba(255, 206, 86)",
+                          "rgba(75, 192, 192)",
+                          "rgba(75, 192, 30)"
+                        ],
+                        borderColor: [
+                          "rgba(255, 99, 132, 1)",
+                          "rgba(54, 162, 235, 1)",
+                          "rgba(255, 206, 86, 1)",
+                          "rgba(75, 192, 192, 1)",
+                          "rgba(75, 192, 30, 1)"
+                        ],
+                        borderWidth: 1,
+                      },
+                    ],
+                  }}
+                  options={{
+                    responsive: true,
+                    maintainAspectRatio: true,
+                    plugins: {
+                      tooltip: {
+                        enabled: true,
+                        callbacks: {
+                          label: function (tooltipItem) {
+                            return tooltipItem.parsed + "元";
+                          },
+                          footer: (ttItem) => {
+                            let sum = 0;
+                            let dataArr = ttItem[0].dataset.data;
+                            // eslint-disable-next-line array-callback-return
+                            dataArr.map((data) => {
+                              sum += Number(data);
+                            });
+
+                            let percentage =
+                              ((ttItem[0].parsed * 100) / sum).toFixed(2) + "%";
+                            return `占比: ${percentage}`;
+                          },
+                        },
+                      },
+                      legend: {
+                        display: true,
+                        position: "bottom",
+                      },
+                    },
+                  }}
+                />
+              </div>
+
+            </div>
+          </div>
+
         </div>
+
       </>
     );
   }
