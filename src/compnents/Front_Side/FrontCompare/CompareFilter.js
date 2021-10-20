@@ -20,7 +20,6 @@ const filter = () => {
 
           <div className="col mt-2 text-center">
             <select className="ml-5 bDropdown">
-              <option>109學年度</option>
               <option>108學年度</option>
               <option>107學年度</option>
               <option>106學年度</option>
