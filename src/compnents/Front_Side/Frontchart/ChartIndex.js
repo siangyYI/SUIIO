@@ -78,7 +78,7 @@ export class Chart_Index extends Component {
         Costcount_cadre += item.amount;
       });
       this.state.cost_kind_cadre.push(element);
-      this.state.cost_amount_cadre.push(Costcount_cadre);
+      this.state.cost_amount_cadre.push(Math.abs(Costcount_cadre));
     });
 
     await this.diagram(this.state.year, this.state.month);
@@ -224,10 +224,10 @@ export class Chart_Index extends Component {
                   labels: Object.keys(this.state.diagrams),
                   datasets: [
                     {
-                      label: "淨收支",
+                      label: "收支數量",
                       data: this.state.count_diagrams,
-                      backgroundColor: "#bae26f",
-                      borderColor: "#bae26f",
+                      backgroundColor: "#110b0c",
+                      borderColor: "#110b0c",
                       tension: 0.1,
                     },
                   ],
@@ -270,11 +270,11 @@ export class Chart_Index extends Component {
                   labels: this.state.cost_kind_cadre,
                   datasets: [
                     {
-                      label: "淨收支",
+                      label: "支出",
                       data: this.state.cost_amount_cadre,
                       fill: true,
-                      backgroundColor: "#0a5d8a",
-                      borderColor: "#0a5d8a",
+                      backgroundColor: "#b7170f",
+                      borderColor: "#b7170f",
                       tension: 0.1,
                     },
                   ],
@@ -290,11 +290,13 @@ export class Chart_Index extends Component {
               />
             </div>
             <div className="col mx-3 chartback ">
-              <div className="p-3">
+              <div className="py-3">
                 <div className="row">
-                  <div className=" col m-2  charttitle">支出占比圓餅圖</div>
+                  <div className="col charttitle">支出占比圓餅圖</div>
                   <div className="charttext1">
-                    NT$&nbsp;{Math.abs(this.state.costAll)}
+                    NT$&nbsp;{Number(parseFloat(Math.abs(this.state.costAll)).toFixed(3)).toLocaleString("en", {
+                      minimumFractionDigits: 0,
+                    })}
                   </div>
                 </div>
 
