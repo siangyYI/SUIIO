@@ -1,5 +1,5 @@
 .FTable tr:hover{
-background-color: #fff3d1 !important;
+background-color: #eeeeee !important;
 }
 td,th{
     font-size: 16px !important;
@@ -20,4 +20,7 @@ padding: 16px 8px 16px 8px !important;
     padding-right: 14px !important;
     padding-bottom: 14px !important;
     padding-left: 14px !important;
+}
+.MuiTableCell-head{
+    color: white !important;
 }
