@@ -229,10 +229,11 @@ export class Chart_Index extends Component {
               <Bar
                 data={{
                   type: "bar",
-                  labels: "a",
+                  labels: ["支出"],
                   datasets: [
                     {
                       label: 'Dataset 1',
+                      data: [500],
                       backgroundColor: "red",
                     },
                     {
