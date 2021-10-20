@@ -2,6 +2,14 @@ import React, { Component } from "react";
 import { Bar, Line, Pie } from "react-chartjs-2";
 import "./ChartIndex.css";
 
+////////////////////////////////////////////////////////////////bar
+const DATA_COUNT = 1;
+const NUMBER_CFG = { count: DATA_COUNT, min: 0, max: 100 };
+
+const labels = "a";
+
+////////////////////////////////////////////////////////////////bar
+
 export class Chart_Index extends Component {
   constructor(props) {
     super(props);
@@ -221,6 +229,46 @@ export class Chart_Index extends Component {
               <Bar
                 data={{
                   type: "bar",
+                  labels: "a",
+                  datasets: [
+                    {
+                      label: 'Dataset 1',
+                      backgroundColor: "red",
+                    },
+                    {
+                      label: 'Dataset 2',
+                      data: [500],
+                      backgroundColor: "blue",
+                    },
+                    {
+                      label: 'Dataset 3',
+                      data: [700],
+                      backgroundColor: "green",
+                    },
+                  ],
+                }}
+                options={{
+                  indexAxis: "y",
+                  title: {
+                    display: true,
+                  },
+                  responsive: true,
+                  legend: {
+                    display: false,
+                  },
+                  scales: {
+                    x: {
+                      stacked: true,
+                    },
+                    y: {
+                      stacked: true
+                    }
+                  }
+                }}
+              /> 
+              {/* <Bar
+                data={{
+                  type: "bar",
                   labels: Object.keys(this.state.diagrams),
                   datasets: [
                     {
@@ -256,7 +304,7 @@ export class Chart_Index extends Component {
                     ],
                   },
                 }}
-              />
+              /> */}
             </div>
           </div>
           <div className="row mb-5">
@@ -294,7 +342,10 @@ export class Chart_Index extends Component {
                 <div className="row">
                   <div className="col charttitle">支出占比圓餅圖</div>
                   <div className="charttext1">
-                    NT$&nbsp;{Number(parseFloat(Math.abs(this.state.costAll)).toFixed(3)).toLocaleString("en", {
+                    NT$&nbsp;
+                    {Number(
+                      parseFloat(Math.abs(this.state.costAll)).toFixed(3)
+                    ).toLocaleString("en", {
                       minimumFractionDigits: 0,
                     })}
                   </div>
