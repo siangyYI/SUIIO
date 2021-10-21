@@ -2,14 +2,6 @@ import React, { Component } from "react";
 import { Bar, Line, Pie } from "react-chartjs-2";
 import "./ChartIndex.css";
 
-////////////////////////////////////////////////////////////////bar
-const DATA_COUNT = 1;
-const NUMBER_CFG = { count: DATA_COUNT, min: 0, max: 100 };
-
-const labels = "a";
-
-////////////////////////////////////////////////////////////////bar
-
 export class Chart_Index extends Component {
   constructor(props) {
     super(props);
@@ -54,10 +46,17 @@ export class Chart_Index extends Component {
         this.setState({ diagrams: data });
       });
   };
-  async componentWillMount() {
+
+  AllCategory = async () => {
+    await fetch(`http://localhost:4000/api/account/fetch/all`)
+      .then((res) => res.json())
+      .then((data) => this.setState({ FetchAll: data }));
+  };
+  async componentWillMount() {   
     await this.fetchContent(this.state.id);
     this.setState({ acc: this.state.accounts.accounts });
     this.setState({ accounts: this.state.accounts });
+
     // eslint-disable-next-line array-callback-return
     this.state.acc.map((x) => {
       this.state.upload.push(x.uploadBy);
@@ -90,6 +89,10 @@ export class Chart_Index extends Component {
     });
 
     await this.diagram(this.state.year, this.state.month);
+    await this.AllCategory();
+
+    console.log(this.state.FetchAll.category)
+
 
     let months = [],
       result = {},
@@ -232,17 +235,17 @@ export class Chart_Index extends Component {
                   labels: ["支出"],
                   datasets: [
                     {
-                      label: 'Dataset 1',
+                      label: "Dataset 1",
                       data: [500],
                       backgroundColor: "red",
                     },
                     {
-                      label: 'Dataset 2',
+                      label: "Dataset 2",
                       data: [500],
                       backgroundColor: "blue",
                     },
                     {
-                      label: 'Dataset 3',
+                      label: "Dataset 3",
                       data: [700],
                       backgroundColor: "green",
                     },
@@ -262,11 +265,11 @@ export class Chart_Index extends Component {
                       stacked: true,
                     },
                     y: {
-                      stacked: true
-                    }
-                  }
+                      stacked: true,
+                    },
+                  },
                 }}
-              /> 
+              />
               {/* <Bar
                 data={{
                   type: "bar",
