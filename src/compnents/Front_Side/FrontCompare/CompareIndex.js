@@ -141,26 +141,26 @@ const CompareIndex = () => {
           style={{ marginTop: "50px" }}
         >
           <a
+            onClick={() => scrollToAnchor("activity2")}
+            className="Comparecon my-2 px-3 py-1"
+          >
+            淨利/損
+          </a>
+          {/* <a
+            onClick={() => scrollToAnchor("activity3")}
+            className="Comparecon my-2 px-3 py-1"
+          >
+            淨利/損圓餅圖
+          </a> */}
+          <a
             onClick={() => scrollToAnchor("activity1")}
-            className="Comparecon my-2 px-2"
+            className="Comparecon my-2 px-3 py-1"
           >
             比較圖表
           </a>
           <a
-            onClick={() => scrollToAnchor("activity2")}
-            className="Comparecon my-2 px-2"
-          >
-            淨利/損
-          </a>
-          <a
-            onClick={() => scrollToAnchor("activity3")}
-            className="Comparecon my-2 px-2"
-          >
-            淨利/損圓餅圖
-          </a>
-          <a
             onClick={() => scrollToAnchor("activity4")}
-            className="Comparecon my-2 px-2"
+            className="Comparecon my-2 px-3 py-1"
           >
             活動圖表
           </a>
@@ -169,41 +169,12 @@ const CompareIndex = () => {
 
       <Container>
         {" "}
+        <div id="activity2">
         <CompareFilter />
-        <div id="activity1" className=""></div>
-        <div className="Comtitle mt-5">比較圖表</div>
-        <div className="d-flex justify-content-center">
-          <div className="mr-5 align-self-center">
-            <select className="cDropdown">
-              <option>九月</option>
-              <option>九~十二月</option>
-              <option>六個月</option>
-              <option>一學期</option>
-            </select>
-          </div>
         </div>
-        <div className="row mt-4">
-          <div className="mx-auto barstyle chartback">
-            <div className="my-3 d-flex justify-content-between">
-              <div className="ml-2 charttitle">九月比較長條圖(單位:元)</div>
-            </div>
-            <Bar
-              data={HorizontalData1}
-              options={{
-                plugins: {
-                  legend: {
-                    display: true,
-                    position: "bottom",
-                  },
-                },
-              }}
-              style={{ position: "relative", width: "50%", height: "50%" }}
-            />
-          </div>
-        </div>
-        <div id="activity2" className="my-5">
+        <div className="my-2">
           <div className="Comtitle">
-            <div className="mt-5">淨利/損</div>
+            <div className="">淨利/損</div>
           </div>
           <div className="row">
             <CompareDetailTwo />
@@ -212,13 +183,17 @@ const CompareIndex = () => {
         </div>
         <div id="activity3" style={{ paddingtop: "0.25%" }}>
           <div className="Comtitle  ">
-            <div className="mt-5">淨利/損圓餅圖</div>
+            <div className="">淨利/損圓餅圖</div>
           </div>
-          <div className="row my-5">
+          <div className="row my-2">
             <div
               className="mx-auto"
-              style={{ position: "relative", width: "40%" }}
+              style={{ position: "relative", width: "32%" }}
             >
+              <div className="row m-2">
+                <div className="pieText col" style={{color:"green"}}>收入&nbsp; NT38,000</div>
+                <div className="pieText col text-right"style={{color:"red"}}>支出&nbsp; NT20,000</div>
+              </div>
               <Pie
                 data={PieData}
                 options={{
@@ -259,8 +234,12 @@ const CompareIndex = () => {
             </div>
             <div
               className="mx-auto"
-              style={{ position: "relative", width: "40%" }}
+              style={{ position: "relative", width: "32%" }}
             >
+              <div className="row m-2">
+                <div className="pieText col" style={{color:"green"}}>收入&nbsp; NT37,000</div>
+                <div className="pieText col text-right"style={{color:"red"}}>支出&nbsp; NT20,000</div>
+              </div>
               <Pie
                 data={PieData1}
                 options={{
@@ -296,6 +275,37 @@ const CompareIndex = () => {
             </div>
           </div>
         </div>
+        <div id="activity1" className=""></div>
+        <div className="Comtitle mt-5">比較圖表</div>
+        <div className="d-flex justify-content-center">
+          <div className="mr-5 align-self-center">
+            <select className="cDropdown">
+              <option>九月</option>
+              <option>九~十二月</option>
+              <option>六個月</option>
+              <option>一學期</option>
+            </select>
+          </div>
+        </div>
+        <div className="row mt-4">
+          <div className="mx-auto barstyle chartback">
+            <div className="my-3 d-flex justify-content-between">
+              <div className="ml-2 charttitle">九月比較長條圖(單位:元)</div>
+            </div>
+            <Bar
+              data={HorizontalData1}
+              options={{
+                plugins: {
+                  legend: {
+                    display: true,
+                    position: "bottom",
+                  },
+                },
+              }}
+              style={{ position: "relative", width: "50%", height: "50%" }}
+            />
+          </div>
+        </div>
         <div className="ititle" id="activity4">
           活動圖表
         </div>
@@ -309,7 +319,7 @@ const CompareIndex = () => {
             </select>
           </div>
         </div>
-        <div className="row mx-auto my-5">
+        <div className="row mx-auto mt-5" style={{marginBottom:"100px"}}>
           <div
             className="mx-auto chartback"
             style={{ position: "relative", width: "45%" }}

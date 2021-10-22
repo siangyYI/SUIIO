@@ -65,9 +65,7 @@ export class FinancialTable extends Component {
       categoryF = (
         <div
           className="host badge badge-secondary"
-
           style={{ backgroundColor: "#59420a", color: "#e6ddd8" }}
-
         >
           {this.state.accounts.category}
         </div>
@@ -76,7 +74,6 @@ export class FinancialTable extends Component {
       categoryF = (
         <div
           className="host badge badge-secondary"
-
           style={{ backgroundColor: "#ae714f", color: "white" }}
         >
           {this.state.accounts.category}
@@ -98,27 +95,45 @@ export class FinancialTable extends Component {
         </div>
         <TableContainer component={Paper} className="mt-2">
           <Table style={{ minWidth: "700" }} aria-label="spanning table">
-            <TableHead style={{ backgroundColor: "#ffe69b" }}>
+            <TableHead style={{ backgroundColor: "#6d817f" }}>
               <TableRow>
-                <TableCell align="center" style={{ width: "2%", fontWeight: "bold" }}>
+                <TableCell
+                  align="center"
+                  style={{ width: "2%", fontWeight: "bold" }}
+                >
                   月
                 </TableCell>
-                <TableCell align="center" style={{ width: "2%", fontWeight: "bold" }}>
+                <TableCell
+                  align="center"
+                  style={{ width: "2%", fontWeight: "bold" }}
+                >
                   日
                 </TableCell>
-                <TableCell align="center" style={{ width: "100px", fontWeight: "bold" }}>
+                <TableCell
+                  align="center"
+                  style={{ width: "100px", fontWeight: "bold" }}
+                >
                   申請人
                 </TableCell>
-                <TableCell align="center" style={{ width: "100px", fontWeight: "bold" }}>
+                <TableCell
+                  align="center"
+                  style={{ width: "100px", fontWeight: "bold" }}
+                >
                   活動類別
                 </TableCell>
-                <TableCell style={{ width: "200px", fontWeight: "bold" }}  >
+                <TableCell style={{ width: "200px", fontWeight: "bold" }}>
                   收支名稱
                 </TableCell>
-                <TableCell align="center" style={{ width: "100px", fontWeight: "bold" }}>
+                <TableCell
+                  align="center"
+                  style={{ width: "100px", fontWeight: "bold" }}
+                >
                   收入
                 </TableCell>
-                <TableCell align="center" style={{ width: "100px", fontWeight: "bold" }}>
+                <TableCell
+                  align="center"
+                  style={{ width: "100px", fontWeight: "bold" }}
+                >
                   支出
                 </TableCell>
               </TableRow>
@@ -152,7 +167,12 @@ export class FinancialTable extends Component {
                   category = (
                     <div
                       className="badge badge-secondary"
-                      style={{ backgroundColor: "#4f5784", color: "white", fontSize: '16px' }}
+
+                      style={{
+                        backgroundColor: "#4f5784",
+                        color: "white",
+                        fontSize: "16px",
+                      }}
                     >
                       {category}
                     </div>
@@ -161,14 +181,18 @@ export class FinancialTable extends Component {
                   category = (
                     <div
                       className="badge badge-secondary"
-                      style={{ backgroundColor: "#009688", color: "white", fontSize: '16px' }}
+
+                      style={{
+                        backgroundColor: "#009688",
+                        color: "white",
+                        fontSize: "16px",
+                      }}
                     >
                       {x.category}
                     </div>
                   );
                 }
                 if (year !== lastYear) {
-
                   lastYear = year;
                 }
                 x.amount > 0 ? (income += x.amount) : (cost += x.amount * -1);
@@ -177,35 +201,46 @@ export class FinancialTable extends Component {
 
                 x.amount > 0
                   ? (amountincome = Number(
-                    parseFloat(x.amount).toFixed(3)
-                  ).toLocaleString("en", {
-                    minimumFractionDigits: 0,
-                  }))
+                      parseFloat(x.amount).toFixed(3)
+                    ).toLocaleString("en", {
+                      minimumFractionDigits: 0,
+                    }))
                   : (amountincome = "--");
                 x.amount > 0
                   ? (amountcost = "--")
                   : (amountcost = Number(
-                    parseFloat(Math.abs(x.amount)).toFixed(3)
-                  ).toLocaleString("en", {
-                    minimumFractionDigits: 0,
-                  }));
+                      parseFloat(Math.abs(x.amount)).toFixed(3)
+                    ).toLocaleString("en", {
+                      minimumFractionDigits: 0,
+                    }));
                 clear = income - cost;
                 oldbalance = this.state.accounts.balance - income + cost;
+                clear > 0 ? (clearfont = "本期淨利") : (clearfont = "本期淨損");
                 clear > 0
-                  ? (clearfont = "本期淨利")
-                  : (clearfont = "本期淨損");
-                clear > 0
-                  ? (clearnumber = <div className="badge badge-secondary" style={{ backgroundColor: "#ffffff", color: "green", fontSize: '16px' }}>
-                    {clearnumber}
-                  </div>)
-                  : (
-                    clearnumber = <div className="badge badge-secondary" style={{ backgroundColor: "#ffffff", color: "red", fontSize: '16px' }}>
-                      {Number(parseFloat(Math.abs(clear)).toFixed(3)).toLocaleString(
-                        "en",
-                        {
+                  ? (clearnumber = (
+                      <div
+                        style={{
+                          color: "green",
+                          fontSize: "16px",
+                        }}
+                      >
+                        {clearnumber}
+                      </div>
+                    ))
+                  : (clearnumber = (
+                      <div
+                        style={{
+                          color: "red",
+                          fontSize: "16px",
+                        }}
+                      >
+                        {Number(
+                          parseFloat(Math.abs(clear)).toFixed(3)
+                        ).toLocaleString("en", {
                           minimumFractionDigits: 0,
                         })}
-                    </div>);
+                      </div>
+                    ));
 
                 return (
                   <Link
@@ -227,14 +262,26 @@ export class FinancialTable extends Component {
                       <TableCell style={{ fontWeight: "bold" }}>
                         {x.name}
                       </TableCell>
-                      <TableCell align="right" style={{ color: "green" }} className="fontSize">{amountincome}</TableCell>
-                      <TableCell align="right" style={{ color: "red" }} className="fontSize">{amountcost}</TableCell>
+                      <TableCell
+                        align="right"
+                        style={{ color: "green" }}
+                        className="fontSize"
+                      >
+                        {amountincome}
+                      </TableCell>
+                      <TableCell
+                        align="right"
+                        style={{ color: "red" }}
+                        className="fontSize"
+                      >
+                        {amountcost}
+                      </TableCell>
                     </TableRow>
                   </Link>
                 );
               })}
               <TableRow
-                style={{ backgroundColor: "#ffe69b", fontSize: "18px" }}
+                style={{ backgroundColor: "#cbcbcb", fontSize: "18px" }}
               >
                 <TableCell />
                 <TableCell className="total" colSpan={4} align="center">
@@ -269,14 +316,15 @@ export class FinancialTable extends Component {
           className="mt-4"
           style={{ width: "40%", margin: "0 auto" }}
         >
-          <Table style={{ backgroundColor: "#ae714f", color: "white" }}>
-
+          <Table style={{ backgroundColor: "#ebebeb", color: "black" }}>
             <TableRow>
               <TableCell className="AllTotal" align="center">
                 上期餘額
               </TableCell>
               <TableCell className="AllTotal" align="left">
                 NT$ &nbsp;
+              </TableCell>
+              <TableCell align="right">
                 {Number(
                   parseFloat(Math.abs(oldbalance)).toFixed(3)
                 ).toLocaleString("en", {
@@ -284,21 +332,35 @@ export class FinancialTable extends Component {
                 })}
               </TableCell>
             </TableRow>
-            <TableRow>
-              <TableCell className="AllTotal" align="center">
-                {clearfont}
-              </TableCell>
-              <TableCell className="AllTotal" align="left">
-                NT$ &nbsp;
-                {clearnumber}
-              </TableCell>
-            </TableRow>
-            <TableRow>
+            {clearfont === "本期淨損" ? (
+              <TableRow style={{ color: "red" }}>
+                <TableCell className="AllTotal" align="center">
+                  {clearfont}
+                </TableCell>
+                <TableCell className="AllTotal" align="left">
+                  NT$ &nbsp;
+                </TableCell>
+                <TableCell align="right">{clearnumber}</TableCell>
+              </TableRow>
+            ) : (
+              <TableRow style={{ color: "green" }}>
+                <TableCell className="AllTotal" align="center">
+                  {clearfont}
+                </TableCell>
+                <TableCell className="AllTotal" align="left">
+                  NT$ &nbsp;
+                </TableCell>
+                <TableCell align="right">{clearnumber}</TableCell>
+              </TableRow>
+            )}
+            <TableRow style={{color:"#0019a1"}}>
               <TableCell className="AllTotal" align="center">
                 本期餘額
               </TableCell>
               <TableCell className="AllTotal" align="left">
                 NT$ &nbsp;
+              </TableCell>
+              <TableCell align="right">
                 {Number(
                   parseFloat(this.state.accounts.balance).toFixed(3)
                 ).toLocaleString("en", {

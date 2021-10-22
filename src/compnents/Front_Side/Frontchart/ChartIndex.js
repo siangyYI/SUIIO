@@ -46,10 +46,17 @@ export class Chart_Index extends Component {
         this.setState({ diagrams: data });
       });
   };
-  async componentWillMount() {
+
+  AllCategory = async () => {
+    await fetch(`http://localhost:4000/api/account/fetch/all`)
+      .then((res) => res.json())
+      .then((data) => this.setState({ FetchAll: data }));
+  };
+  async componentWillMount() {   
     await this.fetchContent(this.state.id);
     this.setState({ acc: this.state.accounts.accounts });
     this.setState({ accounts: this.state.accounts });
+
     // eslint-disable-next-line array-callback-return
     this.state.acc.map((x) => {
       this.state.upload.push(x.uploadBy);
@@ -85,6 +92,11 @@ export class Chart_Index extends Component {
       this.state.cost_amount_cadre.push(Math.abs(Costcount_cadre));
     });
     await this.diagram(this.state.year, this.state.month);
+
+    await this.AllCategory();
+
+    console.log(this.state.FetchAll.category)
+
     let months = [],
       result = {},
       total = [],
@@ -244,7 +256,49 @@ export class Chart_Index extends Component {
               </div>
               <Bar
                 data={{
-                  type: 'horizontalBar',
+                  type: "bar",
+                  labels: ["支出"],
+                  datasets: [
+                    {
+                      label: "Dataset 1",
+                      data: [500],
+                      backgroundColor: "red",
+                    },
+                    {
+                      label: "Dataset 2",
+                      data: [500],
+                      backgroundColor: "blue",
+                    },
+                    {
+                      label: "Dataset 3",
+                      data: [700],
+                      backgroundColor: "green",
+                    },
+                  ],
+                }}
+                options={{
+                  indexAxis: "y",
+                  title: {
+                    display: true,
+                  },
+                  responsive: true,
+                  legend: {
+                    display: false,
+                  },
+                  scales: {
+                    x: {
+                      stacked: true,
+                    },
+                    y: {
+                      stacked: true,
+                    },
+                  },
+                }}
+              />
+              {/* <Bar
+                data={{
+                  type: "bar",
+>>>>>>> 12f01436bd38ac3ca2801017801837fae6e073f0
                   labels: Object.keys(this.state.diagrams),
                   datasets: [
                     {
@@ -273,7 +327,7 @@ export class Chart_Index extends Component {
                     }]
                   }
                 }}
-              />
+              /> */}
             </div>
           </div>
           <div className="row mb-5">
@@ -311,7 +365,10 @@ export class Chart_Index extends Component {
                 <div className="row">
                   <div className="col charttitle">支出占比圓餅圖</div>
                   <div className="charttext1">
-                    NT$&nbsp;{Number(parseFloat(Math.abs(this.state.costAll)).toFixed(3)).toLocaleString("en", {
+                    NT$&nbsp;
+                    {Number(
+                      parseFloat(Math.abs(this.state.costAll)).toFixed(3)
+                    ).toLocaleString("en", {
                       minimumFractionDigits: 0,
                     })}
                   </div>
