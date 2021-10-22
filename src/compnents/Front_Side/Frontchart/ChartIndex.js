@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Bar, Line, Pie } from "react-chartjs-2";
+import { ItemMeta } from "semantic-ui-react";
 import "./ChartIndex.css";
 
 export class Chart_Index extends Component {
@@ -16,6 +17,8 @@ export class Chart_Index extends Component {
       cost_kind_cadre: [],
       cost_amount_cadre: [],
       count_diagrams: [],
+      income_name: [],
+      income_amount: [],
       diagrams: {},
       year: 2019,
       month: 12,
@@ -52,7 +55,7 @@ export class Chart_Index extends Component {
       .then((res) => res.json())
       .then((data) => this.setState({ FetchAll: data }));
   };
-  async componentWillMount() {   
+  async componentWillMount() {
     await this.fetchContent(this.state.id);
     this.setState({ acc: this.state.accounts.accounts });
     this.setState({ accounts: this.state.accounts });
@@ -73,10 +76,6 @@ export class Chart_Index extends Component {
     this.state.acc.map((x) => {
       cadre[x.uploadBy] = cadre[x.uploadBy] || [];
       cadre[x.uploadBy].push(x);
-
-
-
-
     });
     let Costamount_cadre = Object.keys(cadre);
     Costamount_cadre.forEach((element) => {
@@ -86,16 +85,23 @@ export class Chart_Index extends Component {
           Costcount_cadre += item.amount;
         } else {
           Costcount_cadre = 0;
+
+        }
+        if (item.amount > 0) {
+          this.state.income_name.push(item.name);
+          this.state.income_amount.push(item.amount)
+          console.log(item.amount);
         }
       });
       this.state.cost_kind_cadre.push(element.replace("長", ""));
       this.state.cost_amount_cadre.push(Math.abs(Costcount_cadre));
+
     });
     await this.diagram(this.state.year, this.state.month);
 
     await this.AllCategory();
 
-    console.log(this.state.FetchAll.category)
+
 
     let months = [],
       result = {},
@@ -109,11 +115,11 @@ export class Chart_Index extends Component {
       if (!this.state.diagrams[month].length) {
         result[month] = total;
         this.state.count_diagrams.push(0);
+
       } else {
         // eslint-disable-next-line array-callback-return
         this.state.diagrams[month].map((detail) => {
           const amount = detail.amount;
-
           if (detail == null) {
             total.income = 0;
             total.cost = 0;
@@ -126,11 +132,12 @@ export class Chart_Index extends Component {
         );
       }
     });
-    console.log(this.state.count_diagrams);
+
     let Costcategory = [];
     let Incomecategory = [];
     // eslint-disable-next-line array-callback-return
     this.state.diagrams[this.state.month].map((x) => {
+
       if (x.amount > 0) {
         Incomecategory[x.category] = Incomecategory[x.category] || [];
         Incomecategory[x.category].push(x);
@@ -252,27 +259,37 @@ export class Chart_Index extends Component {
             </div>
             <div className="col my-5 mx-3 chartback">
               <div className="p-3">
-                <div className="m-2 charttitle">每月收支數量</div>
+                <div className="m-2 charttitle">本月收入直方圖</div>
               </div>
               <Bar
                 data={{
                   type: "bar",
-                  labels: ["支出"],
+
+                  labels: this.state.income_name,
                   datasets: [
                     {
-                      label: "Dataset 1",
-                      data: [500],
-                      backgroundColor: "red",
-                    },
-                    {
-                      label: "Dataset 2",
-                      data: [500],
-                      backgroundColor: "blue",
-                    },
-                    {
-                      label: "Dataset 3",
-                      data: [700],
-                      backgroundColor: "green",
+                      label: "收入",
+                      data: this.state.income_amount,
+                      backgroundColor: [
+                        "#cd84f1",
+                        "#ffcccc",
+                        "#ff3838",
+                        "#ff9f1a",
+                        "#3d3d3d",
+                        "#18dcff",
+                        "#67e6dc",
+
+                      ],
+                      borderColor: [
+                        "#cd84f1",
+                        "#ffcccc",
+                        "#ff3838",
+                        "#ff9f1a",
+                        "#3d3d3d",
+                        "#18dcff",
+                        "#67e6dc",
+                      ],
+                      borderWidth: 1,
                     },
                   ],
                 }}
@@ -295,39 +312,6 @@ export class Chart_Index extends Component {
                   },
                 }}
               />
-              {/* <Bar
-                data={{
-                  type: "bar",
->>>>>>> 12f01436bd38ac3ca2801017801837fae6e073f0
-                  labels: Object.keys(this.state.diagrams),
-                  datasets: [
-                    {
-                      label: "收支數量",
-                      data: this.state.count_diagrams,
-                      backgroundColor: "#110b0c",
-                      borderColor: "#110b0c",
-                      tension: 0.1,
-                    },
-
-                  ],
-                }}
-                options={{
-                  title: {
-                    display: false,
-                  },
-                  legend: {
-                    display: false,
-                  },
-                  scales: {
-                    xAxes: [{
-                      stacked: true
-                    }],
-                    yAxes: [{
-                      stacked: true
-                    }]
-                  }
-                }}
-              /> */}
             </div>
           </div>
           <div className="row mb-5">
