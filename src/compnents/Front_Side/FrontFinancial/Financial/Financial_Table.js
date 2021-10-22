@@ -140,8 +140,10 @@ export class FinancialTable extends Component {
               {this.state.acc.map((x) => {
                 const date = new Date(x.date);
                 const year = date.getFullYear();
+
                 const month = date.getMonth() + 1;
                 const day = date.getDate();
+                console.log(month)
                 this.oldyear = year;
                 let category;
                 if (x.category === "其他項目") {
@@ -150,9 +152,7 @@ export class FinancialTable extends Component {
                   category = (
                     <div
                       className="badge badge-secondary"
-
                       style={{ backgroundColor: "#4f5784", color: "white", fontSize: '16px' }}
-
                     >
                       {category}
                     </div>
@@ -160,16 +160,13 @@ export class FinancialTable extends Component {
                 } else {
                   category = (
                     <div
-
                       className="badge badge-secondary"
                       style={{ backgroundColor: "#009688", color: "white", fontSize: '16px' }}
-
                     >
                       {x.category}
                     </div>
                   );
                 }
-
                 if (year !== lastYear) {
 
                   lastYear = year;
@@ -222,7 +219,7 @@ export class FinancialTable extends Component {
                       style={{ height: "100%", width: "100%" }}
                     >
                       <TableCell align="center">{month}</TableCell>
-                      <TableCell align="center">{day}</TableCell>
+                      <TableCell align="center">{day.toString().padStart(2, '0')}</TableCell>
                       <TableCell align="center">{x.uploadBy}</TableCell>
                       <TableCell align="center">
                         <div>{category}</div>

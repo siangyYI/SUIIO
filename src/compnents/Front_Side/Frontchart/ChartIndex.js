@@ -64,25 +64,27 @@ export class Chart_Index extends Component {
     let cadre = [];
     // eslint-disable-next-line array-callback-return
     this.state.acc.map((x) => {
-      if (x.amount < 0) {
-        cadre[x.uploadBy] = cadre[x.uploadBy] || [];
-        cadre[x.uploadBy].push(x);
-      }
+      cadre[x.uploadBy] = cadre[x.uploadBy] || [];
+      cadre[x.uploadBy].push(x);
+
+
+
+
     });
-
     let Costamount_cadre = Object.keys(cadre);
-
     Costamount_cadre.forEach((element) => {
       let Costcount_cadre = 0;
       cadre[element].forEach((item) => {
-        Costcount_cadre += item.amount;
+        if (item.amount < 0) {
+          Costcount_cadre += item.amount;
+        } else {
+          Costcount_cadre = 0;
+        }
       });
-      this.state.cost_kind_cadre.push(element);
+      this.state.cost_kind_cadre.push(element.replace("長", ""));
       this.state.cost_amount_cadre.push(Math.abs(Costcount_cadre));
     });
-
     await this.diagram(this.state.year, this.state.month);
-
     let months = [],
       result = {},
       total = [],
@@ -107,7 +109,6 @@ export class Chart_Index extends Component {
           amount > 0 ? (total.income += amount) : (total.cost += amount * -1);
           result[month] = total;
         });
-        // console.log(Object.keys(this.state.diagrams[month]).length)
         this.state.count_diagrams.push(
           Object.keys(this.state.diagrams[month]).length
         );
@@ -117,7 +118,7 @@ export class Chart_Index extends Component {
     let Costcategory = [];
     let Incomecategory = [];
     // eslint-disable-next-line array-callback-return
-    this.state.diagrams[12].map((x) => {
+    this.state.diagrams[this.state.month].map((x) => {
       if (x.amount > 0) {
         Incomecategory[x.category] = Incomecategory[x.category] || [];
         Incomecategory[x.category].push(x);
@@ -163,10 +164,33 @@ export class Chart_Index extends Component {
       cost: cos,
     });
   }
-
+  setmonth = (value) => {
+    this.setState({ month: value });
+  }
   render() {
     return (
       <>
+        <select
+          className="mt-1 ml-3 px-2"
+          style={{
+            borderRadius: "10px",
+            backgroundColor: "white",
+          }}
+        >
+          <option value="none">--請選擇月分--</option>
+          <option value="1" active={this.month === 1}>一月</option>
+          <option value="2">二月</option>
+          <option value="3">三月</option>
+          <option value="4">四月</option>
+          <option value="5">五月</option>
+          <option value="6">六月</option>
+          <option value="7">七月</option>
+          <option value="8">八月</option>
+          <option value="9">九月</option>
+          <option value="10">十月</option>
+          <option value="11">十一月</option>
+          <option value="12">十二月</option>
+        </select>
         <div>
           <div className="row">
             <div className="col my-5 mx-3  chartback">
@@ -220,7 +244,7 @@ export class Chart_Index extends Component {
               </div>
               <Bar
                 data={{
-                  type: "bar",
+                  type: 'horizontalBar',
                   labels: Object.keys(this.state.diagrams),
                   datasets: [
                     {
@@ -230,6 +254,7 @@ export class Chart_Index extends Component {
                       borderColor: "#110b0c",
                       tension: 0.1,
                     },
+
                   ],
                 }}
                 options={{
@@ -240,21 +265,13 @@ export class Chart_Index extends Component {
                     display: false,
                   },
                   scales: {
-                    xAxes: [
-                      {
-                        ticks: {
-                          beginAtZero: true,
-                        },
-                      },
-                    ],
-                    yAxes: [
-                      {
-                        ticks: {
-                          mirror: true, // 只需将 mirror 设为 true 即可达到想要的效果
-                        },
-                      },
-                    ],
-                  },
+                    xAxes: [{
+                      stacked: true
+                    }],
+                    yAxes: [{
+                      stacked: true
+                    }]
+                  }
                 }}
               />
             </div>
@@ -334,6 +351,7 @@ export class Chart_Index extends Component {
                       plugins: {
                         tooltip: {
                           enabled: true,
+
                           callbacks: {
                             label: function (tooltipItem) {
                               return Math.abs(tooltipItem.parsed) + "元";

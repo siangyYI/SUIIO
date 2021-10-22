@@ -52,6 +52,7 @@ export class reconder extends Component {
   }
 
   render() {
+    console.log(this.state.content)
     let attend = [];
     this.state.attendees.forEach((element, index) => {
       attend.push(element + (this.state.attendees.length - 1 === index ? "" : ","));

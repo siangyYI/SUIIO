@@ -41,7 +41,7 @@ class NavBar extends Component {
       this.relo()
       nav = (
         <aside>
-          <div className="my-4" onClick={this.relo()}>
+          <div className="my-4 ho" onClick={this.relo()}>
             <a href="/income" >
               <img
                 src={require("../../Image/income.png").default}
@@ -52,7 +52,7 @@ class NavBar extends Component {
               <div>收支紀錄</div>
             </a>
           </div>
-          <div className="my-4" style={{ filter: 'contrast(0.5)' }}>
+          <div className="my-4 ho" style={{ filter: 'contrast(0.5)' }}>
             <a href="/financial" >
               <img
                 src={require("../../Image/graph.png").default}
@@ -63,7 +63,7 @@ class NavBar extends Component {
               <div>財務報表</div>
             </a>
           </div>
-          <div className="my-4" style={{ filter: 'contrast(0.5)' }}>
+          <div className="my-4 ho" style={{ filter: 'contrast(0.5)' }}>
             <a href="/chart" >
               <img
                 src={require("../../Image/analytics.png").default}
@@ -74,7 +74,7 @@ class NavBar extends Component {
               <div>統計圖表</div>
             </a>
           </div>
-          <div className="my-4" style={{ filter: 'contrast(0.5)' }}>
+          <div className="my-4 ho" style={{ filter: 'contrast(0.5)' }}>
             <a href="/compare" >
               <img
                 src={require("../../Image/compare.png").default}
@@ -85,7 +85,7 @@ class NavBar extends Component {
               <div>歷年比較</div>
             </a>
           </div>
-          <div className="my-4" style={{ filter: 'contrast(0.5)' }}>
+          <div className="my-4 ho" style={{ filter: 'contrast(0.5)' }}>
             <a href="/meet" >
               <img
                 src={require("../../Image/meeting.png").default}
@@ -102,7 +102,7 @@ class NavBar extends Component {
     } if (ary1[3] === "financial" || reary[0] === "financial/detail") {
       nav = (
         <aside>
-          <div className="my-4" style={{ filter: 'contrast(0.5)' }}>
+          <div className="my-4 ho" style={{ filter: 'contrast(0.5)' }}>
             <a href="/income">
               <img
                 src={require("../../Image/income.png").default}
@@ -113,7 +113,7 @@ class NavBar extends Component {
               <div>收支紀錄</div>
             </a>
           </div>
-          <div className="my-4">
+          <div className="my-4 ho">
             <a href="/financial" >
               <img
                 src={require("../../Image/graph.png").default}
@@ -124,7 +124,7 @@ class NavBar extends Component {
               <div>財務報表</div>
             </a>
           </div>
-          <div className="my-4" style={{ filter: 'contrast(0.5)' }}>
+          <div className="my-4 ho" style={{ filter: 'contrast(0.5)' }}>
             <a href="/chart">
               <img
                 src={require("../../Image/analytics.png").default}
@@ -135,7 +135,7 @@ class NavBar extends Component {
               <div>統計圖表</div>
             </a>
           </div>
-          <div className="my-4" style={{ filter: 'contrast(0.5)' }}>
+          <div className="my-4 ho" style={{ filter: 'contrast(0.5)' }}>
             <a href="/compare">
               <img
                 src={require("../../Image/compare.png").default}
@@ -146,7 +146,7 @@ class NavBar extends Component {
               <div>歷年比較</div>
             </a>
           </div>
-          <div className="my-4" style={{ filter: 'contrast(0.5)' }}>
+          <div className="my-4 ho" style={{ filter: 'contrast(0.5)' }}>
             <a href="/meet">
               <img
                 src={require("../../Image/meeting.png").default}
@@ -163,7 +163,7 @@ class NavBar extends Component {
     } if (ary1[3] === "chart") {
       nav = (
         <aside>
-          <div className="my-4" style={{ filter: 'contrast(0.5)' }}>
+          <div className="my-4 ho" style={{ filter: 'contrast(0.5)' }}>
             <a href="/income" >
               <img
                 src={require("../../Image/income.png").default}
@@ -174,7 +174,7 @@ class NavBar extends Component {
               <div>收支紀錄</div>
             </a>
           </div>
-          <div className="my-4" style={{ filter: 'contrast(0.5)' }}>
+          <div className="my-4 ho" style={{ filter: 'contrast(0.5)' }}>
             <a href="/financial" >
               <img
                 src={require("../../Image/graph.png").default}
@@ -185,7 +185,7 @@ class NavBar extends Component {
               <div>財務報表</div>
             </a>
           </div>
-          <div className="my-4">
+          <div className="my-4 ho">
             <a href="/chart" >
               <img
                 src={require("../../Image/analytics.png").default}
@@ -196,7 +196,7 @@ class NavBar extends Component {
               <div>統計圖表</div>
             </a>
           </div>
-          <div className="my-4" style={{ filter: 'contrast(0.5)' }}>
+          <div className="my-4 ho" style={{ filter: 'contrast(0.5)' }}>
             <a href="/compare" >
               <img
                 src={require("../../Image/compare.png").default}
@@ -207,7 +207,7 @@ class NavBar extends Component {
               <div>歷年比較</div>
             </a>
           </div>
-          <div className="my-4" style={{ filter: 'contrast(0.5)' }}>
+          <div className="my-4 ho" style={{ filter: 'contrast(0.5)' }}>
             <a href="/meet" >
               <img
                 src={require("../../Image/meeting.png").default}
@@ -223,7 +223,7 @@ class NavBar extends Component {
     } if (ary1[3] === "compare") {
       nav = (
         <aside>
-          <div className="my-4" style={{ filter: 'contrast(0.5)' }}>
+          <div className="my-4 ho" style={{ filter: 'contrast(0.5)' }}>
             <a href="/income" >
               <img
                 src={require("../../Image/income.png").default}
@@ -234,7 +234,7 @@ class NavBar extends Component {
               <div>收支紀錄</div>
             </a>
           </div>
-          <div className="my-4" style={{ filter: 'contrast(0.5)' }} >
+          <div className="my-4 ho" style={{ filter: 'contrast(0.5)' }} >
             <a href="/financial">
               <img
                 src={require("../../Image/graph.png").default}
@@ -245,7 +245,7 @@ class NavBar extends Component {
               <div>財務報表</div>
             </a>
           </div>
-          <div className="my-4" style={{ filter: 'contrast(0.5)' }}>
+          <div className="my-4 ho" style={{ filter: 'contrast(0.5)' }}>
             <a href="/chart" >
               <img
                 src={require("../../Image/analytics.png").default}
@@ -256,7 +256,7 @@ class NavBar extends Component {
               <div>統計圖表</div>
             </a>
           </div>
-          <div className="my-4" onClick={this.relo()}>
+          <div className="my-4 ho" onClick={this.relo()}>
             <a href="/compare" >
               <img
                 src={require("../../Image/compare.png").default}
@@ -267,7 +267,7 @@ class NavBar extends Component {
               <div>歷年比較</div>
             </a>
           </div>
-          <div className="my-4" style={{ filter: 'contrast(0.5)' }}>
+          <div className="my-4 ho" style={{ filter: 'contrast(0.5)' }}>
             <a href="/meet">
               <img
                 src={require("../../Image/meeting.png").default}
@@ -284,7 +284,7 @@ class NavBar extends Component {
     } if (ary1[3] === "meet" || reary[0] === "meet/reconder") {
       nav = (
         <aside>
-          <div className="my-4" style={{ filter: 'contrast(0.5)' }}>
+          <div className="my-4 ho" style={{ filter: 'contrast(0.5)' }}>
             <a href="/income">
               <img
                 src={require("../../Image/income.png").default}
@@ -295,7 +295,7 @@ class NavBar extends Component {
               <div>收支紀錄</div>
             </a>
           </div>
-          <div className="my-4" style={{ filter: 'contrast(0.5)' }}>
+          <div className="my-4 ho" style={{ filter: 'contrast(0.5)' }}>
             <a href="/financial" >
               <img
                 src={require("../../Image/graph.png").default}
@@ -306,7 +306,7 @@ class NavBar extends Component {
               <div>財務報表</div>
             </a>
           </div>
-          <div className="my-4" style={{ filter: 'contrast(0.5)' }}>
+          <div className="my-4 ho" style={{ filter: 'contrast(0.5)' }}>
             <a href="/chart" >
               <img
                 src={require("../../Image/analytics.png").default}
@@ -317,7 +317,7 @@ class NavBar extends Component {
               <div>統計圖表</div>
             </a>
           </div>
-          <div className="my-4" style={{ filter: 'contrast(0.5)' }}>
+          <div className="my-4 ho" style={{ filter: 'contrast(0.5)' }}>
             <a href="/compare" >
               <img
                 src={require("../../Image/compare.png").default}
@@ -328,7 +328,7 @@ class NavBar extends Component {
               <div>歷年比較</div>
             </a>
           </div>
-          <div className="my-4" >
+          <div className="my-4 ho" >
             <a href="/meet" >
               <img
                 src={require("../../Image/meeting.png").default}
