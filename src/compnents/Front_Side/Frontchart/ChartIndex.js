@@ -51,11 +51,11 @@ export class Chart_Index extends Component {
       });
   };
 
-  AllCategory = async () => {
-    await fetch(`http://localhost:4000/api/account/fetch/all`)
-      .then((res) => res.json())
-      .then((data) => this.setState({ FetchAll: data }));
-  };
+  // AllCategory = async () => {
+  //   await fetch(`http://localhost:4000/api/account/fetch/all`)
+  //     .then((res) => res.json())
+  //     .then((data) => this.setState({ FetchAll: data }));
+  // };
   async componentWillMount() {
     await this.fetchContent(this.state.id);
     this.setState({ acc: this.state.accounts.accounts });
@@ -91,7 +91,6 @@ export class Chart_Index extends Component {
         if (item.amount > 0) {
           this.state.income_name.push(item.name);
           this.state.income_amount.push(item.amount)
-          console.log(item.amount);
         }
       });
       this.state.cost_kind_cadre.push(element.replace("長", ""));
@@ -100,7 +99,7 @@ export class Chart_Index extends Component {
     });
     await this.diagram(this.state.year, this.state.month);
 
-    await this.AllCategory();
+    // await this.AllCategory();
 
 
 

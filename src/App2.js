@@ -14,7 +14,8 @@ import { Financial_Index } from './compnents/Front_Side/FrontFinancial/Financial
 import { Income_Detail } from './compnents/Front_Side/FrontFinancial/Income/Income_Detail';
 import { Income_Index } from './compnents/Front_Side/FrontFinancial/Income/Income_Index';
 import { Chart_Index } from './compnents/Front_Side/Frontchart/ChartIndex';
-import CompareIndex from './compnents/Front_Side/FrontCompare/CompareIndex';
+import {CompareIndex} from './compnents/Front_Side/FrontCompare/CompareIndex';
+
 
 import Login from './compnents/Front_Side/Login/Login';
 import PW_account from './compnents/Front_Side/Login/PW_account';

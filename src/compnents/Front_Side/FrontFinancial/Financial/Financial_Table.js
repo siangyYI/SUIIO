@@ -47,7 +47,6 @@ export class FinancialTable extends Component {
     await this.setState({ category: this.state.accounts.category });
     await this.setState({ date: this.state.accounts.date });
     await this.setState({ accounts: this.state.accounts });
-    console.log(this.state.category);
   }
 
   render() {
@@ -59,18 +58,9 @@ export class FinancialTable extends Component {
       clearfont = "",
       clearnumber = "";
     let categoryF;
-    if (this.state.accounts.category === "其他項目") {
+    if (this.state.category === "其他項目") {
       // eslint-disable-next-line react/no-direct-mutation-state
       this.state.accounts.category = "一般報表";
-      categoryF = (
-        <div
-          className="host badge badge-secondary"
-          style={{ backgroundColor: "#59420a", color: "#e6ddd8" }}
-        >
-          {this.state.accounts.category}
-        </div>
-      );
-    } else {
       categoryF = (
         <div
           className="host badge badge-secondary"
@@ -79,7 +69,18 @@ export class FinancialTable extends Component {
           {this.state.accounts.category}
         </div>
       );
+    } else {
+      categoryF = (
+        <div
+          className="host badge badge-secondary"
+          style={{ backgroundColor: "#59420a", color: "white" }}
+        >
+          {this.state.accounts.category}
+        </div>
+      );
     }
+    
+
     return (
       <>
         {" "}
@@ -158,7 +159,6 @@ export class FinancialTable extends Component {
 
                 const month = date.getMonth() + 1;
                 const day = date.getDate();
-                console.log(month)
                 this.oldyear = year;
                 let category;
                 if (x.category === "其他項目") {
@@ -167,7 +167,6 @@ export class FinancialTable extends Component {
                   category = (
                     <div
                       className="badge badge-secondary"
-
                       style={{
                         backgroundColor: "#4f5784",
                         color: "white",
@@ -181,7 +180,6 @@ export class FinancialTable extends Component {
                   category = (
                     <div
                       className="badge badge-secondary"
-
                       style={{
                         backgroundColor: "#009688",
                         color: "white",
@@ -254,7 +252,9 @@ export class FinancialTable extends Component {
                       style={{ height: "100%", width: "100%" }}
                     >
                       <TableCell align="center">{month}</TableCell>
-                      <TableCell align="center">{day.toString().padStart(2, '0')}</TableCell>
+                      <TableCell align="center">
+                        {day.toString().padStart(2, "0")}
+                      </TableCell>
                       <TableCell align="center">{x.uploadBy}</TableCell>
                       <TableCell align="center">
                         <div>{category}</div>
@@ -353,7 +353,7 @@ export class FinancialTable extends Component {
                 <TableCell align="right">{clearnumber}</TableCell>
               </TableRow>
             )}
-            <TableRow style={{color:"#0019a1"}}>
+            <TableRow style={{ color: "#0019a1" }}>
               <TableCell className="AllTotal" align="center">
                 本期餘額
               </TableCell>
