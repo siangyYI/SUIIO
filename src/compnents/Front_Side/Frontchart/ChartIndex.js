@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import { Bar, Line, Pie } from "react-chartjs-2";
+import "chartjs-plugin-datalabels";
+import ChartDataLabels from 'chartjs-plugin-datalabels';
 import { ItemMeta } from "semantic-ui-react";
 import "./ChartIndex.css";
 
@@ -28,7 +30,6 @@ export class Chart_Index extends Component {
       cost_kind: [],
       cost_amount: [],
       income_kind: [],
-      income_amount: [],
       costAll: 0,
       incomeAll: 0,
     };
@@ -293,6 +294,7 @@ export class Chart_Index extends Component {
                   ],
                 }}
                 options={{
+
                   indexAxis: "y",
                   title: {
                     display: true,
@@ -308,7 +310,8 @@ export class Chart_Index extends Component {
                     y: {
                       stacked: true,
                     },
-                  },
+                  }
+
                 }}
               />
             </div>
@@ -359,6 +362,7 @@ export class Chart_Index extends Component {
 
                 <div className="mt-5" style={{ height: "255px" }}>
                   <Pie
+                    plugins={[ChartDataLabels]}
                     data={{
                       //支出圓餅圖
                       type: "pie",
@@ -410,6 +414,10 @@ export class Chart_Index extends Component {
                               return `占比: ${percentage}`;
                             },
                           },
+                          datalabels: {
+                            display: true,
+                            color: "white"
+                          }
                         },
                         legend: {
                           display: true,
