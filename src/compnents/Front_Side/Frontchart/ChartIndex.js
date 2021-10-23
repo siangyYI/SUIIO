@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Bar, Line, Pie } from "react-chartjs-2";
 import "chartjs-plugin-datalabels";
-import ChartDataLabels from 'chartjs-plugin-datalabels';
+import ChartDataLabels from "chartjs-plugin-datalabels";
 import { ItemMeta } from "semantic-ui-react";
 import "./ChartIndex.css";
 
@@ -86,22 +86,18 @@ export class Chart_Index extends Component {
           Costcount_cadre += item.amount;
         } else {
           Costcount_cadre = 0;
-
         }
         if (item.amount > 0) {
           this.state.income_name.push(item.name);
-          this.state.income_amount.push(item.amount)
+          this.state.income_amount.push(item.amount);
         }
       });
       this.state.cost_kind_cadre.push(element.replace("長", ""));
       this.state.cost_amount_cadre.push(Math.abs(Costcount_cadre));
-
     });
     await this.diagram(this.state.year, this.state.month);
 
     // await this.AllCategory();
-
-
 
     let months = [],
       result = {},
@@ -115,7 +111,6 @@ export class Chart_Index extends Component {
       if (!this.state.diagrams[month].length) {
         result[month] = total;
         this.state.count_diagrams.push(0);
-
       } else {
         // eslint-disable-next-line array-callback-return
         this.state.diagrams[month].map((detail) => {
@@ -137,7 +132,6 @@ export class Chart_Index extends Component {
     let Incomecategory = [];
     // eslint-disable-next-line array-callback-return
     this.state.diagrams[this.state.month].map((x) => {
-
       if (x.amount > 0) {
         Incomecategory[x.category] = Incomecategory[x.category] || [];
         Incomecategory[x.category].push(x);
@@ -185,12 +179,12 @@ export class Chart_Index extends Component {
   }
   setmonth = (value) => {
     this.setState({ month: value });
-  }
+  };
   render() {
     return (
       <>
         <select
-          name='month_select'
+          name="month_select"
           className="mt-1 ml-3 px-2"
           style={{
             borderRadius: "10px",
@@ -198,7 +192,9 @@ export class Chart_Index extends Component {
           }}
         >
           <option value="none">--請選擇月分--</option>
-          <option value="1" active={this.state.month === 1}>一月</option>
+          <option value="1" active={this.state.month === 1}>
+            一月
+          </option>
           <option value="2">二月</option>
           <option value="3">三月</option>
           <option value="4">四月</option>
@@ -256,7 +252,7 @@ export class Chart_Index extends Component {
                 }}
               />
             </div>
-            <div className="col my-5 mx-3 chartback">
+            {/* <div className="col my-5 mx-3 chartback">
               <div className="p-3">
                 <div className="m-2 charttitle">本月收入直方圖</div>
               </div>
@@ -312,7 +308,96 @@ export class Chart_Index extends Component {
                   }
 
                 }}
-              />
+              /> 
+            </div>*/}
+            <div className="col mx-3 chartback ">
+              <div className="py-3">
+                <div className="row">
+                  <div className="col charttitle">收入占比圓餅圖</div>
+                  <div className="charttext1">
+                    NT$&nbsp;
+                    {Number(
+                      parseFloat(Math.abs(this.state.incomeAll)).toFixed(3)
+                    ).toLocaleString("en", {
+                      minimumFractionDigits: 0,
+                    })}
+                  </div>
+                </div>
+
+                <div className="mt-5" style={{ height: "150px" }}>
+                  <Pie
+                    plugins={[ChartDataLabels]}
+                    data={{
+                      //支出圓餅圖
+                      type: "pie",
+                      labels: this.state.income_name,
+                      datasets: [
+                        {
+                          label: "# of Votes",
+                          data: this.state.income_amount,
+                          backgroundColor: [
+                            "rgba(255, 99, 132)",
+                            "rgba(54, 162, 235)",
+                            "rgba(255, 206, 86)",
+                            "rgba(75, 192, 192)",
+                            "rgba(75, 192, 30)",
+                          ],
+                          borderColor: [
+                            "rgba(255, 99, 132, 1)",
+                            "rgba(54, 162, 235, 1)",
+                            "rgba(255, 206, 86, 1)",
+                            "rgba(75, 192, 192, 1)",
+                            "rgba(75, 192, 30, 1)",
+                          ],
+                          borderWidth: 1,
+                        },
+                      ],
+                    }}
+                    options={{
+                      responsive: true,
+                      maintainAspectRatio: true,
+                      plugins: {
+                        tooltip: {
+                          enabled: true,
+
+                          callbacks: {
+                            label: function (tooltipItem) {
+                              return Math.abs(tooltipItem.parsed) + "元";
+                            },
+                            footer: (ttItem) => {
+                              let sum = 0;
+                              let dataArr = ttItem[0].dataset.data;
+                              // eslint-disable-next-line array-callback-return
+                              dataArr.map((data) => {
+                                sum += Number(data);
+                              });
+
+                              let percentage =
+                                ((ttItem[0].parsed * 100) / sum).toFixed(2) +
+                                "%";
+                              return `占比: ${percentage}`;
+                            },
+                          },
+                          datalabels: {
+                            display: true,
+                            padding: { top: 10 },
+                            color: "black",
+                            labels: {
+                              value: {
+                                color: "green",
+                              },
+                            },
+                          },
+                        },
+                        legend: {
+                          display: true,
+                          position: "bottom",
+                        },
+                      },
+                    }}
+                  />
+                </div>
+              </div>
             </div>
           </div>
           <div className="row mb-5">
@@ -419,11 +504,10 @@ export class Chart_Index extends Component {
                             color: "black",
                             labels: {
                               value: {
-                                color: "green"
-                              }
+                                color: "green",
+                              },
                             },
                           },
-
                         },
                         legend: {
                           display: true,

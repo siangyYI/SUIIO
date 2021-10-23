@@ -3,8 +3,8 @@ import { Container } from "react-bootstrap";
 import "./CompareIndex.css";
 import { Bar, Pie, Line } from "react-chartjs-2";
 import CompareFilter from "./CompareFilter";
-import {CompareDetail} from "./CompareDetail";
-import {CompareDetailTwo} from "./CompareDetailTwo";
+import { CompareDetail } from "./CompareDetail";
+import { CompareDetailTwo } from "./CompareDetailTwo";
 const expendData = {
   type: "line",
   labels: ["七月", "八月", "九月", "十月"],
@@ -106,7 +106,7 @@ const HorizontalData1 = {
       backgroundColor: "#07889b",
       borderColor: "#07889b",
       borderWidth: 1,
-      data: [-4100, -2300, -7138, -1240, -60430, -3300], // 資料
+      data: [4100, 2300, 7138, 1240, 60430, 3300], // 資料
       fill: false, // 是否填滿色彩
     },
     {
@@ -115,7 +115,7 @@ const HorizontalData1 = {
       backgroundColor: "#e37222",
       borderColor: "#e37222",
       borderWidth: 1,
-      data: [-3200, -1400, -6238, -240, -57430], // 資料
+      data: [3200, 1400, 6238, 240, 57430], // 資料
       fill: false, // 是否填滿色彩
     },
   ],
@@ -153,7 +153,6 @@ export class CompareIndex extends Component {
   render() {
     return (
       <>
-
         <div className="d-flex justify-content-end">
           <div
             className="d-flex flex-column  Comparenav"
@@ -165,23 +164,17 @@ export class CompareIndex extends Component {
             >
               淨利/損
             </a>
-            {/* <a
-            onClick={() => scrollToAnchor("activity3")}
-            className="Comparecon my-2 px-3 py-1"
-          >
-            淨利/損圓餅圖
-          </a> */}
-            <a
-              onClick={() => scrollToAnchor("activity1")}
-              className="Comparecon my-2 px-3 py-1"
-            >
-              比較圖表
-            </a>
             <a
               onClick={() => scrollToAnchor("activity4")}
               className="Comparecon my-2 px-3 py-1"
             >
               活動圖表
+            </a>{" "}
+            <a
+              onClick={() => scrollToAnchor("activity1")}
+              className="Comparecon my-2 px-3 py-1"
+            >
+              比較圖表
             </a>
           </div>
         </div>
@@ -195,8 +188,8 @@ export class CompareIndex extends Component {
               <div className="">淨利/損</div>
             </div>
             <div className="row">
-            <CompareDetailTwo accounts={this.state.accounts} />
-              <CompareDetail  accounts={this.state.accounts} />
+              <CompareDetailTwo accounts={this.state.accounts} />
+              <CompareDetail accounts={this.state.accounts} />
             </div>
           </div>
           <div id="activity3" style={{ paddingtop: "0.25%" }}>
@@ -307,18 +300,75 @@ export class CompareIndex extends Component {
               </div>
             </div>
           </div>
-          <div id="activity1" className=""></div>
-          <div className="Comtitle mt-5">比較圖表</div>
-          <div className="d-flex justify-content-center">
-            <div className="mr-5 align-self-center">
+          <div id="activity4" className="mt-5 p-2"></div>
+          <div className="row" style={{ borderBottom: " 1px solid #a7a7a7" }}>
+            <div className="Comtitle2 my-3">活動圖表</div>
+
+            <div className="ml-5 text-center  my-3">
               <select className="cDropdown">
-                <option>九月</option>
-                <option>九~十二月</option>
-                <option>六個月</option>
-                <option>一學期</option>
+                <option>大迎新</option>
+                <option>送舊</option>
+                <option>民歌</option>
+                <option>資管周</option>
               </select>
             </div>
           </div>
+  
+          <div className="mx-auto" style={{ width: "100%" }}>
+            <div className="chartback mt-3">
+              <div className="p-3">
+                <div className="m-2 charttitle">活動圖表直方圖</div>
+              </div>
+              <div className="px-5 pb-2">
+                <Bar
+                  data={{
+                    type: "bar",
+
+                    labels: ["收入", "支出", "淨損"],
+                    datasets: [
+                      {
+                        label: "109",
+                        data: ["10000", "54464", "89799"],
+                        backgroundColor: [
+                          "#227093",                        
+                        ],
+                        borderColor: [
+                          "#227093",
+                        ],
+                        borderWidth: 1,
+                      }, {
+                        label: "108",
+                        data: ["14561", "56489", "76799"],
+                        backgroundColor: [
+                          "#ffb142",
+                        ],
+                        borderColor: [
+                          "#ffb142",
+                        ],
+                        borderWidth: 1,
+                      },
+                    ],
+                  }}
+                  options={{
+                    indexAxis: "y",
+                    elements: {
+                      bar: {
+                        borderWidth: 2,
+                      },
+                    },
+                    responsive: true,
+                    plugins: {
+                      legend: {
+                        position: "right",
+                      },
+                    },
+                  }}
+                />
+              </div>
+            </div>
+          </div>
+          <div id="activity1" className=""></div>
+          <div className="Comtitle my-5">比較圖表</div>
           <div className="row mt-4">
             <div className="mx-auto barstyle chartback">
               <div className="my-3 d-flex justify-content-between">
@@ -335,53 +385,6 @@ export class CompareIndex extends Component {
                   },
                 }}
                 style={{ position: "relative", width: "50%", height: "50%" }}
-              />
-            </div>
-          </div>
-          <div className="ititle" id="activity4">
-            活動圖表
-          </div>
-          <div className="row my-4 mx-auto">
-            <div className=" align-self-center">
-              <select className="cDropdown">
-                <option>大迎新</option>
-                <option>送舊</option>
-                <option>民歌</option>
-                <option>資管周</option>
-              </select>
-            </div>
-          </div>
-          <div className="row mx-auto mt-5" style={{ marginBottom: "100px" }}>
-            <div
-              className="mx-auto chartback"
-              style={{ position: "relative", width: "45%" }}
-            >
-              <Line
-                data={incomeData}
-                options={{
-                  plugins: {
-                    legend: {
-                      display: true,
-                      position: "bottom",
-                    },
-                  },
-                }}
-              />
-            </div>
-            <div
-              className="mx-auto chartback"
-              style={{ position: "relative", width: "45%" }}
-            >
-              <Line
-                data={expendData}
-                options={{
-                  plugins: {
-                    legend: {
-                      display: true,
-                      position: "bottom",
-                    },
-                  },
-                }}
               />
             </div>
           </div>
