@@ -190,6 +190,7 @@ export class Chart_Index extends Component {
     return (
       <>
         <select
+          name='month_select'
           className="mt-1 ml-3 px-2"
           style={{
             borderRadius: "10px",
@@ -197,7 +198,7 @@ export class Chart_Index extends Component {
           }}
         >
           <option value="none">--請選擇月分--</option>
-          <option value="1" active={this.month === 1}>一月</option>
+          <option value="1" active={this.state.month === 1}>一月</option>
           <option value="2">二月</option>
           <option value="3">三月</option>
           <option value="4">四月</option>
@@ -223,7 +224,6 @@ export class Chart_Index extends Component {
                   datasets: [
                     {
                       label: "支出",
-
                       data: this.state.cost,
                       fill: false,
                       borderColor: "#b21b45",
@@ -235,7 +235,6 @@ export class Chart_Index extends Component {
                     },
                     {
                       label: "收入",
-
                       data: this.state.income,
                       fill: false,
                       borderColor: "#2fc3a3",
