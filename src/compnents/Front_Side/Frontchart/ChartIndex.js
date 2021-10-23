@@ -417,8 +417,15 @@ export class Chart_Index extends Component {
                           },
                           datalabels: {
                             display: true,
-                            color: "white"
-                          }
+                            padding: { top: 10 },
+                            color: "black",
+                            labels: {
+                              value: {
+                                color: "green"
+                              }
+                            },
+                          },
+
                         },
                         legend: {
                           display: true,
