@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { Bar, Line, Pie } from "react-chartjs-2";
 import "chartjs-plugin-datalabels";
 import ChartDataLabels from 'chartjs-plugin-datalabels';
-import { ItemMeta } from "semantic-ui-react";
 import "./ChartIndex.css";
 
 export class Chart_Index extends Component {
@@ -23,6 +22,7 @@ export class Chart_Index extends Component {
       income_amount: [],
       diagrams: {},
       year: 2019,
+      cities: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
       month: 12,
       review: false,
       income: [],
@@ -32,8 +32,9 @@ export class Chart_Index extends Component {
       income_kind: [],
       costAll: 0,
       incomeAll: 0,
-    };
+    }
   }
+
   fetchContent = async (id) => {
     await fetch(`http://localhost:4000/api/statement/fetch/id/${id}`)
       .then((res) => res.json())
@@ -46,170 +47,162 @@ export class Chart_Index extends Component {
     )
       .then((res) => res.json())
       .then((data) => {
-        // console.log(data);
         this.setState({ diagrams: data });
       });
   };
 
-  // AllCategory = async () => {
-  //   await fetch(`http://localhost:4000/api/account/fetch/all`)
-  //     .then((res) => res.json())
-  //     .then((data) => this.setState({ FetchAll: data }));
-  // };
+
   async componentWillMount() {
-    await this.fetchContent(this.state.id);
-    this.setState({ acc: this.state.accounts.accounts });
-    this.setState({ accounts: this.state.accounts });
+    this.getValue = async (event) => {
+      this.setState({
+        month: event.target.value
+      })
+      await this.diagram(this.state.year, event.target.value);
+      await this.fetchContent(this.state.id);
+      this.setState({ acc: this.state.accounts.accounts });
+      this.setState({ accounts: this.state.accounts });
 
-    // eslint-disable-next-line array-callback-return
-    this.state.acc.map((x) => {
-      this.state.upload.push(x.uploadBy);
-    });
-    const upload = this.state.upload.map((x) => x);
-    // eslint-disable-next-line array-callback-return
-    upload.map((item) => {
-      this.state.result_cadre[item] = this.state.result_cadre[item]
-        ? this.state.result_cadre[item] + 1
-        : 1;
-    });
-    let cadre = [];
-    // eslint-disable-next-line array-callback-return
-    this.state.acc.map((x) => {
-      cadre[x.uploadBy] = cadre[x.uploadBy] || [];
-      cadre[x.uploadBy].push(x);
-    });
-    let Costamount_cadre = Object.keys(cadre);
-    Costamount_cadre.forEach((element) => {
-      let Costcount_cadre = 0;
-      cadre[element].forEach((item) => {
-        if (item.amount < 0) {
-          Costcount_cadre += item.amount;
-        } else {
-          Costcount_cadre = 0;
-
-        }
-        if (item.amount > 0) {
-          this.state.income_name.push(item.name);
-          this.state.income_amount.push(item.amount)
-        }
+      // eslint-disable-next-line array-callback-return
+      this.state.acc.map((x) => {
+        this.state.upload.push(x.uploadBy);
       });
-      this.state.cost_kind_cadre.push(element.replace("長", ""));
-      this.state.cost_amount_cadre.push(Math.abs(Costcount_cadre));
+      const upload = this.state.upload.map((x) => x);
+      // eslint-disable-next-line array-callback-return
+      upload.map((item) => {
+        this.state.result_cadre[item] = this.state.result_cadre[item]
+          ? this.state.result_cadre[item] + 1
+          : 1;
+      });
 
-    });
-    await this.diagram(this.state.year, this.state.month);
+      let cadre = [];
+      // eslint-disable-next-line array-callback-return
+      this.state.acc.map((x) => {
+        cadre[x.uploadBy] = cadre[x.uploadBy] || [];
+        cadre[x.uploadBy].push(x);
+      });
 
-    // await this.AllCategory();
+      let Costamount_cadre = Object.keys(cadre);
+      Costamount_cadre.forEach((element) => {
+        let Costcount_cadre = 0;
+        cadre[element].forEach((item) => {
+          if (item.amount < 0) {
+            Costcount_cadre += item.amount;
+          } else {
+            Costcount_cadre = 0;
 
-
-
-    let months = [],
-      result = {},
-      total = [],
-      inc = [],
-      cos = [];
-    months = Object.keys(this.state.diagrams);
-    // eslint-disable-next-line array-callback-return
-    months.map((month) => {
-      const total = { cost: 0, income: 0 };
-      if (!this.state.diagrams[month].length) {
-        result[month] = total;
-        this.state.count_diagrams.push(0);
-
-      } else {
-        // eslint-disable-next-line array-callback-return
-        this.state.diagrams[month].map((detail) => {
-          const amount = detail.amount;
-          if (detail == null) {
-            total.income = 0;
-            total.cost = 0;
           }
-          amount > 0 ? (total.income += amount) : (total.cost += amount * -1);
-          result[month] = total;
+          if (item.amount > 0) {
+            this.state.income_name.push(item.name);
+            this.state.income_amount.push(item.amount)
+          }
         });
-        this.state.count_diagrams.push(
-          Object.keys(this.state.diagrams[month]).length
-        );
-      }
-    });
-
-    let Costcategory = [];
-    let Incomecategory = [];
-    // eslint-disable-next-line array-callback-return
-    this.state.diagrams[this.state.month].map((x) => {
-
-      if (x.amount > 0) {
-        Incomecategory[x.category] = Incomecategory[x.category] || [];
-        Incomecategory[x.category].push(x);
-      } else {
-        Costcategory[x.category] = Costcategory[x.category] || [];
-        Costcategory[x.category].push(x);
-      }
-    });
-    let Incomeamount = Object.keys(Incomecategory);
-    let Costamount = Object.keys(Costcategory);
-    Incomeamount.forEach((element) => {
-      let Incomecount = 0;
-      Incomecategory[element].forEach((item) => {
-        Incomecount += item.amount;
+        this.state.cost_kind_cadre.push(element.replace("長", ""));
+        this.state.cost_amount_cadre.push(Math.abs(Costcount_cadre));
       });
-      this.state.income_kind.push(element);
-      this.state.income_amount.push(Incomecount);
-    });
-    Costamount.forEach((element) => {
-      let Costcount = 0;
-      Costcategory[element].forEach((item) => {
-        Costcount += item.amount;
-      });
-      this.state.cost_kind.push(element);
-      this.state.cost_amount.push(Costcount);
-    });
-    this.state.cost_amount.forEach((x) => {
-      this.state.costAll += x;
-    });
 
-    this.state.income_amount.forEach((x) => {
-      this.state.incomeAll += x;
-    });
-    // eslint-disable-next-line array-callback-return
-    Object.values(result).map((value) => {
-      total = value;
-      inc.push(total.income);
-      cos.push(total.cost);
-    });
-    // console.log(result[12].income)
-    this.setState({
-      income: inc,
-      cost: cos,
-    });
-  }
-  setmonth = (value) => {
-    this.setState({ month: value });
+      await this.diagram(this.state.year, this.state.month);
+      let months = [],
+        result = {},
+        total = [],
+        inc = [],
+        cos = [];
+      months = Object.keys(this.state.diagrams);
+      // eslint-disable-next-line array-callback-return
+      months.map((month) => {
+        const total = { cost: 0, income: 0 };
+        if (!this.state.diagrams[month].length) {
+          result[month] = total;
+          this.state.count_diagrams.push(0);
+
+        } else {
+          // eslint-disable-next-line array-callback-return
+          this.state.diagrams[month].map((detail) => {
+            const amount = detail.amount;
+            if (detail == null) {
+              total.income = 0;
+              total.cost = 0;
+            }
+            amount > 0 ? (total.income += amount) : (total.cost += amount * -1);
+            result[month] = total;
+          });
+          this.state.count_diagrams.push(
+            Object.keys(this.state.diagrams[month]).length
+          );
+        }
+      });
+
+      let Costcategory = [];
+      let Incomecategory = [];
+      // eslint-disable-next-line array-callback-return
+      this.state.diagrams[this.state.month].map((x) => {
+
+        if (x.amount > 0) {
+          Incomecategory[x.category] = Incomecategory[x.category] || [];
+          Incomecategory[x.category].push(x);
+        } else {
+          Costcategory[x.category] = Costcategory[x.category] || [];
+          Costcategory[x.category].push(x);
+        }
+      });
+      let Incomeamount = Object.keys(Incomecategory);
+      let Costamount = Object.keys(Costcategory);
+      Incomeamount.forEach((element) => {
+        let Incomecount = 0;
+        Incomecategory[element].forEach((item) => {
+          Incomecount += item.amount;
+        });
+        this.state.income_kind.push(element);
+        this.state.income_amount.push(Incomecount);
+      });
+      Costamount.forEach((element) => {
+        let Costcount = 0;
+        Costcategory[element].forEach((item) => {
+          Costcount += item.amount;
+        });
+        this.state.cost_kind.push(element);
+        this.state.cost_amount.push(Costcount);
+      });
+      this.state.cost_amount.forEach((x) => {
+        this.state.costAll += x;
+      });
+
+      this.state.income_amount.forEach((x) => {
+        this.state.incomeAll += x;
+      });
+      // eslint-disable-next-line array-callback-return
+      Object.values(result).map((value) => {
+        total = value;
+        inc.push(total.income);
+        cos.push(total.cost);
+      });
+      // console.log(result[12].income)
+      this.setState({
+        income: inc,
+        cost: cos,
+      });
+    }
+
   }
   render() {
     return (
       <>
         <select
-          name='month_select'
+          onChange={(e) => this.getValue(e)}
+          defaultValue={12}
+          value={this.state.month}
           className="mt-1 ml-3 px-2"
           style={{
             borderRadius: "10px",
             backgroundColor: "white",
           }}
         >
-          <option value="none">--請選擇月分--</option>
-          <option value="1" active={this.state.month === 1}>一月</option>
-          <option value="2">二月</option>
-          <option value="3">三月</option>
-          <option value="4">四月</option>
-          <option value="5">五月</option>
-          <option value="6">六月</option>
-          <option value="7">七月</option>
-          <option value="8">八月</option>
-          <option value="9">九月</option>
-          <option value="10">十月</option>
-          <option value="11">十一月</option>
-          <option value="12">十二月</option>
+          {
+            this.state.cities.map((ele, index) => {
+              return (
+                <option key={index}>{ele}</option>
+              )
+            })
+          }
         </select>
         <div>
           <div className="row">
