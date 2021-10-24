@@ -321,10 +321,10 @@ export class FinancialTable extends Component {
               <TableCell className="AllTotal" align="center">
                 上期餘額
               </TableCell>
-              <TableCell className="AllTotal" align="left">
+              <TableCell className="ntwidth" align="center">
                 NT$ &nbsp;
               </TableCell>
-              <TableCell align="right">
+              <TableCell  className="dwidth" align="right">
                 {Number(
                   parseFloat(Math.abs(oldbalance)).toFixed(3)
                 ).toLocaleString("en", {
@@ -337,30 +337,30 @@ export class FinancialTable extends Component {
                 <TableCell className="AllTotal" align="center">
                   {clearfont}
                 </TableCell>
-                <TableCell className="AllTotal" align="left">
+                <TableCell className="ntwidth" align="center">
                   NT$ &nbsp;
                 </TableCell>
-                <TableCell align="right">{clearnumber}</TableCell>
+                <TableCell className="dwidth" align="right">{clearnumber}</TableCell>
               </TableRow>
             ) : (
               <TableRow style={{ color: "green" }}>
                 <TableCell className="AllTotal" align="center">
                   {clearfont}
                 </TableCell>
-                <TableCell className="AllTotal" align="left">
+                <TableCell className="ntwidth" align="left">
                   NT$ &nbsp;
                 </TableCell>
-                <TableCell align="right">{clearnumber}</TableCell>
+                <TableCell className="dwidth" align="right">{clearnumber}</TableCell>
               </TableRow>
             )}
             <TableRow style={{ color: "#0019a1" }}>
               <TableCell className="AllTotal" align="center">
                 本期餘額
               </TableCell>
-              <TableCell className="AllTotal" align="left">
+              <TableCell className="ntwidth" align="center">
                 NT$ &nbsp;
               </TableCell>
-              <TableCell align="right">
+              <TableCell className="dwidth"  align="right">
                 {Number(
                   parseFloat(this.state.accounts.balance).toFixed(3)
                 ).toLocaleString("en", {

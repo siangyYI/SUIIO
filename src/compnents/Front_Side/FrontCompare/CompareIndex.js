@@ -139,10 +139,11 @@ export class CompareIndex extends Component {
       accounts: [],
       date: "",
       category: [],
+      years:["109","108","107","106","105"]
     };
   }
-  fetchContent = async () => {
-    await fetch(`http://localhost:4000/api/statement/fetch/all`)
+  fetchContent = async (year) => {
+    await fetch(`http://localhost:4000/fetch/diagram/compare/${year}`)
       .then((res) => res.json())
       .then((data) => this.setState({ accounts: data }));
   };
@@ -181,7 +182,31 @@ export class CompareIndex extends Component {
         <Container>
           {" "}
           <div id="activity2">
-            <CompareFilter />
+            <div className="cfilter">
+              <div className="row text-center">
+                <div className="col mt-2 text-center">
+                  <select
+                    onChange={(e) => this.getValue(e)}
+                    defaultValue={this.state.accounts}
+                    value={this.state.accounts}
+                    className="bDropdown"
+                  >
+                    {this.state.years.map((ele, index) => {
+                      return <option key={index}>{ele}學年度</option>;
+                      
+                    })}
+                  </select>
+                </div>
+
+                <div className="col mt-2 text-center">
+                  <select className="ml-5 bDropdown">
+                    <option>108學年度</option>
+                    <option>107學年度</option>
+                    <option>106學年度</option>
+                  </select>
+                </div>
+              </div>
+            </div>
           </div>
           <div className="my-2">
             <div className="Comtitle">
@@ -313,7 +338,6 @@ export class CompareIndex extends Component {
               </select>
             </div>
           </div>
-  
           <div className="mx-auto" style={{ width: "100%" }}>
             <div className="chartback mt-3">
               <div className="p-3">
@@ -329,22 +353,15 @@ export class CompareIndex extends Component {
                       {
                         label: "109",
                         data: ["10000", "54464", "89799"],
-                        backgroundColor: [
-                          "#227093",                        
-                        ],
-                        borderColor: [
-                          "#227093",
-                        ],
+                        backgroundColor: ["#227093"],
+                        borderColor: ["#227093"],
                         borderWidth: 1,
-                      }, {
+                      },
+                      {
                         label: "108",
                         data: ["14561", "56489", "76799"],
-                        backgroundColor: [
-                          "#ffb142",
-                        ],
-                        borderColor: [
-                          "#ffb142",
-                        ],
+                        backgroundColor: ["#ffb142"],
+                        borderColor: ["#607d8b"],
                         borderWidth: 1,
                       },
                     ],
