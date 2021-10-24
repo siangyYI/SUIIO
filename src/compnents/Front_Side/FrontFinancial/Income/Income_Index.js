@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Income_Card } from "./Income_Card";
+import { Page } from "../../Page";
 
 export class Income_Index extends Component {
   constructor(props) {
@@ -23,7 +24,7 @@ export class Income_Index extends Component {
   render() {
     return (
       <>
-        <div className="my-3 mx-5 d-flex mt-5">
+        <div className="my-3 mx-5 d-flex mt-4">
           <div>
             <select
               className="Dropdown ml-3 px-2"
@@ -59,6 +60,10 @@ export class Income_Index extends Component {
             className="Dropdown ml-3 px-2"
             style={{ margin: "0" }}
           ></input>
+
+          <div>
+            <Page total={this.state.total} pageSize={this.pageSize} />
+          </div>
         </div>
         <div className="row mt-2 px-5">
           {this.state.account.map((x) => (
