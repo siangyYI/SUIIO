@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+
 class NotifyItem extends Component {
     render() {
         return (

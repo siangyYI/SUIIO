@@ -25,7 +25,6 @@ export class Chart_Index extends Component {
       year: 2019,
       cities: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
       month: 12,
-      review: false,
       income: [],
       cost: [],
       cost_kind: [],
@@ -53,15 +52,8 @@ export class Chart_Index extends Component {
       });
   };
 
-  getValue = async (event) => {
-    this.setState({
-      month: event.target.value
-    })
-    await this.diagram(this.state.year, event.target.value);
-  }
+
   async componentWillMount() {
-
-
     await this.fetchContent(this.state.id);
     this.setState({ acc: this.state.accounts.accounts });
     this.setState({ accounts: this.state.accounts });
@@ -94,7 +86,6 @@ export class Chart_Index extends Component {
         } else {
           this.state.income_name.push(item.name);
           this.state.income_amount_name.push(item.amount)
-          console.log(this.state.income_amount_name);
         }
       });
       this.state.cost_kind_cadre.push(element.replace("長", ""));
@@ -181,7 +172,156 @@ export class Chart_Index extends Component {
     });
 
   }
+  getValue = async (event) => {
+    this.setState({ incomeAll: 0 })
+    this.setState({ costAll: 0 })
+    this.setState({ income_amount: [] })
+    this.setState({ income_kind: [] })
+    this.setState({ cost_amount: [] })
+    this.setState({ cost_kind: [] })
+    this.setState({ cost: [] })
+    this.setState({ income: [] })
+    this.setState({ diagrams: {} })
+    this.setState({ income_amount_name: [] })
+    this.setState({ income_name: [] })
+    this.setState({ count_diagrams: [] })
+    this.setState({ cost_amount_cadre: [] })
+    this.setState({ cost_kind_cadre: [] })
+    this.setState({ income_amount_cadre: [] })
+    this.setState({ income_kind_cadre: [] })
+    this.setState({ result_cadre: {} })
+    this.setState({ upload: [] })
+    this.setState({ acc: [] })
+    this.setState({ accounts: [] })
+    this.setState({ month: event.target.value })
+    this.setState({ id: 4 })
+    await this.diagram(this.state.year, event.target.value);
+    await this.fetchContent(this.state.id);
+    this.setState({ acc: this.state.accounts.accounts });
+    this.setState({ accounts: this.state.accounts });
 
+    // eslint-disable-next-line array-callback-return
+    this.state.acc.map((x) => {
+      this.state.upload.push(x.uploadBy);
+    });
+    const upload = this.state.upload.map((x) => x);
+   
+    // eslint-disable-next-line array-callback-return
+    upload.map((item) => {
+      this.state.result_cadre[item] = this.state.result_cadre[item]
+        ? this.state.result_cadre[item] + 1
+        : 1;
+         console.log(this.state.result_cadre)
+    });
+
+    let cadre = [];
+    // eslint-disable-next-line array-callback-return
+    this.state.acc.map((x) => {
+      cadre[x.uploadBy] = cadre[x.uploadBy] || [];
+      cadre[x.uploadBy].push(x);
+    });
+
+    let Costamount_cadre = Object.keys(cadre);
+    Costamount_cadre.forEach((element) => {
+      let Costcount_cadre = 0;
+      cadre[element].forEach((item) => {
+        if (item.amount < 0) {
+          Costcount_cadre += item.amount;
+        } else {
+          // Costcategory[x.category] = Costcategory[x.category] || [];
+          // Costcategory[x.category].push(x);
+          this.state.income_name.push(item.name);
+          this.state.income_amount_name.push(item.amount)
+          console.log(this.state.income_name);
+          console.log(this.state.income_amount_name);
+        }
+      });
+      this.state.cost_kind_cadre.push(element.replace("長", ""));
+      this.state.cost_amount_cadre.push(Math.abs(Costcount_cadre));
+    });
+    let months = [],
+      result = {},
+      total = [],
+      inc = [],
+      cos = [];
+    months = Object.keys(this.state.diagrams);
+    // eslint-disable-next-line array-callback-return
+    months.map((month) => {
+      const total = { cost: 0, income: 0 };
+      if (!this.state.diagrams[month].length) {
+        result[month] = total;
+        this.state.count_diagrams.push(0);
+
+      } else {
+        // eslint-disable-next-line array-callback-return
+        this.state.diagrams[month].map((detail) => {
+          const amount = detail.amount;
+          if (detail == null) {
+            total.income = 0;
+            total.cost = 0;
+          }
+          amount > 0 ? (total.income += amount) : (total.cost += amount * -1);
+          result[month] = total;
+        });
+        this.state.count_diagrams.push(
+          Object.keys(this.state.diagrams[month]).length
+        );
+      }
+    });
+
+    let Costcategory = [];
+    let Incomecategory = [];
+    // eslint-disable-next-line array-callback-return
+    this.state.diagrams[event.target.value].map((x) => {
+      if (x.amount > 0) {
+        Incomecategory[x.category] = Incomecategory[x.category] || [];
+        Incomecategory[x.category].push(x);
+      } else {
+        Costcategory[x.category] = Costcategory[x.category] || [];
+        Costcategory[x.category].push(x);
+        
+      }
+    });
+
+    let Incomeamount = Object.keys(Incomecategory);
+    let Costamount = Object.keys(Costcategory);
+    Incomeamount.forEach((element) => {
+      let Incomecount = 0;
+      Incomecategory[element].forEach((item) => {
+        Incomecount += item.amount;
+      });
+      this.state.income_kind.push(element);
+      this.state.income_amount.push(Incomecount);
+      console.log(Incomecount);
+    });
+
+    Costamount.forEach((element) => {
+      let Costcount = 0;
+      Costcategory[element].forEach((item) => {
+        Costcount += item.amount;
+      });
+      this.state.cost_kind.push(element);
+      this.state.cost_amount.push(Costcount);
+    });
+
+    this.state.cost_amount.forEach((x) => {
+      this.state.costAll += x;
+    });
+
+    this.state.income_amount.forEach((x) => {
+      this.state.incomeAll += x;
+    });
+    // eslint-disable-next-line array-callback-return
+    Object.values(result).map((value) => {
+      total = value;
+      inc.push(total.income);
+      cos.push(total.cost);
+    });
+    this.setState({
+      income: inc,
+      cost: cos,
+    });
+  }
   render() {
     return (
       <>
@@ -251,7 +391,7 @@ export class Chart_Index extends Component {
             <div className="col my-5 mx-3 chartback">
               <div className="py-3">
                 <div className="row">
-                  <div className="col charttitle">支出占比圓餅圖</div>
+                  <div className="col charttitle">收入占比圓餅圖</div>
                   <div className="charttext">
                     NT$&nbsp;
                     {Number(
