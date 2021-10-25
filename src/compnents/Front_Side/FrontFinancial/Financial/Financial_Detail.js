@@ -23,7 +23,6 @@ export class Financial_Detail extends Component {
       ary3 = ary2[0].split("=");
 
       this.setState({ id: ary3[1] });
-      console.log(ary3)
     }
   }
   render() {
@@ -40,7 +39,6 @@ export class Financial_Detail extends Component {
         </Link>
         <Container>
           <div>
-            {console.log(this.state.id)}
             <FinancialTable data={this.state.id} />
           </div>
           <div className="my-2">

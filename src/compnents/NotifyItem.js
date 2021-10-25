@@ -6,7 +6,7 @@ class NotifyItem extends Component {
             <>
                 <div className="ncardline py-3">
                     <div className="nfont">
-                        您上傳的收支紀錄已通過。
+                        {this.props.socket_content}
                     </div>
                 </div>
             </>

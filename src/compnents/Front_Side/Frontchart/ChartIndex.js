@@ -21,6 +21,7 @@ export class Chart_Index extends Component {
       count_diagrams: [],
       income_name: [],
       income_amount_name: [],
+      Incomeamo: [],
       diagrams: {},
       year: 2019,
       cities: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
@@ -35,14 +36,7 @@ export class Chart_Index extends Component {
       incomeAll: 0,
     }
   }
-
-  fetchContent = async (id) => {
-    await fetch(`http://localhost:4000/api/statement/fetch/id/${id}`)
-      .then((res) => res.json())
-      .then((data) => this.setState({ accounts: data }));
-  };
   diagram = async (year, month) => {
-    // console.log(year, month);
     await fetch(
       `http://localhost:4000/api/account/fetch/diagram/${year}/${month}`
     )
@@ -51,46 +45,7 @@ export class Chart_Index extends Component {
         this.setState({ diagrams: data });
       });
   };
-
-
   async componentWillMount() {
-    await this.fetchContent(this.state.id);
-    this.setState({ acc: this.state.accounts.accounts });
-    this.setState({ accounts: this.state.accounts });
-
-    // eslint-disable-next-line array-callback-return
-    this.state.acc.map((x) => {
-      this.state.upload.push(x.uploadBy);
-    });
-    const upload = this.state.upload.map((x) => x);
-    // eslint-disable-next-line array-callback-return
-    upload.map((item) => {
-      this.state.result_cadre[item] = this.state.result_cadre[item]
-        ? this.state.result_cadre[item] + 1
-        : 1;
-    });
-
-    let cadre = [];
-    // eslint-disable-next-line array-callback-return
-    this.state.acc.map((x) => {
-      cadre[x.uploadBy] = cadre[x.uploadBy] || [];
-      cadre[x.uploadBy].push(x);
-    });
-
-    let Costamount_cadre = Object.keys(cadre);
-    Costamount_cadre.forEach((element) => {
-      let Costcount_cadre = 0;
-      cadre[element].forEach((item) => {
-        if (item.amount < 0) {
-          Costcount_cadre += item.amount;
-        } else {
-          this.state.income_name.push(item.name);
-          this.state.income_amount_name.push(item.amount)
-        }
-      });
-      this.state.cost_kind_cadre.push(element.replace("長", ""));
-      this.state.cost_amount_cadre.push(Math.abs(Costcount_cadre));
-    });
     await this.diagram(this.state.year, this.state.month);
     let months = [],
       result = {},
@@ -121,12 +76,42 @@ export class Chart_Index extends Component {
         );
       }
     });
+    let cadre = [];
+    // eslint-disable-next-line array-callback-return
+    this.state.diagrams[this.state.month].map((x) => {
+      cadre[x.uploadBy] = cadre[x.uploadBy] || [];
+      cadre[x.uploadBy].push(x);
+    });
+    let Cost_Name = []
+    let Costamount_cadre = Object.keys(cadre);
+    Costamount_cadre.forEach((element) => {
+      let Costcount_cadre = 0;
+      cadre[element].forEach((item) => {
+        if (item.amount < 0) {
+          Costcount_cadre += item.amount;
+        } else {
+          Cost_Name[item.name] = Cost_Name[item.name] || [];
+          Cost_Name[item.name].push(item);
+          this.state.Incomeamo = Object.keys(Cost_Name);
+        }
+      });
+      this.state.cost_kind_cadre.push(element.replace("長", ""));
+      this.state.cost_amount_cadre.push(Math.abs(Costcount_cadre));
+    });
+    this.state.Incomeamo.forEach((element) => {
+      let count = 0;
+      Cost_Name[element].forEach((item) => {
+        count += item.amount;
+      });
+      this.state.income_amount_name.push(count);
+
+
+    });
 
     let Costcategory = [];
     let Incomecategory = [];
     // eslint-disable-next-line array-callback-return
     this.state.diagrams[this.state.month].map((x) => {
-
       if (x.amount > 0) {
         Incomecategory[x.category] = Incomecategory[x.category] || [];
         Incomecategory[x.category].push(x);
@@ -145,6 +130,7 @@ export class Chart_Index extends Component {
       this.state.income_kind.push(element);
       this.state.income_amount.push(Incomecount);
     });
+
     Costamount.forEach((element) => {
       let Costcount = 0;
       Costcategory[element].forEach((item) => {
@@ -153,6 +139,7 @@ export class Chart_Index extends Component {
       this.state.cost_kind.push(element);
       this.state.cost_amount.push(Costcount);
     });
+
     this.state.cost_amount.forEach((x) => {
       this.state.costAll += x;
     });
@@ -173,72 +160,29 @@ export class Chart_Index extends Component {
 
   }
   getValue = async (event) => {
-    this.setState({ incomeAll: 0 })
-    this.setState({ costAll: 0 })
-    this.setState({ income_amount: [] })
-    this.setState({ income_kind: [] })
-    this.setState({ cost_amount: [] })
-    this.setState({ cost_kind: [] })
-    this.setState({ cost: [] })
-    this.setState({ income: [] })
-    this.setState({ diagrams: {} })
-    this.setState({ income_amount_name: [] })
-    this.setState({ income_name: [] })
-    this.setState({ count_diagrams: [] })
-    this.setState({ cost_amount_cadre: [] })
-    this.setState({ cost_kind_cadre: [] })
-    this.setState({ income_amount_cadre: [] })
-    this.setState({ income_kind_cadre: [] })
-    this.setState({ result_cadre: {} })
-    this.setState({ upload: [] })
-    this.setState({ acc: [] })
-    this.setState({ accounts: [] })
-    this.setState({ month: event.target.value })
-    this.setState({ id: 4 })
+    this.setState({
+      incomeAll: 0,
+      costAll: 0,
+      income_amount: [],
+      income_kind: [],
+      cost_amount: [],
+      cost_kind: [],
+      cost: [],
+      income: [],
+      diagrams: {},
+      income_amount_name: [],
+      income_name: [],
+      count_diagrams: [],
+      cost_amount_cadre: [],
+      cost_kind_cadre: [],
+      income_amount_cadre: [],
+      income_kind_cadre: [],
+      result_cadre: {},
+      upload: [],
+      month: event.target.value,
+      Incomeamo: []
+    })
     await this.diagram(this.state.year, event.target.value);
-    await this.fetchContent(this.state.id);
-    this.setState({ acc: this.state.accounts.accounts });
-    this.setState({ accounts: this.state.accounts });
-
-    // eslint-disable-next-line array-callback-return
-    this.state.acc.map((x) => {
-      this.state.upload.push(x.uploadBy);
-    });
-    const upload = this.state.upload.map((x) => x);
-   
-    // eslint-disable-next-line array-callback-return
-    upload.map((item) => {
-      this.state.result_cadre[item] = this.state.result_cadre[item]
-        ? this.state.result_cadre[item] + 1
-        : 1;
-         console.log(this.state.result_cadre)
-    });
-
-    let cadre = [];
-    // eslint-disable-next-line array-callback-return
-    this.state.acc.map((x) => {
-      cadre[x.uploadBy] = cadre[x.uploadBy] || [];
-      cadre[x.uploadBy].push(x);
-    });
-
-    let Costamount_cadre = Object.keys(cadre);
-    Costamount_cadre.forEach((element) => {
-      let Costcount_cadre = 0;
-      cadre[element].forEach((item) => {
-        if (item.amount < 0) {
-          Costcount_cadre += item.amount;
-        } else {
-          // Costcategory[x.category] = Costcategory[x.category] || [];
-          // Costcategory[x.category].push(x);
-          this.state.income_name.push(item.name);
-          this.state.income_amount_name.push(item.amount)
-          console.log(this.state.income_name);
-          console.log(this.state.income_amount_name);
-        }
-      });
-      this.state.cost_kind_cadre.push(element.replace("長", ""));
-      this.state.cost_amount_cadre.push(Math.abs(Costcount_cadre));
-    });
     let months = [],
       result = {},
       total = [],
@@ -268,6 +212,39 @@ export class Chart_Index extends Component {
         );
       }
     });
+    let cadre = [];
+    // eslint-disable-next-line array-callback-return
+    this.state.diagrams[event.target.value].map((x) => {
+      cadre[x.uploadBy] = cadre[x.uploadBy] || [];
+      cadre[x.uploadBy].push(x);
+    });
+    let Cost_Name = []
+    let Costamount_cadre = Object.keys(cadre);
+    Costamount_cadre.forEach((element) => {
+      let Costcount_cadre = 0;
+      cadre[element].forEach((item) => {
+        if (item.amount < 0) {
+          Costcount_cadre += item.amount;
+        } else {
+          Cost_Name[item.name] = Cost_Name[item.name] || [];
+          Cost_Name[item.name].push(item);
+          this.state.Incomeamo = Object.keys(Cost_Name);
+        }
+      });
+      if (element === "會長") {
+        this.state.cost_kind_cadre.push(element);
+      } else {
+        this.state.cost_kind_cadre.push(element.replace("長", ""));
+      }
+      this.state.cost_amount_cadre.push(Math.abs(Costcount_cadre));
+    });
+    this.state.Incomeamo.forEach((element) => {
+      let count = 0;
+      Cost_Name[element].forEach((item) => {
+        count += item.amount;
+      });
+      this.state.income_amount_name.push(count);
+    });
 
     let Costcategory = [];
     let Incomecategory = [];
@@ -279,10 +256,8 @@ export class Chart_Index extends Component {
       } else {
         Costcategory[x.category] = Costcategory[x.category] || [];
         Costcategory[x.category].push(x);
-        
       }
     });
-
     let Incomeamount = Object.keys(Incomecategory);
     let Costamount = Object.keys(Costcategory);
     Incomeamount.forEach((element) => {
@@ -292,7 +267,6 @@ export class Chart_Index extends Component {
       });
       this.state.income_kind.push(element);
       this.state.income_amount.push(Incomecount);
-      console.log(Incomecount);
     });
 
     Costamount.forEach((element) => {
@@ -337,7 +311,7 @@ export class Chart_Index extends Component {
           {
             this.state.cities.map((ele, index) => {
               return (
-                <option key={index}>{ele}</option>
+                <option key={index}>{ele}月</option>
               )
             })
           }
@@ -405,7 +379,7 @@ export class Chart_Index extends Component {
                   data={{
                     //支出圓餅圖
                     type: "pie",
-                    labels: this.state.income_name,
+                    labels: this.state.Incomeamo,
                     datasets: [
                       {
                         label: "# of Votes",
