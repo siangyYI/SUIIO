@@ -328,7 +328,6 @@ export class Chart_Index extends Component {
         <select
           onChange={(e) => this.getValue(e)}
           defaultValue={this.state.month}
-          value={this.state.month}
           className="mt-1 ml-3 px-2"
           style={{
             borderRadius: "10px",
