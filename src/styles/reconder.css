@@ -31,6 +31,14 @@
     font-size: 30pt;
 }
 
+.reconder_date {
+    font-size: 18px;
+    font-weight: bold;
+    color: rgb(92, 92, 92);
+    margin-left: 8%;
+    text-align: right;
+}
+
 .attend {
     font-weight: bold;
     color: #432a65;
@@ -71,9 +79,15 @@
     .recordcontent {
         border-top-left-radius: 0pt;
         border-bottom-left-radius: 0pt;
-        
     }
     .content>.text {
         font-size: 12px;
+    }
+    .reconder_date {
+        font-size: 18px;
+        font-weight: bold;
+        color: rgb(92, 92, 92);
+        margin-top: -1%;
+        text-align: unset
     }
 }

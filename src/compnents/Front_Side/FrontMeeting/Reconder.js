@@ -97,7 +97,7 @@ export class reconder extends Component {
             alt="arrow_icon"
             width="30pt"
             height="30pt"
-            className="mt-3 ml-4"
+            className="arrow"
           />
         </Link>
         {/* Back Arrow*/}
@@ -109,7 +109,7 @@ export class reconder extends Component {
                   {category}
                 </div>
                 <h1
-                  className="col  font-weight-bold"
+                  className="col font-weight-bold"
                   style={{
                     color: "#583f00",
                     fontWeight: "600",
@@ -119,14 +119,7 @@ export class reconder extends Component {
                   {this.state.name}
                 </h1>
                 <div
-                  className=" col-md-2"
-                  style={{
-                    fontSize: "18px",
-                    fontWeight: "bold",
-                    color: "#5c5c5c",
-                    marginLeft:'8%',
-                    textAlign:"right"
-                  }}
+                  className="col reconder_date"
                 >
                   {this.state.date}
                 </div>

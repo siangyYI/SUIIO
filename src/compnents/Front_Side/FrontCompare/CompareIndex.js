@@ -75,19 +75,19 @@ export class CompareIndex extends Component {
           >
             <a
               onClick={() => scrollToAnchor("activity2")}
-              className="Comparecon my-2 px-3 py-1"
+              className="Comparecon my-2 px-3 py-md-1"
             >
               淨利/損
             </a>
             <a
               onClick={() => scrollToAnchor("activity4")}
-              className="Comparecon my-2 px-3 py-1"
+              className="Comparecon my-2 px-3 py-md-1"
             >
               活動圖表
             </a>{" "}
             <a
               onClick={() => scrollToAnchor("activity1")}
-              className="Comparecon my-2 px-3 py-1"
+              className="Comparecon my-2 px-3 py-md-1"
             >
               比較圖表
             </a>

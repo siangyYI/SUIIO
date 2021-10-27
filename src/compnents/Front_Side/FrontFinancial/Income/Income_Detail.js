@@ -35,25 +35,25 @@ export class Income_Detail extends Component {
     let amount;
     if (this.state.content.amount < 0) {
       amount = (
-        <h1 style={{ color: "red" }}>
+        <div className="amountfont" style={{ color: "red" }}>
           -NT$ &nbsp;
           {Number(
             parseFloat(Math.abs(this.state.content.amount)).toFixed(3)
           ).toLocaleString("en", {
             minimumFractionDigits: 0,
           })}
-        </h1>
+        </div>
       );
     } else if (this.state.content.amount > 0) {
       amount = (
-        <h1 style={{ color: "green" }}>
+        <div className="amountfont" style={{ color: "green" }}>
           NT$ &nbsp;
           {Number(
             parseFloat(this.state.content.amount).toFixed(3)
           ).toLocaleString("en", {
             minimumFractionDigits: 0,
           })}
-        </h1>
+        </div>
       );
     }
     let category;
@@ -86,7 +86,7 @@ export class Income_Detail extends Component {
             alt="arrow_icon"
             width="30pt"
             height="30pt"
-            className="mt-3 ml-4"
+            className="arrow"
           />
         </Link>{" "}
         <Container>
@@ -102,7 +102,7 @@ export class Income_Detail extends Component {
                   border: "3px solid black",
                   borderRadius: "5px",
                   backgroundColor: "white",
-                  minWidth: "250px",
+                  minWidth: "225px",
                 }}
                 onClick={() => this.setState({ AddImg: true })}
               />
@@ -144,11 +144,11 @@ export class Income_Detail extends Component {
                   </div>
                 </div>
                 <div className="row">
-                  <h4 className="col text-left font-weight-bold pt-4">
+                  <h4 className="col text-left font-weight-bold pt-4 uploadfont">
                     申請人：{this.state.content.uploadBy}
                   </h4>
 
-                  <div className="col pt-2">
+                  <div className="col pt-md-2">
                     <h3 className="text-right">{amount}</h3>
                   </div>
                 </div>
@@ -156,7 +156,7 @@ export class Income_Detail extends Component {
             </Box>
           </Card>
           <div className="my-4">
-            <MessageTable data={this.state.id}/>
+            <MessageTable data={this.state.id} />
           </div>
           <IncomeImg
             show={this.state.AddShow}

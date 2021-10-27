@@ -1,6 +1,7 @@
 .Income img {
   max-width: 500px;
 }
+
 .IncomeCard {
   padding-left: 5px !important;
   padding-right: 5px !important;
@@ -11,23 +12,37 @@
   padding: 0px !important;
 }
 
-.MuiNativeSelect-select:not([multiple]) option,
-.MuiNativeSelect-select:not([multiple]) optgroup {
+.MuiNativeSelect-select:not([multiple]) option, .MuiNativeSelect-select:not([multiple]) optgroup {
   background-color: rgb(0, 64, 66) !important;
 }
-.host{
+
+.host {
   color: #9f410a;
-  font-weight:bold;
+  font-weight: bold;
   font-size: 14pt;
 }
 
-.DropdownMess{
+.DropdownMess {
   border-width: 2px;
-    border: 2px solid #000000;
-    color: #000000;
-    border-radius: 9px;
-    outline: none;
-    font-size: 16px;
-    text-align: center;
-    padding:0 5px 0 5px;
+  border: 2px solid #000000;
+  color: #000000;
+  border-radius: 9px;
+  outline: none;
+  font-size: 16px;
+  text-align: center;
+  padding: 0 5px 0 5px;
+}
+
+@media screen and (max-width: 575px) {
+  .Income img {
+    max-width: 500px;
+    margin-left: 12%;
+  }
+  .font-weight-bold {
+    font-weight: 700!important;
+    font-size: 18px;
+  }
+  .uploadfont{
+    font-size: 15px;
+  }
 }

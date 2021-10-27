@@ -43,7 +43,7 @@ export class Chart_Index extends Component {
   };
   async componentWillMount() {
     await this.diagram(this.state.year, this.state.month);
-    console.log(this.state.diagrams)
+    console.log()
     let months = [],
       result = {},
       total = [],
@@ -301,7 +301,7 @@ export class Chart_Index extends Component {
         <select
           onChange={(e) => this.setmonth(e)}
           defaultValue={this.state.month}
-          className="mt-1 ml-3 px-2"
+          className="ml-3 px-2 chart_select"
           style={{
             borderRadius: "10px",
             backgroundColor: "white",
@@ -322,7 +322,7 @@ export class Chart_Index extends Component {
         </select>
         <div>
           <div className="row">
-            <div className="col-8 my-4 mx-3  chartback">
+            <div className="col-md-8 my-4 mx-3  chartback">
               <div className="p-3">
                 <div className="m-2  charttitle">本月收支折線圖(單位:元)</div>
               </div>
@@ -455,7 +455,7 @@ export class Chart_Index extends Component {
             </div>
           </div>
           <div className="row mb-5">
-            <div className="col-8 mx-3 chartback">
+            <div className="col-md-8 mx-3 chartback">
               <div className="p-3">
                 <div className="m-2 charttitle">各幹部支出直方圖(單位:元)</div>
               </div>
@@ -484,10 +484,10 @@ export class Chart_Index extends Component {
                 }}
               />
             </div>
-            <div className="col mx-3 chartback ">
+            <div className="col my-4 mx-3 chartback">
               <div className="py-3">
                 <div className="row">
-                  <div className="col charttitle">支出占比圓餅圖</div>
+                  <div className="col charttitle">收入占比圓餅圖</div>
                   <div className="charttext1">
                     NT$&nbsp;
                     {Number(
@@ -497,93 +497,90 @@ export class Chart_Index extends Component {
                     })}
                   </div>
                 </div>
+                <Pie
+                  plugins={[ChartDataLabels]}
+                  data={{
+                    //支出圓餅圖
+                    type: "pie",
+                    labels: this.state.cost_kind,
+                    datasets: [
+                      {
 
-                <div className="mt-5" style={{ height: "255px" }}>
-                  <Pie
-                    plugins={[ChartDataLabels]}
-                    data={{
-                      //支出圓餅圖
-                      type: "pie",
-                      labels: this.state.cost_kind,
-                      datasets: [
-                        {
-
-                          data: this.state.cost_amount,
-                          backgroundColor: [
-                            "#ff6b81",
-                            "#ff6348",
-                            "#ffa502",
-                            "#fab1a0",
-                            "#e3b841",
-                            "#e1c823",
-                            "#d0596e",
-                            "#e11a06",
-                            "#ffda79",
-                            "#2c2c54",
-                          ],
-                          borderColor: [
-                            "#ff6b81",
-                            "#ff6348",
-                            "#ffa502",
-                            "#fab1a0",
-                            "#e3b841",
-                            "#e1c823",
-                            "#d0596e",
-                            "#e11a06",
-                            "#ffda79",
-                            "#2c2c54",
-                          ],
-                          borderWidth: 1,
+                        data: this.state.cost_amount,
+                        backgroundColor: [
+                          "#ff6b81",
+                          "#ff6348",
+                          "#ffa502",
+                          "#fab1a0",
+                          "#e3b841",
+                          "#e1c823",
+                          "#d0596e",
+                          "#e11a06",
+                          "#ffda79",
+                          "#2c2c54",
+                        ],
+                        borderColor: [
+                          "#ff6b81",
+                          "#ff6348",
+                          "#ffa502",
+                          "#fab1a0",
+                          "#e3b841",
+                          "#e1c823",
+                          "#d0596e",
+                          "#e11a06",
+                          "#ffda79",
+                          "#2c2c54",
+                        ],
+                        borderWidth: 1,
+                      },
+                    ],
+                  }}
+                  options={{
+                    responsive: true,
+                    maintainAspectRatio: true,
+                    plugins: {
+                      datalabels: {
+                        display: 'auto',
+                        formatter: function (value) {
+                          return Math.round(value) + '元';
                         },
-                      ],
-                    }}
-                    options={{
-                      responsive: true,
-                      maintainAspectRatio: true,
-                      plugins: {
-                        datalabels: {
-                          display: 'auto',
-                          formatter: function (value) {
-                            return Math.round(value) + '元';
-                          },
-                          font: {
-                            size: 16,
-                          },
-                          labels: {
-                            value: {
-                              color: '#ffffff',
-                              size: "40px"
-                            }
+                        font: {
+                          size: 16,
+                        },
+                        labels: {
+                          value: {
+                            color: '#ffffff',
+                            size: "40px"
                           }
-                        },
-                        tooltip: {
-                          callbacks: {
-                            label: function (tooltipItem) {
-                              return Math.abs(tooltipItem.parsed) + "元";
-                            },
-                            footer: (ttItem) => {
-                              let sum = 0;
-                              let dataArr = ttItem[0].dataset.data;
-                              // eslint-disable-next-line array-callback-return
-                              dataArr.map((data) => {
-                                sum += Number(data);
-                              });
-
-                              let percentage =
-                                ((ttItem[0].parsed * 100) / sum).toFixed(2) +
-                                "%";
-                              return `占比: ${percentage}`;
-                            },
+                        }
+                      },
+                      tooltip: {
+                        callbacks: {
+                          label: function (tooltipItem) {
+                            return Math.abs(tooltipItem.parsed) + "元";
                           },
-                        },
-                        legend: {
-                          display: true,
-                          position: "bottom",
+                          footer: (ttItem) => {
+                            let sum = 0;
+                            let dataArr = ttItem[0].dataset.data;
+                            // eslint-disable-next-line array-callback-return
+                            dataArr.map((data) => {
+                              sum += Number(data);
+                            });
+
+                            let percentage =
+                              ((ttItem[0].parsed * 100) / sum).toFixed(2) +
+                              "%";
+                            return `占比: ${percentage}`;
+                          },
                         },
                       },
-                    }}
-                  />
-                </div>
+                      legend: {
+                        display: true,
+                        position: "bottom",
+                      },
+                    },
+                  }}
+                />
               </div>
             </div>
           </div>
