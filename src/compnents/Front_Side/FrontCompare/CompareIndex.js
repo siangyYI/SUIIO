@@ -34,6 +34,7 @@ export class CompareIndex extends Component {
       categoryAll: [],
       year: 109,
       catvalue: "",
+      result:[],
       years: [109, 108, 107, 106, 105],
     };
   }
@@ -74,8 +75,6 @@ export class CompareIndex extends Component {
     this.state.pie_data2.push(Math.abs(this.state.accounts1.cost));
     await this.fetchCategory1(this.state.year);
     await this.fetchCategory2(this.state.year);
-
-
   }
   getValue1 = async (event) => {
     await this.fetchCategory1(event.target.value);
@@ -84,9 +83,8 @@ export class CompareIndex extends Component {
       this.state.accounts1.income,
       Math.abs(this.state.accounts1.cost),
     ];
-    this.setState({ year: event.target.value, pie_data1: arr,catchar1:[] });
+    this.setState({ year: event.target.value, pie_data1: arr, catchar1: [],categoryAll:[] });
     this.state.categoryyear1 = event.target.value;
-    
   };
 
   getValue2 = async (event) => {
@@ -98,14 +96,19 @@ export class CompareIndex extends Component {
       Math.abs(this.state.accounts2.cost),
     ];
 
-    await this.setState({ year: event.target.value, pie_data2: arr,catchar2:[] });
+    await this.setState({
+      year: event.target.value,
+      pie_data2: arr,
+      catchar2: [],
+      categoryAll:[],
+    });
     this.state.categoryyear2 = event.target.value;
   };
 
   setCategory = async (event) => {
-    this.setState({categoryAll:[]})
-    this.state.categoryAll=this.state.categoryAll.concat(Object.keys(this.state.category1),Object.keys(this.state.category2))
-    this.state.categoryAll=new Set(this.state.categoryAll)
+    // this.setState({categoryAll:[]})
+    // this.state.categoryAll=this.state.categoryAll.concat(Object.keys(this.state.category1),Object.keys(this.state.category2))
+    // this.state.categoryAll=new Set(this.state.categoryAll)
     this.state.catvalue = event.target.value; //select
     const arr = Object.keys(this.state.category1);
     await this.setState({ catchar1: arr });
@@ -345,17 +348,29 @@ export class CompareIndex extends Component {
             <div className="Comtitle2 my-3">活動圖表</div>
 
             <div className="ml-5 text-center  my-3">
+              {
+               this.state.categoryAll=this.state.categoryAll.concat(Object.keys(this.state.category1),Object.keys(this.state.category2)),
+               this.state.result =  Array.from(new Set(this.state.categoryAll)),
+              //  this.state.categoryAll=new Set(this.state.categoryAll),
+              //  this.state.categoryAll=Object.keys(this.state.category2),
+                console.log(this.state.result)
+              }
               <select
                 onChange={(e) => this.setCategory(e)}
                 className="cDropdown"
               >
-                
-                {this.state.categoryAll.length === 0 ? (
+                <option>{"---"}</option>
+                {console.log(this.state.result)}
+                {/* {Object.keys(this.state.category1).length === 0 ? (
                   <option>{"---"}</option>
-                ) : (this.state.categoryAll.map((category, index) => {
-                    return <><option key={index}>{category}</option></>;
-                  })
-                )}
+                ) :  */}
+                {this.state.result.map((category, index) => {
+                  return (
+                    <>
+                      <option key={index}>{category}</option>
+                    </>
+                  );
+                })}
               </select>
             </div>
           </div>
