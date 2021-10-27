@@ -1,9 +1,10 @@
 import React from 'react';
+import SideBar from "./compnents/Front_Side/FrontNavigationBar";
 import { BrowserRouter } from 'react-router-dom';
 import { Route } from 'react-router';
 import { Component } from 'react';
 import './App.css';
-import FrontNavigationBar from './compnents/Front_Side/FrontNavigationBar';
+
 import FrontNavbar from './compnents/Front_Side/FrontNavbar'
 import Switch from 'react-bootstrap/esm/Switch';
 import { Index } from './compnents/Front_Side/FrontMeeting/Index';
@@ -33,7 +34,7 @@ class App2 extends Component {
           <Switch>
             <div className="row" >
               <div style={{ zIndex: "9999", boxShadow: "2px 2px 10px black", borderTopRightRadius: "8px", borderBottomRightRadius: "8px" }}>
-                <FrontNavigationBar />
+                <SideBar />
                 <FrontNavbar />
               </div>
 

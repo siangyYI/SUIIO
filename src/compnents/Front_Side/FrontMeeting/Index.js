@@ -13,7 +13,7 @@ export class Index extends Component {
       AddShow: false,
       review: false,
     };
-   this.update();
+    this.update();
   }
   update = () => {
     fetch("http://localhost:4000/api/conference/fetch/all")
@@ -25,10 +25,10 @@ export class Index extends Component {
 
     return (
       <>
-        <div className="my-3 mx-5 d-flex mt-5">
+        <div className="mx-5 d-md-flex content  mt-md-3">
           <div>
             <select
-              className="Dropdown ml-3 px-2"
+              className="Dropdown ml-md-3 px-md-2"
               style={{
                 borderRadius: "10px",
                 height: "2em",
@@ -42,16 +42,18 @@ export class Index extends Component {
               <option value="mango">資管周</option>
             </select>
           </div>
-          <h4 style={{ marginTop: '8px', fontSize: '18px', marginLeft: '2%' }}>
+
+          <div className="dropdownfont">
             請選擇日期區間
-          </h4>
+          </div>
+          <div className="d-flex">
+            <input id="date" type="date" className="Dropdown ml-md-3 px-md-2" style={{ margin: '0' }}></input>
+            <h3 style={{ marginLeft: '1%', marginRight: '1%' }}>
+              -
+            </h3>
+            <input id="date" type="date" className="Dropdown ml-md-3 px-md-2" style={{ margin: '0' }}></input>
+          </div>
 
-          <input id="date" type="date" className="Dropdown ml-3 px-2" style={{ margin: '0' }}></input>
-          <h3 style={{ marginLeft: '1%' }}>
-            -
-          </h3>
-
-          <input id="date" type="date" className="Dropdown ml-3 px-2" style={{ margin: '0' }}></input>
         </div>
         <div className="row mt-2 px-5">
           {this.state.conferences.map((x) => (

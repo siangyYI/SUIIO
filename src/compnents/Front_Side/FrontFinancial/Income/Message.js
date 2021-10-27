@@ -113,21 +113,12 @@ function MessageTable() {
     return fetch(API_ENDPOINT)
       .then((res) => res.json())
       .then((data) => {
-        // console.log(`msg: ${JSON.stringify( message)}`)
-        // console.log(`data: ${JSON.stringify(data)}`)
         setMessages(message);
       })
       .catch((err) => {
         setMessageApiError(err.message);
       });
-    // return fetch(API_ENDPOINT)
-    //   .then((res) => res.json())
-    //   .then((data) => {
-    //     setMessages(data);
-    //   })
-    //   .catch((err) => {
-    //     setMessageApiError(err.message);
-    //   });
+
   };
 
   const handleTextareaChange = (e) => {

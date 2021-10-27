@@ -15,10 +15,6 @@ class NavBar extends Component {
 
     this.UserCardClick = this.UserCardClick.bind(this);
   }
-  relo = () => {
-
-    // window.setTimeout(function(){ document.location.reload(true); }, 5000);
-  }
 
   UserCardClick() {
     this.setState((prevState) => ({
@@ -38,10 +34,10 @@ class NavBar extends Component {
 
     let nav;
     if (ary1[3] === "income" || reary[0] === "income/detail" || ary1[3] === "") {
-      this.relo()
+      
       nav = (
         <aside>
-          <div className="my-4 ho" onClick={this.relo()}>
+          <div className="my-4 ho" >
             <a href="/income" >
               <img
                 src={require("../../Image/income.png").default}
@@ -256,7 +252,7 @@ class NavBar extends Component {
               <div>統計圖表</div>
             </a>
           </div>
-          <div className="my-4 ho" onClick={this.relo()}>
+          <div className="my-4 ho" >
             <a href="/compare" >
               <img
                 src={require("../../Image/compare.png").default}

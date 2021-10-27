@@ -156,7 +156,7 @@ export class Income_Detail extends Component {
             </Box>
           </Card>
           <div className="my-4">
-            <MessageTable />
+            <MessageTable data={this.state.id}/>
           </div>
           <IncomeImg
             show={this.state.AddShow}

@@ -9,9 +9,7 @@ export class Chart_Index extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      id: 6,
-      accounts: [],
-      acc: [],
+      month: 12,
       upload: [],
       result_cadre: {},
       income_kind_cadre: [],
@@ -24,8 +22,6 @@ export class Chart_Index extends Component {
       Incomeamo: [],
       diagrams: {},
       year: 2019,
-      cities: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
-      month: 12,
       income: [],
       cost: [],
       cost_kind: [],
@@ -47,6 +43,7 @@ export class Chart_Index extends Component {
   };
   async componentWillMount() {
     await this.diagram(this.state.year, this.state.month);
+    console.log(this.state.diagrams)
     let months = [],
       result = {},
       total = [],
@@ -157,11 +154,11 @@ export class Chart_Index extends Component {
       income: inc,
       cost: cos,
     });
-
   }
-  getValue = async (event) => {
+  setmonth = async (event) => {
     this.setState({
       incomeAll: 0,
+      month: event.target.value,
       costAll: 0,
       income_amount: [],
       income_kind: [],
@@ -179,7 +176,6 @@ export class Chart_Index extends Component {
       income_kind_cadre: [],
       result_cadre: {},
       upload: [],
-      month: event.target.value,
       Incomeamo: []
     })
     await this.diagram(this.state.year, event.target.value);
@@ -189,13 +185,14 @@ export class Chart_Index extends Component {
       inc = [],
       cos = [];
     months = Object.keys(this.state.diagrams);
+
     // eslint-disable-next-line array-callback-return
     months.map((month) => {
+
       const total = { cost: 0, income: 0 };
       if (!this.state.diagrams[month].length) {
         result[month] = total;
         this.state.count_diagrams.push(0);
-
       } else {
         // eslint-disable-next-line array-callback-return
         this.state.diagrams[month].map((detail) => {
@@ -206,6 +203,7 @@ export class Chart_Index extends Component {
           }
           amount > 0 ? (total.income += amount) : (total.cost += amount * -1);
           result[month] = total;
+          console.log(result)
         });
         this.state.count_diagrams.push(
           Object.keys(this.state.diagrams[month]).length
@@ -215,6 +213,7 @@ export class Chart_Index extends Component {
     let cadre = [];
     // eslint-disable-next-line array-callback-return
     this.state.diagrams[event.target.value].map((x) => {
+      console.log(cadre)
       cadre[x.uploadBy] = cadre[x.uploadBy] || [];
       cadre[x.uploadBy].push(x);
     });
@@ -300,7 +299,7 @@ export class Chart_Index extends Component {
     return (
       <>
         <select
-          onChange={(e) => this.getValue(e)}
+          onChange={(e) => this.setmonth(e)}
           defaultValue={this.state.month}
           className="mt-1 ml-3 px-2"
           style={{
@@ -308,18 +307,22 @@ export class Chart_Index extends Component {
             backgroundColor: "white",
           }}
         >
-          {
-            this.state.cities.map((ele, index) => {
-              return (
-                <option key={index}>{ele}月</option>
-              )
-            })
-          }
-
+          <option value={1}>1月</option>
+          <option value={2}>2月</option>
+          <option value={3}>3月</option>
+          <option value={4}>4月</option>
+          <option value={5}>5月</option>
+          <option value={6}>6月</option>
+          <option value={7}>7月</option>
+          <option value={8}>8月</option>
+          <option value={9}>9月</option>
+          <option value={10}>10月</option>
+          <option value={11}>11月</option>
+          <option value={12}>12月</option>
         </select>
         <div>
           <div className="row">
-            <div className="col-8 my-5 mx-3  chartback">
+            <div className="col-8 my-4 mx-3  chartback">
               <div className="p-3">
                 <div className="m-2  charttitle">本月收支折線圖(單位:元)</div>
               </div>
@@ -361,7 +364,7 @@ export class Chart_Index extends Component {
                 }}
               />
             </div>
-            <div className="col my-5 mx-3 chartback">
+            <div className="col my-4 mx-3 chartback">
               <div className="py-3">
                 <div className="row">
                   <div className="col charttitle">收入占比圓餅圖</div>
@@ -382,31 +385,20 @@ export class Chart_Index extends Component {
                     labels: this.state.Incomeamo,
                     datasets: [
                       {
-                        label: "# of Votes",
                         data: this.state.income_amount_name,
                         backgroundColor: [
-                          "#2980b9",
-                          "#9b59b6",
-                          "#e74c3c",
-                          "#e67e22",
-                          "#16a085",
-                          "#f1c40f",
-                          "#7f8c8d",
-                          "#34ace0",
-                          "#ffda79",
-                          "#2c2c54",
+                          "#1abc9c",
+                          "#27ae60",
+                          "#82ccdd",
+                          "#60a3bc",
+                          "#b8e994",
                         ],
                         borderColor: [
-                          "#2980b9",
-                          "#9b59b6",
-                          "#e74c3c",
-                          "#e67e22",
-                          "#16a085",
-                          "#f1c40f",
-                          "#7f8c8d",
-                          "#34ace0",
-                          "#ffda79",
-                          "#2c2c54",
+                          "#1abc9c",
+                          "#27ae60",
+                          "#82ccdd",
+                          "#60a3bc",
+                          "#b8e994",
                         ],
                         borderWidth: 1,
                       },
@@ -416,9 +408,23 @@ export class Chart_Index extends Component {
                     responsive: true,
                     maintainAspectRatio: true,
                     plugins: {
+                      datalabels: {
+                        display: 'auto',
+                        formatter: function (value) {
+                          return Math.round(value) + '元';
+                        },
+                        font: {
+                          size: 14,
+                        },
+                        labels: {
+                          value: {
+                            color: '#ffffff',
+                            size: "16px"
+                          }
+                        }
+                      },
                       tooltip: {
                         enabled: true,
-
                         callbacks: {
                           label: function (tooltipItem) {
                             return Math.abs(tooltipItem.parsed) + "元";
@@ -435,16 +441,6 @@ export class Chart_Index extends Component {
                               ((ttItem[0].parsed * 100) / sum).toFixed(2) +
                               "%";
                             return `占比: ${percentage}`;
-                          },
-                        },
-                        datalabels: {
-                          display: true,
-                          padding: { top: 10 },
-                          color: "black",
-                          labels: {
-                            value: {
-                              color: "green",
-                            },
                           },
                         },
                       },
@@ -511,21 +507,31 @@ export class Chart_Index extends Component {
                       labels: this.state.cost_kind,
                       datasets: [
                         {
-                          label: "# of Votes",
+
                           data: this.state.cost_amount,
                           backgroundColor: [
-                            "rgba(255, 99, 132)",
-                            "rgba(54, 162, 235)",
-                            "rgba(255, 206, 86)",
-                            "rgba(75, 192, 192)",
-                            "rgba(75, 192, 30)",
+                            "#ff6b81",
+                            "#ff6348",
+                            "#ffa502",
+                            "#fab1a0",
+                            "#e3b841",
+                            "#e1c823",
+                            "#d0596e",
+                            "#e11a06",
+                            "#ffda79",
+                            "#2c2c54",
                           ],
                           borderColor: [
-                            "rgba(255, 99, 132, 1)",
-                            "rgba(54, 162, 235, 1)",
-                            "rgba(255, 206, 86, 1)",
-                            "rgba(75, 192, 192, 1)",
-                            "rgba(75, 192, 30, 1)",
+                            "#ff6b81",
+                            "#ff6348",
+                            "#ffa502",
+                            "#fab1a0",
+                            "#e3b841",
+                            "#e1c823",
+                            "#d0596e",
+                            "#e11a06",
+                            "#ffda79",
+                            "#2c2c54",
                           ],
                           borderWidth: 1,
                         },
@@ -535,9 +541,22 @@ export class Chart_Index extends Component {
                       responsive: true,
                       maintainAspectRatio: true,
                       plugins: {
+                        datalabels: {
+                          display: 'auto',
+                          formatter: function (value) {
+                            return Math.round(value) + '元';
+                          },
+                          font: {
+                            size: 16,
+                          },
+                          labels: {
+                            value: {
+                              color: '#ffffff',
+                              size: "40px"
+                            }
+                          }
+                        },
                         tooltip: {
-                          enabled: true,
-
                           callbacks: {
                             label: function (tooltipItem) {
                               return Math.abs(tooltipItem.parsed) + "元";
@@ -554,16 +573,6 @@ export class Chart_Index extends Component {
                                 ((ttItem[0].parsed * 100) / sum).toFixed(2) +
                                 "%";
                               return `占比: ${percentage}`;
-                            },
-                          },
-                          datalabels: {
-                            display: true,
-                            padding: { top: 10 },
-                            color: "black",
-                            labels: {
-                              value: {
-                                color: "green",
-                              },
                             },
                           },
                         },
