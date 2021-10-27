@@ -20,22 +20,52 @@ export class CompareIndex extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      accounts: [],
+      accounts1: [],
+      accounts2: [],
+      piedata1: [],
+      piedate2: [],
       date: "",
       category: [],
-      years:["109","108","107","106","105"]
+      year: 109,
+      years: [109, 108, 107, 106, 105],
     };
   }
-  fetchContent = async (year) => {
-    await fetch(`http://localhost:4000/fetch/diagram/compare/${year}`)
+  fetchContent1 = async (year) => {
+    await fetch(
+      `http://localhost:4000/api/account/fetch/diagram/compare/${year}`
+    )
       .then((res) => res.json())
-      .then((data) => this.setState({ accounts: data }));
+      .then((data) => this.setState({ accounts1: data }));
+  };
+  fetchContent2 = async (year) => {
+    await fetch(
+      `http://localhost:4000/api/account/fetch/diagram/compare/${year}`
+    )
+      .then((res) => res.json())
+      .then((data) => this.setState({ accounts2: data }));
+  };
+  getValue1 = async (event) => {
+    this.setState({ year: event.target.value,piedata1:[]});
+    await this.fetchContent1(event.target.value);
+    this.state.piedata1.push(this.state.accounts1.income);
+    this.state.piedata1.push(Math.abs(this.state.accounts1.cost));
+  };
+
+  getValue2 = async (event) => {
+    this.setState({ year: event.target.value,piedata2:[] });
+    await this.fetchContent2(event.target.value);
+    this.state.piedata2.push(this.state.accounts2.income);
+    this.state.piedata2.push(Math.abs(this.state.accounts2.cost));
   };
   async componentWillMount() {
-    await this.fetchContent();
+    await this.fetchContent1(this.state.year);
+    await this.fetchContent2(this.state.year);
+    // this.setState({piedata1:[],piedata2:[]})
   }
-
+  
   render() {
+
+
     return (
       <>
         <div className="d-flex justify-content-end">
@@ -64,29 +94,30 @@ export class CompareIndex extends Component {
           </div>
         </div>
         <Container>
-          {" "}
           <div id="activity2">
             <div className="cfilter">
               <div className="row text-center">
                 <div className="col mt-2 text-center">
                   <select
-                    onChange={(e) => this.getValue(e)}
-                    defaultValue={this.state.accounts}
-                    value={this.state.accounts}
+                    onChange={(e) => this.getValue1(e)}
+                    defaultValue={109}
                     className="bDropdown"
                   >
                     {this.state.years.map((ele, index) => {
-                      return <option key={index}>{ele}學年度</option>;
-                      
+                      return <option key={index}>{ele}</option>;
                     })}
                   </select>
                 </div>
 
                 <div className="col mt-2 text-center">
-                  <select className="ml-5 bDropdown">
-                    <option>108學年度</option>
-                    <option>107學年度</option>
-                    <option>106學年度</option>
+                  <select
+                    onChange={(e) => this.getValue2(e)}
+                    // defaultValue={108}
+                    className="bDropdown"
+                  >
+                    {this.state.years.map((ele, index) => {
+                      return <option key={index}>{ele}</option>;
+                    })}
                   </select>
                 </div>
               </div>
@@ -97,12 +128,12 @@ export class CompareIndex extends Component {
               <div className="">淨利/損</div>
             </div>
             <div className="row">
-              <CompareDetailTwo accounts={this.state.accounts} />
-              <CompareDetail accounts={this.state.accounts} />
+              <CompareDetailTwo accounts1={this.state.accounts1} />
+              <CompareDetail accounts2={this.state.accounts2} />
             </div>
           </div>
           <div id="activity3" style={{ paddingtop: "0.25%" }}>
-            <div className="Comtitle  ">
+            <div className="Comtitle">
               <div className="">圓餅圖</div>
             </div>
             <div className="row my-2">
@@ -112,13 +143,25 @@ export class CompareIndex extends Component {
               >
                 <div className="row m-2">
                   <div className="pieText col" style={{ color: "green" }}>
-                    收入&nbsp; NT38,000
+                    收入&nbsp; NT
+                    {Number(
+                      parseFloat(Math.abs(this.state.accounts1.income)).toFixed(
+                        3
+                      )
+                    ).toLocaleString("en", {
+                      minimumFractionDigits: 0,
+                    })}
                   </div>
                   <div
                     className="pieText col text-right"
                     style={{ color: "red" }}
                   >
-                    支出&nbsp; NT20,000
+                    支出&nbsp; NT
+                    {Number(
+                      parseFloat(Math.abs(this.state.accounts1.cost)).toFixed(3)
+                    ).toLocaleString("en", {
+                      minimumFractionDigits: 0,
+                    })}
                   </div>
                 </div>
                 <Pie
@@ -126,12 +169,11 @@ export class CompareIndex extends Component {
                     labels: ["收益", "折損"], //顯示區間名稱
                     datasets: [
                       {
-                        label: "108學年度", // tootip 出現的名稱
                         lineTension: 0, // 曲線的彎度，設0 表示直線
                         backgroundColor: ["#1abc9c", "#f39c12"],
                         borderColor: ["#1abc9c", "#f39c12"],
                         borderWidth: 1,
-                        data: [37000, 20000], // 資料
+                        data: this.state.piedata1, // 資料
                         fill: false, // 是否填滿色彩
                       },
                     ],
@@ -178,13 +220,25 @@ export class CompareIndex extends Component {
               >
                 <div className="row m-2">
                   <div className="pieText col" style={{ color: "green" }}>
-                    收入&nbsp; NT37,000
+                    收入&nbsp; NT
+                    {Number(
+                      parseFloat(Math.abs(this.state.accounts2.income)).toFixed(
+                        3
+                      )
+                    ).toLocaleString("en", {
+                      minimumFractionDigits: 0,
+                    })}
                   </div>
                   <div
                     className="pieText col text-right"
                     style={{ color: "red" }}
                   >
-                    支出&nbsp; NT20,000
+                    支出&nbsp;NT
+                    {Number(
+                      parseFloat(Math.abs(this.state.accounts2.cost)).toFixed(3)
+                    ).toLocaleString("en", {
+                      minimumFractionDigits: 0,
+                    })}
                   </div>
                 </div>
                 <Pie
@@ -192,12 +246,11 @@ export class CompareIndex extends Component {
                     labels: ["收益", "折損"], //顯示區間名稱
                     datasets: [
                       {
-                        label: "108學年度", // tootip 出現的名稱
                         lineTension: 0, // 曲線的彎度，設0 表示直線
                         backgroundColor: ["#1abc9c", "#f39c12"],
                         borderColor: ["#1abc9c", "#f39c12"],
                         borderWidth: 1,
-                        data: [37000, 20000], // 資料
+                        data: this.state.piedata2, // 資料
                         fill: false, // 是否填滿色彩
                       },
                     ],

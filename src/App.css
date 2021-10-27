@@ -31,37 +31,46 @@ aside a {
   flex: 1 1 auto;
   text-align: center;
 }
-.radio{
+
+.radio {
   width: 20px;
   height: 20px;
 }
-.Col{
+
+.Col {
   padding: 0 0 0 0 !important;
 }
-li{
+
+li {
   font-size: 20px;
 }
+
 .recordcontent {
   background-color: #F7F7EB;
   height: 100vh;
 }
+
 .meeting>.title {
   font-size: 16pt;
 }
+
 .title {
   color: #583f00;
   font-weight: bold;
   font-size: 18pt;
   margin-bottom: 0;
 }
+
 .date {
   color: #757575;
   font-weight: bold;
   font-size: 12pt;
 }
+
 .meeting {
   border-radius: 5px;
 }
+
 .Dropdown {
   /*下拉式選單*/
   border-width: 2px;
@@ -73,4 +82,21 @@ li{
   outline: none;
   font-size: 16px;
   text-align: center;
+}
+.dropdownfont{
+  margin-top: 8px;
+  font-size: 18px;
+  margin-left: 2%;
+}
+@media screen and (max-width: 575px) {
+  .Dropdown {
+    font-size: 14px;
+  }
+.dropdownfont{
+  margin-top: 25px;
+  font-size: 16px;
+}
+.content{
+  margin-top: 22%;
+}
 }

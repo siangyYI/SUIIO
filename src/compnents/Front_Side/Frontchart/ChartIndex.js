@@ -22,7 +22,6 @@ export class Chart_Index extends Component {
       Incomeamo: [],
       diagrams: {},
       year: 2019,
-      cities: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
       income: [],
       cost: [],
       cost_kind: [],
@@ -44,6 +43,7 @@ export class Chart_Index extends Component {
   };
   async componentWillMount() {
     await this.diagram(this.state.year, this.state.month);
+    console.log(this.state.diagrams)
     let months = [],
       result = {},
       total = [],
@@ -155,7 +155,7 @@ export class Chart_Index extends Component {
       cost: cos,
     });
   }
-  getValue = async (event) => {
+  setmonth = async (event) => {
     this.setState({
       incomeAll: 0,
       month: event.target.value,
@@ -185,14 +185,14 @@ export class Chart_Index extends Component {
       inc = [],
       cos = [];
     months = Object.keys(this.state.diagrams);
-    console.log(this.state.diagrams)
+
     // eslint-disable-next-line array-callback-return
     months.map((month) => {
+
       const total = { cost: 0, income: 0 };
       if (!this.state.diagrams[month].length) {
         result[month] = total;
         this.state.count_diagrams.push(0);
-
       } else {
         // eslint-disable-next-line array-callback-return
         this.state.diagrams[month].map((detail) => {
@@ -203,6 +203,7 @@ export class Chart_Index extends Component {
           }
           amount > 0 ? (total.income += amount) : (total.cost += amount * -1);
           result[month] = total;
+          console.log(result)
         });
         this.state.count_diagrams.push(
           Object.keys(this.state.diagrams[month]).length
@@ -212,6 +213,7 @@ export class Chart_Index extends Component {
     let cadre = [];
     // eslint-disable-next-line array-callback-return
     this.state.diagrams[event.target.value].map((x) => {
+      console.log(cadre)
       cadre[x.uploadBy] = cadre[x.uploadBy] || [];
       cadre[x.uploadBy].push(x);
     });
@@ -297,10 +299,9 @@ export class Chart_Index extends Component {
     return (
       <>
         <select
-          onChange={(e) => this.getValue(e)}
+          onChange={(e) => this.setmonth(e)}
           defaultValue={this.state.month}
-          value={this.state.month}
-          className="mt-3 ml-5 px-2"
+          className="mt-1 ml-3 px-2"
           style={{
             borderRadius: "10px",
             backgroundColor: "white",

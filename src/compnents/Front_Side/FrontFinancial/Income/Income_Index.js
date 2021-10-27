@@ -9,9 +9,6 @@ export class Income_Index extends Component {
       account: [],
       selected: {},
       content: {},
-      ContentShow: false,
-      AddShow: false,
-      review: false,
     };
     this.update();
   }
@@ -24,10 +21,10 @@ export class Income_Index extends Component {
   render() {
     return (
       <>
-        <div className="my-3 mx-5 d-flex mt-4">
+        <div className="mx-5 d-md-flex content mt-md-3">
           <div>
             <select
-              className="Dropdown ml-3 px-2"
+              className="Dropdown ml-md-3 px-md-2"
               style={{
                 borderRadius: "10px",
                 height: "2em",
@@ -42,30 +39,31 @@ export class Income_Index extends Component {
             </select>
           </div>
 
-          <h4 style={{ marginTop: "8px", fontSize: "18px", marginLeft: "2%" }}>
+          <h4 className="dropdownfont">
             請選擇日期區間
           </h4>
+          <div className="d-flex">
+            <input
+              id="date"
+              type="date"
+              className="Dropdown ml-md-3 px-md-2"
+              style={{ margin: "0" }}
+            ></input>
+            <h3 style={{ marginLeft: "1%", marginRight: '1%'  }}>-</h3>
 
-          <input
-            id="date"
-            type="date"
-            className="Dropdown ml-3 px-2"
-            style={{ margin: "0" }}
-          ></input>
-          <h3 style={{ marginLeft: "1%" }}>-</h3>
-
-          <input
-            id="date"
-            type="date"
-            className="Dropdown ml-3 px-2"
-            style={{ margin: "0" }}
-          ></input>
-
+            <input
+              id="date"
+              type="date"
+              className="Dropdown ml-md-3 px-md-2"
+              style={{ margin: "0" }}
+            ></input>
+          </div>
           <div>
             <Page total={this.state.total} pageSize={this.pageSize} />
           </div>
         </div>
         <div className="row mt-2 px-5">
+          {console.log(this.state.account)}
           {this.state.account.map((x) => (
             // eslint-disable-next-line react/jsx-pascal-case
             <Income_Card account={x} />

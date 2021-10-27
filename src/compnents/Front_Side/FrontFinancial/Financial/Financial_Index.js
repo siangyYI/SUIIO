@@ -22,7 +22,7 @@ export class Financial_Index extends Component {
       .then((res) => res.json())
       .then((data) => this.setState({ statements: data }))
   }
-  
+
   fetchContent = async (id) => {
     await fetch(`http://localhost:4000/api/statement/fetch/id/${id}`)
       .then((res) => res.json())
@@ -30,13 +30,11 @@ export class Financial_Index extends Component {
   }
   render() {
     return (
-
       <>
-        <div className="my-3 mx-5 d-flex mt-5">
-
+        <div className="mx-5 d-md-flex content  mt-md-3">
           <div>
             <select
-              className="Dropdown ml-3 px-2"
+              className="Dropdown ml-md-3 px-md-2"
               style={{
                 borderRadius: "10px",
                 height: "2em",
@@ -50,16 +48,16 @@ export class Financial_Index extends Component {
               <option value="mango">資管周</option>
             </select>
           </div>
-          <h4 style={{ marginTop: '8px', fontSize: '18px', marginLeft: '2%' }}>
+          <div className="dropdownfont">
             請選擇日期區間
-          </h4>
-
-          <input id="date" type="date" className="Dropdown ml-3 px-2" style={{ margin: '0' }}></input>
-          <h3 style={{ marginLeft: '1%' }}>
-            -
-          </h3>
-
-          <input id="date" type="date" className="Dropdown ml-3 px-2" style={{ margin: '0' }}></input>
+          </div>
+          <div className="d-flex">
+            <input id="date" type="date" className="Dropdown ml-md-3 px-md-2" style={{ margin: '0' }}></input>
+            <h3 style={{ marginLeft: '1%', marginRight: '1%' }}>
+              -
+            </h3>
+            <input id="date" type="date" className="Dropdown ml-md-3 px-md-2" style={{ margin: '0' }}></input>
+          </div>
         </div>
         <div className="row mt-2 px-5">
           {this.state.statements.map((x) => (
