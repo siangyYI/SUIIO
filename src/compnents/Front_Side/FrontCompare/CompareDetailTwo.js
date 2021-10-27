@@ -5,18 +5,21 @@ export class CompareDetailTwo extends Component {
 
   render() {
     let { accounts1 } = this.props;
-
+    let account = Object.values(accounts1)
+// console.log(this.pro);
     return (
       <>
         <div className="mx-auto mt-2 ">
           <div className="dtext d-flex">
-          {accounts1.net_loss > 0 ? (
+          {account[2] > 0 ? (
                 <>
               <div className="size2 d-flex justify-content-start mx-2 ">
                 淨利
               </div>
+
               <div className="ml-3 " style={{ color: "rgb(69, 185, 69)" }}>
               {Number(parseFloat(Math.abs(accounts1.net_loss)).toFixed(3)).toLocaleString(
+
                 "en",
                 {
                   minimumFractionDigits: 0,
@@ -29,7 +32,7 @@ export class CompareDetailTwo extends Component {
                 淨損
               </div>
               <div className="ml-3" style={{ color: "rgb(196, 68, 68)" }}>
-              {Number(parseFloat(Math.abs(accounts1.net_loss)).toFixed(3)).toLocaleString(
+              {Number(parseFloat(Math.abs(account[2])).toFixed(3)).toLocaleString(
                 "en",
                 {
                   minimumFractionDigits: 0,
