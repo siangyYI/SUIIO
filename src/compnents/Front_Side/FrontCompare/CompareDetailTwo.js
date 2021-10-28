@@ -16,8 +16,10 @@ export class CompareDetailTwo extends Component {
               <div className="size2 d-flex justify-content-start mx-2 ">
                 淨利
               </div>
-              <div className="ml-3" style={{ color: "rgb(69, 185, 69)" }}>
-              {Number(parseFloat(Math.abs(account[2])).toFixed(3)).toLocaleString(
+
+              <div className="ml-3 " style={{ color: "rgb(69, 185, 69)" }}>
+              {Number(parseFloat(Math.abs(accounts1.net_loss)).toFixed(3)).toLocaleString(
+
                 "en",
                 {
                   minimumFractionDigits: 0,

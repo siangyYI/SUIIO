@@ -1,35 +1,75 @@
-.FTable tr:hover{
-background-color: #eeeeee !important;
+.FTable tr:hover {
+    background-color: #eeeeee !important;
 }
-td,th{
+
+td, th {
     font-size: 16px !important;
 }
-.total{
+
+.total {
     font-size: 18px !important;
     font-weight: bold !important;
 }
-.AllTotal{
+
+.AllTotal {
     font-weight: bold !important;
-padding: 16px 8px 16px 8px !important;
-width: 30%;
+    padding: 16px 8px 16px 8px !important;
+    width: 30%;
 }
-.ntwidth{
+
+.ntwidth {
     width: 20% !important;
     font-weight: bold !important;
     padding: 16px 8px 16px 8px !important;
 }
-.dwidth{
+
+.dwidth {
     width: 16% !important;
 }
-.fontSize{
+
+.fontSize {
     font-size: 17px!important;
 }
-.MuiTableCell-root{
+
+.MuiTableCell-root {
     padding-top: 14px !important;
     padding-right: 14px !important;
     padding-bottom: 14px !important;
     padding-left: 14px !important;
 }
-.MuiTableCell-head{
+
+.MuiTableCell-head {
     color: white !important;
+}
+
+.arrow {
+    margin-top: 2%;
+    margin-left: 5%;
+    margin-bottom: 2%;
+}
+
+.amountfont {
+    font-size: 22px;
+    margin-top: 6%;
+}
+
+.cleartable {
+    width: 40%;
+    margin: 0 auto;
+}
+
+@media screen and (max-width: 575px) {
+    .arrow {
+        margin-top: 22%;
+        margin-left: 5%;
+        margin-bottom: 3%;
+    }
+    
+    .amountfont {
+        font-size: large;
+        margin-top: 17%;
+    }
+    .cleartable {
+        width: 80%;
+    }
 }

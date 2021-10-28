@@ -34,7 +34,7 @@ export class Financial_Detail extends Component {
             alt="arrow_icon"
             width="30pt"
             height="30pt"
-            className="mt-3 ml-4"
+            className="arrow"
           />
         </Link>
         <Container>

@@ -50,7 +50,6 @@
 
     margin-top: 5%;
 }
-
 .ititle {
     font-size: 28px;
     line-height: 1.25;
@@ -84,4 +83,22 @@
     height: 20%;
     margin-bottom: 48px;
     padding-bottom: 22px;
+}
+.chart_select{
+    border-radius: 10px;
+    background-color: white;
+    margin-top: 2%;
+}
+@media screen and (max-width: 575px) {
+    .chart_select{
+        margin-top: 20%;
+    }
+    .dtext {
+        display: block;
+        font-size: 38px;
+        line-height: 1;
+        font-weight: 600;
+        margin-bottom: 10%;
+    }
+   
 }
