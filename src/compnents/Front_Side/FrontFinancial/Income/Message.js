@@ -67,6 +67,8 @@ const ErrorMessage = styled.div`
   color: #db4c3f;
 `;
 
+
+
 function Message({ author, time, children }) {
   return (
     <>
@@ -101,6 +103,17 @@ Message.propTypes = {
 };
 
 function MessageTable() {
+  // fetchContent = async (mes) => {
+  //   await fetch(
+  //     `http://localhost:4000/api/comment/add/${mes}`
+  //   )
+  //     .then((res) => res.json())
+  //     .then((data) => this.setState({ accounts1: data }));
+  // };
+  
+  // async componentWillMount() {
+  //   await this.fetchContent()
+  // }
   const [messages, setMessages] = useState(null);
   const [messageApiError, setMessageApiError] = useState(null);
   const [value, setValue] = useState();
@@ -138,14 +151,16 @@ function MessageTable() {
     }
     // 要發送 API 之前設成 true
     setIsLoadingPostMessage(true);
-    fetch("https://student-json-api.lidemy.me/comments", {
+    fetch("http://localhost:4000/api/comment/add/account", {
       method: "POST",
       headers: {
         "content-type": "application/json",
       },
       body: JSON.stringify({
-        name: "xul4u0",
-        body: value,
+        tableID :2,
+        content: value,
+        isHide:true,
+        sID:"1110634025"
       }),
     })
       .then((res) => res.json())
@@ -165,7 +180,6 @@ function MessageTable() {
         setPostMessageError(err.message);
       });
   };
-
   // 第二個參數傳入 [] 代表只在 componet mount 後執行
   useEffect(() => {
     fetchMessages();
@@ -196,23 +210,7 @@ function MessageTable() {
               </Message>
             ))}
         </MessageList>
-        {/* <div className="row ml-2">
-          <img
-            src={user}
-            alt="member"
-            width="50px"
-            height="50px"
-            className="mt-1 mr-3"
-          ></img>
-          <div className="d-flex flex-column bd-highlight">
-            <MessageAuthor className="bd-highlight">{author}</MessageAuthor>
 
-            <MessageBody className=" bd-highlight">{children}</MessageBody>
-          </div>
-          <div className="col" align="right">
-            <MessageTime>{time}</MessageTime>
-          </div>
-        </div> */}
         <form onSubmit={handleFormSubmit}>
           <div
             className="row p-2 pl-4"
@@ -240,10 +238,10 @@ function MessageTable() {
                   }}
                   className="DropdownMess"
                   style={{ backgroundColor: "#483939", fontWeight: "bold", color: '#eff349', }}
-                >
-                  
-                  <option value={10} >小周</option>
-                  <option value={20}>周大大</option>
+                >                  
+                  <option value="true">小周</option>
+                  <option value="false">周大大</option>
+                  console.log()
                 </select>
               </Box>
               <div className=" bd-highlight d-flex">
