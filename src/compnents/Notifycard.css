@@ -5,11 +5,12 @@
     border-radius: 8px;
     text-align: center;
     height: 50%;
+    width: 25%;
     
 }
 .ncardline{
     border-bottom: 2px solid #ecf0f1;
-    width: 295px;
+    width: 100%;
     color: #01597f;
 }
 .nfont{

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "../../../styles/Index.css";
-
+import Pagination from '@mui/material/Pagination';
 import { Meeting_Card } from "./Meeting_Card";
 export class Index extends Component {
   constructor(props) {
@@ -12,8 +12,12 @@ export class Index extends Component {
       ContentShow: false,
       AddShow: false,
       review: false,
+      offset: 0
     };
     this.update();
+  }
+  handleClick(offset) {
+    this.setState({ offset });
   }
   update = () => {
     fetch("http://localhost:4000/api/conference/fetch/all")
@@ -22,9 +26,14 @@ export class Index extends Component {
   };
 
   render() {
-
     return (
       <>
+        <Pagination
+          limit={10}
+          offset={this.state.offset}
+          total={100}
+          onClick={(e, offset) => this.handleClick(offset)}
+        />
         <div className="mx-5 d-md-flex content  mt-md-3">
           <div>
             <select
