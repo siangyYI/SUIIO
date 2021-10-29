@@ -5,7 +5,6 @@ import MessageTable from "./Message";
 import { Container } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import arrow_icon from "../../../../Image/arrow_icon.png";
-import { IncomeImg } from "./Income_Img";
 import "./Income.css";
 
 export class Income_Detail extends Component {
@@ -156,12 +155,9 @@ export class Income_Detail extends Component {
             </Box>
           </Card>
           <div className="my-4">
-            <MessageTable data={this.state.id} />
+            <MessageTable data={this.state.id} table="account" />
           </div>
-          <IncomeImg
-            show={this.state.AddShow}
-            onHide={() => this.setState({ AddShow: false })}
-          />
+          
         </Container>
       </>
     );
