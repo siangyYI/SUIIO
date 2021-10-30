@@ -1,7 +1,5 @@
 import React, { Component } from "react";
 import { Income_Card } from "./Income_Card";
-import { Page } from "../../Page";
-
 export class Income_Index extends Component {
   constructor(props) {
     super(props);
@@ -9,6 +7,7 @@ export class Income_Index extends Component {
       account: [],
       selected: {},
       content: {},
+      pages: []
     };
     this.update();
   }
@@ -17,7 +16,21 @@ export class Income_Index extends Component {
       .then((res) => res.json())
       .then((data) => this.setState({ account: data }));
   };
+  componentDidMount() {
+    this.setState({
+      pages: this.state.account.reduce((arr, value, key) => {
+        let cnt = 0
+        if (key % 16 === 0) {
+          arr.push([value])
+          cnt++
+        } else {
+          arr[cnt].push(value)
+        }
+        return arr
+      }, [])
+    })
 
+  }
   render() {
     return (
       <>
@@ -49,7 +62,7 @@ export class Income_Index extends Component {
               className="Dropdown ml-md-3 px-md-2"
               style={{ margin: "0" }}
             ></input>
-            <h3 style={{ marginLeft: "1%", marginRight: '1%'  }}>-</h3>
+            <h3 style={{ marginLeft: "1%", marginRight: '1%' }}>-</h3>
 
             <input
               id="date"
@@ -58,16 +71,16 @@ export class Income_Index extends Component {
               style={{ margin: "0" }}
             ></input>
           </div>
-          <div>
-            <Page total={this.state.total} pageSize={this.pageSize} />
-          </div>
         </div>
         <div className="row mt-2 px-5">
-          {console.log(this.state.account)}
           {this.state.account.map((x) => (
             // eslint-disable-next-line react/jsx-pascal-case
             <Income_Card account={x} />
-          ))}
+          ))
+          }
+          {
+            console.log(this.state.pages)
+          }
         </div>
       </>
     );

@@ -6,7 +6,7 @@
 
 .charttitle {
     font-weight: bold;
-    font-size: 16px;
+    font-size: 18px;
 }
 
 .charttext {
@@ -109,7 +109,7 @@
     }
     .dtext {
         display: block;
-        font-size: 38px;
+        font-size: 26px;
         line-height: 1;
         font-weight: 600;
         margin-bottom: 10%;

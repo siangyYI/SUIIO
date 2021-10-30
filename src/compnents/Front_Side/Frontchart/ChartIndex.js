@@ -301,24 +301,24 @@ export class Chart_Index extends Component {
         <select
           onChange={(e) => this.setmonth(e)}
           defaultValue={this.state.month}
-          className="ml-3 px-2 chart_select"
+          className="mt-md-2 ml-3 px-2 mx-auto cDropdown d-flex"
           style={{
             borderRadius: "10px",
-            backgroundColor: "white",
           }}
         >
-          <option value={1}>1月</option>
-          <option value={2}>2月</option>
-          <option value={3}>3月</option>
-          <option value={4}>4月</option>
-          <option value={5}>5月</option>
-          <option value={6}>6月</option>
           <option value={7}>7月</option>
           <option value={8}>8月</option>
           <option value={9}>9月</option>
           <option value={10}>10月</option>
           <option value={11}>11月</option>
           <option value={12}>12月</option>
+          <option value={1}>1月</option>
+          <option value={2}>2月</option>
+          <option value={3}>3月</option>
+          <option value={4}>4月</option>
+          <option value={5}>5月</option>
+          <option value={6}>6月</option>
+
         </select>
         <div>
           <div className="row">
@@ -410,8 +410,27 @@ export class Chart_Index extends Component {
                     plugins: {
                       datalabels: {
                         display: 'auto',
-                        formatter: function (value) {
-                          return Math.round(value) + '元';
+                        formatter: function (value, ctx) {
+                          let sum = 0;
+                          let dataArr = ctx.chart.data.datasets[0].data;
+                          // eslint-disable-next-line array-callback-return
+                          dataArr.map(data => {
+                            sum += data;
+                          });
+                          let percentage = (value.toFixed(2) / sum) * 100;
+
+                          if (percentage > 100) {
+                            percentage = 100;
+                          }
+
+                          if (percentage < 15) {
+                            return "";
+                          }
+
+                          if (ctx.width <= 500) {
+                            return "";
+                          }
+                          return value + "元";
                         },
                         font: {
                           size: 14,
@@ -419,7 +438,6 @@ export class Chart_Index extends Component {
                         labels: {
                           value: {
                             color: '#ffffff',
-                            size: "16px"
                           }
                         }
                       },
@@ -477,9 +495,19 @@ export class Chart_Index extends Component {
                 options={{
                   plugins: {
                     legend: {
-                      display: true,
-                      position: "bottom",
-                    },
+                      display: false
+                    }
+                  },
+                  scales: {
+                    x: {
+                      ticks: {
+                        font: {
+                          color: 'black',
+                          size: 16,
+                          weight: 'bold',
+                        },
+                      }
+                    }
                   },
                 }}
               />
@@ -505,7 +533,6 @@ export class Chart_Index extends Component {
                     labels: this.state.cost_kind,
                     datasets: [
                       {
-
                         data: this.state.cost_amount,
                         backgroundColor: [
                           "#ff6b81",
@@ -541,8 +568,24 @@ export class Chart_Index extends Component {
                     plugins: {
                       datalabels: {
                         display: 'auto',
-                        formatter: function (value) {
-                          return Math.round(value) + '元';
+                        formatter: function (value, ctx) {
+                          let sum = 0;
+                          let dataArr = ctx.chart.data.datasets[0].data;
+                          // eslint-disable-next-line array-callback-return
+                          dataArr.map(data => {
+                            sum += data;
+                          });
+                          let percentage = (value.toFixed(2) / sum) * 100;
+                          if (percentage > 100) {
+                            percentage = 100;
+                          }
+                          if (percentage < 10) {
+                            return "";
+                          }
+                          if (ctx.width <= 100) {
+                            return "";
+                          }
+                          return value + "元";
                         },
                         font: {
                           size: 16,
