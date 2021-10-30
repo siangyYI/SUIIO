@@ -13,6 +13,7 @@ export class Income_Detail extends Component {
     this.state = {
       content: [],
       AddImg: false,
+      id:"",
     };
   }
 
@@ -26,6 +27,7 @@ export class Income_Detail extends Component {
   componentDidMount() {
     const query = new URLSearchParams(this.props.location.search);
     const ID = query.get("ID");
+    this.state.id=ID;
     // console.log(ID)
     this.fetchContent(ID);
   }
@@ -155,7 +157,8 @@ export class Income_Detail extends Component {
             </Box>
           </Card>
           <div className="my-4">
-            <MessageTable data={this.state.id} table="account" />
+            {console.log(this.state.id)}
+            <MessageTable dataid={this.state.id} table="account" />
           </div>
           
         </Container>
