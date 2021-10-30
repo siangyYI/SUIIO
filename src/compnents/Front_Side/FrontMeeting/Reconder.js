@@ -150,7 +150,7 @@ export class reconder extends Component {
           </div>
 
           <div className="my-3 mx-md-auto overflow-autop-0">
-            <MessageTable data={this.state.id}/>
+            <MessageTable   data={this.state.id} table="conference"/>
           </div>
         </Container>
       </>

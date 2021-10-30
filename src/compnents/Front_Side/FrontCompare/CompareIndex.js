@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { Container } from "react-bootstrap";
 import "./CompareIndex.css";
+import ChartDataLabels from 'chartjs-plugin-datalabels';
+
 import { Bar, Pie, Line } from "react-chartjs-2";
 import CompareFilter from "./CompareFilter";
 import { CompareDetail } from "./CompareDetail";
@@ -187,6 +189,7 @@ export class CompareIndex extends Component {
                 style={{ position: "relative", width: "35%" }}
               >
                 <Pie
+                plugins={[ChartDataLabels]}
                   data={{
                     labels: ["收益", "折損"], //顯示區間名稱
                     datasets: [
@@ -203,10 +206,24 @@ export class CompareIndex extends Component {
                     responsive: true,
                     maintainAspectRatio: true,
                     plugins: {
-                      labels: {
-                        fontSize: 12,
-                        boxWidth: 12,
-                        usePointStyle: true,
+                      datalabels: {
+                        display: 'auto',
+                        formatter: function (value) {
+                          return Number(
+                            parseFloat(Math.abs(value)).toFixed(3)
+                          ).toLocaleString("en", {
+                            minimumFractionDigits: 0,
+                          }) + '元';
+                        },
+                        font: {
+                          size: 16,
+                        },
+                        labels: {
+                          value: {
+                            color: '#ffffff',
+                            size: "40px"
+                          }
+                        }
                       },
                       tooltip: {
                         enabled: true,
@@ -237,9 +254,10 @@ export class CompareIndex extends Component {
               </div>
               <div
                 className="mx-auto"
-                style={{ position: "relative", width: "35%" }}
+                style={{ position: "relative", width: "35%",color:"white" }}
               >
                 <Pie
+                plugins={[ChartDataLabels]}
                   data={{
                     labels: ["收益", "折損"], //顯示區間名稱
                     datasets: [
@@ -256,6 +274,25 @@ export class CompareIndex extends Component {
                     responsive: true,
                     maintainAspectRatio: true,
                     plugins: {
+                      datalabels: {
+                        display: 'auto',
+                        formatter: function (value) {
+                          return Number(
+                            parseFloat(Math.abs(value)).toFixed(3)
+                          ).toLocaleString("en", {
+                            minimumFractionDigits: 0,
+                          }) + '元';
+                        },
+                        font: {
+                          size: 16,
+                        },
+                        labels: {
+                          value: {
+                            color: '#ffffff',
+                            size: "40px"
+                          }
+                        }
+                      },
                       tooltip: {
                         enabled: true,
                         callbacks: {

@@ -42,7 +42,8 @@ export class Financial_Detail extends Component {
             <FinancialTable data={this.state.id} />
           </div>
           <div className="my-2">
-            <MessageTable data={this.state.id}/>
+            {console.log(this.state.id)}
+            <MessageTable  dataid={this.state.id} table="statement"/>
           </div>
         </Container>
       </>

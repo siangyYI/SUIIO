@@ -101,7 +101,6 @@ Message.propTypes = {
 };
 
 function MessageTable(props) {
-
   const [Hidename, setHidename] = useState(false);
   const [messages, setMessages] = useState(null);
   const [messageApiError, setMessageApiError] = useState(null);
@@ -109,6 +108,7 @@ function MessageTable(props) {
   // eslint-disable-next-line no-unused-vars
   const [postMessageError, setPostMessageError] = useState();
   const [isLoadingPostMessage, setIsLoadingPostMessage] = useState(false);
+      console.log(props.dataid)
 
   const fetchMessages = () => {
     // Test Version
@@ -147,7 +147,7 @@ function MessageTable(props) {
         "content-type": "application/json",
       },
       body: JSON.stringify({
-        tableID: 2,
+        tableID: props.dataid,
         content: value,
         isHide: Hidename,
         sID: "1110634006",
@@ -177,7 +177,6 @@ function MessageTable(props) {
 
   return (
     <TableContainer component={Paper}>
-      {console.log(Hidename)}
       {messageApiError && (
         <ErrorMessage>
           {/* 直接 render object 會出錯，因此需轉成 string */}
