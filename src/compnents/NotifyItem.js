@@ -12,11 +12,11 @@ class NotifyItem extends Component {
         return (
             <>
                 <a href={`/${notufy.type}/detail?ID=${notufy.objectID}`}>
-                    <div className="ncardline py-3 d-flex justify-content-around" style={{ alignSelf: "center" }}>
-                        <div className="nfont">
+                    <div className="ncardline py-3" >
+                        <div className="nfont ml-5" style={{textAlign: "left"}}>
                             {notufy.content}
                         </div>
-                        <div>2020-10-28</div>
+                        <div className="mr-5" style={{textAlign: "right"}}>10-28 14:02</div>
                     </div>
                 </a>
             </>

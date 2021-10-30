@@ -7,7 +7,7 @@ import TableContainer from "@material-ui/core/TableContainer";
 import Box from "@material-ui/core/Box";
 import { Input } from "reactstrap";
 import message from "../../../../TestData/db.json";
-import "./Income.css"
+import "./Income.css";
 // Comments API
 const API_ENDPOINT =
   "https://student-json-api.lidemy.me/comments?_sort=createdAt&_order=desc";
@@ -100,7 +100,9 @@ Message.propTypes = {
   children: PropTypes.node,
 };
 
-function MessageTable() {
+function MessageTable(props) {
+
+  const [Hidename, setHidename] = useState(false);
   const [messages, setMessages] = useState(null);
   const [messageApiError, setMessageApiError] = useState(null);
   const [value, setValue] = useState();
@@ -118,7 +120,6 @@ function MessageTable() {
       .catch((err) => {
         setMessageApiError(err.message);
       });
-
   };
 
   const handleTextareaChange = (e) => {
@@ -128,7 +129,9 @@ function MessageTable() {
   const handleTextareaFocus = () => {
     setPostMessageError(null);
   };
-
+  const getHide = (e) => {
+    setHidename(e.target.value === "true");
+  };
   const handleFormSubmit = (e) => {
     // 阻止預設的表單發送行為
     e.preventDefault();
@@ -138,14 +141,16 @@ function MessageTable() {
     }
     // 要發送 API 之前設成 true
     setIsLoadingPostMessage(true);
-    fetch("https://student-json-api.lidemy.me/comments", {
+    fetch(`http://localhost:4000/api/comment/add/${props.table}`, {
       method: "POST",
       headers: {
         "content-type": "application/json",
       },
       body: JSON.stringify({
-        name: "xul4u0",
-        body: value,
+        tableID: 2,
+        content: value,
+        isHide: Hidename,
+        sID: "1110634006",
       }),
     })
       .then((res) => res.json())
@@ -165,7 +170,6 @@ function MessageTable() {
         setPostMessageError(err.message);
       });
   };
-
   // 第二個參數傳入 [] 代表只在 componet mount 後執行
   useEffect(() => {
     fetchMessages();
@@ -173,6 +177,7 @@ function MessageTable() {
 
   return (
     <TableContainer component={Paper}>
+      {console.log(Hidename)}
       {messageApiError && (
         <ErrorMessage>
           {/* 直接 render object 會出錯，因此需轉成 string */}
@@ -196,23 +201,6 @@ function MessageTable() {
               </Message>
             ))}
         </MessageList>
-        {/* <div className="row ml-2">
-          <img
-            src={user}
-            alt="member"
-            width="50px"
-            height="50px"
-            className="mt-1 mr-3"
-          ></img>
-          <div className="d-flex flex-column bd-highlight">
-            <MessageAuthor className="bd-highlight">{author}</MessageAuthor>
-
-            <MessageBody className=" bd-highlight">{children}</MessageBody>
-          </div>
-          <div className="col" align="right">
-            <MessageTime>{time}</MessageTime>
-          </div>
-        </div> */}
         <form onSubmit={handleFormSubmit}>
           <div
             className="row p-2 pl-4"
@@ -233,17 +221,17 @@ function MessageTable() {
             <div className="d-flex flex-column col">
               <Box sx={{ minWidth: 20 }} className="bd-highlight">
                 <select
+                  onChange={getHide}
                   defaultValue={30}
-                  inputProps={{
-                    name: "name",
-                    id: "uncontrolled-native",
-                  }}
                   className="DropdownMess"
-                  style={{ backgroundColor: "#483939", fontWeight: "bold", color: '#eff349', }}
+                  style={{
+                    backgroundColor: "#483939",
+                    fontWeight: "bold",
+                    color: "#eff349",
+                  }}
                 >
-                  
-                  <option value={10} >小周</option>
-                  <option value={20}>周大大</option>
+                  <option value={false}>黃子瑜</option>
+                  <option value={true}>yyyyyu</option>
                 </select>
               </Box>
               <div className=" bd-highlight d-flex">
@@ -255,7 +243,10 @@ function MessageTable() {
                   rows={8}
                   style={{ marginRight: "5px", width: "93%" }}
                 />
-                <SubmitButton className="btn-warning" style={{ height: "36px", paddingTop: "4px" }}>
+                <SubmitButton
+                  className="btn-warning"
+                  style={{ height: "36px", paddingTop: "4px" }}
+                >
                   送出
                 </SubmitButton>
               </div>

@@ -28,11 +28,25 @@
     font-weight: 600;
     margin-bottom: 10%;
 }
+.comparetext {
+    display: block;
+    font-size: 50px;
+    line-height: 1;
+    font-weight: 600;
+    margin-bottom: 10%;
+}
+.stext {
+    display: block;
+    font-size: 27px;
+    line-height: 1;
+    font-weight: 600;
+    margin-bottom: 10%;
+}
 .size {
     font-weight: 600;
     font-size: 20px;
     text-align: center;
-    margin-top: 16%;
+    margin-top: 6%;
 }
 .size1 {
     font-weight: 600;

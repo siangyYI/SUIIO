@@ -33,8 +33,10 @@ export class CompareIndex extends Component {
       date: "",
       categoryAll: [],
       year: 109,
+      yearChart1: [],
+      yearChart2: [],
       catvalue: "",
-      result:[],
+      result: [],
       years: [109, 108, 107, 106, 105],
     };
   }
@@ -83,7 +85,12 @@ export class CompareIndex extends Component {
       this.state.accounts1.income,
       Math.abs(this.state.accounts1.cost),
     ];
-    this.setState({ year: event.target.value, pie_data1: arr, catchar1: [],categoryAll:[] });
+    this.setState({
+      year: event.target.value,
+      pie_data1: arr,
+      catchar1: [],
+      categoryAll: [],
+    });
     this.state.categoryyear1 = event.target.value;
   };
 
@@ -100,15 +107,12 @@ export class CompareIndex extends Component {
       year: event.target.value,
       pie_data2: arr,
       catchar2: [],
-      categoryAll:[],
+      categoryAll: [],
     });
     this.state.categoryyear2 = event.target.value;
   };
 
   setCategory = async (event) => {
-    // this.setState({categoryAll:[]})
-    // this.state.categoryAll=this.state.categoryAll.concat(Object.keys(this.state.category1),Object.keys(this.state.category2))
-    // this.state.categoryAll=new Set(this.state.categoryAll)
     this.state.catvalue = event.target.value; //select
     const arr = Object.keys(this.state.category1);
     await this.setState({ catchar1: arr });
@@ -124,117 +128,71 @@ export class CompareIndex extends Component {
         this.setState({ catchar2: this.state.category2[this.state.catvalue] });
       }
     });
+    const arrincome = [this.state.catchar1.income, this.state.catchar2.income];
+    const arrcost = [
+      Math.abs(this.state.catchar1.cost),
+      Math.abs(this.state.catchar2.cost),
+    ];
+    await this.setState({
+      yearChart1: arrincome,
+      yearChart2: arrcost,
+      arr: [],
+    });
+
+    // console.log("1",this.state.yearChart1,"2",this.state.yearChart2)
   };
 
   render() {
     return (
       <>
-        <div className="d-flex justify-content-end">
-          <div
-            className="d-flex flex-column  Comparenav"
-            style={{ marginTop: "50px" }}
-          >
-            <a
-              onClick={() => scrollToAnchor("activity2")}
-              className="Comparecon my-2 px-3 py-md-1"
-            >
-              淨利/損
-            </a>
-            <a
-              onClick={() => scrollToAnchor("activity4")}
-              className="Comparecon my-2 px-3 py-md-1"
-            >
-              活動圖表
-            </a>{" "}
-
-            <a
-              onClick={() => scrollToAnchor("activity1")}
-              className="Comparecon my-2 px-3 py-md-1"
-            >
-              比較圖表
-            </a>
-
-          </div>
-        </div>
+        {console.log("1", this.state.yearChart1, "2", this.state.yearChart2)}
         <Container>
-          <div id="activity2">
-            <div className="cfilter">
-              <div className="row text-center">
-                <div className="col mt-2 text-center">
-                  <select
-                    onChange={(e) => this.getValue1(e)}
-                    defaultValue={109}
-                    className="bDropdown"
-                  >
-                    {this.state.years.map((ele, index) => {
-                      return <option key={index}>{ele}</option>;
-                    })}
-                  </select>
-                </div>
+          <div className="cfilter">
+            <div className="row text-center">
+              <div className="col my-4 text-center">
+                <select
+                  onChange={(e) => this.getValue1(e)}
+                  defaultValue={109}
+                  className="bDropdown"
+                >
+                  {this.state.years.map((ele, index) => {
+                    return <option key={index}>{ele}</option>;
+                  })}
+                </select>
+              </div>
 
-                <div className="col mt-2 text-center">
-                  <select
-                    onChange={(e) => this.getValue2(e)}
-                    // defaultValue={108}
-                    className="bDropdown"
-                  >
-                    {this.state.years.map((elem, index) => {
-                      return <option key={index}>{elem}</option>;
-                    })}
-                  </select>
-                </div>
+              <div className="col my-4 text-center">
+                <select
+                  onChange={(e) => this.getValue2(e)}
+                  // defaultValue={108}
+                  className="bDropdown"
+                >
+                  {this.state.years.map((elem, index) => {
+                    return <option key={index}>{elem}</option>;
+                  })}
+                </select>
               </div>
             </div>
           </div>
           <div className="my-2">
-            <div className="Comtitle">
-              <div className="">淨利/損</div>
-            </div>
-            <div className="row">
+            <div className="row mt-5">
               <CompareDetailTwo accounts1={this.state.accounts1} />
               <CompareDetail accounts2={this.state.accounts2} />
             </div>
           </div>
-          <div id="activity3" style={{ paddingtop: "0.25%" }}>
-            <div className="Comtitle">
-              <div className="">圓餅圖</div>
-            </div>
+          <div style={{ paddingtop: "0.25%" }}>
             <div className="row my-2">
               <div
                 className="mx-auto"
-                style={{ position: "relative", width: "32%" }}
+                style={{ position: "relative", width: "35%" }}
               >
-                <div className="row m-2">
-                  <div className="pieText col" style={{ color: "green" }}>
-                    收入&nbsp; NT
-                    {Number(
-                      parseFloat(Math.abs(this.state.accounts1.income)).toFixed(
-                        3
-                      )
-                    ).toLocaleString("en", {
-                      minimumFractionDigits: 0,
-                    })}
-                  </div>
-                  <div
-                    className="pieText col text-right"
-                    style={{ color: "red" }}
-                  >
-                    支出&nbsp; NT
-                    {Number(
-                      parseFloat(Math.abs(this.state.accounts1.cost)).toFixed(3)
-                    ).toLocaleString("en", {
-                      minimumFractionDigits: 0,
-                    })}
-                  </div>
-                </div>
                 <Pie
                   data={{
                     labels: ["收益", "折損"], //顯示區間名稱
                     datasets: [
                       {
                         lineTension: 0, // 曲線的彎度，設0 表示直線
-                        backgroundColor: ["#1abc9c", "#f39c12"],
-                        borderColor: ["#1abc9c", "#f39c12"],
+                        backgroundColor: [ "rgb(69, 185, 69)","rgb(196, 68, 68)"],
                         borderWidth: 1,
                         data: this.state.pie_data1, // 資料
                         fill: false, // 是否填滿色彩
@@ -279,39 +237,15 @@ export class CompareIndex extends Component {
               </div>
               <div
                 className="mx-auto"
-                style={{ position: "relative", width: "32%" }}
+                style={{ position: "relative", width: "35%" }}
               >
-                <div className="row m-2">
-                  <div className="pieText col" style={{ color: "green" }}>
-                    收入&nbsp; NT
-                    {Number(
-                      parseFloat(Math.abs(this.state.accounts2.income)).toFixed(
-                        3
-                      )
-                    ).toLocaleString("en", {
-                      minimumFractionDigits: 0,
-                    })}
-                  </div>
-                  <div
-                    className="pieText col text-right"
-                    style={{ color: "red" }}
-                  >
-                    支出&nbsp;NT
-                    {Number(
-                      parseFloat(Math.abs(this.state.accounts2.cost)).toFixed(3)
-                    ).toLocaleString("en", {
-                      minimumFractionDigits: 0,
-                    })}
-                  </div>
-                </div>
                 <Pie
                   data={{
                     labels: ["收益", "折損"], //顯示區間名稱
                     datasets: [
                       {
                         lineTension: 0, // 曲線的彎度，設0 表示直線
-                        backgroundColor: ["#1abc9c", "#f39c12"],
-                        borderColor: ["#1abc9c", "#f39c12"],
+                        backgroundColor:[ "rgb(69, 185, 69)","rgb(196, 68, 68)"],
                         borderWidth: 1,
                         data: this.state.pie_data2, // 資料
                         fill: false, // 是否填滿色彩
@@ -357,11 +291,16 @@ export class CompareIndex extends Component {
 
             <div className="ml-5 text-center  my-3">
               {
-               this.state.categoryAll=this.state.categoryAll.concat(Object.keys(this.state.category1),Object.keys(this.state.category2)),
-               this.state.result =  Array.from(new Set(this.state.categoryAll)),
-              //  this.state.categoryAll=new Set(this.state.categoryAll),
-              //  this.state.categoryAll=Object.keys(this.state.category2),
-                console.log(this.state.result)
+                ((this.state.categoryAll = this.state.categoryAll.concat(
+                  Object.keys(this.state.category1),
+                  Object.keys(this.state.category2)
+                )),
+                (this.state.result = Array.from(
+                  new Set(this.state.categoryAll)
+                )),
+                //  this.state.categoryAll=new Set(this.state.categoryAll),
+                //  this.state.categoryAll=Object.keys(this.state.category2),
+                console.log(this.state.result))
               }
               <select
                 onChange={(e) => this.setCategory(e)}
@@ -392,20 +331,21 @@ export class CompareIndex extends Component {
                   data={{
                     type: "bar",
 
-                    labels: ["支出", "收入", "淨損"],
+                    labels: [
+                      this.state.categoryyear1,
+                      this.state.categoryyear2,
+                    ],
                     datasets: [
                       {
-                        label: this.state.categoryyear1,
-                        data: Object.values(this.state.catchar1),
-                        backgroundColor: ["#ffb142"],
-                        borderColor: ["#607d8b"],
+                        label: "收入",
+                        data: this.state.yearChart1,
+                        backgroundColor:[ "rgb(69, 185, 69)"],
                         borderWidth: 1,
                       },
                       {
-                        label: this.state.categoryyear2,
-                        data: Object.values(this.state.catchar2),
-                        backgroundColor: ["#227093"],
-                        borderColor: ["#227093"],
+                        label: "支出",
+                        data: this.state.yearChart2,
+                        backgroundColor: ["rgb(196, 68, 68)"],
                         borderWidth: 1,
                       },
                     ],

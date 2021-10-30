@@ -43,6 +43,7 @@ class Notifycard extends Component {
                            <NotifyItem notufy={x} />
                         ))};
                  </div>
+
             </>
         );
     }

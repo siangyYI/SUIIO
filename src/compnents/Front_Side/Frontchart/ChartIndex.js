@@ -304,7 +304,6 @@ export class Chart_Index extends Component {
           className="mt-md-2 ml-3 px-2 mx-auto cDropdown d-flex"
           style={{
             borderRadius: "10px",
-            backgroundColor: "white",
           }}
         >
           <option value={7}>7月</option>
@@ -414,6 +413,7 @@ export class Chart_Index extends Component {
                         formatter: function (value, ctx) {
                           let sum = 0;
                           let dataArr = ctx.chart.data.datasets[0].data;
+                          // eslint-disable-next-line array-callback-return
                           dataArr.map(data => {
                             sum += data;
                           });
@@ -501,10 +501,9 @@ export class Chart_Index extends Component {
                   scales: {
                     x: {
                       ticks: {
-                        fontColor: 'red',
                         font: {
+                          color: 'black',
                           size: 16,
-                          family: 'Helvetica',
                           weight: 'bold',
                         },
                       }
@@ -572,23 +571,20 @@ export class Chart_Index extends Component {
                         formatter: function (value, ctx) {
                           let sum = 0;
                           let dataArr = ctx.chart.data.datasets[0].data;
+                          // eslint-disable-next-line array-callback-return
                           dataArr.map(data => {
                             sum += data;
                           });
                           let percentage = (value.toFixed(2) / sum) * 100;
-
                           if (percentage > 100) {
                             percentage = 100;
                           }
-
                           if (percentage < 10) {
                             return "";
                           }
-
                           if (ctx.width <= 100) {
                             return "";
                           }
-
                           return value + "元";
                         },
                         font: {
