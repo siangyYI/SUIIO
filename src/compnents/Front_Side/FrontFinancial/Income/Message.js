@@ -103,27 +103,26 @@ Message.propTypes = {
 function MessageTable(props) {
   // const [data, setdate] = useState(null);
   const [Hidename, setHidename] = useState(false);
-  const [messages, setMessages] = useState(null);
+  const [messages, setMessages] = useState([]);
   const [messageApiError, setMessageApiError] = useState(null);
   const [value, setValue] = useState();
   // eslint-disable-next-line no-unused-vars
   const [postMessageError, setPostMessageError] = useState();
   const [isLoadingPostMessage, setIsLoadingPostMessage] = useState(false);
 
-  const fetchMessages = async(tables, tableID) => {
-    console.log("2")
+  const fetchMessages = async (tables, tableID) => {
+    console.log("2");
     await fetch(`http://localhost:4000/api/comment/fetch/${tables}/${tableID}`)
       .then((res) => res.json())
-       .then((data) => {
-        setMessages(data);
+      .then((data) => {
+        setMessages(data[tableID]);
       })
       .catch((err) => {
         setMessageApiError(err.message);
       });
-  };      
-console.log(messages)
+  };
   const handleTextareaChange = (e) => {
-    setValue(e.target.value);
+    setValue(e.target.value.trim());
   };
 
   const handleTextareaFocus = () => {
@@ -132,67 +131,40 @@ console.log(messages)
   const getHide = (e) => {
     setHidename(e.target.value === "true");
   };
-  const handleFormSubmit = (e) => {
-    // 阻止預設的表單發送行為
-    e.preventDefault();
-    // 若為 true 就直接返回
-    if (isLoadingPostMessage) {
-      return;
-    }
-    // 要發送 API 之前設成 true
-    setIsLoadingPostMessage(true);
-    fetch(`http://localhost:4000/api/comment/add/${props.table}`, {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify({
-        tableID: props.dataid,
-        content: value,
-        isHide: Hidename,
-        sID: "1110634006",
-      }),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        // 收到結果後設成 false
-        setIsLoadingPostMessage(false);
-        // 在顯示訊息前可進行錯誤處理
-        if (data.ok === 0) {
-          setPostMessageError(data.message);
-          return;
-        }
-        setValue("");
-        fetchMessages();
+  const handleFormSubmit = () => {
+    if (value.trim()) {
+      fetch(`http://localhost:4000/api/comment/add/${props.table}`, {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify({
+          tableID: props.dataid,
+          content: value,
+          isHide: Hidename,
+          sID: "1110634006",
+        }),
       })
-      .catch((err) => {
-        setIsLoadingPostMessage(false);
-        setPostMessageError(err.message);
-      });
+        .then((res) => res.json())
+        .then((data) => {
+          setValue("");
+          fetchMessages(props.table, props.dataid);
+        });
+    }
   };
   // 第二個參數傳入 [] 代表只在 componet mount 後執行
-  useEffect(() => {
-    console.log("33")
-    fetchMessages(props.table, props.dataid)
-  },[]);
-
+  useEffect(async () => {
+    await fetchMessages(props.table, props.dataid);
+  }, [props]);
   return (
     <TableContainer component={Paper}>
-{console.log(messages)}
-
-      {messageApiError && (
-        <ErrorMessage>
-          {/* 直接 render object 會出錯，因此需轉成 string */}
-          Something went wrong. {messageApiError.toString()}
-        </ErrorMessage>
-      )}
       {/* 確認裡面有東西才會執行這一行 */}
-      {messages && messages.length === 0 && <div>No Message</div>}
+
       <MessageBorder>
-        <MessageList>
-          {/* 確認裡面有東西才會執行這一行 */}
-          {/* {messages &&
-            messages.map((message) => (
+        {messages?.length ? (
+          <MessageList>
+            {/* 確認裡面有東西才會執行這一行 */}
+            {messages.map((message) => (
               <>
                 <Message
                   key={message.ID}
@@ -202,10 +174,15 @@ console.log(messages)
                 >
                   {message.content}
                 </Message>
+                {/* {console.log(message.ID)} */}
               </>
-            ))} */}
-        </MessageList>
-        <form onSubmit={handleFormSubmit}>
+            ))}
+          </MessageList>
+        ) : (
+          <div style={{fontSize:"20px"}} className="m-5">尚無留言</div>
+        )}
+        <div>
+          {console.log(messages)}
           <div
             className="row p-2 pl-4"
             style={{
@@ -248,6 +225,7 @@ console.log(messages)
                   style={{ marginRight: "5px", width: "93%" }}
                 />
                 <SubmitButton
+                  onClick={handleFormSubmit}
                   className="btn-warning"
                   style={{ height: "36px", paddingTop: "4px" }}
                 >
@@ -258,7 +236,7 @@ console.log(messages)
 
             {/* {postMessageError && <ErrorMessage>{postMessageError}</ErrorMessage>} */}
           </div>
-        </form>{" "}
+        </div>{" "}
       </MessageBorder>
     </TableContainer>
   );

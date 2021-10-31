@@ -1,4 +1,11 @@
 import React, { Component } from "react";
+import {
+  Button,
+  ButtonToolbar,
+  ButtonGroup,
+  Dropdown,
+  DropdownButton,
+} from "react-bootstrap";
 import { Income_Card } from "./Income_Card";
 export class Income_Index extends Component {
   constructor(props) {
@@ -7,30 +14,48 @@ export class Income_Index extends Component {
       account: [],
       selected: {},
       content: {},
-      pages: []
+      pages: [],
+      pagenumber: 0,
     };
     this.update();
   }
   update = () => {
     fetch("http://localhost:4000/api/account/fetch/all")
       .then((res) => res.json())
-      .then((data) => this.setState({ account: data }));
+      .then((data) => {
+        this.setState({ account: data });
+        let cnt = 0;
+        const pages = data.reduce(
+          (arr, v, k) => {
+            const n = k % 16;
+            if (n) {
+              arr[cnt][n] = v;
+            } else {
+              cnt++;
+              arr = [...arr, [v]];
+            }
+            return arr;
+          },
+          [[]]
+        );
+        pages.shift();
+        this.setState({ pages });
+      });
   };
   componentDidMount() {
     this.setState({
-      pages: this.state.account.reduce((value, key,arr) => {
-        let cnt = 0
+      pages: this.state.account.reduce((value, key, arr) => {
+        let cnt = 0;
         if (key % 16 === 0) {
-          arr.push([value])
-          cnt++
+          arr.push([value]);
+          cnt++;
         } else {
-          arr[cnt].push(value)
+          arr[cnt].push(value);
         }
-        
-        return arr
-      }, [])
-    })
 
+        return arr;
+      }, []),
+    });
   }
   render() {
     return (
@@ -52,10 +77,7 @@ export class Income_Index extends Component {
               <option value="mango">資管周</option>
             </select>
           </div>
-
-          <h4 className="dropdownfont">
-            請選擇日期區間
-          </h4>
+          <h4 className="dropdownfont">請選擇日期區間</h4>
           <div className="d-flex">
             <input
               id="date"
@@ -63,7 +85,7 @@ export class Income_Index extends Component {
               className="Dropdown ml-md-3 px-md-2"
               style={{ margin: "0" }}
             ></input>
-            <h3 style={{ marginLeft: "1%", marginRight: '1%' }}>-</h3>
+            <h3 style={{ marginLeft: "1%", marginRight: "1%" }}>-</h3>
 
             <input
               id="date"
@@ -71,17 +93,55 @@ export class Income_Index extends Component {
               className="Dropdown ml-md-3 px-md-2"
               style={{ margin: "0" }}
             ></input>
-          </div>
-        </div>
+            <ButtonToolbar className="mx-5" style={{position:"absolute",right:"0px",color:"white"}}>
+            <ButtonGroup className="mr-2" aria-label="First group">
+              <Button
+                variant="secondary"
+                onClick={() => {
+                  if (this.state.pagenumber)
+                    this.setState({ pagenumber: this.state.pagenumber - 1 });
+                }}
+              >
+                &lt;
+              </Button>
+              <DropdownButton
+                as={ButtonGroup}
+                title={`${this.state.pagenumber + 1} `}
+                variant="secondary"
+              >
+                {this.state.pages.map((v, i) => {
+                  return (
+                    <Dropdown.Item
+                      active={this.state.pagenumber === i}
+                      onClick={() => this.setState({ pagenumber: i })}
+                    >
+                      {i + 1}
+                    </Dropdown.Item>
+                  );
+                })}
+              </DropdownButton>
+              <Button
+                variant="secondary"
+                onClick={() => {
+                  if (this.state.pagenumber < this.state.pages.length - 1)
+                    this.setState({ pagenumber: this.state.pagenumber + 1 });
+                }}
+              >
+                &gt;
+              </Button>
+            </ButtonGroup>
+          </ButtonToolbar>
+          </div>{" "}
+          
+        </div>{" "}
         <div className="row mt-2 px-5">
-          {this.state.account.map((x) => (
-            // eslint-disable-next-line react/jsx-pascal-case
-            <Income_Card account={x} />
-          ))
-          }
-          {
-            console.log(this.state.pages)
-          }
+          {this.state.pages.length
+            ? this.state.pages[this.state.pagenumber].map((x) => (
+                // eslint-disable-next-line react/jsx-pascal-case
+                <Income_Card account={x} />
+              ))
+            : "No Data"}
+          {console.log(this.state.pages)}
         </div>
       </>
     );
