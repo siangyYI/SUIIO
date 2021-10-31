@@ -189,13 +189,13 @@ export class CompareIndex extends Component {
                 style={{ position: "relative", width: "35%" }}
               >
                 <Pie
-                plugins={[ChartDataLabels]}
+                  plugins={[ChartDataLabels]}
                   data={{
                     labels: ["收益", "折損"], //顯示區間名稱
                     datasets: [
                       {
                         lineTension: 0, // 曲線的彎度，設0 表示直線
-                        backgroundColor: [ "rgb(69, 185, 69)","rgb(196, 68, 68)"],
+                        backgroundColor: ["rgb(69, 185, 69)", "rgb(196, 68, 68)"],
                         borderWidth: 1,
                         data: this.state.pie_data1, // 資料
                         fill: false, // 是否填滿色彩
@@ -254,16 +254,16 @@ export class CompareIndex extends Component {
               </div>
               <div
                 className="mx-auto"
-                style={{ position: "relative", width: "35%",color:"white" }}
+                style={{ position: "relative", width: "35%", color: "white" }}
               >
                 <Pie
-                plugins={[ChartDataLabels]}
+                  plugins={[ChartDataLabels]}
                   data={{
-                    labels: ["收益", "折損"], //顯示區間名稱
+                    labels: ["收入", "支出"], //顯示區間名稱
                     datasets: [
                       {
                         lineTension: 0, // 曲線的彎度，設0 表示直線
-                        backgroundColor:[ "rgb(69, 185, 69)","rgb(196, 68, 68)"],
+                        backgroundColor: ["rgb(69, 185, 69)", "rgb(196, 68, 68)"],
                         borderWidth: 1,
                         data: this.state.pie_data2, // 資料
                         fill: false, // 是否填滿色彩
@@ -332,12 +332,12 @@ export class CompareIndex extends Component {
                   Object.keys(this.state.category1),
                   Object.keys(this.state.category2)
                 )),
-                (this.state.result = Array.from(
-                  new Set(this.state.categoryAll)
-                )),
-                //  this.state.categoryAll=new Set(this.state.categoryAll),
-                //  this.state.categoryAll=Object.keys(this.state.category2),
-                console.log(this.state.result))
+                  (this.state.result = Array.from(
+                    new Set(this.state.categoryAll)
+                  )),
+                  //  this.state.categoryAll=new Set(this.state.categoryAll),
+                  //  this.state.categoryAll=Object.keys(this.state.category2),
+                  console.log(this.state.result))
               }
               <select
                 onChange={(e) => this.setCategory(e)}
@@ -376,7 +376,7 @@ export class CompareIndex extends Component {
                       {
                         label: "收入",
                         data: this.state.yearChart1,
-                        backgroundColor:[ "rgb(69, 185, 69)"],
+                        backgroundColor: ["rgb(69, 185, 69)"],
                         borderWidth: 1,
                       },
                       {
@@ -387,7 +387,19 @@ export class CompareIndex extends Component {
                       },
                     ],
                   }}
+                  plugins={[ChartDataLabels]}
                   options={{
+                    plugins: {
+                      datalabels: {
+                        anchor: 'end',
+                        align: 'end',
+                        offset: 4,
+                        color: 'black',
+                      },
+                      legend: {
+                        position: "right",
+                      },
+                    },
                     indexAxis: "y",
                     elements: {
                       bar: {
@@ -395,11 +407,7 @@ export class CompareIndex extends Component {
                       },
                     },
                     responsive: true,
-                    plugins: {
-                      legend: {
-                        position: "right",
-                      },
-                    },
+                    
                   }}
                 />
               </div>

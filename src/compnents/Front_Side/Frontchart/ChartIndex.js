@@ -43,7 +43,7 @@ export class Chart_Index extends Component {
   };
   async componentWillMount() {
     await this.diagram(this.state.year, this.state.month);
-    console.log()
+
     let months = [],
       result = {},
       total = [],
@@ -80,10 +80,14 @@ export class Chart_Index extends Component {
       cadre[x.uploadBy].push(x);
     });
     let Cost_Name = []
+     console.log(cadre)
     let Costamount_cadre = Object.keys(cadre);
+
     Costamount_cadre.forEach((element) => {
+     
       let Costcount_cadre = 0;
       cadre[element].forEach((item) => {
+        
         if (item.amount < 0) {
           Costcount_cadre += item.amount;
         } else {
@@ -295,7 +299,7 @@ export class Chart_Index extends Component {
       cost: cos,
     });
   }
-  
+
   render() {
 
     return (
@@ -337,45 +341,43 @@ export class Chart_Index extends Component {
                       label: "支出",
                       data: this.state.cost,
                       fill: false,
-                      borderColor: "#b21b45",
+                      borderColor: "rgb(196, 68, 68)",
                       tension: 0.1,
                       pointStyle: "circle",
                       pointRadius: 5,
-                      pointBorderColor: "#b21b45",
-                      backgroundColor: "#b21b45",
+                      pointBorderColor: "rgb(196, 68, 68)",
+                      backgroundColor: "rgb(196, 68, 68)",
                     },
                     {
                       label: "收入",
                       data: this.state.income,
                       fill: false,
-                      borderColor: "#2fc3a3",
+                      borderColor: "rgb(69, 185, 69)",
                       tension: 0.1,
                       pointStyle: "circle",
                       pointRadius: 5,
-                      pointBorderColor: "#2fc3a3",
-                      backgroundColor: "#2fc3a3",
+                      pointBorderColor: "rgb(69, 185, 69)",
+                      backgroundColor: "rgb(69, 185, 69)",
                     },
                   ],
                 }}
                 options={{
                   plugins: {
-
                     legend: {
-                      align: 'end', 
+                      align: 'end',
                       padding: 20,
                       display: true,
                       position: "top",
                     },
-
                   },
                 }}
               />
             </div>
             <div className="col my-4 mx-3 chartback">
               <div className="py-3">
-                <div className="row" style={{ marginBottom: '10%' }}>
+                <div className="row" style={{ marginBottom: '16%', marginTop: '5%' }}>
                   <div className="col charttitle">收入占比圓餅圖</div>
-                  <div className="charttext">
+                  <div className="mr-3 charttext">
                     NT$&nbsp;
                     {Number(
                       parseFloat(Math.abs(this.state.incomeAll)).toFixed(3)
@@ -384,6 +386,10 @@ export class Chart_Index extends Component {
                     })}
                   </div>
                 </div>
+                {/* {Chart.Legend.prototype.afterFit = function () {
+                  this.height = this.height + 50;
+                }
+                } */}
                 <Pie
                   plugins={[ChartDataLabels]}
                   data={{
@@ -395,17 +401,17 @@ export class Chart_Index extends Component {
                         data: this.state.income_amount_name,
                         backgroundColor: [
                           "#1abc9c",
-                          "#27ae60",
-                          "#82ccdd",
+                          "#6078cf",
+                          "#06344c",
                           "#60a3bc",
-                          "#b8e994",
+                          "#284492",
                         ],
                         borderColor: [
                           "#1abc9c",
-                          "#27ae60",
-                          "#82ccdd",
+                          "#6078cf",
+                          "#06344c",
                           "#60a3bc",
-                          "#b8e994",
+                          "#284492",
                         ],
                         borderWidth: 1,
                       },
@@ -413,10 +419,19 @@ export class Chart_Index extends Component {
                   }}
 
                   options={{
-
                     responsive: true,
                     maintainAspectRatio: true,
                     plugins: {
+                      beforeInit: function (chart, options) {
+                        const originalFit = chart.legend.fit;
+                        // Override the fit function
+                        chart.legend.fit = function fit() {
+                          // Call original function and bind scope in order to use `this` correctly inside it
+                          originalFit.bind(chart.legend)();
+                          // Change the height as suggested in another answers
+                          this.height += 150;
+                        }
+                      },
                       datalabels: {
                         display: 'auto',
                         formatter: function (value, ctx) {
@@ -451,7 +466,7 @@ export class Chart_Index extends Component {
                         labels: {
                           value: {
                             color: '#ffffff',
-                          }
+                          },
                         }
                       },
                       tooltip: {
@@ -546,9 +561,9 @@ export class Chart_Index extends Component {
             </div>
             <div className="col mx-3 chartback">
               <div className="py-3">
-                <div className="row" style={{ marginBottom: '10%' }}>
+                <div className="row" style={{ marginBottom: '16%', marginTop: '5%' }}>
                   <div className="col charttitle">收入占比圓餅圖</div>
-                  <div className="charttext1">
+                  <div className="mr-3 charttext1">
                     NT$&nbsp;
                     {Number(
                       parseFloat(Math.abs(this.state.costAll)).toFixed(3)
@@ -581,27 +596,19 @@ export class Chart_Index extends Component {
                         data: this.state.cost_amount,
                         backgroundColor: [
                           "#ff6b81",
-                          "#ff6348",
-                          "#ffa502",
-                          "#fab1a0",
+                          "#6e252a",
+                          "#d4b86a",
+                          "#ee734b",
                           "#e3b841",
                           "#e1c823",
-                          "#d0596e",
-                          "#e11a06",
-                          "#ffda79",
-                          "#2c2c54",
                         ],
                         borderColor: [
                           "#ff6b81",
-                          "#ff6348",
-                          "#ffa502",
-                          "#fab1a0",
+                          "#6e252a",
+                          "#d4b86a",
+                          "#ee734b",
                           "#e3b841",
                           "#e1c823",
-                          "#d0596e",
-                          "#e11a06",
-                          "#ffda79",
-                          "#2c2c54",
                         ],
                         borderWidth: 1,
                       },

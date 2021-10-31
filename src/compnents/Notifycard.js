@@ -38,10 +38,10 @@ class Notifycard extends Component {
         return (
             <>
                 <div className="overflow-auto ncard ">
-                  {this.state.notufy.map((x) => (
+                  {/* {this.state.notufy.map((x) => (
                             // console.log(this.state.notufy)
                            <NotifyItem notufy={x} />
-                        ))};
+                        ))}; */}
                  </div>
 
             </>
