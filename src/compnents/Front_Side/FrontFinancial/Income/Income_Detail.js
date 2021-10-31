@@ -158,6 +158,7 @@ export class Income_Detail extends Component {
           </Card>
           <div className="my-4">
             <MessageTable dataid={this.state.id} table="account" />
+            {console.log(this.state.id)}
           </div>
           
         </Container>
