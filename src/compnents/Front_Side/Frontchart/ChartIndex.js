@@ -295,13 +295,15 @@ export class Chart_Index extends Component {
       cost: cos,
     });
   }
+  
   render() {
+
     return (
       <>
         <select
           onChange={(e) => this.setmonth(e)}
           defaultValue={this.state.month}
-          className="mt-md-2 ml-3 px-2 mx-auto cDropdown d-flex"
+          className="my-md-4 ml-3 px-2 mx-auto cDropdown d-flex"
           style={{
             borderRadius: "10px",
           }}
@@ -326,6 +328,7 @@ export class Chart_Index extends Component {
               <div className="p-3">
                 <div className="m-2  charttitle">本月收支折線圖(單位:元)</div>
               </div>
+
               <Line
                 data={{
                   labels: Object.keys(this.state.diagrams),
@@ -356,17 +359,21 @@ export class Chart_Index extends Component {
                 }}
                 options={{
                   plugins: {
+
                     legend: {
+                      align: 'end', 
+                      padding: 20,
                       display: true,
-                      position: "bottom",
+                      position: "top",
                     },
+
                   },
                 }}
               />
             </div>
             <div className="col my-4 mx-3 chartback">
               <div className="py-3">
-                <div className="row">
+                <div className="row" style={{ marginBottom: '10%' }}>
                   <div className="col charttitle">收入占比圓餅圖</div>
                   <div className="charttext">
                     NT$&nbsp;
@@ -404,7 +411,9 @@ export class Chart_Index extends Component {
                       },
                     ],
                   }}
+
                   options={{
+
                     responsive: true,
                     maintainAspectRatio: true,
                     plugins: {
@@ -430,10 +439,14 @@ export class Chart_Index extends Component {
                           if (ctx.width <= 500) {
                             return "";
                           }
-                          return value + "元";
+                          return Number(
+                            parseFloat(Math.abs(value)).toFixed(3)
+                          ).toLocaleString("en", {
+                            minimumFractionDigits: 0,
+                          });
                         },
                         font: {
-                          size: 14,
+                          size: 20,
                         },
                         labels: {
                           value: {
@@ -445,7 +458,7 @@ export class Chart_Index extends Component {
                         enabled: true,
                         callbacks: {
                           label: function (tooltipItem) {
-                            return Math.abs(tooltipItem.parsed) + "元";
+                            return Math.abs(tooltipItem.parsed);
                           },
                           footer: (ttItem) => {
                             let sum = 0;
@@ -465,6 +478,11 @@ export class Chart_Index extends Component {
                       legend: {
                         display: true,
                         position: "bottom",
+                        labels: {
+                          font: {
+                            size: 16,
+                          }
+                        }
                       },
                     },
                   }}
@@ -478,6 +496,7 @@ export class Chart_Index extends Component {
                 <div className="m-2 charttitle">各幹部支出直方圖(單位:元)</div>
               </div>
               <Bar
+                plugins={[ChartDataLabels]}
                 data={{
                   type: "bar",
                   labels: this.state.cost_kind_cadre,
@@ -494,6 +513,19 @@ export class Chart_Index extends Component {
                 }}
                 options={{
                   plugins: {
+                    datalabels: {
+                      anchor: 'end',
+                      align: 'end',
+                      offset: 4,
+                      color: 'black',
+                      formatter: function (value) {
+                        return Number(
+                          parseFloat(Math.abs(value)).toFixed(3)
+                        ).toLocaleString("en", {
+                          minimumFractionDigits: 0,
+                        });
+                      },
+                    },
                     legend: {
                       display: false
                     }
@@ -512,9 +544,9 @@ export class Chart_Index extends Component {
                 }}
               />
             </div>
-            <div className="col my-4 mx-3 chartback">
+            <div className="col mx-3 chartback">
               <div className="py-3">
-                <div className="row">
+                <div className="row" style={{ marginBottom: '10%' }}>
                   <div className="col charttitle">收入占比圓餅圖</div>
                   <div className="charttext1">
                     NT$&nbsp;
@@ -526,7 +558,20 @@ export class Chart_Index extends Component {
                   </div>
                 </div>
                 <Pie
-                  plugins={[ChartDataLabels]}
+                  // eslint-disable-next-line react/jsx-no-duplicate-props
+                  plugins={[{
+                    beforeInit: (chart, options) => {
+                      chart.legend.afterFit = () => {
+                        if (chart.legend.margins) {
+                          // Put some padding around the legend/labels
+                          chart.legend.options.labels.padding = 30;
+                          // Because you added 20px of padding around the whole legend,
+                          // you will need to increase the height of the chart to fit it
+                          chart.height += 40;
+                        }
+                      };
+                    }
+                  }, ChartDataLabels]}
                   data={{
                     //支出圓餅圖
                     type: "pie",
@@ -585,10 +630,14 @@ export class Chart_Index extends Component {
                           if (ctx.width <= 100) {
                             return "";
                           }
-                          return value + "元";
+                          return Number(
+                            parseFloat(Math.abs(value)).toFixed(3)
+                          ).toLocaleString("en", {
+                            minimumFractionDigits: 0,
+                          });
                         },
                         font: {
-                          size: 16,
+                          size: 20,
                         },
                         labels: {
                           value: {
@@ -596,6 +645,7 @@ export class Chart_Index extends Component {
                             size: "40px"
                           }
                         }
+
                       },
                       tooltip: {
                         callbacks: {
@@ -620,6 +670,11 @@ export class Chart_Index extends Component {
                       legend: {
                         display: true,
                         position: "bottom",
+                        labels: {
+                          font: {
+                            size: 16,
+                          }
+                        }
                       },
                     },
                   }}
@@ -632,3 +687,4 @@ export class Chart_Index extends Component {
     );
   }
 }
+

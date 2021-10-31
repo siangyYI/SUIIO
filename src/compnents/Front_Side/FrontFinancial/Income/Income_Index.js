@@ -18,7 +18,7 @@ export class Income_Index extends Component {
   };
   componentDidMount() {
     this.setState({
-      pages: this.state.account.reduce((arr, value, key) => {
+      pages: this.state.account.reduce((value, key,arr) => {
         let cnt = 0
         if (key % 16 === 0) {
           arr.push([value])
@@ -26,6 +26,7 @@ export class Income_Index extends Component {
         } else {
           arr[cnt].push(value)
         }
+        
         return arr
       }, [])
     })
