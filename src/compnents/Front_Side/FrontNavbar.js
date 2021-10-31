@@ -28,10 +28,7 @@ class NavBar extends Component {
     let ary1 = [];
     let reary = [];
     ary1 = url.split("/");
-
     reary = ary1[3].split("?");
-    console.log(ary1);
-
     let nav;
     if (ary1[3] === "income" || reary[0] === "income/detail" || ary1[3] === "") {
       

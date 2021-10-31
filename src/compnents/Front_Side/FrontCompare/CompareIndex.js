@@ -1,28 +1,18 @@
 import React, { Component } from "react";
 import { Container } from "react-bootstrap";
 import "./CompareIndex.css";
-import ChartDataLabels from 'chartjs-plugin-datalabels';
-
-import { Bar, Pie, Line } from "react-chartjs-2";
-import CompareFilter from "./CompareFilter";
+import ChartDataLabels from "chartjs-plugin-datalabels";
+import { Bar, Pie } from "react-chartjs-2";
 import { CompareDetail } from "./CompareDetail";
 import { CompareDetailTwo } from "./CompareDetailTwo";
-const scrollToAnchor = (name) => {
-  if (name) {
-    // 找到錨點
-    let anchorElement = document.getElementById(name);
-    // 如果對應id的錨點存在，就跳轉到錨點
-    if (anchorElement) {
-      anchorElement.scrollIntoView({ block: "start", behavior: "smooth" });
-    }
-  }
-};
+
 
 export class CompareIndex extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      categoryyear1: 109,
+      catearr: [],
+      categoryyear1: 108,
       categoryyear2: 109,
       catchar1: [],
       catchar2: [],
@@ -34,14 +24,21 @@ export class CompareIndex extends Component {
       category2: [],
       date: "",
       categoryAll: [],
-      year: 109,
+      year: [],
       yearChart1: [],
       yearChart2: [],
-      catvalue: "",
+      catvalue: "2",
       result: [],
       years: [109, 108, 107, 106, 105],
     };
   }
+  fetchyear = async () => {
+    await fetch(
+      `http://localhost:4000/api/account/fetch/diagram/year`
+    )
+      .then((res) => res.json())
+      .then((data) => this.setState({ year: data }));
+  };
   fetchContent1 = async (year) => {
     await fetch(
       `http://localhost:4000/api/account/fetch/diagram/compare/${year}`
@@ -70,15 +67,23 @@ export class CompareIndex extends Component {
       .then((res) => res.json())
       .then((data) => this.setState({ category2: data }));
   };
+
   async componentWillMount() {
+    // await this.setCategory("一般項目")
+    await this.fetchyear();
+    console.log(this.state.year);
+
     await this.fetchContent1(this.state.year);
     this.state.pie_data1.push(this.state.accounts1.income);
     this.state.pie_data1.push(Math.abs(this.state.accounts1.cost));
+
     await this.fetchContent2(this.state.year);
     this.state.pie_data2.push(this.state.accounts1.income);
     this.state.pie_data2.push(Math.abs(this.state.accounts1.cost));
+
     await this.fetchCategory1(this.state.year);
     await this.fetchCategory2(this.state.year);
+    // await this.setCategory(this.state.catvalue);
   }
   getValue1 = async (event) => {
     await this.fetchCategory1(event.target.value);
@@ -94,12 +99,14 @@ export class CompareIndex extends Component {
       categoryAll: [],
     });
     this.state.categoryyear1 = event.target.value;
-  };
 
+  };
   getValue2 = async (event) => {
+    this.state.categoryyear2 = event.target.value;
+
     await this.fetchContent2(event.target.value);
     await this.fetchCategory2(event.target.value);
-
+    console.log(event.target.value);
     const arr = [
       this.state.accounts2.income,
       Math.abs(this.state.accounts2.cost),
@@ -111,16 +118,17 @@ export class CompareIndex extends Component {
       catchar2: [],
       categoryAll: [],
     });
-    this.state.categoryyear2 = event.target.value;
+    console.log(this.state.categoryyear2)
   };
 
   setCategory = async (event) => {
-    this.state.catvalue = event.target.value; //select
+    this.setState({ catvalue: event.target.value }) //select
+    // console.log(typeof(this.state.catvalue));
     const arr = Object.keys(this.state.category1);
     await this.setState({ catchar1: arr });
     Object.keys(this.state.category1).map((x) => {
       if (this.state.catvalue === x) {
-        this.setState({ catchar1: this.state.category1[this.state.catvalue] });
+        this.setState({ catchar1: this.state.category1[event.target.value] });
       }
     });
     const arr_2 = Object.keys(this.state.category2);
@@ -140,25 +148,22 @@ export class CompareIndex extends Component {
       yearChart2: arrcost,
       arr: [],
     });
-
-    // console.log("1",this.state.yearChart1,"2",this.state.yearChart2)
   };
 
   render() {
     return (
       <>
-        {console.log("1", this.state.yearChart1, "2", this.state.yearChart2)}
         <Container>
           <div className="cfilter">
             <div className="row text-center">
               <div className="col my-4 text-center">
                 <select
                   onChange={(e) => this.getValue1(e)}
-                  defaultValue={109}
+                  // defaultValue={109}
                   className="bDropdown"
                 >
-                  {this.state.years.map((ele, index) => {
-                    return <option key={index}>{ele}</option>;
+                  {this.state.year.map((ele, index) => {
+                    return <option value={index}>{ele}</option>;
                   })}
                 </select>
               </div>
@@ -169,8 +174,8 @@ export class CompareIndex extends Component {
                   // defaultValue={108}
                   className="bDropdown"
                 >
-                  {this.state.years.map((elem, index) => {
-                    return <option key={index}>{elem}</option>;
+                  {this.state.year.map((elem, index) => {
+                    return <option value={index}>{elem}</option>;
                   })}
                 </select>
               </div>
@@ -191,7 +196,7 @@ export class CompareIndex extends Component {
                 <Pie
                   plugins={[ChartDataLabels]}
                   data={{
-                    labels: ["收益", "折損"], //顯示區間名稱
+                    labels: ["收入", "支出"], //顯示區間名稱
                     datasets: [
                       {
                         lineTension: 0, // 曲線的彎度，設0 表示直線
@@ -207,23 +212,23 @@ export class CompareIndex extends Component {
                     maintainAspectRatio: true,
                     plugins: {
                       datalabels: {
-                        display: 'auto',
+                        display: "auto",
                         formatter: function (value) {
                           return Number(
                             parseFloat(Math.abs(value)).toFixed(3)
                           ).toLocaleString("en", {
                             minimumFractionDigits: 0,
-                          }) + '元';
+                          });
                         },
                         font: {
-                          size: 16,
+                          size: 30,
                         },
                         labels: {
                           value: {
-                            color: '#ffffff',
-                            size: "40px"
-                          }
-                        }
+                            color: "#ffffff",
+                            size: "40px",
+                          },
+                        },
                       },
                       tooltip: {
                         enabled: true,
@@ -247,6 +252,12 @@ export class CompareIndex extends Component {
                       legend: {
                         display: true,
                         position: "bottom",
+                        labels: {
+                          font: {
+                            size: 20,
+                          },
+                          color: "black",
+                        },
                       },
                     },
                   }}
@@ -263,7 +274,11 @@ export class CompareIndex extends Component {
                     datasets: [
                       {
                         lineTension: 0, // 曲線的彎度，設0 表示直線
-                        backgroundColor: ["rgb(69, 185, 69)", "rgb(196, 68, 68)"],
+
+                        backgroundColor: [
+                          "rgb(69, 185, 69)",
+                          "rgb(196, 68, 68)",
+                        ],
                         borderWidth: 1,
                         data: this.state.pie_data2, // 資料
                         fill: false, // 是否填滿色彩
@@ -275,23 +290,23 @@ export class CompareIndex extends Component {
                     maintainAspectRatio: true,
                     plugins: {
                       datalabels: {
-                        display: 'auto',
+                        display: "auto",
                         formatter: function (value) {
                           return Number(
                             parseFloat(Math.abs(value)).toFixed(3)
                           ).toLocaleString("en", {
                             minimumFractionDigits: 0,
-                          }) + '元';
+                          });
                         },
                         font: {
-                          size: 16,
+                          size: 30,
                         },
                         labels: {
                           value: {
-                            color: '#ffffff',
-                            size: "40px"
-                          }
-                        }
+                            color: "#ffffff",
+                            size: "40px",
+                          },
+                        },
                       },
                       tooltip: {
                         enabled: true,
@@ -305,7 +320,6 @@ export class CompareIndex extends Component {
                             dataArr.map((data) => {
                               sum += Number(data);
                             });
-
                             let percentage =
                               ((ttItem[0].parsed * 100) / sum).toFixed(2) + "%";
                             return `占比: ${percentage}`;
@@ -315,6 +329,12 @@ export class CompareIndex extends Component {
                       legend: {
                         display: true,
                         position: "bottom",
+                        labels: {
+                          font: {
+                            size: 20,
+                          },
+                          color: "black",
+                        },
                       },
                     },
                   }}
@@ -325,33 +345,28 @@ export class CompareIndex extends Component {
           <div id="activity4" className="mt-5 p-2"></div>
           <div className="row" style={{ borderBottom: " 1px solid #a7a7a7" }}>
             <div className="Comtitle2 my-3">活動圖表</div>
-
             <div className="ml-5 text-center  my-3">
               {
-                ((this.state.categoryAll = this.state.categoryAll.concat(
-                  Object.keys(this.state.category1),
-                  Object.keys(this.state.category2)
-                )),
-                  (this.state.result = Array.from(
-                    new Set(this.state.categoryAll)
-                  )),
-                  //  this.state.categoryAll=new Set(this.state.categoryAll),
-                  //  this.state.categoryAll=Object.keys(this.state.category2),
-                  console.log(this.state.result))
+                this.state.category1.forEach((item) => {
+                  this.state.catearr.push(item.category)
+                }),
+                this.state.category2.forEach((item) => {
+                  this.state.catearr.push(item.category)
+
+                }),
+                this.state.categoryAll = Array.from(
+                  new Set(this.state.catearr)
+                ),
+                console.log("")
               }
               <select
                 onChange={(e) => this.setCategory(e)}
                 className="cDropdown"
               >
-                <option>{"---"}</option>
-                {console.log(this.state.result)}
-                {/* {Object.keys(this.state.category1).length === 0 ? (
-                  <option>{"---"}</option>
-                ) :  */}
-                {this.state.result.map((category, index) => {
+                {this.state.categoryAll.map((category, index) => {
                   return (
                     <>
-                      <option key={index}>{category}</option>
+                      <option value={index}>{category}</option>
                     </>
                   );
                 })}
@@ -360,9 +375,7 @@ export class CompareIndex extends Component {
           </div>
           <div className="mx-auto" style={{ width: "100%" }}>
             <div className="chartback mt-3 my-4">
-              <div className="p-3">
-                <div className="m-2 charttitle">活動圖表直方圖</div>
-              </div>
+              <div className="p-3"></div>
               <div className="px-5 pb-2">
                 <Bar
                   data={{
@@ -392,12 +405,17 @@ export class CompareIndex extends Component {
                     plugins: {
                       datalabels: {
                         anchor: 'end',
-                        align: 'end',
-                        offset: 4,
-                        color: 'black',
+                        align: 'right',
+                        offset: -60,
+                        color: 'white',
+                        font: {
+                          size: 16
+                        }
                       },
                       legend: {
-                        position: "right",
+                        align: 'end',
+                        position: "top",
+
                       },
                     },
                     indexAxis: "y",
@@ -407,7 +425,21 @@ export class CompareIndex extends Component {
                       },
                     },
                     responsive: true,
-                    
+                    legend: {
+                      position: "top",
+                    },
+
+                    scales: {
+                      y: {
+                        ticks: {
+                          font: {
+                            color: "black",
+                            size: 16,
+                            weight: "bold",
+                          },
+                        },
+                      },
+                    },
                   }}
                 />
               </div>

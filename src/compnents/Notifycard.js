@@ -32,17 +32,18 @@ class Notifycard extends Component {
     };
     async componentDidMount() {
         await this.fetchContent(this.state.sid)
-        
+        console.log(this.state.notufy);
     }
     render() {
         return (
             <>
                 <div className="overflow-auto ncard ">
-                  {/* {this.state.notufy.map((x) => (
-                            // console.log(this.state.notufy)
+                  {this.state.notufy.map((x) => (
+                            // 
                            <NotifyItem notufy={x} />
-                        ))}; */}
+                        ))};
                  </div>
+
 
             </>
         );

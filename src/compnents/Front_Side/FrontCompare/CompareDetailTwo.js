@@ -37,7 +37,7 @@ export class CompareDetailTwo extends Component {
               </>
             )}
 
-            <div className="size d-flex mx-2">元</div>
+            <div className="size2 d-flex mx-2">元</div>
           </div>
         </div>
       </>

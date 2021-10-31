@@ -6,7 +6,7 @@ import Paper from "@material-ui/core/Paper";
 import TableContainer from "@material-ui/core/TableContainer";
 import Box from "@material-ui/core/Box";
 import { Input } from "reactstrap";
-import message from "../../../../TestData/db.json";
+// import message from "../../../../TestData/db.json";
 import "./Income.css";
 // Comments API
 const API_ENDPOINT =
@@ -101,6 +101,7 @@ Message.propTypes = {
 };
 
 function MessageTable(props) {
+  // const [data, setdate] = useState(null);
   const [Hidename, setHidename] = useState(false);
   const [messages, setMessages] = useState(null);
   const [messageApiError, setMessageApiError] = useState(null);
@@ -108,20 +109,19 @@ function MessageTable(props) {
   // eslint-disable-next-line no-unused-vars
   const [postMessageError, setPostMessageError] = useState();
   const [isLoadingPostMessage, setIsLoadingPostMessage] = useState(false);
-      console.log(props.dataid)
 
-  const fetchMessages = () => {
-    // Test Version
-    return fetch(API_ENDPOINT)
+  const fetchMessages = async(tables, tableID) => {
+    console.log("2")
+    await fetch(`http://localhost:4000/api/comment/fetch/${tables}/${tableID}`)
       .then((res) => res.json())
-      .then((data) => {
-        setMessages(message);
+       .then((data) => {
+        setMessages(data);
       })
       .catch((err) => {
         setMessageApiError(err.message);
       });
-  };
-
+  };      
+console.log(messages)
   const handleTextareaChange = (e) => {
     setValue(e.target.value);
   };
@@ -172,11 +172,14 @@ function MessageTable(props) {
   };
   // 第二個參數傳入 [] 代表只在 componet mount 後執行
   useEffect(() => {
-    fetchMessages();
-  }, []);
+    console.log("33")
+    fetchMessages(props.table, props.dataid)
+  },[]);
 
   return (
     <TableContainer component={Paper}>
+{console.log(messages)}
+
       {messageApiError && (
         <ErrorMessage>
           {/* 直接 render object 會出錯，因此需轉成 string */}
@@ -188,17 +191,19 @@ function MessageTable(props) {
       <MessageBorder>
         <MessageList>
           {/* 確認裡面有東西才會執行這一行 */}
-          {messages &&
+          {/* {messages &&
             messages.map((message) => (
-              <Message
-                key={message.id}
-                author={message.name}
-                time={new Date(message.createdAt).toLocaleString()}
-                message={message}
-              >
-                {message.body}
-              </Message>
-            ))}
+              <>
+                <Message
+                  key={message.ID}
+                  author={message.name}
+                  time={message.date}
+                  message={message}
+                >
+                  {message.content}
+                </Message>
+              </>
+            ))} */}
         </MessageList>
         <form onSubmit={handleFormSubmit}>
           <div
