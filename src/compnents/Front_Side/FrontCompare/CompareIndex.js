@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Container } from "react-bootstrap";
 import "./CompareIndex.css";
-import ChartDataLabels from 'chartjs-plugin-datalabels';
+import ChartDataLabels from "chartjs-plugin-datalabels";
 
 import { Bar, Pie, Line } from "react-chartjs-2";
 import CompareFilter from "./CompareFilter";
@@ -22,6 +22,7 @@ export class CompareIndex extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      catearr:[],
       categoryyear1: 109,
       categoryyear2: 109,
       catchar1: [],
@@ -115,6 +116,7 @@ export class CompareIndex extends Component {
   };
 
   setCategory = async (event) => {
+    console.log(Object.keys(this.state.category1))
     this.state.catvalue = event.target.value; //select
     const arr = Object.keys(this.state.category1);
     await this.setState({ catchar1: arr });
@@ -189,13 +191,16 @@ export class CompareIndex extends Component {
                 style={{ position: "relative", width: "35%" }}
               >
                 <Pie
-                plugins={[ChartDataLabels]}
+                  plugins={[ChartDataLabels]}
                   data={{
-                    labels: ["收益", "折損"], //顯示區間名稱
+                    labels: ["收入", "支出"], //顯示區間名稱
                     datasets: [
                       {
                         lineTension: 0, // 曲線的彎度，設0 表示直線
-                        backgroundColor: [ "rgb(69, 185, 69)","rgb(196, 68, 68)"],
+                        backgroundColor: [
+                          "rgb(69, 185, 69)",
+                          "rgb(196, 68, 68)",
+                        ],
                         borderWidth: 1,
                         data: this.state.pie_data1, // 資料
                         fill: false, // 是否填滿色彩
@@ -207,23 +212,23 @@ export class CompareIndex extends Component {
                     maintainAspectRatio: true,
                     plugins: {
                       datalabels: {
-                        display: 'auto',
+                        display: "auto",
                         formatter: function (value) {
                           return Number(
                             parseFloat(Math.abs(value)).toFixed(3)
                           ).toLocaleString("en", {
                             minimumFractionDigits: 0,
-                          }) + '元';
+                          });
                         },
                         font: {
-                          size: 16,
+                          size: 30,
                         },
                         labels: {
                           value: {
-                            color: '#ffffff',
-                            size: "40px"
-                          }
-                        }
+                            color: "#ffffff",
+                            size: "40px",
+                          },
+                        },
                       },
                       tooltip: {
                         enabled: true,
@@ -247,6 +252,12 @@ export class CompareIndex extends Component {
                       legend: {
                         display: true,
                         position: "bottom",
+                        labels: {
+                          font: {
+                            size: 20,
+                          },
+                          color: "black",
+                        },
                       },
                     },
                   }}
@@ -254,16 +265,19 @@ export class CompareIndex extends Component {
               </div>
               <div
                 className="mx-auto"
-                style={{ position: "relative", width: "35%",color:"white" }}
+                style={{ position: "relative", width: "35%", color: "white" }}
               >
                 <Pie
-                plugins={[ChartDataLabels]}
+                  plugins={[ChartDataLabels]}
                   data={{
-                    labels: ["收益", "折損"], //顯示區間名稱
+                    labels: ["收入", "支出"], //顯示區間名稱
                     datasets: [
                       {
                         lineTension: 0, // 曲線的彎度，設0 表示直線
-                        backgroundColor:[ "rgb(69, 185, 69)","rgb(196, 68, 68)"],
+                        backgroundColor: [
+                          "rgb(69, 185, 69)",
+                          "rgb(196, 68, 68)",
+                        ],
                         borderWidth: 1,
                         data: this.state.pie_data2, // 資料
                         fill: false, // 是否填滿色彩
@@ -275,23 +289,23 @@ export class CompareIndex extends Component {
                     maintainAspectRatio: true,
                     plugins: {
                       datalabels: {
-                        display: 'auto',
+                        display: "auto",
                         formatter: function (value) {
                           return Number(
                             parseFloat(Math.abs(value)).toFixed(3)
                           ).toLocaleString("en", {
                             minimumFractionDigits: 0,
-                          }) + '元';
+                          });
                         },
                         font: {
-                          size: 16,
+                          size: 30,
                         },
                         labels: {
                           value: {
-                            color: '#ffffff',
-                            size: "40px"
-                          }
-                        }
+                            color: "#ffffff",
+                            size: "40px",
+                          },
+                        },
                       },
                       tooltip: {
                         enabled: true,
@@ -315,6 +329,12 @@ export class CompareIndex extends Component {
                       legend: {
                         display: true,
                         position: "bottom",
+                        labels: {
+                          font: {
+                            size: 20,
+                          },
+                          color: "black",
+                        },
                       },
                     },
                   }}
@@ -325,33 +345,42 @@ export class CompareIndex extends Component {
           <div id="activity4" className="mt-5 p-2"></div>
           <div className="row" style={{ borderBottom: " 1px solid #a7a7a7" }}>
             <div className="Comtitle2 my-3">活動圖表</div>
+           
 
             <div className="ml-5 text-center  my-3">
               {
-                ((this.state.categoryAll = this.state.categoryAll.concat(
-                  Object.keys(this.state.category1),
-                  Object.keys(this.state.category2)
+              
+                this.state.category1.forEach((item)=>{
+                  this.state.catearr.push(item.category)
+
+                }), 
+                
+                this.state.category2.forEach((item)=>{
+                  this.state.catearr.push(item.category)
+
+                }),      
+                (this.state.categoryAll = Array.from(
+                  new Set(this.state.catearr)
                 )),
-                (this.state.result = Array.from(
-                  new Set(this.state.categoryAll)
-                )),
-                //  this.state.categoryAll=new Set(this.state.categoryAll),
-                //  this.state.categoryAll=Object.keys(this.state.category2),
-                console.log(this.state.result))
+                // ((this.state.categoryAll = this.state.categoryAll.concat(
+                //   Object.keys(this.state.category1),
+                //   Object.keys(this.state.category2)
+                // )),
+                // (this.state.result = Array.from(
+                //   new Set(this.state.categoryAll)
+                // )),
+                // //  this.state.categoryAll=new Set(this.state.categoryAll),
+                // //  this.state.categoryAll=Object.keys(this.state.category2),
+                console.log(this.state.categoryAll)
               }
               <select
                 onChange={(e) => this.setCategory(e)}
                 className="cDropdown"
               >
-                <option>{"---"}</option>
-                {console.log(this.state.result)}
-                {/* {Object.keys(this.state.category1).length === 0 ? (
-                  <option>{"---"}</option>
-                ) :  */}
-                {this.state.result.map((category, index) => {
+                {this.state.categoryAll.map((category) => {
                   return (
                     <>
-                      <option key={index}>{category}</option>
+                      <option key={category}>{category}</option>
                     </>
                   );
                 })}
@@ -360,9 +389,7 @@ export class CompareIndex extends Component {
           </div>
           <div className="mx-auto" style={{ width: "100%" }}>
             <div className="chartback mt-3 my-4">
-              <div className="p-3">
-                <div className="m-2 charttitle">活動圖表直方圖</div>
-              </div>
+              <div className="p-3"></div>
               <div className="px-5 pb-2">
                 <Bar
                   data={{
@@ -376,7 +403,7 @@ export class CompareIndex extends Component {
                       {
                         label: "收入",
                         data: this.state.yearChart1,
-                        backgroundColor:[ "rgb(69, 185, 69)"],
+                        backgroundColor: ["rgb(69, 185, 69)"],
                         borderWidth: 1,
                       },
                       {
@@ -396,8 +423,21 @@ export class CompareIndex extends Component {
                     },
                     responsive: true,
                     plugins: {
+                     
                       legend: {
-                        position: "right",
+                        position: "top",
+                      },
+                    },
+
+                    scales: {
+                      y: {
+                        ticks: {
+                          font: {
+                            color: "black",
+                            size: 16,
+                            weight: "bold",
+                          },
+                        },
                       },
                     },
                   }}
