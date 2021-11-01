@@ -36,7 +36,7 @@ class Usercard extends Component {
                 height="25px"
                 className="mr-2"
               />
-              <a href="#/ChangePW">更改密碼</a>
+              <a href="/ChangePW">更改密碼</a>
             </div>
             <div className="ucardline my-2"></div>
             <div
@@ -49,7 +49,7 @@ class Usercard extends Component {
                 height="25px"
                 className="mr-2"
               />
-              <a href="#/EditFile">更改個人資料</a>
+              <a href="/EditFile">更改個人資料</a>
             </div>
             <div className="d-flex justify-content-center ucardline">
               <Link to="/IncomeIndex">
@@ -66,7 +66,7 @@ class Usercard extends Component {
                 </button>
               </Link>
 
-              <a href="#/Login">
+              <a href="/Login">
                 <button className="d-flex flex-row justify-content-center my-3 py-2 mx-3 ucardbutton">
                   <img
                     src={require("../Image/logout.png").default}

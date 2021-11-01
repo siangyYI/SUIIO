@@ -80,7 +80,6 @@ export class FinancialTable extends Component {
       );
     }
 
-
     return (
       <>
         {" "}
@@ -199,46 +198,58 @@ export class FinancialTable extends Component {
 
                 x.amount > 0
                   ? (amountincome = Number(
-                    parseFloat(x.amount).toFixed(3)
-                  ).toLocaleString("en", {
-                    minimumFractionDigits: 0,
-                  }))
+                      parseFloat(x.amount).toFixed(3)
+                    ).toLocaleString("en", {
+                      minimumFractionDigits: 0,
+                    }))
                   : (amountincome = "--");
                 x.amount > 0
                   ? (amountcost = "--")
                   : (amountcost = Number(
-                    parseFloat(Math.abs(x.amount)).toFixed(3)
-                  ).toLocaleString("en", {
-                    minimumFractionDigits: 0,
-                  }));
+                      parseFloat(Math.abs(x.amount)).toFixed(3)
+                    ).toLocaleString("en", {
+                      minimumFractionDigits: 0,
+                    }));
                 clear = income - cost;
                 oldbalance = this.state.accounts.balance - income + cost;
                 clear > 0 ? (clearfont = "本期淨利") : (clearfont = "本期淨損");
+                clear = 0
+                  ? (clearnumber = (
+                      <div
+                        style={{
+                          color: "green",
+                          fontSize: "16px",
+                        }}
+                      >
+                        {clearnumber}
+                      </div>
+                    ))
+                  : "";
                 clear > 0
                   ? (clearnumber = (
-                    <div
-                      style={{
-                        color: "green",
-                        fontSize: "16px",
-                      }}
-                    >
-                      {clearnumber}
-                    </div>
-                  ))
+                      <div
+                        style={{
+                          color: "green",
+                          fontSize: "16px",
+                        }}
+                      >
+                        {clearnumber}
+                      </div>
+                    ))
                   : (clearnumber = (
-                    <div
-                      style={{
-                        color: "red",
-                        fontSize: "16px",
-                      }}
-                    >
-                      {Number(
-                        parseFloat(Math.abs(clear)).toFixed(3)
-                      ).toLocaleString("en", {
-                        minimumFractionDigits: 0,
-                      })}
-                    </div>
-                  ));
+                      <div
+                        style={{
+                          color: "red",
+                          fontSize: "16px",
+                        }}
+                      >
+                        {Number(
+                          parseFloat(Math.abs(clear)).toFixed(3)
+                        ).toLocaleString("en", {
+                          minimumFractionDigits: 0,
+                        })}
+                      </div>
+                    ));
 
                 return (
                   <Link
@@ -314,7 +325,7 @@ export class FinancialTable extends Component {
         <TableContainer
           component={Paper}
           className="mt-4 cleartable"
-          style={{ width: "80%", margin: "0 auto" }}
+          style={{ width: "100%", margin: "0 auto" }}
         >
           <Table style={{ backgroundColor: "#ebebeb", color: "black" }}>
             <div className="">
@@ -341,17 +352,21 @@ export class FinancialTable extends Component {
                   <TableCell className="ntwidth" align="center">
                     NT$ &nbsp;
                   </TableCell>
-                  <TableCell className="dwidth" align="right">{clearnumber}</TableCell>
+                  <TableCell className="dwidth" align="right">
+                    {clearnumber}
+                  </TableCell>
                 </TableRow>
               ) : (
                 <TableRow style={{ color: "green" }}>
                   <TableCell className="AllTotal" align="center">
                     {clearfont}
                   </TableCell>
-                  <TableCell className="ntwidth" align="left">
+                  <TableCell className="ntwidth" align="center">
                     NT$ &nbsp;
                   </TableCell>
-                  <TableCell className="dwidth" align="right">{clearnumber}</TableCell>
+                  <TableCell className="dwidth" align="right">
+                    {clearnumber}
+                  </TableCell>
                 </TableRow>
               )}
               <TableRow style={{ color: "#0019a1" }}>
@@ -370,7 +385,6 @@ export class FinancialTable extends Component {
                 </TableCell>
               </TableRow>
             </div>
-
           </Table>
         </TableContainer>
       </>

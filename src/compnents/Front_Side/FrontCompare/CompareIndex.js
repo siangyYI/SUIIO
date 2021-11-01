@@ -13,7 +13,7 @@ export class CompareIndex extends Component {
     this.state = {
       catearr: [],
       categoryyear1: 108,
-      categoryyear2: 109,
+      categoryyear2: 0,
       catchar1: [],
       catchar2: [],
       accounts1: [],
@@ -27,9 +27,8 @@ export class CompareIndex extends Component {
       year: [],
       yearChart1: [],
       yearChart2: [],
-      catvalue: "2",
+      catvalue: "0",
       result: [],
-      years: [109, 108, 107, 106, 105],
     };
   }
   fetchyear = async () => {
@@ -82,8 +81,37 @@ export class CompareIndex extends Component {
     this.state.pie_data2.push(Math.abs(this.state.accounts1.cost));
 
     await this.fetchCategory1(this.state.year);
+
     await this.fetchCategory2(this.state.year);
-    // await this.setCategory(this.state.catvalue);
+
+    const arr = Object.keys(this.state.category1);
+    await this.setState({ catchar1: arr });
+    Object.keys(this.state.category1).map((x) => {
+      if (this.state.catvalue === x) {
+        this.setState({ catchar1: this.state.category1[this.state.catvalue] });
+      }
+    });
+
+    const arr_2 = Object.keys(this.state.category2);
+    await this.setState({ catchar2: arr_2 });
+    Object.keys(this.state.category2).map((x) => {
+      if (this.state.catvalue === x) {
+        this.setState({ catchar2: this.state.category2[this.state.catvalue] });
+      }
+    });
+    const arrincome_start = [
+      this.state.catchar1.income,
+      this.state.catchar2.income];
+
+    const arrcost_start = [
+      Math.abs(this.state.catchar1.cost),
+      Math.abs(this.state.catchar2.cost),
+    ];
+    await this.setState({
+      yearChart1: arrincome_start,
+      yearChart2: arrcost_start,
+      arr: [],
+    });
   }
   getValue1 = async (event) => {
     await this.fetchCategory1(event.target.value);
@@ -99,7 +127,25 @@ export class CompareIndex extends Component {
       categoryAll: [],
     });
     this.state.categoryyear1 = event.target.value;
+    const arr_category = Object.keys(this.state.category1);
+    await this.setState({ catchar1: arr_category });
+    Object.keys(this.state.category1).map((x) => {
+      if (this.state.catvalue === x) {
+        this.setState({ catchar1: this.state.category1[this.state.catvalue] });
+      }
+    });
+    const arrincome_category = [
+      this.state.catchar1.income
+    ];
 
+    const arrcost_category = [
+      Math.abs(this.state.catchar1.cost),
+    ];
+    await this.setState({
+      yearChart1: arrincome_category,
+      yearChart2: arrcost_category,
+      arr: [],
+    });
   };
   getValue2 = async (event) => {
     this.state.categoryyear2 = event.target.value;
@@ -119,6 +165,25 @@ export class CompareIndex extends Component {
       categoryAll: [],
     });
     console.log(this.state.categoryyear2)
+    const arr_2 = Object.keys(this.state.category2);
+    await this.setState({ catchar2: arr_2 });
+    Object.keys(this.state.category2).map((x) => {
+      if (this.state.catvalue === x) {
+        this.setState({ catchar2: this.state.category2[this.state.catvalue] });
+      }
+    });
+    const arrincome_category_2 = [
+      this.state.catchar2.income];
+
+    const arrcost_category_2 = [
+      Math.abs(this.state.catchar2.cost),
+    ];
+    await this.setState({
+      yearChart1: arrincome_category_2,
+      yearChart2: arrcost_category_2,
+      arr: [],
+    });
+    
   };
 
   setCategory = async (event) => {
@@ -149,7 +214,6 @@ export class CompareIndex extends Component {
       arr: [],
     });
   };
-
   render() {
     return (
       <>
@@ -352,7 +416,6 @@ export class CompareIndex extends Component {
                 }),
                 this.state.category2.forEach((item) => {
                   this.state.catearr.push(item.category)
-
                 }),
                 this.state.categoryAll = Array.from(
                   new Set(this.state.catearr)
@@ -382,8 +445,8 @@ export class CompareIndex extends Component {
                     type: "bar",
 
                     labels: [
-                      this.state.categoryyear1,
-                      this.state.categoryyear2,
+                      this.state.year,
+                      this.state.year,
                     ],
                     datasets: [
                       {

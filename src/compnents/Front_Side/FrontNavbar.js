@@ -30,12 +30,12 @@ class NavBar extends Component {
     ary1 = url.split("/");
     reary = ary1[3].split("?");
     let nav;
-    if (ary1[3] === "income" || reary[0] === "income/detail" || ary1[3] === "") {
+    if (ary1[3] === "account" || reary[0] === "account/detail" || ary1[3] === "") {
       
       nav = (
         <aside>
           <div className="my-4 ho" >
-            <a href="/income" >
+            <a href="/account" >
               <img
                 src={require("../../Image/income.png").default}
                 alt="cancel"
@@ -96,7 +96,7 @@ class NavBar extends Component {
       nav = (
         <aside>
           <div className="my-4 ho" style={{ filter: 'contrast(0.5)' }}>
-            <a href="/income">
+            <a href="/account">
               <img
                 src={require("../../Image/income.png").default}
                 alt="cancel"
@@ -157,7 +157,7 @@ class NavBar extends Component {
       nav = (
         <aside>
           <div className="my-4 ho" style={{ filter: 'contrast(0.5)' }}>
-            <a href="/income" >
+            <a href="/account" >
               <img
                 src={require("../../Image/income.png").default}
                 alt="cancel"
@@ -217,7 +217,7 @@ class NavBar extends Component {
       nav = (
         <aside>
           <div className="my-4 ho" style={{ filter: 'contrast(0.5)' }}>
-            <a href="/income" >
+            <a href="/account" >
               <img
                 src={require("../../Image/income.png").default}
                 alt="cancel"
@@ -278,7 +278,7 @@ class NavBar extends Component {
       nav = (
         <aside>
           <div className="my-4 ho" style={{ filter: 'contrast(0.5)' }}>
-            <a href="/income">
+            <a href="/account">
               <img
                 src={require("../../Image/income.png").default}
                 alt="cancel"

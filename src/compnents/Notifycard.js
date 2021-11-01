@@ -30,21 +30,19 @@ class Notifycard extends Component {
             .then((res) => res.json())
             .then((data) => this.setState({ notufy: data }));
     };
-    async componentDidMount() {
-        await this.fetchContent(this.state.sid)
-        console.log(this.state.notufy);
-    }
+    // async componentDidMount() {
+        // await this.fetchContent(this.state.sid)
+        // this.state.notufy.reverse()
+    // }
     render() {
         return (
             <>
                 {/* <div className="overflow-auto ncard ">
-                  {this.state.notufy.map((x) => (
-                            // 
-                           <NotifyItem notufy={x} />
-                        ))};
-                 </div>
- */}
-
+                    <div className="title_line py-2"><div className="ml-4">通知</div></div>
+                    {this.state.notufy.map((x) => (
+                        <NotifyItem notufy={x} />
+                    ))};
+                </div> */}
             </>
         );
     }

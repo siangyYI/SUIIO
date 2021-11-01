@@ -44,19 +44,19 @@ class App2 extends Component {
 
                 <Route exact path="/financial/detail" component={Financial_Detail} />
                 <Route exact path="/financial" component={Financial_Index} />
-                <Route exact path="/income/detail" component={Income_Detail} />
-                <Route exact path="/income" component={Income_Index} />
+                <Route exact path="/account/detail" component={Income_Detail} />
+                <Route exact path="/account" component={Income_Index} />
 
                 <Route exact path="/chart" component={Chart_Index} />
                 <Route exact path="/compare" component={CompareIndex} ></Route>
 
-                <Route path="/Front/Login" component={Login} />
-                <Route path="/Front/PW_account" component={PW_account} />
-                <Route path="/Front/CheckPW" component={CheckPW} />
-                <Route path="/Front/Choose" component={Choose} />
-                <Route path="/Front/ChangePW" component={ChangePW} />
-                <Route path="/Front/EditFile" component={EditFile} />
-                <Route path="/Front/ReportMessage" component={ReportMessage} />
+                <Route path="/Login" component={Login} />
+                <Route path="/PW_account" component={PW_account} />
+                <Route path="/CheckPW" component={CheckPW} />
+                <Route path="/Choose" component={Choose} />
+                <Route path="/ChangePW" component={ChangePW} />
+                <Route path="/EditFile" component={EditFile} />
+                <Route path="/ReportMessage" component={ReportMessage} />
               </div>
             </div>
           </Switch>
