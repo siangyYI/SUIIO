@@ -79,7 +79,6 @@ export class FinancialTable extends Component {
         </div>
       );
     }
-
     return (
       <>
         {" "}
@@ -210,10 +209,14 @@ export class FinancialTable extends Component {
                     ).toLocaleString("en", {
                       minimumFractionDigits: 0,
                     }));
+
                 clear = income - cost;
                 oldbalance = this.state.accounts.balance - income + cost;
-                clear > 0 ? (clearfont = "本期淨利") : (clearfont = "本期淨損");
-                clear = 0
+                clear >= 0
+                  ? (clearfont = "本期淨利")
+                  : (clearfont = "本期淨損");
+
+                clear >= 0
                   ? (clearnumber = (
                       <div
                         style={{
@@ -221,19 +224,11 @@ export class FinancialTable extends Component {
                           fontSize: "16px",
                         }}
                       >
-                        {clearnumber}
-                      </div>
-                    ))
-                  : "";
-                clear > 0
-                  ? (clearnumber = (
-                      <div
-                        style={{
-                          color: "green",
-                          fontSize: "16px",
-                        }}
-                      >
-                        {clearnumber}
+                        {Number(
+                          parseFloat(Math.abs(clear)).toFixed(3)
+                        ).toLocaleString("en", {
+                          minimumFractionDigits: 0,
+                        })}
                       </div>
                     ))
                   : (clearnumber = (
@@ -324,27 +319,27 @@ export class FinancialTable extends Component {
         </TableContainer>
         <TableContainer
           component={Paper}
-          className="mt-4 cleartable"
-          style={{ width: "100%", margin: "0 auto" }}
+          className="mt-4 "
+          style={{ width: "40%", margin: "0 auto" }}
         >
           <Table style={{ backgroundColor: "#ebebeb", color: "black" }}>
-            <div className="">
-              <TableRow>
-                <TableCell className="AllTotal" align="center">
-                  上期餘額
-                </TableCell>
-                <TableCell className="ntwidth" align="center">
-                  NT$ &nbsp;
-                </TableCell>
-                <TableCell className="dwidth" align="right">
-                  {Number(
-                    parseFloat(Math.abs(oldbalance)).toFixed(3)
-                  ).toLocaleString("en", {
-                    minimumFractionDigits: 0,
-                  })}
-                </TableCell>
-              </TableRow>
-              {clearfont === "本期淨損" ? (
+            <TableRow>
+              <TableCell className="AllTotal" align="center">
+                上期餘額
+              </TableCell>
+              <TableCell className="ntwidth" align="center">
+                NT$ &nbsp;
+              </TableCell>
+              <TableCell className="dwidth" align="right">
+                {Number(
+                  parseFloat(Math.abs(oldbalance)).toFixed(3)
+                ).toLocaleString("en", {
+                  minimumFractionDigits: 0,
+                })}
+              </TableCell>
+            </TableRow>
+            {this.state.acc?.length ? (
+              clearfont === "本期淨損" ? (
                 <TableRow style={{ color: "red" }}>
                   <TableCell className="AllTotal" align="center">
                     {clearfont}
@@ -368,23 +363,35 @@ export class FinancialTable extends Component {
                     {clearnumber}
                   </TableCell>
                 </TableRow>
-              )}
-              <TableRow style={{ color: "#0019a1" }}>
+              )
+            ) : (
+              <TableRow style={{ color: "green" }}>
                 <TableCell className="AllTotal" align="center">
-                  本期餘額
+                  本期淨利
                 </TableCell>
                 <TableCell className="ntwidth" align="center">
                   NT$ &nbsp;
                 </TableCell>
                 <TableCell className="dwidth" align="right">
-                  {Number(
-                    parseFloat(this.state.accounts.balance).toFixed(3)
-                  ).toLocaleString("en", {
-                    minimumFractionDigits: 0,
-                  })}
+                  0
                 </TableCell>
               </TableRow>
-            </div>
+            )}
+            <TableRow style={{ color: "#0019a1" }}>
+              <TableCell className="AllTotal" align="center">
+                本期餘額
+              </TableCell>
+              <TableCell className="ntwidth" align="center">
+                NT$ &nbsp;
+              </TableCell>
+              <TableCell className="dwidth" align="right">
+                {Number(
+                  parseFloat(this.state.accounts.balance).toFixed(3)
+                ).toLocaleString("en", {
+                  minimumFractionDigits: 0,
+                })}
+              </TableCell>
+            </TableRow>
           </Table>
         </TableContainer>
       </>
