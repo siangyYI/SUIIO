@@ -60,7 +60,6 @@ export class Index extends Component {
         } else {
           arr[cnt].push(value);
         }
-
         return arr;
       }, []),
     });
@@ -89,6 +88,7 @@ export class Index extends Component {
 
           <div className="dropdownfont">請選擇日期區間</div>
           <div className="d-flex">
+<<<<<<< HEAD
             <input
               id="date"
               type="date"
@@ -109,6 +109,18 @@ export class Index extends Component {
               <ButtonGroup className="mr-2" aria-label="First group">
                 <Button
                   style={{ backgroundColor: '#d8936c', borderColor: '#d8936c', color: 'white' }}
+=======
+            <input id="date" type="date" className="Dropdown ml-md-3 px-md-2" style={{ margin: '0' }}></input>
+            <h3 style={{ marginLeft: '1%', marginRight: '1%' }}>
+              -
+            </h3>
+            <input id="date" type="date" className="Dropdown ml-md-3 px-md-2" style={{ margin: '0' }}></input>
+            <ButtonToolbar className="mx-5" style={{ position: "absolute", right: "0px" }}>
+              <ButtonGroup className="mr-2" aria-label="First group">
+                <Button
+                  style={{ backgroundColor: '#d8936c', borderColor: '#d8936c', color: 'white' }}
+                  variant=""
+>>>>>>> aeddaa390e0ac966b164dda74d03265aaa31dee3
                   onClick={() => {
                     if (this.state.pagenumber)
                       this.setState({ pagenumber: this.state.pagenumber - 1 });
@@ -119,21 +131,29 @@ export class Index extends Component {
                 <DropdownButton
                   as={ButtonGroup}
                   title={`${this.state.pagenumber + 1} `}
+<<<<<<< HEAD
                   style={{
                     backgroundColor: "#d8936c !important",
                     borderColor: "#d8936c !important",
                     color: "white !important",
                   }}
+=======
+                  style={{ backgroundColor: '#d8936c !important', borderColor: '#d8936c !important', color: 'white !important' }}
+>>>>>>> aeddaa390e0ac966b164dda74d03265aaa31dee3
                 >
                   {this.state.pages.map((v, i) => {
                     return (
                       <Dropdown.Item
+<<<<<<< HEAD
                         style={{
                           backgroundColor: "#d8936c",
                           borderColor: "#d8936c",
                           color: "white",
                           padding: "0 !important",
                         }}
+=======
+                        style={{ backgroundColor: '#d8936c', borderColor: '#d8936c', color: 'white', padding: "0 !important" }}
+>>>>>>> aeddaa390e0ac966b164dda74d03265aaa31dee3
                         active={this.state.pagenumber === i}
                         onClick={() => this.setState({ pagenumber: i })}
                       >
@@ -143,11 +163,15 @@ export class Index extends Component {
                   })}
                 </DropdownButton>
                 <Button
+<<<<<<< HEAD
                   style={{
                     backgroundColor: "#d8936c",
                     borderColor: "#d8936c",
                     color: "white",
                   }}
+=======
+                  style={{ backgroundColor: '#d8936c', borderColor: '#d8936c', color: 'white' }}
+>>>>>>> aeddaa390e0ac966b164dda74d03265aaa31dee3
                   variant="secondary"
                   onClick={() => {
                     if (this.state.pagenumber < this.state.pages.length - 1)
@@ -161,6 +185,7 @@ export class Index extends Component {
           </div>
         </div>
         <div className="row mt-2 px-5">
+<<<<<<< HEAD
           {this.state.pages.length ? (
             this.state.pages[this.state.pagenumber].map((x) => (
               // eslint-disable-next-line react/jsx-pascal-case
@@ -169,6 +194,13 @@ export class Index extends Component {
           ) : (
             <div>"No Data"</div>
           )}
+=======
+          {this.state.pages?.length
+            ? this.state.pages[this.state.pagenumber].map((x) => (
+              // eslint-disable-next-line react/jsx-pascal-case
+              <Meeting_Card conferences={x} />
+            )) : <div>No Data</div>}
+>>>>>>> aeddaa390e0ac966b164dda74d03265aaa31dee3
         </div>
       </>
     );

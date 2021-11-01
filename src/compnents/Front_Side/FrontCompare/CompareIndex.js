@@ -13,7 +13,11 @@ export class CompareIndex extends Component {
     this.state = {
       catearr: [],
       categoryyear1: 108,
+<<<<<<< HEAD
       categoryyear2: 0,
+=======
+      categoryyear2: 108,
+>>>>>>> aeddaa390e0ac966b164dda74d03265aaa31dee3
       catchar1: [],
       catchar2: [],
       accounts1: [],
