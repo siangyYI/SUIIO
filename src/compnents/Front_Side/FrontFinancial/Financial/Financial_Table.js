@@ -213,8 +213,8 @@ export class FinancialTable extends Component {
                   }));
                 clear = income - cost;
                 oldbalance = this.state.accounts.balance - income + cost;
-                clear > 0 ? (clearfont = "本期淨利") : (clearfont = "本期淨損");
-                clear > 0
+                clear >= 0 ? (clearfont = "本期淨利") : (clearfont = "本期淨損");
+                clear >= 0
                   ? (clearnumber = (
                     <div
                       style={{

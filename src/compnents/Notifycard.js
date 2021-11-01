@@ -37,7 +37,7 @@ class Notifycard extends Component {
     render() {
         return (
             <>
-                <div className="overflow-auto ncard ">
+                <div className="overflow-auto ncard col-4">
                     <div className="title_line py-2"><div className="ml-4">通知</div></div>
                     {
                         this.state.notufy?.length ? this.state.notufy?.map((x) => (
