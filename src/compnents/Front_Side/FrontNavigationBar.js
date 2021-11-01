@@ -7,7 +7,7 @@ export default props => {
     // Pass on our props
     <div>
       <Menu {...props}>
-        <a className="menu-item" href="/income">
+        <a className="menu-item" href="/account">
           收支紀錄
         </a>
         <a className="menu-item" href="/financial">

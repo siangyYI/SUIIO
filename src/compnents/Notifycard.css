@@ -13,6 +13,15 @@
     width: 100%;
     color: #01597f;
 }
+.title_line{
+    border-bottom: 2px solid #ecf0f1;
+    width: 100%;
+    font-size: 2em;
+    font-weight: 800;
+    color: #381c00;
+    text-align: left;
+    
+}
 .nfont{
     font-weight: bold;
     font-size: medium;

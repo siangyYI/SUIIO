@@ -19,13 +19,13 @@ function Login() {
             <Input type="password">
             </Input>
           </div>
-          <a href="#/Front/PW_account">
+          <a href="/PW_account">
             <p className="text-right" style={{ color: "blue" }}>
               忘記密碼
             </p>
           </a>
           <br /><br />
-          <a href="#/Front/Choose" className=""><Button className="BTN w-100 " style={{ backgroundColor: "#6B7A8F", borderColor: "#6B7A8F" }}>登入</Button></a>
+          <a href="/Choose" className=""><Button className="BTN w-100 " style={{ backgroundColor: "#6B7A8F", borderColor: "#6B7A8F" }}>登入</Button></a>
         </div>
       </div>
     </div>

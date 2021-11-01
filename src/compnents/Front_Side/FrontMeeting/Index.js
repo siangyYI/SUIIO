@@ -143,7 +143,7 @@ export class Index extends Component {
             ? this.state.pages[this.state.pagenumber].map((x) => (
             // eslint-disable-next-line react/jsx-pascal-case
             <Meeting_Card conferences={x} />
-          )): "No Data"}
+          )): <div>"No Data"</div>}
         </div>
       </>
     );

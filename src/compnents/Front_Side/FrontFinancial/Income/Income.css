@@ -7,7 +7,10 @@
   padding-right: 5px !important;
   padding-bottom: -20px !important;
 }
-
+.btn-primary {
+  background-color: #d8936c !important;
+  border-color: #d8936c !important;
+}
 .card-body {
   padding: 0px !important;
 }

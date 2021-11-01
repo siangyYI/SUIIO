@@ -64,7 +64,7 @@ export class Income_Card extends Component {
     }
     return (
       <div className="col-sm-12 col-md-3  IncomeCard">
-        <a href={`/income/detail?ID=${account.ID}`}>
+        <a href={`/account/detail?ID=${account.ID}`}>
           <Card
             style={{ border: "2px solid #9e9e9e", backgroundColor: "#ffd679" ,marginTop:"30px"}}
             // className="mt-4"

@@ -93,55 +93,58 @@ export class Income_Index extends Component {
               className="Dropdown ml-md-3 px-md-2"
               style={{ margin: "0" }}
             ></input>
-            <ButtonToolbar className="mx-5" style={{position:"absolute",right:"0px",color:"white"}}>
-            <ButtonGroup className="mr-2" aria-label="First group">
-              <Button
-                variant="secondary"
-                onClick={() => {
-                  if (this.state.pagenumber)
-                    this.setState({ pagenumber: this.state.pagenumber - 1 });
-                }}
-              >
-                &lt;
-              </Button>
-              <DropdownButton
-                as={ButtonGroup}
-                title={`${this.state.pagenumber + 1} `}
-                variant="secondary"
-              >
-                {this.state.pages.map((v, i) => {
-                  return (
-                    <Dropdown.Item
-                      active={this.state.pagenumber === i}
-                      onClick={() => this.setState({ pagenumber: i })}
-                    >
-                      {i + 1}
-                    </Dropdown.Item>
-                  );
-                })}
-              </DropdownButton>
-              <Button
-                variant="secondary"
-                onClick={() => {
-                  if (this.state.pagenumber < this.state.pages.length - 1)
-                    this.setState({ pagenumber: this.state.pagenumber + 1 });
-                }}
-              >
-                &gt;
-              </Button>
-            </ButtonGroup>
-          </ButtonToolbar>
+            <ButtonToolbar className="mx-5" style={{ position: "absolute", right: "0px" }}>
+              <ButtonGroup className="mr-2" aria-label="First group" >
+                <Button
+                  style={{ backgroundColor: '#d8936c', borderColor: '#d8936c', color: 'white' }}
+                  variant=""
+                  onClick={() => {
+                    if (this.state.pagenumber)
+                      this.setState({ pagenumber: this.state.pagenumber - 1 });
+                  }}
+                >
+                  &lt;
+                </Button>
+                <DropdownButton
+                  as={ButtonGroup}
+                  title={`${this.state.pagenumber + 1} `}
+
+                  style={{ backgroundColor: '#d8936c !important', borderColor: '#d8936c !important', color: 'white !important' }}
+                >
+                  {this.state.pages.map((v, i) => {
+                    return (
+                      <Dropdown.Item
+                        style={{ backgroundColor: '#d8936c', borderColor: '#d8936c', color: 'white' }}
+                        active={this.state.pagenumber === i}
+                        onClick={() => this.setState({ pagenumber: i })}
+                      >
+                        {i + 1}
+                      </Dropdown.Item>
+                    );
+                  })}
+                </DropdownButton>
+                <Button
+                  style={{ backgroundColor: '#d8936c', borderColor: '#d8936c', color: 'white' }}
+                  variant="secondary"
+                  onClick={() => {
+                    if (this.state.pagenumber < this.state.pages.length - 1)
+                      this.setState({ pagenumber: this.state.pagenumber + 1 });
+                  }}
+                >
+                  &gt;
+                </Button>
+              </ButtonGroup>
+            </ButtonToolbar>
           </div>{" "}
-          
+
         </div>{" "}
         <div className="row mt-2 px-5">
           {this.state.pages.length
             ? this.state.pages[this.state.pagenumber].map((x) => (
-                // eslint-disable-next-line react/jsx-pascal-case
-                <Income_Card account={x} />
-              ))
+              // eslint-disable-next-line react/jsx-pascal-case
+              <Income_Card account={x} />
+            ))
             : "No Data"}
-          {console.log(this.state.pages)}
         </div>
       </>
     );
