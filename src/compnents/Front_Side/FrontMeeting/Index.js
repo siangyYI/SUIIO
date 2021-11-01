@@ -86,9 +86,7 @@ export class Index extends Component {
             </select>
           </div>
 
-          <div className="dropdownfont">
-            請選擇日期區間
-          </div>
+          <div className="dropdownfont">請選擇日期區間</div>
           <div className="d-flex">
             <input id="date" type="date" className="Dropdown ml-md-3 px-md-2" style={{ margin: '0' }}></input>
             <h3 style={{ marginLeft: '1%', marginRight: '1%' }}>
@@ -137,7 +135,6 @@ export class Index extends Component {
               </ButtonGroup>
             </ButtonToolbar>
           </div>
-
         </div>
         <div className="row mt-2 px-5">
           {this.state.pages[this.state.pagenumber]?.length

@@ -13,7 +13,7 @@ export class CompareIndex extends Component {
     this.state = {
       catearr: [],
       categoryyear1: 108,
-      categoryyear2: 108,
+      categoryyear2: 0,
       catchar1: [],
       catchar2: [],
       accounts1: [],
@@ -29,7 +29,6 @@ export class CompareIndex extends Component {
       yearChart2: [],
       catvalue: "0",
       result: [],
-      years: [109, 108, 107, 106, 105],
     };
   }
   fetchyear = async () => {
@@ -446,8 +445,8 @@ export class CompareIndex extends Component {
                     type: "bar",
 
                     labels: [
-                      this.state.categoryyear1,
-                      this.state.categoryyear2,
+                      this.state.year,
+                      this.state.year,
                     ],
                     datasets: [
                       {
