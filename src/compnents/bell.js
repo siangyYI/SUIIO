@@ -1,9 +1,9 @@
 import Notifycard from "./Notifycard";
-import React,{useState} from "react";
+import React, { useState } from "react";
 
 function bell() {
     // eslint-disable-next-line react-hooks/rules-of-hooks
-    const [show,setShow]=useState(false);
+    const [show, setShow] = useState(false);
     return (
         <>
             <img
@@ -13,7 +13,7 @@ function bell() {
                 className="mt-2"
                 onClick={() => setShow(!show)}
             />
-            <div style={{display:(show?'block':'none')}}>
+            <div style={{ display: (show ? 'block' : 'none') }}>
                 <Notifycard />
             </div>
         </>
