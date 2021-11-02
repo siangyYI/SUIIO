@@ -4,7 +4,6 @@ class NotifyItem extends Component {
     render() {
         
         let { notufy } = this.props;
-        console.log(notufy);
         if (notufy.content.indexOf("財務報表") !== -1) {
             notufy.type = "financial"
         }

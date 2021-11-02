@@ -28,12 +28,14 @@ export class Index extends Component {
     this.setState({ offset });
   }
   update = () => {
-    fetch("http://localhost:4000/api/conference/fetch/all")
+    fetch("http://localhost:4000/api/conference/fetch/status/1")
       .then((res) => res.json())
       .then((data) => {
         this.setState({ conferences: data });
         let cnt = 0;
-        const pages = data.reduce(
+        const pages = [];
+        console.log(this.state.conferences);
+        this.state.conferences?.length ? data.reduce(
           (arr, v, k) => {
             const n = k % 16;
             if (n) {
@@ -45,12 +47,16 @@ export class Index extends Component {
             return arr;
           },
           [[]]
-        );
+        ) : this.setState({ conferences: []});
         pages.shift();
         this.setState({ pages });
+
       });
+
+
   };
   componentDidMount() {
+
     this.setState({
       pages: this.state.conferences.reduce((value, key, arr) => {
         let cnt = 0;
@@ -137,8 +143,9 @@ export class Index extends Component {
           </div>
         </div>
         <div className="row mt-2 px-5">
-          {this.state.pages[this.state.pagenumber]?.length
-            ? this.state.pages[this.state.pagenumber].map((x) => (
+          {console.log(this.state.conferences)}
+          {this.state.conferences?.length
+            ? this.state.conferences.map((x) => (
               // eslint-disable-next-line react/jsx-pascal-case
               <Meeting_Card conferences={x} />
             )) : <div>No Data</div>}

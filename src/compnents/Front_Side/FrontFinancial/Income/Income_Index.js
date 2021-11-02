@@ -12,15 +12,17 @@ export class Income_Index extends Component {
     super(props);
     this.state = {
       account: [],
+      account_filter:[],
       selected: {},
       content: {},
       pages: [],
       pagenumber: 0,
+      search: ''
     };
     this.update();
   }
   update = () => {
-    fetch("http://localhost:4000/api/account/fetch/all")
+    fetch("http://localhost:4000/api/account/fetch/status/1")
       .then((res) => res.json())
       .then((data) => {
         this.setState({ account: data });
@@ -42,6 +44,11 @@ export class Income_Index extends Component {
         this.setState({ pages });
       });
   };
+  updateSearch(event) {
+    this.setState({
+      search: event.target.value
+    })
+  }
   componentDidMount() {
     this.setState({
       pages: this.state.account.reduce((value, key, arr) => {
@@ -52,7 +59,6 @@ export class Income_Index extends Component {
         } else {
           arr[cnt].push(value);
         }
-
         return arr;
       }, []),
     });
@@ -69,12 +75,13 @@ export class Income_Index extends Component {
                 height: "2em",
                 backgroundColor: "white",
               }}
+              onChange={(e) => this.updateSearch(e)} value={this.state.search}
             >
               <option value="none">--請選擇活動類別--</option>
-              <option value="grapefruit">大迎新</option>
-              <option value="lime">民歌</option>
-              <option value="coconut">送舊</option>
-              <option value="mango">資管周</option>
+              <option value="大迎新">大迎新</option>
+              <option value="民歌">民歌</option>
+              <option value="送舊">送舊</option>
+              <option value="資管周">資管周</option>
             </select>
           </div>
           <h4 className="dropdownfont">請選擇日期區間</h4>
@@ -135,9 +142,8 @@ export class Income_Index extends Component {
                 </Button>
               </ButtonGroup>
             </ButtonToolbar>
-          </div>{" "}
-
-        </div>{" "}
+          </div>
+        </div>
         <div className="row mt-2 px-5">
           {this.state.pages?.length
             ? this.state.pages[this.state.pagenumber].map((x) => (

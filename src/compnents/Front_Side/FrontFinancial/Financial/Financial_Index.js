@@ -26,7 +26,7 @@ export class Financial_Index extends Component {
   }
 
   update = () => {
-    fetch('http://localhost:4000/api/statement/fetch/all')
+    fetch('http://localhost:4000/api/statement/fetch/status/1')
       .then((res) => res.json())
       .then((data) => {
         this.setState({ statements: data });
