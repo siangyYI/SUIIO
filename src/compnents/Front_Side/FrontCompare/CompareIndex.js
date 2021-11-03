@@ -33,35 +33,35 @@ export class CompareIndex extends Component {
   }
   fetchyear = async () => {
     await fetch(
-      `http://localhost:4000/api/account/fetch/diagram/year`
+      `http://suiio.nutc.edu.tw:2541/api/account/fetch/diagram/year`
     )
       .then((res) => res.json())
       .then((data) => this.setState({ year: data }));
   };
   fetchContent1 = async (year) => {
     await fetch(
-      `http://localhost:4000/api/account/fetch/diagram/compare/${year}`
+      `http://suiio.nutc.edu.tw:2541/api/account/fetch/diagram/compare/${year}`
     )
       .then((res) => res.json())
       .then((data) => this.setState({ accounts1: data }));
   };
   fetchContent2 = async (year) => {
     await fetch(
-      `http://localhost:4000/api/account/fetch/diagram/compare/${year}`
+      `http://suiio.nutc.edu.tw:2541/api/account/fetch/diagram/compare/${year}`
     )
       .then((res) => res.json())
       .then((data) => this.setState({ accounts2: data }));
   };
   fetchCategory1 = async (category1) => {
     await fetch(
-      `http://localhost:4000/api/account/fetch/diagram/category/${category1}`
+      `http://suiio.nutc.edu.tw:2541/api/account/fetch/diagram/category/${category1}`
     )
       .then((res) => res.json())
       .then((data) => this.setState({ category1: data }));
   };
   fetchCategory2 = async (category2) => {
     await fetch(
-      `http://localhost:4000/api/account/fetch/diagram/category/${category2}`
+      `http://suiio.nutc.edu.tw:2541/api/account/fetch/diagram/category/${category2}`
     )
       .then((res) => res.json())
       .then((data) => this.setState({ category2: data }));

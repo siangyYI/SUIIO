@@ -25,7 +25,7 @@ export class FinancialTable extends Component {
     };
   }
   fetchContent = async (id) => {
-    await fetch(`http://localhost:4000/api/statement/fetch/id/${id}`)
+    await fetch(`http://suiio.nutc.edu.tw:2541/api/statement/fetch/id/${id}`)
       .then((res) => res.json())
       .then((data) => this.setState({ accounts: data }));
   };
@@ -42,7 +42,7 @@ export class FinancialTable extends Component {
       await this.setState({ id: ary3[1] });
     }
     await this.fetchContent(this.state.id);
-    await this.setState({ acc: this.state.accounts.accounts.reverse() });
+    await this.setState({ acc: this.state.accounts.accounts });
     await this.setState({ name: this.state.accounts.name });
     await this.setState({ category: this.state.accounts.category });
     await this.setState({ date: this.state.accounts.date });
@@ -248,7 +248,7 @@ export class FinancialTable extends Component {
 
                 return (
                   <Link
-                    to={`/income/detail?ID=${x.ID}`}
+                    to={`/account/detail?ID=${x.ID}`}
                     style={{ color: "black", display: "contents" }}
                     target="_blank"
                     className="FTable"
