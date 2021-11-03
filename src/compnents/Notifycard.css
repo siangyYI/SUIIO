@@ -8,6 +8,9 @@
     width: 21%;
     
 }
+.cardHover :hover{
+    background-color: blanchedalmond;
+}
 .ncardline{
     border-bottom: 2px solid #ecf0f1;
     width: 100%;

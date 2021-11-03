@@ -17,7 +17,7 @@ class NotifyItem extends Component {
         var minte = d.getMinutes();
         return (
             <>
-                <a href={`/${notufy.type}/detail?ID=${notufy.objectID}`}>
+                <a href={`/${notufy.type}/detail?ID=${notufy.objectID}`} className="cardHover">
                     <div className="ncardline py-3 " >
                         <div className="nfont ml-4  Col"
                             style={{ textAlign: "left", color: '#34495e' }}
