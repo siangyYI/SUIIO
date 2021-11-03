@@ -111,8 +111,7 @@ function MessageTable(props) {
   const [isLoadingPostMessage, setIsLoadingPostMessage] = useState(false);
 
   const fetchMessages = async (tables, tableID) => {
-    console.log("2");
-    await fetch(`http://localhost:4000/api/comment/fetch/${tables}/${tableID}`)
+    await fetch(`http://suiio.nutc.edu.tw:2541/api/comment/fetch/${tables}/${tableID}`)
       .then((res) => res.json())
       .then((data) => {
         setMessages(data[tableID]);
@@ -133,7 +132,7 @@ function MessageTable(props) {
   };
   const handleFormSubmit = () => {
     if (value.trim()) {
-      fetch(`http://localhost:4000/api/comment/add/${props.table}`, {
+      fetch(`http://suiio.nutc.edu.tw:2541/api/comment/add/${props.table}`, {
         method: "POST",
         headers: {
           "content-type": "application/json",

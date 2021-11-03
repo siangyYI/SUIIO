@@ -25,6 +25,7 @@ export class CompareIndex extends Component {
       date: "",
       categoryAll: [],
       year: [],
+
       yearChart1: [],
       yearChart2: [],
       catvalue: "0",
@@ -126,6 +127,7 @@ export class CompareIndex extends Component {
       catchar1: [],
       categoryAll: [],
     });
+
     this.state.categoryyear1 = event.target.value;
     const arr_category = Object.keys(this.state.category1);
     await this.setState({ catchar1: arr_category });
@@ -173,17 +175,20 @@ export class CompareIndex extends Component {
       }
     });
     const arrincome_category_2 = [
+      this.state.catchar1.income,
       this.state.catchar2.income];
 
     const arrcost_category_2 = [
+      Math.abs(this.state.catchar1.cost),
       Math.abs(this.state.catchar2.cost),
+
     ];
     await this.setState({
       yearChart1: arrincome_category_2,
       yearChart2: arrcost_category_2,
       arr: [],
     });
-    
+    this.setCategory()
   };
 
   setCategory = async (event) => {
@@ -306,7 +311,6 @@ export class CompareIndex extends Component {
                             dataArr.map((data) => {
                               sum += Number(data);
                             });
-
                             let percentage =
                               ((ttItem[0].parsed * 100) / sum).toFixed(2) + "%";
                             return `占比: ${percentage}`;
@@ -445,8 +449,8 @@ export class CompareIndex extends Component {
                     type: "bar",
 
                     labels: [
-                      this.state.year,
-                      this.state.year,
+                      this.state.year[0],
+                      this.state.year[1],
                     ],
                     datasets: [
                       {
