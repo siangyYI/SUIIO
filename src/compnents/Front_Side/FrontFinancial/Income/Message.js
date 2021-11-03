@@ -152,6 +152,7 @@ function MessageTable(props) {
     }
   };
   // 第二個參數傳入 [] 代表只在 componet mount 後執行
+  
   useEffect(async () => {
     await fetchMessages(props.table, props.dataid);
   }, [props]);
