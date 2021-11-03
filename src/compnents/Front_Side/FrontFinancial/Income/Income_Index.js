@@ -12,9 +12,10 @@ export class Income_Index extends Component {
     super(props);
     this.state = {
       account: [],
-      account_filter:[],
+      account_filter: [],
       selected: {},
       content: {},
+      category: [],
       pages: [],
       pagenumber: 0,
       search: ''
@@ -49,7 +50,8 @@ export class Income_Index extends Component {
       search: event.target.value
     })
   }
-  componentDidMount() {
+  componentWillMount() {
+
     this.setState({
       pages: this.state.account.reduce((value, key, arr) => {
         let cnt = 0;
@@ -61,9 +63,27 @@ export class Income_Index extends Component {
         }
         return arr;
       }, []),
+      category: []
     });
+
+    // let updatedList = this.state.account.filter((item)=>{
+    //   return item.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1
+    // })
+    // let data = updatedList.map((item,index,array)=>{
+    //   return <li className="list-group-item" data-category={item} key={index}>{item}</li>
+    // })
+    // console.log(data);
+
+
   }
   render() {
+    this.state.account.map((x) => {
+      this.state.category.push(x.category)
+    })
+    console.log(this.state.category = Array.from(
+      new Set(this.state.category)
+    ));
+    // console.log(this.state.category);
     return (
       <>
         <div className="mx-5 d-md-flex content mt-md-3">
@@ -77,11 +97,10 @@ export class Income_Index extends Component {
               }}
               onChange={(e) => this.updateSearch(e)} value={this.state.search}
             >
-              <option value="none">--請選擇活動類別--</option>
-              <option value="大迎新">大迎新</option>
-              <option value="民歌">民歌</option>
-              <option value="送舊">送舊</option>
-              <option value="資管周">資管周</option>
+              {this.state.category.map((elem, index) => {
+                return <option value={elem}>{elem}</option>;
+              })}
+              {console.log(this.state.search)}
             </select>
           </div>
           <h4 className="dropdownfont">請選擇日期區間</h4>
