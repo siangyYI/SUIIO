@@ -12,7 +12,7 @@ export class CompareIndex extends Component {
     super(props);
     this.state = {
       catearr: [],
-      categoryyear1: 108,
+      categoryyear1: 0,
       categoryyear2: 0,
       catchar1: [],
       catchar2: [],
@@ -30,6 +30,7 @@ export class CompareIndex extends Component {
       yearChart2: [],
       catvalue: "0",
       result: [],
+      yeardata: []
     };
   }
   fetchyear = async () => {
@@ -37,7 +38,13 @@ export class CompareIndex extends Component {
       `http://suiio.nutc.edu.tw:2541/api/account/fetch/diagram/year`
     )
       .then((res) => res.json())
-      .then((data) => this.setState({ year: data }));
+      .then((data) =>
+        this.setState({
+          year: data,
+          categoryyear1: data[0],
+          categoryyear2: data[1]
+        }
+        ));
   };
   fetchContent1 = async (year) => {
     await fetch(
@@ -71,7 +78,6 @@ export class CompareIndex extends Component {
   async componentWillMount() {
     // await this.setCategory("一般項目")
     await this.fetchyear();
-    console.log(this.state.year);
 
     await this.fetchContent1(this.state.year);
     this.state.pie_data1.push(this.state.accounts1.income);
@@ -86,7 +92,9 @@ export class CompareIndex extends Component {
     await this.fetchCategory2(this.state.year);
 
     const arr = Object.keys(this.state.category1);
+    // ---------------------------------
     await this.setState({ catchar1: arr });
+    // ---------------------------------
     Object.keys(this.state.category1).map((x) => {
       if (this.state.catvalue === x) {
         this.setState({ catchar1: this.state.category1[this.state.catvalue] });
@@ -101,12 +109,12 @@ export class CompareIndex extends Component {
       }
     });
     const arrincome_start = [
-      this.state.catchar1.income,
-      this.state.catchar2.income];
+      this.state.catchar1.income ?? 0,
+      this.state.catchar2.income ?? 0];
 
     const arrcost_start = [
-      Math.abs(this.state.catchar1.cost),
-      Math.abs(this.state.catchar2.cost),
+      Math.abs(this.state.catchar1.cost ?? 0),
+      Math.abs(this.state.catchar2.cost ?? 0),
     ];
     await this.setState({
       yearChart1: arrincome_start,
@@ -114,7 +122,24 @@ export class CompareIndex extends Component {
       arr: [],
     });
   }
+  f = () => {
+    const arrincome_category = [
+      this.state.catchar1.income ?? 0,
+      this.state.catchar2.income ?? 0];
+
+    const arrcost_category = [
+      Math.abs(this.state.catchar1.cost ?? 0),
+      Math.abs(this.state.catchar2.cost ?? 0),
+    ];
+    this.setState({
+      yearChart1: arrincome_category,
+      yearChart2: arrcost_category,
+      arr: [],
+    });
+  }
+
   getValue1 = async (event) => {
+    this.state.yeardata = this.state.year
     await this.fetchCategory1(event.target.value);
     await this.fetchContent1(event.target.value);
     const arr = [
@@ -122,7 +147,7 @@ export class CompareIndex extends Component {
       Math.abs(this.state.accounts1.cost),
     ];
     this.setState({
-      year: event.target.value,
+      year: this.state.yeardata,
       pie_data1: arr,
       catchar1: [],
       categoryAll: [],
@@ -130,38 +155,30 @@ export class CompareIndex extends Component {
 
     this.state.categoryyear1 = event.target.value;
     const arr_category = Object.keys(this.state.category1);
+    // -----------------------------
     await this.setState({ catchar1: arr_category });
+    // -----------------------------
     Object.keys(this.state.category1).map((x) => {
       if (this.state.catvalue === x) {
         this.setState({ catchar1: this.state.category1[this.state.catvalue] });
       }
     });
-    const arrincome_category = [
-      this.state.catchar1.income
-    ];
 
-    const arrcost_category = [
-      Math.abs(this.state.catchar1.cost),
-    ];
-    await this.setState({
-      yearChart1: arrincome_category,
-      yearChart2: arrcost_category,
-      arr: [],
-    });
+    this.f()
   };
   getValue2 = async (event) => {
+    this.state.yeardata = this.state.year
     this.state.categoryyear2 = event.target.value;
-
     await this.fetchContent2(event.target.value);
     await this.fetchCategory2(event.target.value);
     console.log(event.target.value);
     const arr = [
-      this.state.accounts2.income,
-      Math.abs(this.state.accounts2.cost),
+      this.state.accounts2.income ?? 0,
+      Math.abs(this.state.accounts2.cost ?? 0),
     ];
 
     await this.setState({
-      year: event.target.value,
+      year: this.state.yeardata,
       pie_data2: arr,
       catchar2: [],
       categoryAll: [],
@@ -175,43 +192,44 @@ export class CompareIndex extends Component {
       }
     });
     const arrincome_category_2 = [
-      this.state.catchar1.income,
-      this.state.catchar2.income];
+      this.state.catchar1.income ?? 0,
+      this.state.catchar2.income ?? 0];
 
     const arrcost_category_2 = [
-      Math.abs(this.state.catchar1.cost),
-      Math.abs(this.state.catchar2.cost),
-
+      Math.abs(this.state.catchar1.cost ?? 0),
+      Math.abs(this.state.catchar2.cost ?? 0),
     ];
     await this.setState({
       yearChart1: arrincome_category_2,
       yearChart2: arrcost_category_2,
       arr: [],
     });
-    this.setCategory()
+    // this.setCategory()
   };
 
   setCategory = async (event) => {
+    console.log(event.target.value)
     this.setState({ catvalue: event.target.value }) //select
-    // console.log(typeof(this.state.catvalue));
     const arr = Object.keys(this.state.category1);
+    // ----------------------------
     await this.setState({ catchar1: arr });
-    Object.keys(this.state.category1).map((x) => {
+    // ----------------------------
+    Object.keys(this.state.category1).forEach((x) => {
       if (this.state.catvalue === x) {
         this.setState({ catchar1: this.state.category1[event.target.value] });
       }
     });
     const arr_2 = Object.keys(this.state.category2);
     await this.setState({ catchar2: arr_2 });
-    Object.keys(this.state.category2).map((x) => {
+    Object.keys(this.state.category2).forEach((x) => {
       if (this.state.catvalue === x) {
         this.setState({ catchar2: this.state.category2[this.state.catvalue] });
       }
     });
-    const arrincome = [this.state.catchar1.income, this.state.catchar2.income];
+    const arrincome = [this.state.catchar1.income ?? 0, this.state.catchar2.income ?? 0];
     const arrcost = [
-      Math.abs(this.state.catchar1.cost),
-      Math.abs(this.state.catchar2.cost),
+      Math.abs(this.state.catchar1.cost ?? 0),
+      Math.abs(this.state.catchar2.cost ?? 0),
     ];
     await this.setState({
       yearChart1: arrincome,
@@ -228,24 +246,28 @@ export class CompareIndex extends Component {
               <div className="col my-4 text-center">
                 <select
                   onChange={(e) => this.getValue1(e)}
-                  // defaultValue={109}
                   className="bDropdown"
                 >
-                  {this.state.year.map((ele, index) => {
-                    return <option value={index}>{ele}</option>;
-                  })}
+                  {this.state.year.map((ele, index) =>
+                    <option
+                      value={ele}
+                      selected={ele === this.state.categoryyear1}
+                    >{ele}</option>
+                  )}
                 </select>
               </div>
 
               <div className="col my-4 text-center">
                 <select
                   onChange={(e) => this.getValue2(e)}
-                  // defaultValue={108}
                   className="bDropdown"
                 >
-                  {this.state.year.map((elem, index) => {
-                    return <option value={index}>{elem}</option>;
-                  })}
+                  {this.state.year.map((ele, index) =>
+                    <option
+                      value={ele}
+                      selected={ele === this.state.categoryyear2}
+                    >{ele}</option>
+                  )}
                 </select>
               </div>
             </div>
@@ -262,6 +284,7 @@ export class CompareIndex extends Component {
                 className="mx-auto"
                 style={{ position: "relative", width: "35%" }}
               >
+                {console.log(this.state.pie_data1)}
                 <Pie
                   plugins={[ChartDataLabels]}
                   data={{
@@ -423,8 +446,7 @@ export class CompareIndex extends Component {
                 }),
                 this.state.categoryAll = Array.from(
                   new Set(this.state.catearr)
-                ),
-                console.log("")
+                ),console.log(this.state.categoryAll)
               }
               <select
                 onChange={(e) => this.setCategory(e)}
@@ -449,8 +471,8 @@ export class CompareIndex extends Component {
                     type: "bar",
 
                     labels: [
-                      this.state.year[0],
-                      this.state.year[1],
+                      this.state.categoryyear1,
+                      this.state.categoryyear2,
                     ],
                     datasets: [
                       {
