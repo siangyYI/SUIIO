@@ -204,7 +204,6 @@ export class CompareIndex extends Component {
       yearChart2: arrcost_category_2,
       arr: [],
     });
-    // this.setCategory()
   };
 
   setCategory = async (event) => {
