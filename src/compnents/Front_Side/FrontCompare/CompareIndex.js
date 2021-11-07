@@ -79,17 +79,17 @@ export class CompareIndex extends Component {
     // await this.setCategory("一般項目")
     await this.fetchyear();
 
-    await this.fetchContent1(this.state.year);
+    await this.fetchContent1(this.state.categoryyear1);
     this.state.pie_data1.push(this.state.accounts1.income);
     this.state.pie_data1.push(Math.abs(this.state.accounts1.cost));
 
-    await this.fetchContent2(this.state.year);
-    this.state.pie_data2.push(this.state.accounts1.income);
-    this.state.pie_data2.push(Math.abs(this.state.accounts1.cost));
+    await this.fetchContent2(this.state.categoryyear2);
+    this.state.pie_data2.push(this.state.accounts2.income);
+    this.state.pie_data2.push(Math.abs(this.state.accounts2.cost));
 
-    await this.fetchCategory1(this.state.year);
+    await this.fetchCategory1(this.state.categoryyear1);
 
-    await this.fetchCategory2(this.state.year);
+    await this.fetchCategory2(this.state.categoryyear2);
 
     const arr = Object.keys(this.state.category1);
     // ---------------------------------
