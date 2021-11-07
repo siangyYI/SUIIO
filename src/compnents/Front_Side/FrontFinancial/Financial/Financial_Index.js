@@ -26,7 +26,7 @@ export class Financial_Index extends Component {
   }
 
   update = () => {
-    fetch('http://suiio.nutc.edu.tw:2541/api/statement/fetch/all')
+    fetch('http://suiio.nutc.edu.tw:2541/api/statement/fetch/status/1')
       .then((res) => res.json())
       .then((data) => {
         this.setState({ statements: data });

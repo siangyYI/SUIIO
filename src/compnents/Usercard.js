@@ -9,7 +9,7 @@ class Usercard extends Component {
   render() {
     return (
       <>
-        <div className="ucard">
+        <div className="ucard" id="ucard">
           <div className="d-flex flex-row px-5 py-4">
             <img
               src={require("../Image/1144760.png").default}
@@ -26,6 +26,19 @@ class Usercard extends Component {
             </div>
           </div>
           <div className="ucardline mt-2">
+          <div
+              className="d-flex my-3 d-flex justify-content-center"
+            >
+              <img
+                src={require("../Image/pencil.png").default}
+                alt="cancel"
+                width="25px"
+                height="25px"
+                className="mr-2"
+              />
+              <a href="/ReportMessage">查看留言</a>
+            </div>
+            <div className="ucardline my-2"></div>
             <div
               className="d-flex my-3 d-flex justify-content-center"
             >

@@ -12,15 +12,18 @@ export class Income_Index extends Component {
     super(props);
     this.state = {
       account: [],
+      account_filter: [],
       selected: {},
       content: {},
+      category: [],
       pages: [],
       pagenumber: 0,
+      search: ''
     };
     this.update();
   }
   update = () => {
-    fetch("http://suiio.nutc.edu.tw:2541/api/account/fetch/all")
+    fetch("http://suiio.nutc.edu.tw:2541/api/account/fetch/status/1")
       .then((res) => res.json())
       .then((data) => {
         this.setState({ account: data });
@@ -42,7 +45,13 @@ export class Income_Index extends Component {
         this.setState({ pages });
       });
   };
-  componentDidMount() {
+  updateSearch(event) {
+    this.setState({
+      search: event.target.value
+    })
+  }
+  componentWillMount() {
+
     this.setState({
       pages: this.state.account.reduce((value, key, arr) => {
         let cnt = 0;
@@ -52,12 +61,29 @@ export class Income_Index extends Component {
         } else {
           arr[cnt].push(value);
         }
-
         return arr;
       }, []),
+      category: []
     });
+
+    // let updatedList = this.state.account.filter((item)=>{
+    //   return item.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1
+    // })
+    // let data = updatedList.map((item,index,array)=>{
+    //   return <li className="list-group-item" data-category={item} key={index}>{item}</li>
+    // })
+    // console.log(data);
+
+
   }
   render() {
+    this.state.account.map((x) => {
+      this.state.category.push(x.category)
+    })
+    console.log(this.state.category = Array.from(
+      new Set(this.state.category)
+    ));
+    // console.log(this.state.category);
     return (
       <>
         <div className="mx-5 d-md-flex content mt-md-3">
@@ -69,12 +95,12 @@ export class Income_Index extends Component {
                 height: "2em",
                 backgroundColor: "white",
               }}
+              onChange={(e) => this.updateSearch(e)} value={this.state.search}
             >
-              <option value="none">--請選擇活動類別--</option>
-              <option value="grapefruit">大迎新</option>
-              <option value="lime">民歌</option>
-              <option value="coconut">送舊</option>
-              <option value="mango">資管周</option>
+              {this.state.category.map((elem, index) => {
+                return <option value={elem}>{elem}</option>;
+              })}
+              {console.log(this.state.search)}
             </select>
           </div>
           <h4 className="dropdownfont">請選擇日期區間</h4>
@@ -135,9 +161,8 @@ export class Income_Index extends Component {
                 </Button>
               </ButtonGroup>
             </ButtonToolbar>
-          </div>{" "}
-
-        </div>{" "}
+          </div>
+        </div>
         <div className="row mt-2 px-5">
           {this.state.pages?.length
             ? this.state.pages[this.state.pagenumber].map((x) => (

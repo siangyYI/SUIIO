@@ -111,7 +111,6 @@ function MessageTable(props) {
   const [isLoadingPostMessage, setIsLoadingPostMessage] = useState(false);
 
   const fetchMessages = async (tables, tableID) => {
-    console.log("2");
     await fetch(`http://suiio.nutc.edu.tw:2541/api/comment/fetch/${tables}/${tableID}`)
       .then((res) => res.json())
       .then((data) => {
@@ -153,6 +152,7 @@ function MessageTable(props) {
     }
   };
   // 第二個參數傳入 [] 代表只在 componet mount 後執行
+  
   useEffect(async () => {
     await fetchMessages(props.table, props.dataid);
   }, [props]);
