@@ -18,7 +18,7 @@ export class Income_Detail extends Component {
   }
 
   fetchContent = async (id) => {
-    await fetch(`http://localhost:4000/api/account/fetch/id/${id}`)
+    await fetch(`http://suiio.nutc.edu.tw:2541/api/account/fetch/id/${id}`)
       .then((res) => res.json())
       .then((data) => this.setState({ content: data[0] }));
     // console.log(this.state.content);

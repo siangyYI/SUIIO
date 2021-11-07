@@ -20,7 +20,7 @@ export class Income_Index extends Component {
     this.update();
   }
   update = () => {
-    fetch("http://localhost:4000/api/account/fetch/all")
+    fetch("http://suiio.nutc.edu.tw:2541/api/account/fetch/all")
       .then((res) => res.json())
       .then((data) => {
         this.setState({ account: data });
