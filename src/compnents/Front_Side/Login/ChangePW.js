@@ -6,7 +6,9 @@ function ChangePW() {
   return (
     <>
       <div style={{ height: "100%" }}>
-        <div style={{ display: "flex", justifyContent: "center", height: "100%" }}>
+        <div
+          style={{ display: "flex", justifyContent: "center", height: "100%" }}
+        >
           <div className="login">
             <h2 className="text-center loginfont">修改密碼</h2>
             <h4 className="ml-5 mt-4">請輸入舊密碼</h4>

@@ -6,9 +6,9 @@ function ReportMessage() {
   return (
     <div>
       <Container>
-      <div className="mt-5">
-        <ReportTable />
-      </div>
+        <div className="mt-5">
+          <ReportTable />
+        </div>
       </Container>
     </div>
   );

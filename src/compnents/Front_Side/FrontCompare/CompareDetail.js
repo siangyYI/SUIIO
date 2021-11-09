@@ -8,7 +8,7 @@ export class CompareDetail extends Component {
     return (
       <>
         <div className="mx-auto ">
-         <div className="comparetext d-flex" >
+          <div className="comparetext d-flex">
             {account[2] > 0 ? (
               <>
                 <div className="size2 d-flex justify-content-start mx-2 ">

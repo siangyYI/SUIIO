@@ -26,9 +26,7 @@ class Usercard extends Component {
             </div>
           </div>
           <div className="ucardline mt-2">
-          <div
-              className="d-flex my-3 d-flex justify-content-center"
-            >
+            <div className="d-flex my-3 d-flex justify-content-center">
               <img
                 src={require("../Image/pencil.png").default}
                 alt="cancel"
@@ -39,9 +37,7 @@ class Usercard extends Component {
               <a href="/ReportMessage">查看留言</a>
             </div>
             <div className="ucardline my-2"></div>
-            <div
-              className="d-flex my-3 d-flex justify-content-center"
-            >
+            <div className="d-flex my-3 d-flex justify-content-center">
               <img
                 src={require("../Image/pencil.png").default}
                 alt="cancel"
@@ -52,9 +48,7 @@ class Usercard extends Component {
               <a href="/ChangePW">更改密碼</a>
             </div>
             <div className="ucardline my-2"></div>
-            <div
-              className="d-flex my-3 d-flex justify-content-center"
-            >
+            <div className="d-flex my-3 d-flex justify-content-center">
               <img
                 src={require("../Image/pencil.png").default}
                 alt="cancel"
@@ -66,7 +60,8 @@ class Usercard extends Component {
             </div>
             <div className="d-flex justify-content-center ucardline">
               <Link to="/IncomeIndex">
-                <button className="d-flex flex-row justify-content-center my-3 py-2 mx-3 ucardbutton"
+                <button
+                  className="d-flex flex-row justify-content-center my-3 py-2 mx-3 ucardbutton"
                   onClick={() => setStu()}
                 >
                   <img
@@ -93,7 +88,6 @@ class Usercard extends Component {
             </div>
           </div>
         </div>
-
       </>
     );
   }

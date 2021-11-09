@@ -1,11 +1,10 @@
-import React from 'react';
-import Navbar from 'react-bootstrap/Navbar';
-import NavDropdown from 'react-bootstrap/NavDropdown';
+import React from "react";
+import Navbar from "react-bootstrap/Navbar";
+import NavDropdown from "react-bootstrap/NavDropdown";
 import { Button } from "react-bootstrap";
-import Nav from 'react-bootstrap/Nav';
+import Nav from "react-bootstrap/Nav";
 const aText = { textDecoration: "none", ":hover": { textDecoration: "none" } };
 const NavigationBar = () => {
-
   return (
     <Navbar
       collapseOnSelect
@@ -17,9 +16,7 @@ const NavigationBar = () => {
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav" style={{ color: "white" }}>
         <Nav className="mr-auto" style={aText}>
-          <NavDropdown title="會議紀錄" id="basic-nav-dropdown">
-
-          </NavDropdown>
+          <NavDropdown title="會議紀錄" id="basic-nav-dropdown"></NavDropdown>
           <NavDropdown title="財務管理" id="basic-nav-dropdown">
             <NavDropdown.Item href="#/Financial/statements">
               財務報表
@@ -37,6 +34,6 @@ const NavigationBar = () => {
         </Nav>
       </Navbar.Collapse>
     </Navbar>
-  )
+  );
 };
 export default NavigationBar;

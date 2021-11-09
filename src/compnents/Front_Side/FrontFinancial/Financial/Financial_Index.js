@@ -10,7 +10,7 @@ import { Financial_Card } from "./Financial_Card";
 
 export class Financial_Index extends Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       statements: [],
       selected: {},
@@ -21,12 +21,12 @@ export class Financial_Index extends Component {
       review: false,
       pages: [],
       pagenumber: 0,
-    }
-    this.update()
+    };
+    this.update();
   }
 
   update = () => {
-    fetch('http://suiio.nutc.edu.tw:2541/api/statement/fetch/status/1')
+    fetch("http://suiio.nutc.edu.tw:2541/api/statement/fetch/status/1")
       .then((res) => res.json())
       .then((data) => {
         this.setState({ statements: data });
@@ -67,8 +67,8 @@ export class Financial_Index extends Component {
   fetchContent = async (id) => {
     await fetch(`http://suiio.nutc.edu.tw:2541/api/statement/fetch/id/${id}`)
       .then((res) => res.json())
-      .then((data) => this.setState({ accounts: data }))
-  }
+      .then((data) => this.setState({ accounts: data }));
+  };
   render() {
     return (
       <>
@@ -89,19 +89,32 @@ export class Financial_Index extends Component {
               <option value="mango">資管周</option>
             </select>
           </div>
-          <div className="dropdownfont">
-            請選擇日期區間
-          </div>
+          <div className="dropdownfont">請選擇日期區間</div>
           <div className="d-flex">
-            <input id="date" type="date" className="Dropdown ml-md-3 px-md-2" style={{ margin: '0' }}></input>
-            <h3 style={{ marginLeft: '1%', marginRight: '1%' }}>
-              -
-            </h3>
-            <input id="date" type="date" className="Dropdown ml-md-3 px-md-2" style={{ margin: '0' }}></input>
-            <ButtonToolbar className="mx-5" style={{ position: "absolute", right: "0px" }}>
+            <input
+              id="date"
+              type="date"
+              className="Dropdown ml-md-3 px-md-2"
+              style={{ margin: "0" }}
+            ></input>
+            <h3 style={{ marginLeft: "1%", marginRight: "1%" }}>-</h3>
+            <input
+              id="date"
+              type="date"
+              className="Dropdown ml-md-3 px-md-2"
+              style={{ margin: "0" }}
+            ></input>
+            <ButtonToolbar
+              className="mx-5"
+              style={{ position: "absolute", right: "0px" }}
+            >
               <ButtonGroup className="mr-2" aria-label="First group">
                 <Button
-                  style={{ backgroundColor: '#d8936c', borderColor: '#d8936c', color: 'white' }}
+                  style={{
+                    backgroundColor: "#d8936c",
+                    borderColor: "#d8936c",
+                    color: "white",
+                  }}
                   variant=""
                   onClick={() => {
                     if (this.state.pagenumber)
@@ -113,12 +126,21 @@ export class Financial_Index extends Component {
                 <DropdownButton
                   as={ButtonGroup}
                   title={`${this.state.pagenumber + 1} `}
-                  style={{ backgroundColor: '#d8936c !important', borderColor: '#d8936c !important', color: 'white !important' }}
+                  style={{
+                    backgroundColor: "#d8936c !important",
+                    borderColor: "#d8936c !important",
+                    color: "white !important",
+                  }}
                 >
                   {this.state.pages.map((v, i) => {
                     return (
                       <Dropdown.Item
-                        style={{ backgroundColor: '#d8936c', borderColor: '#d8936c', color: 'white',padding:"0 !important" }}
+                        style={{
+                          backgroundColor: "#d8936c",
+                          borderColor: "#d8936c",
+                          color: "white",
+                          padding: "0 !important",
+                        }}
                         active={this.state.pagenumber === i}
                         onClick={() => this.setState({ pagenumber: i })}
                       >
@@ -128,7 +150,11 @@ export class Financial_Index extends Component {
                   })}
                 </DropdownButton>
                 <Button
-                  style={{ backgroundColor: '#d8936c', borderColor: '#d8936c', color: 'white' }}
+                  style={{
+                    backgroundColor: "#d8936c",
+                    borderColor: "#d8936c",
+                    color: "white",
+                  }}
                   variant="secondary"
                   onClick={() => {
                     if (this.state.pagenumber < this.state.pages.length - 1)
@@ -138,17 +164,18 @@ export class Financial_Index extends Component {
                   &gt;
                 </Button>
               </ButtonGroup>
-            </ButtonToolbar></div>
+            </ButtonToolbar>
+          </div>
         </div>
         <div className="row mt-2 px-5">
           {this.state.pages?.length
             ? this.state.pages[this.state.pagenumber].map((x) => (
-              // eslint-disable-next-line react/jsx-pascal-case
-              <Financial_Card statements={x} />
-            )) : "No Data"}
+                // eslint-disable-next-line react/jsx-pascal-case
+                <Financial_Card statements={x} />
+              ))
+            : "No Data"}
         </div>
       </>
-    )
+    );
   }
-
 }

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Bar, Line, Pie } from "react-chartjs-2";
 import "chartjs-plugin-datalabels";
-import ChartDataLabels from 'chartjs-plugin-datalabels';
+import ChartDataLabels from "chartjs-plugin-datalabels";
 
 import "./ChartIndex.css";
 
@@ -30,7 +30,7 @@ export class Chart_Index extends Component {
       income_amount: [],
       costAll: 0,
       incomeAll: 0,
-    }
+    };
   }
   diagram = async (year, month) => {
     await fetch(
@@ -56,7 +56,6 @@ export class Chart_Index extends Component {
       if (!this.state.diagrams[month].length) {
         result[month] = total;
         this.state.count_diagrams.push(0);
-
       } else {
         // eslint-disable-next-line array-callback-return
         this.state.diagrams[month].map((detail) => {
@@ -79,15 +78,13 @@ export class Chart_Index extends Component {
       cadre[x.uploadBy] = cadre[x.uploadBy] || [];
       cadre[x.uploadBy].push(x);
     });
-    let Cost_Name = []
-     console.log(cadre)
+    let Cost_Name = [];
+    console.log(cadre);
     let Costamount_cadre = Object.keys(cadre);
 
     Costamount_cadre.forEach((element) => {
-     
       let Costcount_cadre = 0;
       cadre[element].forEach((item) => {
-        
         if (item.amount < 0) {
           Costcount_cadre += item.amount;
         } else {
@@ -105,8 +102,6 @@ export class Chart_Index extends Component {
         count += item.amount;
       });
       this.state.income_amount_name.push(count);
-
-
     });
 
     let Costcategory = [];
@@ -180,8 +175,8 @@ export class Chart_Index extends Component {
       income_kind_cadre: [],
       result_cadre: {},
       upload: [],
-      Incomeamo: []
-    })
+      Incomeamo: [],
+    });
     await this.diagram(this.state.year, event.target.value);
     let months = [],
       result = {},
@@ -192,7 +187,6 @@ export class Chart_Index extends Component {
 
     // eslint-disable-next-line array-callback-return
     months.map((month) => {
-
       const total = { cost: 0, income: 0 };
       if (!this.state.diagrams[month].length) {
         result[month] = total;
@@ -207,7 +201,7 @@ export class Chart_Index extends Component {
           }
           amount > 0 ? (total.income += amount) : (total.cost += amount * -1);
           result[month] = total;
-          console.log(result)
+          console.log(result);
         });
         this.state.count_diagrams.push(
           Object.keys(this.state.diagrams[month]).length
@@ -217,11 +211,11 @@ export class Chart_Index extends Component {
     let cadre = [];
     // eslint-disable-next-line array-callback-return
     this.state.diagrams[event.target.value].map((x) => {
-      console.log(cadre)
+      console.log(cadre);
       cadre[x.uploadBy] = cadre[x.uploadBy] || [];
       cadre[x.uploadBy].push(x);
     });
-    let Cost_Name = []
+    let Cost_Name = [];
     let Costamount_cadre = Object.keys(cadre);
     Costamount_cadre.forEach((element) => {
       let Costcount_cadre = 0;
@@ -298,10 +292,9 @@ export class Chart_Index extends Component {
       income: inc,
       cost: cos,
     });
-  }
+  };
 
   render() {
-
     return (
       <>
         <select
@@ -324,7 +317,6 @@ export class Chart_Index extends Component {
           <option value={4}>4月</option>
           <option value={5}>5月</option>
           <option value={6}>6月</option>
-
         </select>
         <div>
           <div className="row">
@@ -364,7 +356,7 @@ export class Chart_Index extends Component {
                 options={{
                   plugins: {
                     legend: {
-                      align: 'end',
+                      align: "end",
                       padding: 20,
                       display: true,
                       position: "top",
@@ -375,7 +367,10 @@ export class Chart_Index extends Component {
             </div>
             <div className="col my-4 mx-3 chartback">
               <div className="py-3">
-                <div className="row" style={{ marginBottom: '16%', marginTop: '5%' }}>
+                <div
+                  className="row"
+                  style={{ marginBottom: "16%", marginTop: "5%" }}
+                >
                   <div className="col charttitle">收入占比圓餅圖</div>
                   <div className="mr-3 charttext">
                     NT$&nbsp;
@@ -417,7 +412,6 @@ export class Chart_Index extends Component {
                       },
                     ],
                   }}
-
                   options={{
                     responsive: true,
                     maintainAspectRatio: true,
@@ -430,15 +424,15 @@ export class Chart_Index extends Component {
                           originalFit.bind(chart.legend)();
                           // Change the height as suggested in another answers
                           this.height += 150;
-                        }
+                        };
                       },
                       datalabels: {
-                        display: 'auto',
+                        display: "auto",
                         formatter: function (value, ctx) {
                           let sum = 0;
                           let dataArr = ctx.chart.data.datasets[0].data;
                           // eslint-disable-next-line array-callback-return
-                          dataArr.map(data => {
+                          dataArr.map((data) => {
                             sum += data;
                           });
                           let percentage = (value.toFixed(2) / sum) * 100;
@@ -465,9 +459,9 @@ export class Chart_Index extends Component {
                         },
                         labels: {
                           value: {
-                            color: '#ffffff',
+                            color: "#ffffff",
                           },
-                        }
+                        },
                       },
                       tooltip: {
                         enabled: true,
@@ -484,8 +478,7 @@ export class Chart_Index extends Component {
                             });
 
                             let percentage =
-                              ((ttItem[0].parsed * 100) / sum).toFixed(2) +
-                              "%";
+                              ((ttItem[0].parsed * 100) / sum).toFixed(2) + "%";
                             return `占比: ${percentage}`;
                           },
                         },
@@ -496,8 +489,8 @@ export class Chart_Index extends Component {
                         labels: {
                           font: {
                             size: 16,
-                          }
-                        }
+                          },
+                        },
                       },
                     },
                   }}
@@ -529,10 +522,10 @@ export class Chart_Index extends Component {
                 options={{
                   plugins: {
                     datalabels: {
-                      anchor: 'end',
-                      align: 'end',
+                      anchor: "end",
+                      align: "end",
                       offset: 4,
-                      color: 'black',
+                      color: "black",
                       formatter: function (value) {
                         return Number(
                           parseFloat(Math.abs(value)).toFixed(3)
@@ -542,26 +535,29 @@ export class Chart_Index extends Component {
                       },
                     },
                     legend: {
-                      display: false
-                    }
+                      display: false,
+                    },
                   },
                   scales: {
                     x: {
                       ticks: {
                         font: {
-                          color: 'black',
+                          color: "black",
                           size: 16,
-                          weight: 'bold',
+                          weight: "bold",
                         },
-                      }
-                    }
+                      },
+                    },
                   },
                 }}
               />
             </div>
             <div className="col mx-3 chartback">
               <div className="py-3">
-                <div className="row" style={{ marginBottom: '16%', marginTop: '5%' }}>
+                <div
+                  className="row"
+                  style={{ marginBottom: "16%", marginTop: "5%" }}
+                >
                   <div className="col charttitle">收入占比圓餅圖</div>
                   <div className="mr-3 charttext1">
                     NT$&nbsp;
@@ -574,19 +570,22 @@ export class Chart_Index extends Component {
                 </div>
                 <Pie
                   // eslint-disable-next-line react/jsx-no-duplicate-props
-                  plugins={[{
-                    beforeInit: (chart, options) => {
-                      chart.legend.afterFit = () => {
-                        if (chart.legend.margins) {
-                          // Put some padding around the legend/labels
-                          chart.legend.options.labels.padding = 30;
-                          // Because you added 20px of padding around the whole legend,
-                          // you will need to increase the height of the chart to fit it
-                          chart.height += 40;
-                        }
-                      };
-                    }
-                  }, ChartDataLabels]}
+                  plugins={[
+                    {
+                      beforeInit: (chart, options) => {
+                        chart.legend.afterFit = () => {
+                          if (chart.legend.margins) {
+                            // Put some padding around the legend/labels
+                            chart.legend.options.labels.padding = 30;
+                            // Because you added 20px of padding around the whole legend,
+                            // you will need to increase the height of the chart to fit it
+                            chart.height += 40;
+                          }
+                        };
+                      },
+                    },
+                    ChartDataLabels,
+                  ]}
                   data={{
                     //支出圓餅圖
                     type: "pie",
@@ -619,12 +618,12 @@ export class Chart_Index extends Component {
                     maintainAspectRatio: true,
                     plugins: {
                       datalabels: {
-                        display: 'auto',
+                        display: "auto",
                         formatter: function (value, ctx) {
                           let sum = 0;
                           let dataArr = ctx.chart.data.datasets[0].data;
                           // eslint-disable-next-line array-callback-return
-                          dataArr.map(data => {
+                          dataArr.map((data) => {
                             sum += data;
                           });
                           let percentage = (value.toFixed(2) / sum) * 100;
@@ -648,11 +647,10 @@ export class Chart_Index extends Component {
                         },
                         labels: {
                           value: {
-                            color: '#ffffff',
-                            size: "40px"
-                          }
-                        }
-
+                            color: "#ffffff",
+                            size: "40px",
+                          },
+                        },
                       },
                       tooltip: {
                         callbacks: {
@@ -668,8 +666,7 @@ export class Chart_Index extends Component {
                             });
 
                             let percentage =
-                              ((ttItem[0].parsed * 100) / sum).toFixed(2) +
-                              "%";
+                              ((ttItem[0].parsed * 100) / sum).toFixed(2) + "%";
                             return `占比: ${percentage}`;
                           },
                         },
@@ -680,8 +677,8 @@ export class Chart_Index extends Component {
                         labels: {
                           font: {
                             size: 16,
-                          }
-                        }
+                          },
+                        },
                       },
                     },
                   }}
@@ -694,4 +691,3 @@ export class Chart_Index extends Component {
     );
   }
 }
-

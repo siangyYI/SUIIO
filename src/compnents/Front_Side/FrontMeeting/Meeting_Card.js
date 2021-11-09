@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import "../FrontFinancial/Income/Income.css"
+import "../FrontFinancial/Income/Income.css";
 
 export class Meeting_Card extends Component {
   render() {
@@ -21,7 +21,7 @@ export class Meeting_Card extends Component {
       category = (
         <div
           className="host badge badge-secondary"
-          style={{ backgroundColor: "#59420a", color: 'white' }}
+          style={{ backgroundColor: "#59420a", color: "white" }}
         >
           {conferences.category}
         </div>
@@ -29,9 +29,7 @@ export class Meeting_Card extends Component {
     }
     return (
       <div className="col-sm-12 col-md-3 IncomeCard">
-        <Link
-          to={`/meet/reconder?id=${conferences.ID}`}
-        >
+        <Link to={`/meet/reconder?id=${conferences.ID}`}>
           <Card
             style={{
               border: "2px solid #9e9e9e",

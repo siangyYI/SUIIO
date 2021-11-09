@@ -18,7 +18,9 @@ export class Income_Card extends Component {
           }}
         >
           -NT$ &nbsp;
-          {Number(parseFloat(Math.abs(account.amount)).toFixed(3)).toLocaleString("en", {
+          {Number(
+            parseFloat(Math.abs(account.amount)).toFixed(3)
+          ).toLocaleString("en", {
             minimumFractionDigits: 0,
           })}
         </h1>
@@ -66,7 +68,11 @@ export class Income_Card extends Component {
       <div className="col-sm-12 col-md-3  IncomeCard">
         <a href={`/account/detail?ID=${account.ID}`}>
           <Card
-            style={{ border: "2px solid #9e9e9e", backgroundColor: "#ffd679" ,marginTop:"30px"}}
+            style={{
+              border: "2px solid #9e9e9e",
+              backgroundColor: "#ffd679",
+              marginTop: "30px",
+            }}
             // className="mt-4"
           >
             <div className="row">

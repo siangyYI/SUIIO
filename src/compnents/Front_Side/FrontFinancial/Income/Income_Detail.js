@@ -13,7 +13,7 @@ export class Income_Detail extends Component {
     this.state = {
       content: [],
       AddImg: false,
-      id:"",
+      id: "",
     };
   }
 
@@ -27,7 +27,7 @@ export class Income_Detail extends Component {
   componentDidMount() {
     const query = new URLSearchParams(this.props.location.search);
     const ID = query.get("ID");
-    this.state.id=ID;
+    this.state.id = ID;
     // console.log(ID)
     this.fetchContent(ID);
   }
@@ -160,7 +160,6 @@ export class Income_Detail extends Component {
             <MessageTable dataid={this.state.id} table="account" />
             {console.log(this.state.id)}
           </div>
-          
         </Container>
       </>
     );

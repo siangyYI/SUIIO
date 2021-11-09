@@ -1,12 +1,12 @@
-.state_tag{
-    background-color: #364366;
-    text-orientation: upright;
-    writing-mode: vertical-lr;
-    padding: 10px;
-    border-radius: 0 0 10px 10px ;
-    font-size: large;
-    margin: 10px;
-    margin-top: 0;
-    font-weight: bold;
-    color: aliceblue;
+.state_tag {
+  background-color: #364366;
+  text-orientation: upright;
+  writing-mode: vertical-lr;
+  padding: 10px;
+  border-radius: 0 0 10px 10px;
+  font-size: large;
+  margin: 10px;
+  margin-top: 0;
+  font-weight: bold;
+  color: aliceblue;
 }

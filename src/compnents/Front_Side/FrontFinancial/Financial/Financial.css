@@ -1,75 +1,76 @@
 .FTable tr:hover {
-    background-color: #eeeeee !important;
+  background-color: #eeeeee !important;
 }
 
-td, th {
-    font-size: 16px !important;
+td,
+th {
+  font-size: 16px !important;
 }
 
 .total {
-    font-size: 18px !important;
-    font-weight: bold !important;
+  font-size: 18px !important;
+  font-weight: bold !important;
 }
 
 .AllTotal {
-    font-weight: bold !important;
-    padding: 16px 8px 16px 8px !important;
-    width: 18%;
+  font-weight: bold !important;
+  padding: 16px 8px 16px 8px !important;
+  width: 18%;
 }
 
 .ntwidth {
-    width: 20% !important;
-    font-weight: bold !important;
-    padding: 16px 8px 16px 8px !important;
+  width: 20% !important;
+  font-weight: bold !important;
+  padding: 16px 8px 16px 8px !important;
 }
 
 .dwidth {
-    width: 16% !important;
+  width: 16% !important;
 }
 
 .fontSize {
-    font-size: 17px!important;
+  font-size: 17px !important;
 }
 
 .MuiTableCell-root {
-    padding-top: 14px !important;
-    padding-right: 14px !important;
-    padding-bottom: 14px !important;
-    padding-left: 14px !important;
+  padding-top: 14px !important;
+  padding-right: 14px !important;
+  padding-bottom: 14px !important;
+  padding-left: 14px !important;
 }
 
 .MuiTableCell-head {
-    color: white !important;
+  color: white !important;
 }
 
 .arrow {
-    margin-top: 2%;
-    margin-left: 5%;
-    margin-bottom: 2%;
+  margin-top: 2%;
+  margin-left: 5%;
+  margin-bottom: 2%;
 }
 
 .amountfont {
-    font-size: 22px;
-    margin-top: 6%;
+  font-size: 22px;
+  margin-top: 6%;
 }
 
 .cleartable {
-    width: 40%;
-    margin: 0 auto;
+  width: 40%;
+  margin: 0 auto;
 }
 
 @media screen and (max-width: 575px) {
-    .arrow {
-        margin-top: 22%;
-        margin-left: 5%;
-        margin-bottom: 3%;
-    }
-    
-    .amountfont {
-        font-size: large;
-        margin-top: 17%;
-    }
-    .cleartable {
-        width: 80%;
-    }
+  .arrow {
+    margin-top: 22%;
+    margin-left: 5%;
+    margin-bottom: 3%;
+  }
+
+  .amountfont {
+    font-size: large;
+    margin-top: 17%;
+  }
+  .cleartable {
+    width: 80%;
+  }
 }

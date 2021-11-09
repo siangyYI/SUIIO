@@ -3,8 +3,11 @@ import React from "react";
 function Choose() {
   return (
     <>
-      <div className="row text-center" style={{height:"100%", padding:"0 !important"}} >
-        <div className="col" style={{backgroundColor:"#BBB8B8"}}>
+      <div
+        className="row text-center"
+        style={{ height: "100%", padding: "0 !important" }}
+      >
+        <div className="col" style={{ backgroundColor: "#BBB8B8" }}>
           <a href="#/IncomeIndex" className="m-5">
             <img
               className=""

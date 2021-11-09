@@ -18,7 +18,7 @@ export class Income_Index extends Component {
       category: [],
       pages: [],
       pagenumber: 0,
-      search: ''
+      search: "",
     };
     this.update();
   }
@@ -47,11 +47,10 @@ export class Income_Index extends Component {
   };
   updateSearch(event) {
     this.setState({
-      search: event.target.value
-    })
+      search: event.target.value,
+    });
   }
   componentWillMount() {
-
     this.setState({
       pages: this.state.account.reduce((value, key, arr) => {
         let cnt = 0;
@@ -63,7 +62,7 @@ export class Income_Index extends Component {
         }
         return arr;
       }, []),
-      category: []
+      category: [],
     });
 
     // let updatedList = this.state.account.filter((item)=>{
@@ -73,16 +72,14 @@ export class Income_Index extends Component {
     //   return <li className="list-group-item" data-category={item} key={index}>{item}</li>
     // })
     // console.log(data);
-
-
   }
   render() {
     this.state.account.map((x) => {
-      this.state.category.push(x.category)
-    })
-    console.log(this.state.category = Array.from(
-      new Set(this.state.category)
-    ));
+      this.state.category.push(x.category);
+    });
+    console.log(
+      (this.state.category = Array.from(new Set(this.state.category)))
+    );
     // console.log(this.state.category);
     return (
       <>
@@ -95,7 +92,8 @@ export class Income_Index extends Component {
                 height: "2em",
                 backgroundColor: "white",
               }}
-              onChange={(e) => this.updateSearch(e)} value={this.state.search}
+              onChange={(e) => this.updateSearch(e)}
+              value={this.state.search}
             >
               {this.state.category.map((elem, index) => {
                 return <option value={elem}>{elem}</option>;
@@ -119,10 +117,17 @@ export class Income_Index extends Component {
               className="Dropdown ml-md-3 px-md-2"
               style={{ margin: "0" }}
             ></input>
-            <ButtonToolbar className="mx-5" style={{ position: "absolute", right: "0px" }}>
-              <ButtonGroup className="mr-2" aria-label="First group" >
+            <ButtonToolbar
+              className="mx-5"
+              style={{ position: "absolute", right: "0px" }}
+            >
+              <ButtonGroup className="mr-2" aria-label="First group">
                 <Button
-                  style={{ backgroundColor: '#d8936c', borderColor: '#d8936c', color: 'white' }}
+                  style={{
+                    backgroundColor: "#d8936c",
+                    borderColor: "#d8936c",
+                    color: "white",
+                  }}
                   variant=""
                   onClick={() => {
                     if (this.state.pagenumber)
@@ -134,13 +139,20 @@ export class Income_Index extends Component {
                 <DropdownButton
                   as={ButtonGroup}
                   title={`${this.state.pagenumber + 1} `}
-
-                  style={{ backgroundColor: '#d8936c !important', borderColor: '#d8936c !important', color: 'white !important' }}
+                  style={{
+                    backgroundColor: "#d8936c !important",
+                    borderColor: "#d8936c !important",
+                    color: "white !important",
+                  }}
                 >
                   {this.state.pages.map((v, i) => {
                     return (
                       <Dropdown.Item
-                        style={{ backgroundColor: '#d8936c', borderColor: '#d8936c', color: 'white' }}
+                        style={{
+                          backgroundColor: "#d8936c",
+                          borderColor: "#d8936c",
+                          color: "white",
+                        }}
                         active={this.state.pagenumber === i}
                         onClick={() => this.setState({ pagenumber: i })}
                       >
@@ -150,7 +162,11 @@ export class Income_Index extends Component {
                   })}
                 </DropdownButton>
                 <Button
-                  style={{ backgroundColor: '#d8936c', borderColor: '#d8936c', color: 'white' }}
+                  style={{
+                    backgroundColor: "#d8936c",
+                    borderColor: "#d8936c",
+                    color: "white",
+                  }}
                   variant="secondary"
                   onClick={() => {
                     if (this.state.pagenumber < this.state.pages.length - 1)
@@ -166,9 +182,9 @@ export class Income_Index extends Component {
         <div className="row mt-2 px-5">
           {this.state.pages?.length
             ? this.state.pages[this.state.pagenumber].map((x) => (
-              // eslint-disable-next-line react/jsx-pascal-case
-              <Income_Card account={x} />
-            ))
+                // eslint-disable-next-line react/jsx-pascal-case
+                <Income_Card account={x} />
+              ))
             : "No Data"}
         </div>
       </>

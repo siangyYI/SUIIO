@@ -21,7 +21,9 @@ export class reconder extends Component {
     };
   }
   fetchContent = async (id) => {
-    await fetch(`http://suiio.nutc.edu.tw:2541/api/conference/fetch/content/${id}`)
+    await fetch(
+      `http://suiio.nutc.edu.tw:2541/api/conference/fetch/content/${id}`
+    )
       .then((res) => res.json())
       .then((data) => this.setState({ content: data[0] }));
   };
@@ -30,7 +32,6 @@ export class reconder extends Component {
     let ary1 = [];
     let ary2 = [];
     let ary3 = [];
-
 
     let category = [];
     let url = window.location.href;
@@ -52,17 +53,21 @@ export class reconder extends Component {
   }
 
   render() {
-    console.log(this.state.content)
+    console.log(this.state.content);
     let attend = [];
     this.state.attendees.forEach((element, index) => {
-      attend.push(element + (this.state.attendees.length - 1 === index ? "" : ","));
+      attend.push(
+        element + (this.state.attendees.length - 1 === index ? "" : ",")
+      );
       if ((index + 1) % 5 === 0 && index !== 0) {
         attend.push(<br />);
       }
     });
     let absent = [];
     this.state.absentees.forEach((element, index) => {
-      absent.push(element + (this.state.absentees.length - 1 === index ? "" : ","));
+      absent.push(
+        element + (this.state.absentees.length - 1 === index ? "" : ",")
+      );
       if ((index + 1) % 5 === 0 && index !== 0) {
         absent.push(<br />);
       }
@@ -118,11 +123,7 @@ export class reconder extends Component {
                 >
                   {this.state.name}
                 </h1>
-                <div
-                  className="col reconder_date"
-                >
-                  {this.state.date}
-                </div>
+                <div className="col reconder_date">{this.state.date}</div>
               </div>
             </div>
             <div className="mx-4">
@@ -141,7 +142,6 @@ export class reconder extends Component {
             </div>
           </div>
 
-
           {/*會議內容*/}
           <div className="textcontent my-3 overflow-auto">
             <div class="overflow-auto py-4 textmeeting px-4">
@@ -150,7 +150,7 @@ export class reconder extends Component {
           </div>
 
           <div className="my-3 mx-md-auto overflow-autop-0">
-            <MessageTable   data={this.state.id} table="conference"/>
+            <MessageTable data={this.state.id} table="conference" />
           </div>
         </Container>
       </>

@@ -2,14 +2,14 @@
   background-color: white;
   padding: 5% 5% 5% 5%;
   width: 39%;
-  align-self: center
+  align-self: center;
 }
-.loginfont{
+.loginfont {
   font-weight: bold;
 }
 .BTN {
   font-size: 1rem;
-  background-color: #1473E6;
+  background-color: #1473e6;
   border: none;
   color: white;
 }

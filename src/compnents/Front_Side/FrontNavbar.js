@@ -10,7 +10,6 @@ class NavBar extends Component {
     this.state = {
       isUserCardOn: true,
       display: "none",
-
     };
 
     this.UserCardClick = this.UserCardClick.bind(this);
@@ -23,79 +22,20 @@ class NavBar extends Component {
     }));
   }
   render() {
-
     let url = window.location.href;
     let ary1 = [];
     let reary = [];
     ary1 = url.split("/");
     reary = ary1[3].split("?");
     let nav;
-    if (ary1[3] === "account" || reary[0] === "account/detail" || ary1[3] === "") {
-      
+    if (
+      ary1[3] === "account" ||
+      reary[0] === "account/detail" ||
+      ary1[3] === ""
+    ) {
       nav = (
         <aside>
-          <div className="my-4 ho" >
-            <a href="/account" >
-              <img
-                src={require("../../Image/income.png").default}
-                alt="cancel"
-                style={{ width: "30pt", height: "30pt" }}
-              />
-              <br />
-              <div>收支紀錄</div>
-            </a>
-          </div>
-          <div className="my-4 ho" style={{ filter: 'contrast(0.5)' }}>
-            <a href="/financial" >
-              <img
-                src={require("../../Image/graph.png").default}
-                alt="cancel"
-                style={{ width: "30pt", height: "30pt" }}
-              />
-              <br />
-              <div>財務報表</div>
-            </a>
-          </div>
-          <div className="my-4 ho" style={{ filter: 'contrast(0.5)' }}>
-            <a href="/chart" >
-              <img
-                src={require("../../Image/analytics.png").default}
-                alt="cancel"
-                style={{ width: "30pt", height: "30pt" }}
-              />
-              <br />
-              <div>統計圖表</div>
-            </a>
-          </div>
-          <div className="my-4 ho" style={{ filter: 'contrast(0.5)' }}>
-            <a href="/compare" >
-              <img
-                src={require("../../Image/compare.png").default}
-                alt="cancel"
-                style={{ width: "30pt", height: "30pt" }}
-              />
-              <br />
-              <div>歷年比較</div>
-            </a>
-          </div>
-          <div className="my-4 ho" style={{ filter: 'contrast(0.5)' }}>
-            <a href="/meet" >
-              <img
-                src={require("../../Image/meeting.png").default}
-                alt="cancel"
-                style={{ width: "30pt", height: "30pt" }}
-              />
-              <br />
-              <div>會議記錄</div>
-            </a>
-          </div>
-        </aside>
-
-      );
-    } if (ary1[3] === "financial" || reary[0] === "financial/detail") {
-      nav = (
-        <aside>
-          <div className="my-4 ho" style={{ filter: 'contrast(0.5)' }}>
+          <div className="my-4 ho">
             <a href="/account">
               <img
                 src={require("../../Image/income.png").default}
@@ -106,128 +46,7 @@ class NavBar extends Component {
               <div>收支紀錄</div>
             </a>
           </div>
-          <div className="my-4 ho">
-            <a href="/financial" >
-              <img
-                src={require("../../Image/graph.png").default}
-                alt="cancel"
-                style={{ width: "30pt", height: "30pt" }}
-              />
-              <br />
-              <div>財務報表</div>
-            </a>
-          </div>
-          <div className="my-4 ho" style={{ filter: 'contrast(0.5)' }}>
-            <a href="/chart">
-              <img
-                src={require("../../Image/analytics.png").default}
-                alt="cancel"
-                style={{ width: "30pt", height: "30pt" }}
-              />
-              <br />
-              <div>統計圖表</div>
-            </a>
-          </div>
-          <div className="my-4 ho" style={{ filter: 'contrast(0.5)' }}>
-            <a href="/compare">
-              <img
-                src={require("../../Image/compare.png").default}
-                alt="cancel"
-                style={{ width: "30pt", height: "30pt" }}
-              />
-              <br />
-              <div>歷年比較</div>
-            </a>
-          </div>
-          <div className="my-4 ho" style={{ filter: 'contrast(0.5)' }}>
-            <a href="/meet">
-              <img
-                src={require("../../Image/meeting.png").default}
-                alt="cancel"
-                style={{ width: "30pt", height: "30pt" }}
-              />
-              <br />
-              <div>會議記錄</div>
-            </a>
-          </div>
-        </aside>
-
-      );
-    } if (ary1[3] === "chart") {
-      nav = (
-        <aside>
-          <div className="my-4 ho" style={{ filter: 'contrast(0.5)' }}>
-            <a href="/account" >
-              <img
-                src={require("../../Image/income.png").default}
-                alt="cancel"
-                style={{ width: "30pt", height: "30pt" }}
-              />
-              <br />
-              <div>收支紀錄</div>
-            </a>
-          </div>
-          <div className="my-4 ho" style={{ filter: 'contrast(0.5)' }}>
-            <a href="/financial" >
-              <img
-                src={require("../../Image/graph.png").default}
-                alt="cancel"
-                style={{ width: "30pt", height: "30pt" }}
-              />
-              <br />
-              <div>財務報表</div>
-            </a>
-          </div>
-          <div className="my-4 ho">
-            <a href="/chart" >
-              <img
-                src={require("../../Image/analytics.png").default}
-                alt="cancel"
-                style={{ width: "30pt", height: "30pt" }}
-              />
-              <br />
-              <div>統計圖表</div>
-            </a>
-          </div>
-          <div className="my-4 ho" style={{ filter: 'contrast(0.5)' }}>
-            <a href="/compare" >
-              <img
-                src={require("../../Image/compare.png").default}
-                alt="cancel"
-                style={{ width: "30pt", height: "30pt" }}
-              />
-              <br />
-              <div>歷年比較</div>
-            </a>
-          </div>
-          <div className="my-4 ho" style={{ filter: 'contrast(0.5)' }}>
-            <a href="/meet" >
-              <img
-                src={require("../../Image/meeting.png").default}
-                alt="cancel"
-                style={{ width: "30pt", height: "30pt" }}
-              />
-              <br />
-              <div>會議記錄</div>
-            </a>
-          </div>
-        </aside>
-      );
-    } if (ary1[3] === "compare") {
-      nav = (
-        <aside>
-          <div className="my-4 ho" style={{ filter: 'contrast(0.5)' }}>
-            <a href="/account" >
-              <img
-                src={require("../../Image/income.png").default}
-                alt="cancel"
-                style={{ width: "30pt", height: "30pt" }}
-              />
-              <br />
-              <div>收支紀錄</div>
-            </a>
-          </div>
-          <div className="my-4 ho" style={{ filter: 'contrast(0.5)' }} >
+          <div className="my-4 ho" style={{ filter: "contrast(0.5)" }}>
             <a href="/financial">
               <img
                 src={require("../../Image/graph.png").default}
@@ -238,8 +57,8 @@ class NavBar extends Component {
               <div>財務報表</div>
             </a>
           </div>
-          <div className="my-4 ho" style={{ filter: 'contrast(0.5)' }}>
-            <a href="/chart" >
+          <div className="my-4 ho" style={{ filter: "contrast(0.5)" }}>
+            <a href="/chart">
               <img
                 src={require("../../Image/analytics.png").default}
                 alt="cancel"
@@ -249,8 +68,8 @@ class NavBar extends Component {
               <div>統計圖表</div>
             </a>
           </div>
-          <div className="my-4 ho" >
-            <a href="/compare" >
+          <div className="my-4 ho" style={{ filter: "contrast(0.5)" }}>
+            <a href="/compare">
               <img
                 src={require("../../Image/compare.png").default}
                 alt="cancel"
@@ -260,7 +79,7 @@ class NavBar extends Component {
               <div>歷年比較</div>
             </a>
           </div>
-          <div className="my-4 ho" style={{ filter: 'contrast(0.5)' }}>
+          <div className="my-4 ho" style={{ filter: "contrast(0.5)" }}>
             <a href="/meet">
               <img
                 src={require("../../Image/meeting.png").default}
@@ -272,12 +91,12 @@ class NavBar extends Component {
             </a>
           </div>
         </aside>
-
       );
-    } if (ary1[3] === "meet" || reary[0] === "meet/reconder") {
+    }
+    if (ary1[3] === "financial" || reary[0] === "financial/detail") {
       nav = (
         <aside>
-          <div className="my-4 ho" style={{ filter: 'contrast(0.5)' }}>
+          <div className="my-4 ho" style={{ filter: "contrast(0.5)" }}>
             <a href="/account">
               <img
                 src={require("../../Image/income.png").default}
@@ -288,8 +107,8 @@ class NavBar extends Component {
               <div>收支紀錄</div>
             </a>
           </div>
-          <div className="my-4 ho" style={{ filter: 'contrast(0.5)' }}>
-            <a href="/financial" >
+          <div className="my-4 ho">
+            <a href="/financial">
               <img
                 src={require("../../Image/graph.png").default}
                 alt="cancel"
@@ -299,8 +118,8 @@ class NavBar extends Component {
               <div>財務報表</div>
             </a>
           </div>
-          <div className="my-4 ho" style={{ filter: 'contrast(0.5)' }}>
-            <a href="/chart" >
+          <div className="my-4 ho" style={{ filter: "contrast(0.5)" }}>
+            <a href="/chart">
               <img
                 src={require("../../Image/analytics.png").default}
                 alt="cancel"
@@ -310,8 +129,8 @@ class NavBar extends Component {
               <div>統計圖表</div>
             </a>
           </div>
-          <div className="my-4 ho" style={{ filter: 'contrast(0.5)' }}>
-            <a href="/compare" >
+          <div className="my-4 ho" style={{ filter: "contrast(0.5)" }}>
+            <a href="/compare">
               <img
                 src={require("../../Image/compare.png").default}
                 alt="cancel"
@@ -321,8 +140,8 @@ class NavBar extends Component {
               <div>歷年比較</div>
             </a>
           </div>
-          <div className="my-4 ho" >
-            <a href="/meet" >
+          <div className="my-4 ho" style={{ filter: "contrast(0.5)" }}>
+            <a href="/meet">
               <img
                 src={require("../../Image/meeting.png").default}
                 alt="cancel"
@@ -333,7 +152,189 @@ class NavBar extends Component {
             </a>
           </div>
         </aside>
-
+      );
+    }
+    if (ary1[3] === "chart") {
+      nav = (
+        <aside>
+          <div className="my-4 ho" style={{ filter: "contrast(0.5)" }}>
+            <a href="/account">
+              <img
+                src={require("../../Image/income.png").default}
+                alt="cancel"
+                style={{ width: "30pt", height: "30pt" }}
+              />
+              <br />
+              <div>收支紀錄</div>
+            </a>
+          </div>
+          <div className="my-4 ho" style={{ filter: "contrast(0.5)" }}>
+            <a href="/financial">
+              <img
+                src={require("../../Image/graph.png").default}
+                alt="cancel"
+                style={{ width: "30pt", height: "30pt" }}
+              />
+              <br />
+              <div>財務報表</div>
+            </a>
+          </div>
+          <div className="my-4 ho">
+            <a href="/chart">
+              <img
+                src={require("../../Image/analytics.png").default}
+                alt="cancel"
+                style={{ width: "30pt", height: "30pt" }}
+              />
+              <br />
+              <div>統計圖表</div>
+            </a>
+          </div>
+          <div className="my-4 ho" style={{ filter: "contrast(0.5)" }}>
+            <a href="/compare">
+              <img
+                src={require("../../Image/compare.png").default}
+                alt="cancel"
+                style={{ width: "30pt", height: "30pt" }}
+              />
+              <br />
+              <div>歷年比較</div>
+            </a>
+          </div>
+          <div className="my-4 ho" style={{ filter: "contrast(0.5)" }}>
+            <a href="/meet">
+              <img
+                src={require("../../Image/meeting.png").default}
+                alt="cancel"
+                style={{ width: "30pt", height: "30pt" }}
+              />
+              <br />
+              <div>會議記錄</div>
+            </a>
+          </div>
+        </aside>
+      );
+    }
+    if (ary1[3] === "compare") {
+      nav = (
+        <aside>
+          <div className="my-4 ho" style={{ filter: "contrast(0.5)" }}>
+            <a href="/account">
+              <img
+                src={require("../../Image/income.png").default}
+                alt="cancel"
+                style={{ width: "30pt", height: "30pt" }}
+              />
+              <br />
+              <div>收支紀錄</div>
+            </a>
+          </div>
+          <div className="my-4 ho" style={{ filter: "contrast(0.5)" }}>
+            <a href="/financial">
+              <img
+                src={require("../../Image/graph.png").default}
+                alt="cancel"
+                style={{ width: "30pt", height: "30pt" }}
+              />
+              <br />
+              <div>財務報表</div>
+            </a>
+          </div>
+          <div className="my-4 ho" style={{ filter: "contrast(0.5)" }}>
+            <a href="/chart">
+              <img
+                src={require("../../Image/analytics.png").default}
+                alt="cancel"
+                style={{ width: "30pt", height: "30pt" }}
+              />
+              <br />
+              <div>統計圖表</div>
+            </a>
+          </div>
+          <div className="my-4 ho">
+            <a href="/compare">
+              <img
+                src={require("../../Image/compare.png").default}
+                alt="cancel"
+                style={{ width: "30pt", height: "30pt" }}
+              />
+              <br />
+              <div>歷年比較</div>
+            </a>
+          </div>
+          <div className="my-4 ho" style={{ filter: "contrast(0.5)" }}>
+            <a href="/meet">
+              <img
+                src={require("../../Image/meeting.png").default}
+                alt="cancel"
+                style={{ width: "30pt", height: "30pt" }}
+              />
+              <br />
+              <div>會議記錄</div>
+            </a>
+          </div>
+        </aside>
+      );
+    }
+    if (ary1[3] === "meet" || reary[0] === "meet/reconder") {
+      nav = (
+        <aside>
+          <div className="my-4 ho" style={{ filter: "contrast(0.5)" }}>
+            <a href="/account">
+              <img
+                src={require("../../Image/income.png").default}
+                alt="cancel"
+                style={{ width: "30pt", height: "30pt" }}
+              />
+              <br />
+              <div>收支紀錄</div>
+            </a>
+          </div>
+          <div className="my-4 ho" style={{ filter: "contrast(0.5)" }}>
+            <a href="/financial">
+              <img
+                src={require("../../Image/graph.png").default}
+                alt="cancel"
+                style={{ width: "30pt", height: "30pt" }}
+              />
+              <br />
+              <div>財務報表</div>
+            </a>
+          </div>
+          <div className="my-4 ho" style={{ filter: "contrast(0.5)" }}>
+            <a href="/chart">
+              <img
+                src={require("../../Image/analytics.png").default}
+                alt="cancel"
+                style={{ width: "30pt", height: "30pt" }}
+              />
+              <br />
+              <div>統計圖表</div>
+            </a>
+          </div>
+          <div className="my-4 ho" style={{ filter: "contrast(0.5)" }}>
+            <a href="/compare">
+              <img
+                src={require("../../Image/compare.png").default}
+                alt="cancel"
+                style={{ width: "30pt", height: "30pt" }}
+              />
+              <br />
+              <div>歷年比較</div>
+            </a>
+          </div>
+          <div className="my-4 ho">
+            <a href="/meet">
+              <img
+                src={require("../../Image/meeting.png").default}
+                alt="cancel"
+                style={{ width: "30pt", height: "30pt" }}
+              />
+              <br />
+              <div>會議記錄</div>
+            </a>
+          </div>
+        </aside>
       );
     }
 
@@ -347,7 +348,6 @@ class NavBar extends Component {
         </div>
 
         {nav}
-
       </div>
     );
   }

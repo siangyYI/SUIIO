@@ -1,4 +1,5 @@
-.nav-pills .nav-link.active, .nav-pills .show>.nav-link {
+.nav-pills .nav-link.active,
+.nav-pills .show > .nav-link {
   background-color: rgb(185, 185, 185) !important;
   color: black !important;
 }
@@ -8,7 +9,7 @@ a:link {
   text-decoration: none;
 }
 
-.dropdown-menu{
+.dropdown-menu {
   padding: 0 !important;
 }
 a:visited {
@@ -30,7 +31,8 @@ aside a {
   color: white !important;
 }
 
-.nav-fill .nav-item, .nav-fill>.nav-link {
+.nav-fill .nav-item,
+.nav-fill > .nav-link {
   flex: 1 1 auto;
   text-align: center;
 }
@@ -49,11 +51,11 @@ li {
 }
 
 .recordcontent {
-  background-color: #F7F7EB;
+  background-color: #f7f7eb;
   height: 100vh;
 }
 
-.meeting>.title {
+.meeting > .title {
   font-size: 16pt;
 }
 
@@ -86,7 +88,7 @@ li {
   font-size: 16px;
   text-align: center;
 }
-.dropdownfont{
+.dropdownfont {
   margin-top: 8px;
   font-size: 18px;
   margin-left: 2%;
@@ -95,11 +97,11 @@ li {
   .Dropdown {
     font-size: 14px;
   }
-.dropdownfont{
-  margin-top: 25px;
-  font-size: 16px;
-}
-.content{
-  margin-top: 22%;
-}
+  .dropdownfont {
+    margin-top: 25px;
+    font-size: 16px;
+  }
+  .content {
+    margin-top: 22%;
+  }
 }

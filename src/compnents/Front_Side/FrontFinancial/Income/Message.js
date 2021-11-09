@@ -111,7 +111,9 @@ function MessageTable(props) {
   const [isLoadingPostMessage, setIsLoadingPostMessage] = useState(false);
 
   const fetchMessages = async (tables, tableID) => {
-    await fetch(`http://suiio.nutc.edu.tw:2541/api/comment/fetch/${tables}/${tableID}`)
+    await fetch(
+      `http://suiio.nutc.edu.tw:2541/api/comment/fetch/${tables}/${tableID}`
+    )
       .then((res) => res.json())
       .then((data) => {
         setMessages(data[tableID]);
@@ -152,7 +154,7 @@ function MessageTable(props) {
     }
   };
   // 第二個參數傳入 [] 代表只在 componet mount 後執行
-  
+
   useEffect(async () => {
     await fetchMessages(props.table, props.dataid);
   }, [props]);
@@ -179,7 +181,9 @@ function MessageTable(props) {
             ))}
           </MessageList>
         ) : (
-          <div style={{fontSize:"20px"}} className="m-5">尚無留言</div>
+          <div style={{ fontSize: "20px" }} className="m-5">
+            尚無留言
+          </div>
         )}
         <div>
           {console.log(messages)}

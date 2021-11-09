@@ -6,7 +6,6 @@ import { Bar, Pie } from "react-chartjs-2";
 import { CompareDetail } from "./CompareDetail";
 import { CompareDetailTwo } from "./CompareDetailTwo";
 
-
 export class CompareIndex extends Component {
   constructor(props) {
     super(props);
@@ -30,21 +29,19 @@ export class CompareIndex extends Component {
       yearChart2: [],
       catvalue: "0",
       result: [],
-      yeardata: []
+      yeardata: [],
     };
   }
   fetchyear = async () => {
-    await fetch(
-      `http://suiio.nutc.edu.tw:2541/api/account/fetch/diagram/year`
-    )
+    await fetch(`http://suiio.nutc.edu.tw:2541/api/account/fetch/diagram/year`)
       .then((res) => res.json())
       .then((data) =>
         this.setState({
           year: data,
           categoryyear1: data[0],
-          categoryyear2: data[1]
-        }
-        ));
+          categoryyear2: data[1],
+        })
+      );
   };
   fetchContent1 = async (year) => {
     await fetch(
@@ -110,7 +107,8 @@ export class CompareIndex extends Component {
     });
     const arrincome_start = [
       this.state.catchar1.income ?? 0,
-      this.state.catchar2.income ?? 0];
+      this.state.catchar2.income ?? 0,
+    ];
 
     const arrcost_start = [
       Math.abs(this.state.catchar1.cost ?? 0),
@@ -125,7 +123,8 @@ export class CompareIndex extends Component {
   f = () => {
     const arrincome_category = [
       this.state.catchar1.income ?? 0,
-      this.state.catchar2.income ?? 0];
+      this.state.catchar2.income ?? 0,
+    ];
 
     const arrcost_category = [
       Math.abs(this.state.catchar1.cost ?? 0),
@@ -136,10 +135,10 @@ export class CompareIndex extends Component {
       yearChart2: arrcost_category,
       arr: [],
     });
-  }
+  };
 
   getValue1 = async (event) => {
-    this.state.yeardata = this.state.year
+    this.state.yeardata = this.state.year;
     await this.fetchCategory1(event.target.value);
     await this.fetchContent1(event.target.value);
     const arr = [
@@ -164,10 +163,10 @@ export class CompareIndex extends Component {
       }
     });
 
-    this.f()
+    this.f();
   };
   getValue2 = async (event) => {
-    this.state.yeardata = this.state.year
+    this.state.yeardata = this.state.year;
     this.state.categoryyear2 = event.target.value;
     await this.fetchContent2(event.target.value);
     await this.fetchCategory2(event.target.value);
@@ -183,7 +182,7 @@ export class CompareIndex extends Component {
       catchar2: [],
       categoryAll: [],
     });
-    console.log(this.state.categoryyear2)
+    console.log(this.state.categoryyear2);
     const arr_2 = Object.keys(this.state.category2);
     await this.setState({ catchar2: arr_2 });
     Object.keys(this.state.category2).map((x) => {
@@ -193,7 +192,8 @@ export class CompareIndex extends Component {
     });
     const arrincome_category_2 = [
       this.state.catchar1.income ?? 0,
-      this.state.catchar2.income ?? 0];
+      this.state.catchar2.income ?? 0,
+    ];
 
     const arrcost_category_2 = [
       Math.abs(this.state.catchar1.cost ?? 0),
@@ -207,8 +207,8 @@ export class CompareIndex extends Component {
   };
 
   setCategory = async (event) => {
-    console.log(event.target.value)
-    this.setState({ catvalue: event.target.value }) //select
+    console.log(event.target.value);
+    this.setState({ catvalue: event.target.value }); //select
     const arr = Object.keys(this.state.category1);
     // ----------------------------
     await this.setState({ catchar1: arr });
@@ -225,7 +225,10 @@ export class CompareIndex extends Component {
         this.setState({ catchar2: this.state.category2[this.state.catvalue] });
       }
     });
-    const arrincome = [this.state.catchar1.income ?? 0, this.state.catchar2.income ?? 0];
+    const arrincome = [
+      this.state.catchar1.income ?? 0,
+      this.state.catchar2.income ?? 0,
+    ];
     const arrcost = [
       Math.abs(this.state.catchar1.cost ?? 0),
       Math.abs(this.state.catchar2.cost ?? 0),
@@ -247,12 +250,14 @@ export class CompareIndex extends Component {
                   onChange={(e) => this.getValue1(e)}
                   className="bDropdown"
                 >
-                  {this.state.year.map((ele, index) =>
+                  {this.state.year.map((ele, index) => (
                     <option
                       value={ele}
                       selected={ele === this.state.categoryyear1}
-                    >{ele}</option>
-                  )}
+                    >
+                      {ele}
+                    </option>
+                  ))}
                 </select>
               </div>
 
@@ -261,12 +266,14 @@ export class CompareIndex extends Component {
                   onChange={(e) => this.getValue2(e)}
                   className="bDropdown"
                 >
-                  {this.state.year.map((ele, index) =>
+                  {this.state.year.map((ele, index) => (
                     <option
                       value={ele}
                       selected={ele === this.state.categoryyear2}
-                    >{ele}</option>
-                  )}
+                    >
+                      {ele}
+                    </option>
+                  ))}
                 </select>
               </div>
             </div>
@@ -291,7 +298,10 @@ export class CompareIndex extends Component {
                     datasets: [
                       {
                         lineTension: 0, // 曲線的彎度，設0 表示直線
-                        backgroundColor: ["rgb(69, 185, 69)", "rgb(196, 68, 68)"],
+                        backgroundColor: [
+                          "rgb(69, 185, 69)",
+                          "rgb(196, 68, 68)",
+                        ],
                         borderWidth: 1,
                         data: this.state.pie_data1, // 資料
                         fill: false, // 是否填滿色彩
@@ -437,15 +447,16 @@ export class CompareIndex extends Component {
             <div className="Comtitle2 my-3">活動圖表</div>
             <div className="ml-5 text-center  my-3">
               {
-                this.state.category1.forEach((item) => {
-                  this.state.catearr.push(item.category)
+                (this.state.category1.forEach((item) => {
+                  this.state.catearr.push(item.category);
                 }),
                 this.state.category2.forEach((item) => {
-                  this.state.catearr.push(item.category)
+                  this.state.catearr.push(item.category);
                 }),
-                this.state.categoryAll = Array.from(
+                (this.state.categoryAll = Array.from(
                   new Set(this.state.catearr)
-                ),console.log(this.state.categoryAll)
+                )),
+                console.log(this.state.categoryAll))
               }
               <select
                 onChange={(e) => this.setCategory(e)}
@@ -492,18 +503,17 @@ export class CompareIndex extends Component {
                   options={{
                     plugins: {
                       datalabels: {
-                        anchor: 'end',
-                        align: 'right',
+                        anchor: "end",
+                        align: "right",
                         offset: -60,
-                        color: 'white',
+                        color: "white",
                         font: {
-                          size: 16
-                        }
+                          size: 16,
+                        },
                       },
                       legend: {
-                        align: 'end',
+                        align: "end",
                         position: "top",
-
                       },
                     },
                     indexAxis: "y",

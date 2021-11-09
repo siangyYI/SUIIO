@@ -35,28 +35,26 @@ export class Index extends Component {
         let cnt = 0;
         const pages = [];
         console.log(this.state.conferences);
-        this.state.conferences?.length ? data.reduce(
-          (arr, v, k) => {
-            const n = k % 16;
-            if (n) {
-              arr[cnt][n] = v;
-            } else {
-              cnt++;
-              arr = [...arr, [v]];
-            }
-            return arr;
-          },
-          [[]]
-        ) : this.setState({ conferences: []});
+        this.state.conferences?.length
+          ? data.reduce(
+              (arr, v, k) => {
+                const n = k % 16;
+                if (n) {
+                  arr[cnt][n] = v;
+                } else {
+                  cnt++;
+                  arr = [...arr, [v]];
+                }
+                return arr;
+              },
+              [[]]
+            )
+          : this.setState({ conferences: [] });
         pages.shift();
         this.setState({ pages });
-
       });
-
-
   };
   componentDidMount() {
-
     this.setState({
       pages: this.state.conferences.reduce((value, key, arr) => {
         let cnt = 0;
@@ -94,15 +92,30 @@ export class Index extends Component {
 
           <div className="dropdownfont">請選擇日期區間</div>
           <div className="d-flex">
-            <input id="date" type="date" className="Dropdown ml-md-3 px-md-2" style={{ margin: '0' }}></input>
-            <h3 style={{ marginLeft: '1%', marginRight: '1%' }}>
-              -
-            </h3>
-            <input id="date" type="date" className="Dropdown ml-md-3 px-md-2" style={{ margin: '0' }}></input>
-            <ButtonToolbar className="mx-5" style={{ position: "absolute", right: "0px" }}>
+            <input
+              id="date"
+              type="date"
+              className="Dropdown ml-md-3 px-md-2"
+              style={{ margin: "0" }}
+            ></input>
+            <h3 style={{ marginLeft: "1%", marginRight: "1%" }}>-</h3>
+            <input
+              id="date"
+              type="date"
+              className="Dropdown ml-md-3 px-md-2"
+              style={{ margin: "0" }}
+            ></input>
+            <ButtonToolbar
+              className="mx-5"
+              style={{ position: "absolute", right: "0px" }}
+            >
               <ButtonGroup className="mr-2" aria-label="First group">
                 <Button
-                  style={{ backgroundColor: '#d8936c', borderColor: '#d8936c', color: 'white' }}
+                  style={{
+                    backgroundColor: "#d8936c",
+                    borderColor: "#d8936c",
+                    color: "white",
+                  }}
                   variant=""
                   onClick={() => {
                     if (this.state.pagenumber)
@@ -114,12 +127,21 @@ export class Index extends Component {
                 <DropdownButton
                   as={ButtonGroup}
                   title={`${this.state.pagenumber + 1} `}
-                  style={{ backgroundColor: '#d8936c !important', borderColor: '#d8936c !important', color: 'white !important' }}
+                  style={{
+                    backgroundColor: "#d8936c !important",
+                    borderColor: "#d8936c !important",
+                    color: "white !important",
+                  }}
                 >
                   {this.state.pages.map((v, i) => {
                     return (
                       <Dropdown.Item
-                        style={{ backgroundColor: '#d8936c', borderColor: '#d8936c', color: 'white', padding: "0 !important" }}
+                        style={{
+                          backgroundColor: "#d8936c",
+                          borderColor: "#d8936c",
+                          color: "white",
+                          padding: "0 !important",
+                        }}
                         active={this.state.pagenumber === i}
                         onClick={() => this.setState({ pagenumber: i })}
                       >
@@ -129,7 +151,11 @@ export class Index extends Component {
                   })}
                 </DropdownButton>
                 <Button
-                  style={{ backgroundColor: '#d8936c', borderColor: '#d8936c', color: 'white' }}
+                  style={{
+                    backgroundColor: "#d8936c",
+                    borderColor: "#d8936c",
+                    color: "white",
+                  }}
                   variant="secondary"
                   onClick={() => {
                     if (this.state.pagenumber < this.state.pages.length - 1)
@@ -144,11 +170,14 @@ export class Index extends Component {
         </div>
         <div className="row mt-2 px-5">
           {console.log(this.state.conferences)}
-          {this.state.conferences?.length
-            ? this.state.conferences.map((x) => (
+          {this.state.conferences?.length ? (
+            this.state.conferences.map((x) => (
               // eslint-disable-next-line react/jsx-pascal-case
               <Meeting_Card conferences={x} />
-            )) : <div>No Data</div>}
+            ))
+          ) : (
+            <div>No Data</div>
+          )}
         </div>
       </>
     );

@@ -1,31 +1,29 @@
-.ncard{
-    background-color: #d8936c;
-    position: fixed;
-    z-index: 99999;
-    border-radius: 8px;
-    text-align: center;
-    height: 50%;
-    width: 21%;
-    
+.ncard {
+  background-color: #d8936c;
+  position: fixed;
+  z-index: 99999;
+  border-radius: 8px;
+  text-align: center;
+  height: 50%;
+  width: 21%;
 }
-.cardHover :hover{
-    background-color: blanchedalmond;
+.cardHover :hover {
+  background-color: blanchedalmond;
 }
-.ncardline{
-    border-bottom: 2px solid #ecf0f1;
-    width: 100%;
-    color: #01597f;
+.ncardline {
+  border-bottom: 2px solid #ecf0f1;
+  width: 100%;
+  color: #01597f;
 }
-.title_line{
-    border-bottom: 2px solid #ecf0f1;
-    width: 100%;
-    font-size: 1.5em;
-    font-weight: 800;
-    color: #381c00;
-    text-align: left;
-    
+.title_line {
+  border-bottom: 2px solid #ecf0f1;
+  width: 100%;
+  font-size: 1.5em;
+  font-weight: 800;
+  color: #381c00;
+  text-align: left;
 }
-.nfont{
-    font-weight: bold;
-    font-size: medium;
+.nfont {
+  font-weight: bold;
+  font-size: medium;
 }

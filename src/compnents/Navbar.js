@@ -5,39 +5,34 @@ import Bell from "./bell";
 
 import { Component } from "react";
 
-
-
 class NavBar extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
       isUserCardOn: true,
-      isNotifyCardOn: true
+      isNotifyCardOn: true,
     };
 
     this.UserCardClick = this.UserCardClick.bind(this);
     // this.NotifyCardClick = this.NotifyCardClick.bind(this);
   }
   UserCardClick() {
-    this.setState(prevState => ({
+    this.setState((prevState) => ({
       isUserCardOn: !prevState.isUserCardOn,
-      display: prevState.isUserCardOn ? 'none' : 'block'
+      display: prevState.isUserCardOn ? "none" : "block",
     }));
-
   }
-  
+
   render() {
     return (
       <div>
-
         <div className="d-flex justify-content-center mt-5 topbar">
-          <Bell/>
+          <Bell />
           <div className="d-flex flex-column">
-            <User/>
+            <User />
           </div>
         </div>
-
 
         <aside>
           <div className="my-4">
@@ -77,11 +72,8 @@ class NavBar extends Component {
             <a href="#/ReportMessage">留言管理</a>
           </div>
         </aside>
-
-
       </div>
     );
   }
-
 }
 export default NavBar;

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Container } from "react-bootstrap";
-import MessageTable from "../Income/Message"
+import MessageTable from "../Income/Message";
 import { FinancialTable } from "./Financial_Table";
 import { Link } from "react-router-dom";
 import arrow_icon from "../../../../Image/arrow_icon.png";
@@ -43,10 +43,10 @@ export class Financial_Detail extends Component {
           </div>
           <div className="my-2">
             {console.log(this.state.id)}
-            <MessageTable  dataid={this.state.id} table="statement"/>
+            <MessageTable dataid={this.state.id} table="statement" />
           </div>
         </Container>
       </>
     );
   }
-};
+}

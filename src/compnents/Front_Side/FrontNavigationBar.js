@@ -1,8 +1,8 @@
 import React from "react";
 import { slide as Menu } from "react-burger-menu";
-import "./FrontNavBar.css"
+import "./FrontNavBar.css";
 // eslint-disable-next-line import/no-anonymous-default-export
-export default props => {
+export default (props) => {
   return (
     // Pass on our props
     <div>
@@ -24,6 +24,5 @@ export default props => {
         </a>
       </Menu>
     </div>
-
   );
 };

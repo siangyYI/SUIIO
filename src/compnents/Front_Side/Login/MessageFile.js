@@ -6,9 +6,9 @@ import styled from "styled-components";
 const MessageContainer = styled.div`
   border: 1px solid rgba(0, 0, 0, 0.125);
   padding: 10px 10px 10px 30px;
-  margin:15px;
+  margin: 15px;
   border-radius: 4px;
-  background-color:#546d8b;
+  background-color: #546d8b;
   color: white;
   & + & {
     margin-top: 8px;
