@@ -26,7 +26,9 @@ export class Financial_Index extends Component {
   }
 
   update = () => {
-    fetch("http://suiio.nutc.edu.tw:2541/api/statement/fetch/status/1")
+    fetch(
+      `http://${process.env.REACT_APP_DOMAIN}:${process.env.REACT_APP_PORT}/api/statement/fetch/status/1`
+    )
       .then((res) => res.json())
       .then((data) => {
         this.setState({ statements: data });
@@ -65,7 +67,9 @@ export class Financial_Index extends Component {
   }
 
   fetchContent = async (id) => {
-    await fetch(`http://suiio.nutc.edu.tw:2541/api/statement/fetch/id/${id}`)
+    await fetch(
+      `http://${process.env.REACT_APP_DOMAIN}:${process.env.REACT_APP_PORT}/api/statement/fetch/id/${id}`
+    )
       .then((res) => res.json())
       .then((data) => this.setState({ accounts: data }));
   };

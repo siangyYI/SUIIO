@@ -17,6 +17,7 @@
     "chart.piecelabel.js": "^0.15.0",
     "chartjs-plugin-datalabels": "^2.0.0",
     "chartjs-plugin-labels": "^1.1.0",
+    "dotenv": "^10.0.0",
     "ng2-charts": "^2.4.2",
     "prettier": "^2.3.2",
     "react": "^17.0.2",

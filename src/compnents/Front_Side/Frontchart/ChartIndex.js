@@ -34,7 +34,7 @@ export class Chart_Index extends Component {
   }
   diagram = async (year, month) => {
     await fetch(
-      `http://suiio.nutc.edu.tw:2541/api/account/fetch/diagram/${year}/${month}`
+      `http://${process.env.REACT_APP_DOMAIN}:${process.env.REACT_APP_PORT}/api/account/fetch/diagram/${year}/${month}`
     )
       .then((res) => res.json())
       .then((data) => {

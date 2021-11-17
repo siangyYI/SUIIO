@@ -112,7 +112,7 @@ function MessageTable(props) {
 
   const fetchMessages = async (tables, tableID) => {
     await fetch(
-      `http://suiio.nutc.edu.tw:2541/api/comment/fetch/${tables}/${tableID}`
+      `http://${process.env.REACT_APP_DOMAIN}:${process.env.REACT_APP_PORT}/api/comment/fetch/${tables}/${tableID}`
     )
       .then((res) => res.json())
       .then((data) => {
@@ -134,18 +134,21 @@ function MessageTable(props) {
   };
   const handleFormSubmit = () => {
     if (value.trim()) {
-      fetch(`http://suiio.nutc.edu.tw:2541/api/comment/add/${props.table}`, {
-        method: "POST",
-        headers: {
-          "content-type": "application/json",
-        },
-        body: JSON.stringify({
-          tableID: props.dataid,
-          content: value,
-          isHide: Hidename,
-          sID: "1110634006",
-        }),
-      })
+      fetch(
+        `http://${process.env.REACT_APP_DOMAIN}:${process.env.REACT_APP_PORT}/api/comment/add/${props.table}`,
+        {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify({
+            tableID: props.dataid,
+            content: value,
+            isHide: Hidename,
+            sID: "1110634006",
+          }),
+        }
+      )
         .then((res) => res.json())
         .then((data) => {
           setValue("");

@@ -2,7 +2,9 @@ import React, { Component } from "react";
 import "./Notifycard.css";
 import NotifyItem from "./NotifyItem";
 import io from "socket.io-client";
-const socket = io("http://suiio.nutc.edu.tw:2541");
+const socket = io(
+  `http://${process.env.REACT_APP_DOMAIN}:${process.env.REACT_APP_PORT}`
+);
 
 class Notifycard extends Component {
   constructor(props) {
@@ -23,7 +25,9 @@ class Notifycard extends Component {
     });
   }
   fetchContent = async (sid) => {
-    await fetch(`http://suiio.nutc.edu.tw:2541/api/events/fetch/comment/${sid}`)
+    await fetch(
+      `http://${process.env.REACT_APP_DOMAIN}:${process.env.REACT_APP_PORT}/api/events/fetch/comment/${sid}`
+    )
       .then((res) => res.json())
       .then((data) => this.setState({ notufy: data }));
   };

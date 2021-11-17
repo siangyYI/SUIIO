@@ -25,6 +25,8 @@ import ChangePW from "./compnents/Front_Side/Login/ChangePW";
 import EditFile from "./compnents/Front_Side/Login/EditFile";
 import ReportMessage from "./compnents/Front_Side/Login/ReportMessage";
 
+require("dotenv").config();
+
 class App2 extends Component {
   render() {
     return (

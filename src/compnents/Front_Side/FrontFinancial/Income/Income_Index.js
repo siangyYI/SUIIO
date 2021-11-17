@@ -23,7 +23,9 @@ export class Income_Index extends Component {
     this.update();
   }
   update = () => {
-    fetch("http://suiio.nutc.edu.tw:2541/api/account/fetch/status/1")
+    fetch(
+      `http://${process.env.REACT_APP_DOMAIN}:${process.env.REACT_APP_PORT}/api/account/fetch/status/1`
+    )
       .then((res) => res.json())
       .then((data) => {
         this.setState({ account: data });
