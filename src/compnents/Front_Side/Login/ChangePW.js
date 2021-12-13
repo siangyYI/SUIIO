@@ -17,16 +17,16 @@ function ChangePW() {
             <h4 className="ml-5 mt-4">確認新密碼</h4>
             <Input />
             <div className="text-center row">
-              <Button
-                style={{ backgroundColor: "#6B7A8F", borderColor: "#6B7A8F" }}
-                className="col m-1"
+            <a href="/account" style={{ backgroundColor: "#d8936c", borderColor: "#6B7A8F" ,borderRadius:"5px"}}
+              className="col m-1"><Button
+              style={{ backgroundColor: "#d8936c", borderColor: "#d8936c" }}
               >
                 取消
-              </Button>
+              </Button></a>
               <Button
                 variant="dark"
                 type="submit"
-                href="#/Front/Login"
+                href="/Login"
                 style={{ color: "white" }}
                 className="col m-1"
               >

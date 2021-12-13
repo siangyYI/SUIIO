@@ -4,8 +4,8 @@ function Choose() {
   return (
     <>
       <div className="row text-center" style={{height:"100%", padding:"0 !important"}} >
-        <div className="col" style={{backgroundColor:"#BBB8B8"}}>
-          <a href="#/IncomeIndex" className="m-5">
+        <div className="col" style={{backgroundColor:"#fbf7d1"}}>
+          <a href="/account" className="m-5">
             <img
               className=""
               src={require("../../../Image/member.png").default}
@@ -16,7 +16,7 @@ function Choose() {
           </a>
         </div>
         <div className="col">
-          <a href="#/Organization/event" className="col m-5">
+          <a href="" className="col m-5">
             <img
               className=""
               //   onClick={() => setMemberDel(true)}

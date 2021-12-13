@@ -18,10 +18,8 @@ export class Login extends Component {
     if (sid === '' && password === '') {
       return;
     }
-
     sid = document.getElementById('sid').value;
     password = document.getElementById('pwd').value;
-
     fetch("http://localhost:4000/api/member/login", {
       method: 'POST', // or 'PUT'
       body: JSON.stringify({
@@ -38,7 +36,7 @@ export class Login extends Component {
         if (response.result === true) {
           localStorage.setItem("token", response.token)
         } else {
-          alert('妳壞壞')
+          alert('帳號或密碼錯誤')
         }
         if (localStorage.getItem('token')) {
           window.location.href = 'http://localhost:3000/Choose'

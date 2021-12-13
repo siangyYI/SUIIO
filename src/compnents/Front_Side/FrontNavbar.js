@@ -31,8 +31,15 @@ class NavBar extends Component {
     reary = ary1[3].split("?");
     let nav;
     if (ary1[3] === "account" || reary[0] === "account/detail" || ary1[3] === "") {
-      
-      nav = (
+      nav = (<><div className="d-flex justify-content-center mt-5 topbar">
+        <Bell />
+        <div className="d-flex flex-column">
+          <User />
+        </div>
+      </div>
+
+
+
         <aside>
           <div className="my-4 ho" >
             <a href="/account" >
@@ -90,10 +97,16 @@ class NavBar extends Component {
             </a>
           </div>
         </aside>
-
+      </>
       );
     } if (ary1[3] === "financial" || reary[0] === "financial/detail") {
-      nav = (
+      nav = (<><div className="d-flex justify-content-center mt-5 topbar">
+        <Bell />
+        <div className="d-flex flex-column">
+          <User />
+        </div>
+      </div>
+
         <aside>
           <div className="my-4 ho" style={{ filter: 'contrast(0.5)' }}>
             <a href="/account">
@@ -151,10 +164,16 @@ class NavBar extends Component {
             </a>
           </div>
         </aside>
-
+      </>
       );
     } if (ary1[3] === "chart") {
-      nav = (
+      nav = (<><div className="d-flex justify-content-center mt-5 topbar">
+        <Bell />
+        <div className="d-flex flex-column">
+          <User />
+        </div>
+      </div>
+
         <aside>
           <div className="my-4 ho" style={{ filter: 'contrast(0.5)' }}>
             <a href="/account" >
@@ -212,9 +231,16 @@ class NavBar extends Component {
             </a>
           </div>
         </aside>
+      </>
       );
     } if (ary1[3] === "compare") {
-      nav = (
+      nav = (<><div className="d-flex justify-content-center mt-5 topbar">
+        <Bell />
+        <div className="d-flex flex-column">
+          <User />
+        </div>
+      </div>
+
         <aside>
           <div className="my-4 ho" style={{ filter: 'contrast(0.5)' }}>
             <a href="/account" >
@@ -272,10 +298,16 @@ class NavBar extends Component {
             </a>
           </div>
         </aside>
-
+      </>
       );
     } if (ary1[3] === "meet" || reary[0] === "meet/reconder") {
-      nav = (
+      nav = (<><div className="d-flex justify-content-center mt-5 topbar">
+        <Bell />
+        <div className="d-flex flex-column">
+          <User />
+        </div>
+      </div>
+
         <aside>
           <div className="my-4 ho" style={{ filter: 'contrast(0.5)' }}>
             <a href="/account">
@@ -333,21 +365,13 @@ class NavBar extends Component {
             </a>
           </div>
         </aside>
-
+      </>
       );
     }
 
     return (
       <div>
-        <div className="d-flex justify-content-center mt-5 topbar">
-          <Bell />
-          <div className="d-flex flex-column">
-            <User />
-          </div>
-        </div>
-
         {nav}
-
       </div>
     );
   }

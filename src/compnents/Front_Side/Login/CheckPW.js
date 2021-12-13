@@ -30,7 +30,7 @@ function Login() {
               重新寄送密碼
             </Button>
           </div>
-          <a href="#/Front/Choose" className="mx-4 ">
+          <a href="/Choose" className="mx-4 ">
             <Button className="BTN w-100 mx-auto d-flex justify-content-center"style={{ backgroundColor: "#6B7A8F", borderColor: "#6B7A8F" }}>登入</Button></a>
         </div>
       </div></div>
