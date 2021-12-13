@@ -2,10 +2,7 @@ import React, { Component } from "react";
 import './Notifycard.css'
 import NotifyItem from './NotifyItem'
 import io from 'socket.io-client'
-const socket = io('http://suiio.nutc.edu.tw:2541');
-
-
-
+const socket = io('http://localhost:4000');
 
 class Notifycard extends Component {
     constructor(props) {
@@ -26,7 +23,7 @@ class Notifycard extends Component {
         })
     }
     fetchContent = async (sid) => {
-        await fetch(`http://suiio.nutc.edu.tw:2541/api/events/fetch/comment/${sid}`)
+        await fetch(`http://localhost:4000/api/events/fetch/comment/${sid}`)
             .then((res) => res.json())
             .then((data) => this.setState({ notufy: data }));
     };
@@ -37,7 +34,6 @@ class Notifycard extends Component {
     render() {
         return (
             <>
-            
                 <div className="overflow-auto ncard " id="notify">
                     <div className="title_line py-2"><div className="ml-4">通知</div></div>
                     {this.state.notufy?.length ? this.state.notufy.map((x) => (
@@ -47,6 +43,5 @@ class Notifycard extends Component {
             </>
         );
     }
-
 }
 export default Notifycard;

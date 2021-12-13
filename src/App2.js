@@ -18,7 +18,7 @@ import { Chart_Index } from './compnents/Front_Side/Frontchart/ChartIndex';
 import {CompareIndex} from './compnents/Front_Side/FrontCompare/CompareIndex';
 
 
-import Login from './compnents/Front_Side/Login/Login';
+import {Login} from './compnents/Front_Side/Login/Login';
 import PW_account from './compnents/Front_Side/Login/PW_account';
 import CheckPW from './compnents/Front_Side/Login/CheckPW'
 import Choose from './compnents/Front_Side/Login/Choose'

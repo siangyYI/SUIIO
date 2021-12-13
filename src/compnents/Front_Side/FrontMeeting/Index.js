@@ -28,7 +28,7 @@ export class Index extends Component {
     this.setState({ offset });
   }
   update = () => {
-    fetch("http://suiio.nutc.edu.tw:2541/api/conference/fetch/status/1")
+    fetch("http://localhost:4000/api/conference/fetch/status/1")
       .then((res) => res.json())
       .then((data) => {
         this.setState({ conferences: data });

@@ -16,10 +16,10 @@ function PW_account() {
         </div>
         
         <div className="row">
-          <a href="#/Login" className="col d-flex justify-content-center">
+          <a href="/Login" className="col d-flex justify-content-center">
             <Button className="w-75"style={{ backgroundColor: "#6B7A8F", borderColor: "#6B7A8F" }}>取消</Button>
           </a>
-          <a href="#/Front/CheckPW" className="col d-flex justify-content-center">
+          <a href="/CheckPW" className="col d-flex justify-content-center">
             <Button className="w-75 btn-dark">繼續</Button>
           </a>
         </div>
