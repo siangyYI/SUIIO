@@ -14,11 +14,15 @@ export class Login extends Component {
     this.fetchuser = this.fetchuser.bind(this);
   }
 
-  fetchuser = async () => {
+  fetchuser = (sid, password) => {
+    if (sid === '' && password === '') {
+      return;
+    }
 
-    const sid = document.getElementById('sid').value,
+    sid = document.getElementById('sid').value;
     password = document.getElementById('pwd').value;
-    await fetch("http://localhost:4000/api/member/login", {
+
+    fetch("http://localhost:4000/api/member/login", {
       method: 'POST', // or 'PUT'
       body: JSON.stringify({
         "sID": sid,
@@ -34,15 +38,16 @@ export class Login extends Component {
         if (response.result === true) {
           localStorage.setItem("token", response.token)
         } else {
-          localStorage.setItem("token", "null")
+          alert('妳壞壞')
         }
-        if (localStorage.token !== "null") {
+        if (localStorage.getItem('token')) {
           window.location.href = 'http://localhost:3000/Choose'
         }
 
       });
 
   }
+
   render() {
     return (
       <div style={{ height: "100%" }}>
@@ -51,12 +56,12 @@ export class Login extends Component {
             <h2 className="text-center loginfont">登入</h2>
             <h4 className="ml-5 mt-4">帳號</h4>
             <div className="mx-4 d-flex justify-content-center">
-              <Input type="text" id="sid" idvalue={this.state.sID} placeholder="請輸入學號"></Input>
+              <Input type="text" id="sid" placeholder="請輸入學號"></Input>
             </div>
 
             <h4 className="ml-5 mt-4">密碼</h4>
             <div className="mx-4 d-flex justify-content-center">
-              <Input type="password" id="pwd" value={this.state.password} placeholder="請輸入密碼">
+              <Input type="password" id="pwd" placeholder="請輸入密碼">
               </Input>
             </div>
             <a href="/PW_account">
@@ -66,7 +71,7 @@ export class Login extends Component {
             </a>
             <br /><br />
 
-            <Button className="BTN w-100 " onClick={this.fetchuser(this.state.sID, this.state.password)} style={{ backgroundColor: "#6B7A8F", borderColor: "#6B7A8F" }}>登入</Button>
+            <Button className="BTN w-100 " onClick={this.fetchuser} style={{ backgroundColor: "#6B7A8F", borderColor: "#6B7A8F" }}>登入</Button>
 
           </div>
         </div>
