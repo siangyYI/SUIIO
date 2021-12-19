@@ -558,7 +558,7 @@ export class Chart_Index extends Component {
                   className="row"
                   style={{ marginBottom: "16%", marginTop: "5%" }}
                 >
-                  <div className="col charttitle">收入占比圓餅圖</div>
+                  <div className="col charttitle">支出占比圓餅圖</div>
                   <div className="mr-3 charttext1">
                     NT$&nbsp;
                     {Number(
