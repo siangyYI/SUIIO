@@ -40,8 +40,8 @@ export class CompareIndex extends Component {
       .then((data) =>
         this.setState({
           year: data,
-          categoryyear1: data[0],
-          categoryyear2: data[1],
+          categoryyear1: data[data.length-2],
+          categoryyear2: data[data.length-1],
         })
       );
   };
